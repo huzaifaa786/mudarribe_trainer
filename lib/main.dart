@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/views/signin.dart/chats/chats.dart';
 import 'package:mudarribe_trainer/views/signin.dart/view.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- 
+
   // await LoadingHelper.init();
- 
+
   await GetStorage.init();
 
-  
- 
   runApp(const MyApp());
 }
 
@@ -34,9 +32,9 @@ class _MyAppState extends State<MyApp> {
       // theme: Styles.lightTheme,
       // builder: EasyLoading.init(),
       title: "translation",
-      initialRoute: 'signup', 
+      initialRoute: 'signup',
       routes: {
-        'signup': (_) => Signup(),
+        'signup': (_) => Chats(),
         // 'splash': (_) => SplashScreen(),
         // 'login': (_) => LoginScreen(),
         // // 'VerifyPhone': (_) => VerifyPhone(),
