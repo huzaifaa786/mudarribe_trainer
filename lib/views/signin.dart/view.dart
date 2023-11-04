@@ -16,14 +16,18 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-                  children: [
-            Text('dfdfdf'),
-                  IconButtons(onPressed: (){}, title: 'fgfgfg',)
-                  ],
-                ),
-          )),
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            SizedBox(height: 20,),
+            Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.white,
+            ),
+            Text('Fill Your Information')
+          ],
+        ),
+      )),
     );
   }
 }
