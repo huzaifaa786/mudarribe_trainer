@@ -4,13 +4,15 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/views/chats/chats.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
+import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
 import 'package:mudarribe_trainer/views/signin.dart/view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Get.put(IntroController());
-  Get.put(SplashController());
+Get.put(IntroController());
+Get.put(SplashController());
+Get.put(SigninController());
   // await LoadingHelper.init();
 
   await GetStorage.init();
