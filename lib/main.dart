@@ -46,10 +46,13 @@ class _MyAppState extends State<MyApp> {
       // theme: Styles.lightTheme,
       // builder: EasyLoading.init(),
       title: "translation",
-      initialRoute: 'signup',
+      initialRoute: 'edit',
       routes: {
-        'signup': (_) => EditProfile(),
+        'signup': (_) => Signup(),
         'intro': (_) => IntroScreen(),
+        'edit': (_) => EditProfile(),
+        'chats': (_) => Chats(),
+
         // 'login': (_) => LoginScreen(),
         // // 'VerifyPhone': (_) => VerifyPhone(),
         // 'NoTranslator': (_) => NoTransFound_screen(),
