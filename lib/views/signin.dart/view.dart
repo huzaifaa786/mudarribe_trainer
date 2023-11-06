@@ -1,14 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
+import 'package:mudarribe_trainer/components/dropdown_input.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/large_button.dart';
+import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -98,6 +102,25 @@ class _SignupState extends State<Signup> {
                 ),
                 InputField(
                   lable: 'Email',
+                ),
+                PasswordInputField(
+                  lable: 'password',
+                  obscure: signinController.obscureTextPassword,
+                  toggle: signinController.toggle,
+                ),
+                PasswordInputField(
+                  lable: 'Confirm Password',
+                  obscure: signinController.obscureTextCPassword,
+                  toggle: signinController.toggle1,
+                ),
+                BioInputField(
+                  lable: 'Bio',
+                ),
+                dropInputField(
+                  lable: 'Category Of Train',
+                ),
+                dropInputField(
+                  lable: 'spoken languages',
                 ),
                 Card1(
                   text: 'Upload Your Certificate',
