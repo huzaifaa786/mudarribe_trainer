@@ -39,6 +39,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ],
                 ),
+              
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   // ignore: prefer_const_literals_to_create_immutables
@@ -84,6 +85,7 @@ class _SignupState extends State<Signup> {
                     ],
                   ),
                 ),
+               
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

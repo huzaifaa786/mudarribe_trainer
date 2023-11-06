@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/views/chats/chats.dart';
+import 'package:mudarribe_trainer/views/editprofile/edit_profile.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
@@ -10,9 +11,9 @@ import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-Get.put(IntroController());
-Get.put(SplashController());
-Get.put(SigninController());
+  Get.put(IntroController());
+  Get.put(SplashController());
+  Get.put(SigninController());
   // await LoadingHelper.init();
 
   await GetStorage.init();
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       title: "translation",
       initialRoute: 'signup',
       routes: {
-        'signup': (_) => Chats(),
+        'signup': (_) => EditProfile(),
         'intro': (_) => IntroScreen(),
         // 'login': (_) => LoginScreen(),
         // // 'VerifyPhone': (_) => VerifyPhone(),
