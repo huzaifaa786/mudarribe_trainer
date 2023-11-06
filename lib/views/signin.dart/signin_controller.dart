@@ -8,16 +8,28 @@ class SigninController extends GetxController {
     selected = 'female';
     update();
   }
+
   onmaletap() {
     selected = 'male';
     print(selected);
     update();
   }
 
-   onclick() {
+  onclick() {
     selected = 'click';
     print(selected);
     update();
   }
 
+  bool obscureTextPassword = true;
+  bool obscureTextCPassword = true;
+  void toggle() {
+    obscureTextPassword = !obscureTextPassword;
+    update();
+  }
+
+  void toggle1() {
+    obscureTextCPassword = !obscureTextCPassword;
+    update();
+  }
 }
