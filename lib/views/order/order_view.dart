@@ -12,31 +12,36 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-  
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-                  children: [
-          
-             Row(
-                children: [
-                  Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                  ),
-                  SizedBox(width: 23,),
-                  Text('Orders',style: TextStyle(color:White,fontSize: 28),)
-                ],
-              ),
-              SizedBox(height: 30,),
-              OrderCard(),
-                OrderCard(),
-                  OrderCard(),
-                  ],
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.white,
                 ),
-          )),
+                SizedBox(
+                  width: 23,
+                ),
+                Text(
+                  'Orders',
+                  style: TextStyle(color: White, fontSize: 28),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            OrderCard(),
+            OrderCard(),
+            OrderCard(),
+          ],
+        ),
+      )),
     );
   }
 }

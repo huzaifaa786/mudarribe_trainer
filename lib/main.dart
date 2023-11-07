@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
-import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
-import 'package:mudarribe_trainer/views/order/order_view.dart';
-import 'package:mudarribe_trainer/views/sale/sale_view.dart';
-import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
-import 'package:mudarribe_trainer/views/signin.dart/view.dart';
+import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
+import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
+import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-Get.put(IntroController());
-Get.put(SplashController());
-Get.put(SigninController());
+  Get.put(IntroController());
+  Get.put(SplashController());
+  Get.put(SigninController());
   // await LoadingHelper.init();
 
   await GetStorage.init();
@@ -42,19 +41,10 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      // theme: Styles.lightTheme,
-      // builder: EasyLoading.init(),
-      title: "translation",
-      initialRoute: 'order',
-      routes: {
-        'signup': (_) => Signup(),
-        'intro': (_) => IntroScreen(),
-        'sale': (_) => SaleScreen(),
-        'order': (_) => OrderScreen(),
-        // 'NoTranslator': (_) => NoTransFound_screen(),
-        // 'Verify': (_) => EmailOtpVerifyScreen(),
-      },
+      title: "Mudarribe",
+      initialBinding: SplashBinding(),
+      home: SignupView(),
+      getPages: AppPages.pages,
     );
   }
 }

@@ -6,22 +6,19 @@ import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/dropdown_input.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
-import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
-import 'package:mudarribe_trainer/components/large_button.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<SignupView> createState() => _SignupViewState();
 }
 
-class _SignupState extends State<Signup> {
+class _SignupViewState extends State<SignupView> {
   String dropdownvalue = 'Item 1';
 
   // List of items in our dropdown menu
