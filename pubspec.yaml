@@ -39,6 +39,8 @@ dependencies:
   get: ^4.6.6
   get_storage: ^2.1.1
   flutter_svg: ^2.0.9
+  dropdown_button2: ^2.3.9
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:

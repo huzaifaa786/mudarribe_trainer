@@ -3,6 +3,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
+import 'package:mudarribe_trainer/views/order/order_view.dart';
+import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
 import 'package:mudarribe_trainer/views/signin.dart/view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
@@ -44,12 +46,12 @@ class _MyAppState extends State<MyApp> {
       // theme: Styles.lightTheme,
       // builder: EasyLoading.init(),
       title: "translation",
-      initialRoute: 'signup',
+      initialRoute: 'order',
       routes: {
         'signup': (_) => Signup(),
         'intro': (_) => IntroScreen(),
-        // 'login': (_) => LoginScreen(),
-        // // 'VerifyPhone': (_) => VerifyPhone(),
+        'sale': (_) => SaleScreen(),
+        'order': (_) => OrderScreen(),
         // 'NoTranslator': (_) => NoTransFound_screen(),
         // 'Verify': (_) => EmailOtpVerifyScreen(),
       },

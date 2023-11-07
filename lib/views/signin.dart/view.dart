@@ -22,6 +22,17 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  String dropdownvalue = 'Item 1';
+
+  // List of items in our dropdown menu
+  var items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,11 +125,45 @@ class _SignupState extends State<Signup> {
                 BioInputField(
                   lable: 'Bio',
                 ),
-                dropInputField(
-                  lable: 'Category Of Train',
+                DropInputField(
+                  label: 'Category Of Train',
+                  hint: 'Select Category',
+                  value: dropdownvalue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownvalue = newValue!;
+                    });
+                  },
+                  items: items.map((String item) {
+                    return DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        selectionColor: Colors.white,
+                      ),
+                    );
+                  }).toList(),
                 ),
-                dropInputField(
-                  lable: 'spoken languages',
+                DropInputField(
+                  label: 'spoken languages',
+                  hint: 'Select Category',
+                  value: dropdownvalue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownvalue = newValue!;
+                    });
+                  },
+                  items: items.map((String item) {
+                    return DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                            color: Colors.white), // Set text color to white
+                      ),
+                    );
+                  }).toList(),
+              
                 ),
                 Card1(
                   text: 'Upload Your Certificate',
@@ -141,7 +186,11 @@ class _SignupState extends State<Signup> {
                       ontap: signinController.onfemaletap,
                     ),
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GradientButton(title: 'Submit', onPressed: () {})
               ])),
         ),
       ),
