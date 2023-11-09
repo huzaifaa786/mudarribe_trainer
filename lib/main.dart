@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
-import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
-import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
+import 'package:mudarribe_trainer/routes/app_pages.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
-import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
-import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
-import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
-import 'package:mudarribe_trainer/views/signin.dart/view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
+import 'firebase_options.dart';
+import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
+import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   Get.put(IntroController());
   Get.put(SplashController());
   Get.put(SigninController());
@@ -44,24 +46,10 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      navigatorKey: navigatorKey,
-      // theme: Styles.lightTheme,
-      // builder: EasyLoading.init(),
-      title: "translation",
-      initialRoute: 'change',
-      routes: {
-        'signup': (_) => Signup(),
-        'intro': (_) => IntroScreen(),
-        'edit': (_) => EditProfile(),
-        'chats': (_) => Chats(),
-        'change': (_) => ChangePassword(),
-        'promocode': (_) => PromoCode(),
-
-        // 'login': (_) => LoginScreen(),
-        // // 'VerifyPhone': (_) => VerifyPhone(),
-        // 'NoTranslator': (_) => NoTransFound_screen(),
-        // 'Verify': (_) => EmailOtpVerifyScreen(),
-      },
+      title: "Mudarribe",
+      initialBinding: SplashBinding(),
+      home: const SplashView(),
+      getPages: AppPages.pages,
     );
   }
 }

@@ -6,22 +6,30 @@ import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/dropdown_input.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
-import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
-import 'package:mudarribe_trainer/components/large_button.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<SignupView> createState() => _SignupViewState();
 }
 
-class _SignupState extends State<Signup> {
+class _SignupViewState extends State<SignupView> {
+  String dropdownvalue = 'Item 1';
+
+  // List of items in our dropdown menu
+  var items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,11 +124,45 @@ class _SignupState extends State<Signup> {
                 BioInputField(
                   lable: 'Bio',
                 ),
-                dropInputField(
-                  lable: 'Category Of Train',
+                DropInputField(
+                  label: 'Category Of Train',
+                  hint: 'Select Category',
+                  value: dropdownvalue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownvalue = newValue!;
+                    });
+                  },
+                  items: items.map((String item) {
+                    return DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        selectionColor: Colors.white,
+                      ),
+                    );
+                  }).toList(),
                 ),
-                dropInputField(
-                  lable: 'spoken languages',
+                DropInputField(
+                  label: 'spoken languages',
+                  hint: 'Select Category',
+                  value: dropdownvalue,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownvalue = newValue!;
+                    });
+                  },
+                  items: items.map((String item) {
+                    return DropdownMenuItem<String>(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: TextStyle(
+                            color: Colors.white), // Set text color to white
+                      ),
+                    );
+                  }).toList(),
+              
                 ),
                 Card1(
                   text: 'Upload Your Certificate',
@@ -143,7 +185,11 @@ class _SignupState extends State<Signup> {
                       ontap: signinController.onfemaletap,
                     ),
                   ],
-                )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                GradientButton(title: 'Submit', onPressed: () {})
               ])),
         ),
       ),

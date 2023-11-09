@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
-
 class SigninController extends GetxController {
   static SigninController instance = Get.find();
   String selected = '';
