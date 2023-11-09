@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/views/chats/chats.dart';
-import 'package:mudarribe_trainer/views/editprofile/edit_profile.dart';
+import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
+import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
+import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
+import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/signin.dart/signin_controller.dart';
 import 'package:mudarribe_trainer/views/signin.dart/view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
@@ -46,12 +48,14 @@ class _MyAppState extends State<MyApp> {
       // theme: Styles.lightTheme,
       // builder: EasyLoading.init(),
       title: "translation",
-      initialRoute: 'edit',
+      initialRoute: 'change',
       routes: {
         'signup': (_) => Signup(),
         'intro': (_) => IntroScreen(),
         'edit': (_) => EditProfile(),
         'chats': (_) => Chats(),
+        'change': (_) => ChangePassword(),
+        'promocode': (_) => PromoCode(),
 
         // 'login': (_) => LoginScreen(),
         // // 'VerifyPhone': (_) => VerifyPhone(),

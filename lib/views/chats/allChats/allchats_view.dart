@@ -41,6 +41,7 @@ class _ChatsState extends State<Chats> {
                 ],
               ),
             ),
+            
             Column(
               children: [
                 Padding(

@@ -66,6 +66,11 @@ flutter:
     - assets/images/
     - assets/images/Vector 2.svg
     - assets/images/Rectangle 31.png
+    - assets/images/iconamoon_discount.svg
+    - assets/images/mdi_password-outline.svg
+    - assets/images/Vector.svg
+    - assets/images/Vector (1).svg
+    
    
     # - images/a_dot_ham.jpeg
 
