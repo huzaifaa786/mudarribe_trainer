@@ -5,6 +5,7 @@ class IntroController extends GetxController {
   static IntroController instance = Get.find();
   String selected = '';
   onExistingtap() {
+    print(selected);
     selected = 'Existing';
     update();
   }

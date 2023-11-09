@@ -26,6 +26,7 @@ class GenderCard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.4,
                 height: 100,
                 decoration: BoxDecoration(
+                  
                   border: selected == true
                       ? GradientBoxBorder(
                           gradient: LinearGradient(
@@ -46,7 +47,7 @@ class GenderCard extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Image(image: AssetImage(image)),
+                child: Center(child: Image(image: AssetImage(image))),
               ),
             ),
             // selected == true
