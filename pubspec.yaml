@@ -45,6 +45,7 @@ dependencies:
   firebase_auth: ^4.12.1
   cloud_firestore: ^4.12.2
   image_picker: ^1.0.4
+  motion_tab_bar_v2: ^0.3.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,13 @@ flutter:
   assets:
     - assets/images/
     - assets/images/Vector 2.svg
+    - assets/images/Rectangle 31.png
+    - assets/images/iconamoon_discount.svg
+    - assets/images/mdi_password-outline.svg
+    - assets/images/Vector.svg
+    - assets/images/Vector (1).svg
+    
+   
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

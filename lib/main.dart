@@ -5,7 +5,14 @@ import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
+import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
+import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
+import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
+import 'package:mudarribe_trainer/views/editplan/editplan-view.dart';
+import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
+import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
+import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
 import 'firebase_options.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
@@ -19,6 +26,8 @@ void main() async {
   Get.put(IntroController());
   Get.put(SplashController());
   Get.put(SigninController());
+   Get.put(ChangepasswordController());
+   Get.put(PersonalPlanController());
   // await LoadingHelper.init();
 
   await GetStorage.init();
@@ -49,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
       initialBinding: SplashBinding(),
-      home: const SignupView(),
+      home: const PersonalPlan(),
       getPages: AppPages.pages,
     );
   }
