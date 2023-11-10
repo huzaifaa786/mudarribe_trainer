@@ -57,7 +57,7 @@ class _SignupViewState extends State<SignupView> {
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     Text(
-                      'Fill Your Information',
+                      'Fill Your Informationn',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
