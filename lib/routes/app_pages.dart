@@ -3,6 +3,7 @@ import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
+import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
@@ -33,6 +34,10 @@ class AppPages {
       GetPage(
       name: AppRoutes.todaymeals,
       page: () => const OrderScreen(),
+    ),
+      GetPage(
+      name: AppRoutes.exersize,
+      page: () => const ExersizeScreen(),
     ),
   ];
 }

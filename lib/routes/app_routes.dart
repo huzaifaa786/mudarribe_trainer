@@ -5,6 +5,7 @@ class AppRoutes {
   static const sale = '/sale';
   static const orders = '/orders';
   static const todaymeals = '/todaymeals';
+  static const exersize = '/exersize';
 
   
 }
