@@ -5,8 +5,10 @@ import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart'
 import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
 import 'package:mudarribe_trainer/views/editplan/editplan-view.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
+import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
+import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
@@ -54,6 +56,14 @@ class AppPages {
      GetPage(
       name: AppRoutes.orders,
       page: () => const PersonalPlan(),
+    ),
+     GetPage(
+      name: AppRoutes.orders,
+      page: () => const HomeScreen(),
+    ),
+     GetPage(
+      name: AppRoutes.orders,
+      page: () => const PackagesScreen(),
     ),
   ];
 }
