@@ -2,11 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/large_button.dart';
+import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -18,8 +22,8 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return GetBuilder<ChangepasswordController>(
+      builder: (controller) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -47,25 +51,33 @@ class _ChangePasswordState extends State<ChangePassword> {
                         child: Text(
                           'Change Password.',
                           style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w600),
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: White),
                         ),
                       ),
                     ],
                   ),
-                  InputField(
-                    lable: 'Old Password',
+                  PasswordInputField(
+                    lable: 'password',
+                    obscure: changepasswordController.obscureTextOldPassword,
+                    toggle: changepasswordController.toggle2,
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  InputField(
-                    lable: 'New Password',
+                  PasswordInputField(
+                    lable: 'New password',
+                    obscure: changepasswordController.obscureTextPassword,
+                    toggle: changepasswordController.toggle,
                   ),
                   SizedBox(
                     height: 18,
                   ),
-                  InputField(
+                  PasswordInputField(
                     lable: 'Confirm New Password',
+                    obscure: changepasswordController.obscureTextCPassword,
+                    toggle: changepasswordController.toggle1,
                   ),
                   SizedBox(
                     height: 59,
@@ -77,7 +89,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                       SizedBox(
                         width: 5,
                       ),
-                      Text('Password Updated Successfully'),
+                      Text(
+                        'Password Updated Successfully',
+                        style: TextStyle(color: Colors.green),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -86,6 +101,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   GradientButton(
                     title: 'Confirm',
                     onPressed: () {},
+                    selected: changepasswordController.selected == '' ? false : true,
                   )
                 ],
               ),

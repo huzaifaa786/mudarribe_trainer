@@ -13,8 +13,8 @@ class EditPlans extends StatefulWidget {
 class _EditPlansState extends State<EditPlans> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return 
+       Scaffold(
         body: SafeArea(
           child: Column(
             children: [
@@ -44,7 +44,7 @@ class _EditPlansState extends State<EditPlans> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }

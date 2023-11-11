@@ -4,15 +4,17 @@ import 'package:mudarribe_trainer/values/color.dart';
 class GradientButton extends StatelessWidget {
   const GradientButton({
     Key? key,
+   
     @required this.title,
     @required this.onPressed,
+     this.isValid = false,
     this.selected = false, // Default value is false
   }) : super(key: key);
 
   final title;
   final onPressed;
   final bool selected;
-
+ final bool isValid;
   @override
   Widget build(BuildContext context) {
     return InkWell(

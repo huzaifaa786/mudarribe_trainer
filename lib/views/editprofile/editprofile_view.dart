@@ -18,8 +18,8 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return
+       Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -172,6 +172,7 @@ class _EditProfileState extends State<EditProfile> {
                       )
                     ],
                   ),
+                  SizedBox(height: 24,),
                   GradientButton(
                     title: 'Save Changes',
                     onPressed: () {},
@@ -181,7 +182,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
           ),
         ),
-      ),
-    );
+      );
+  
   }
 }
