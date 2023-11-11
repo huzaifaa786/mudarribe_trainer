@@ -15,5 +15,7 @@ class AppRoutes {
   // ignore: constant_identifier_names
   static const HomeScreen = '/HomeScreen';
   static const PackagesScreen = '/PackagesScreen';
+  static const todaymeals = '/todaymeals';
+
   
 }

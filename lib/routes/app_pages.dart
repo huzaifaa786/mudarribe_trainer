@@ -64,6 +64,10 @@ class AppPages {
      GetPage(
       name: AppRoutes.orders,
       page: () => const PackagesScreen(),
+     ),
+      GetPage(
+      name: AppRoutes.todaymeals,
+      page: () => const OrderScreen(),
     ),
   ];
 }
