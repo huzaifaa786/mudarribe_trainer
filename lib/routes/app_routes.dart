@@ -18,10 +18,8 @@ class AppRoutes {
   static const todaymeals = '/existingmealpaln';
   static const planhome = '/sendplanhome';
   static const profile = '/profile';
-  static const addplan= '/addplan';
-  static const myevent= '/myevent';
-
+  static const addplan = '/addplan';
+  static const myevent = '/myevent';
+  static const signin = '/signin';
   static const exersize = '/exersize';
-
-  
 }

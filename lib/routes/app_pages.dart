@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/Tprofile_view.dart';
+import 'package:mudarribe_trainer/views/authentication/signin/signin_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
@@ -98,5 +99,10 @@ class AppPages {
       name: AppRoutes.exersize,
       page: () => const ExersizeScreen(),
     ),
+GetPage(
+      name: AppRoutes.signin,
+      page: () => const SignInScreen(),
+    ),
+
   ];
 }

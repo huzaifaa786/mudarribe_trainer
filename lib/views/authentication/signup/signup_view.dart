@@ -36,8 +36,8 @@ class _SignupViewState extends State<SignupView> {
 
   @override
   Widget build(BuildContext context) {
-    print(signinController.selected);
-    return GetBuilder<SigninController>(
+    print(signupController.selected);
+    return GetBuilder<SignUpController>(
       builder: (controller) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
@@ -87,7 +87,7 @@ class _SignupViewState extends State<SignupView> {
                             bottom: 23,
                             right: 17,
                             child: RawMaterialButton(
-                              onPressed: () {signinController.selectProfileImage();},
+                              onPressed: () {signupController.selectProfileImage();},
                               elevation: 2.0,
                               // fillColor: Color(0xFFF5F6F9),
                               // ignore: sort_child_properties_last
@@ -115,13 +115,13 @@ class _SignupViewState extends State<SignupView> {
                   ),
                   PasswordInputField(
                     lable: 'password',
-                    obscure: signinController.obscureTextPassword,
-                    toggle: signinController.toggle,
+                    obscure: signupController.obscureTextPassword,
+                    toggle: signupController.toggle,
                   ),
                   PasswordInputField(
                     lable: 'Confirm Password',
-                    obscure: signinController.obscureTextCPassword,
-                    toggle: signinController.toggle1,
+                    obscure: signupController.obscureTextCPassword,
+                    toggle: signupController.toggle1,
                   ),
                   BioInputField(
                     lable: 'Bio',
@@ -187,16 +187,16 @@ class _SignupViewState extends State<SignupView> {
                         text: 'male',
                         image: "assets/images/male.svg",
                         selected:
-                            signinController.selected == 'male' ? true : false,
-                        ontap: signinController.onmaletap,
+                            signupController.selected == 'male' ? true : false,
+                        ontap: signupController.onmaletap,
                       
                       ),
                       GenderCard(
                            text: 'female',
                         image: "assets/images/female.svg",
-                        ontap: signinController.onfemaletap,
+                        ontap: signupController.onfemaletap,
                          selected:
-                            signinController.selected == 'female' ? true : false,
+                            signupController.selected == 'female' ? true : false,
                             
                       ),
                     ],
