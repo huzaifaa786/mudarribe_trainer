@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 
-class PersonalPlanController extends GetxController {
-  static PersonalPlanController instance = Get.find();
+class SendPlanController extends GetxController {
+  static SendPlanController instance = Get.find();
 
-  String selected = '';
+
+ String selected = '';
   onnutritiontap() {
     selected = 'nutrition';
     update();
@@ -15,15 +16,12 @@ class PersonalPlanController extends GetxController {
     update();
     return selected;
   }
-   onbothtap() {
-    selected = 'both';
-    update();
-    return selected;
-  }
-
-  onclick() {
+   onclick() {
     selected = 'click';
     print(selected);
     update();
   }
+
+
+
 }

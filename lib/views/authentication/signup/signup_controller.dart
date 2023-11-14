@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class SigninController extends GetxController {
-  static SigninController instance = Get.find();
+class SignUpController extends GetxController {
+  static SignUpController instance = Get.find();
   String selected = '';
   onfemaletap() {
     selected = 'female';

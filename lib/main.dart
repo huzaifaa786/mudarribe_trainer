@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mudarribe_trainer/views/addevent/add_event.dart';
+import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
 import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
 import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
@@ -28,7 +29,7 @@ void main() async {
 );
   Get.put(IntroController());
   Get.put(SplashController());
-  Get.put(SigninController());
+  Get.put(SignInController());
    Get.put(ChangepasswordController());
    Get.put(PersonalPlanController());
   // await LoadingHelper.init();
