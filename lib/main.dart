@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mudarribe_trainer/views/addevent/add_event.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
 import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
 import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
@@ -60,7 +61,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
       initialBinding: SplashBinding(),
-      home: const SplashView(),
+      home: const AddEventScreen(),
       getPages: AppPages.pages,
     );
   }

@@ -17,6 +17,7 @@ class AppRoutes {
   static const PackagesScreen = '/PackagesScreen';
   static const todaymeals = '/todaymeals';
   static const exersize = '/exersize';
+  static const addevent = '/addevent';
 
   
 }

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/views/addevent/add_event.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
@@ -73,6 +74,10 @@ class AppPages {
       GetPage(
       name: AppRoutes.exersize,
       page: () => const ExersizeScreen(),
+    ),
+        GetPage(
+      name: AppRoutes.addevent,
+      page: () => const AddEventScreen(),
     ),
   ];
 }
