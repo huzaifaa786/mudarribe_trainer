@@ -27,11 +27,12 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
           TopBar(
             text: 'Today Meals',
           ),
+
           Flexible(
             flex: 1,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.9,
-              padding: EdgeInsets.only(right: 15, left: 15, top: 15),
+              padding: EdgeInsets.only(right: 15, left: 15, top: 45),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -48,8 +49,8 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.17,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
+                                height:70,
+                                    
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(60),
                                     gradient: LinearGradient(

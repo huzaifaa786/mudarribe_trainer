@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 
-class BioInputField extends StatelessWidget {
-  const BioInputField({
+class PriceInputField extends StatelessWidget {
+  const PriceInputField({
     Key? key,
     this.controller,
     this.hint,
@@ -33,12 +34,10 @@ class BioInputField extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
         child: TextFormField(
-          
             readOnly: readOnly,
             obscureText: obscure,
             controller: controller,
             validator: validator,
-            maxLines: 3,
             autovalidateMode: autovalidateMode ??
                 (validator == true.obs
                     ? AutovalidateMode.always
@@ -46,8 +45,9 @@ class BioInputField extends StatelessWidget {
             style: TextStyle(color: Colors.white),
             keyboardType: type,
             decoration: InputDecoration(
+                suffixIcon: Align(alignment: Alignment.centerRight,child: Text('|  AED      ',style: TextStyle(color: white),)),
+                
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                  // contentPadding: EdgeInsets.only(top: 60),
                 fillColor: Colors.white,
                 border: GradientOutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
@@ -61,7 +61,6 @@ class BioInputField extends StatelessWidget {
                 focusColor: Colors.grey,
                 labelText: lable,
                 hintText: hint,
-                
                 labelStyle: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,

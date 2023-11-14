@@ -7,6 +7,7 @@ import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/dropdown_input.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -101,13 +102,11 @@ class _SignupViewState extends State<SignupView> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Choose photo',
-                      style: TextStyle(color: White),
-                    ),
-                  ),
+                 Padding(
+
+                   padding: const EdgeInsets.only(top: 12),
+                   child: GradientText2(text: 'Choose photo',),
+                 ),
                   InputField(
                     lable: 'Name',
                   ),
@@ -176,16 +175,25 @@ class _SignupViewState extends State<SignupView> {
                   Card1(
                     text: 'Upload Your ID or Passport',
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [GradientText2(text: 'Gender ?',)],),
+                  ),
                   Row(
                     children: [
                       GenderCard(
-                        image: "assets/images/male.png",
+                        text: 'male',
+                        image: "assets/images/male.svg",
                         selected:
                             signinController.selected == 'male' ? true : false,
                         ontap: signinController.onmaletap,
+                      
                       ),
                       GenderCard(
-                        image: "assets/images/female.png",
+                           text: 'female',
+                        image: "assets/images/female.svg",
                         ontap: signinController.onfemaletap,
                          selected:
                             signinController.selected == 'female' ? true : false,
