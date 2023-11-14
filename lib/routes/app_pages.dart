@@ -8,6 +8,7 @@ import 'package:mudarribe_trainer/views/editplan/editplan-view.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
 import 'package:mudarribe_trainer/views/event/myevent_view.dart';
 import 'package:mudarribe_trainer/views/home/home_view.dart';
+import 'package:mudarribe_trainer/views/introscreen/intro_binding.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
 import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
@@ -34,6 +35,8 @@ class AppPages {
     GetPage(
       name: AppRoutes.intro,
       page: () => const IntroScreen(),
+      binding: IntroBinding()
+
     ),
     GetPage(
       name: AppRoutes.sale,

@@ -9,8 +9,7 @@ import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
 SplashController splashController = SplashController.instance;
 IntroController introController = IntroController.instance;
 SigninController signinController = SigninController.instance;
-ChangepasswordController changepasswordController =
-    ChangepasswordController.instance;
+ChangepasswordController changepasswordController = ChangepasswordController.instance;
 PersonalPlanController personalPlanController = PersonalPlanController.instance;
 SendPlanController sendPlanController = SendPlanController.instance;
 ProfileController profileController = ProfileController.instance;

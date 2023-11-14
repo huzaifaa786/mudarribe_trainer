@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
       initialBinding: SplashBinding(),
-      home: const SignupView(),
+      home: const SplashView(),
       getPages: AppPages.pages,
     );
   }
