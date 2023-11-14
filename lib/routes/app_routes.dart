@@ -21,5 +21,7 @@ class AppRoutes {
   static const addplan= '/addplan';
   static const myevent= '/myevent';
 
+  static const exersize = '/exersize';
+
   
 }

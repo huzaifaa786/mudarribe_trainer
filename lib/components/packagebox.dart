@@ -7,8 +7,7 @@ class PackageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.2,
+      padding: EdgeInsets.all(8.0),
       child: Card(
         color: Color(0x512c2723),
         child: Column(
@@ -42,12 +41,12 @@ class PackageCard extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                         )),
-                        Text("Included Exercises Plan only",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                    ))
+                    Text("Included Exercises Plan only",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ))
                   ],
                 )
               ],
@@ -55,17 +54,7 @@ class PackageCard extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Text("Included Exercises Plan only",
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //           fontSize: 12,
-            //           fontWeight: FontWeight.w600,
-            //         ))
-            //   ],
-            // ),
+         
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

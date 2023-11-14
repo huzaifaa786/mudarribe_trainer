@@ -10,6 +10,7 @@ import 'package:mudarribe_trainer/views/event/myevent_view.dart';
 import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
+import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
@@ -89,6 +90,10 @@ class AppPages {
      GetPage(
       name: AppRoutes.myevent,
       page: () => const MyEvent (),
+    ),
+      GetPage(
+      name: AppRoutes.exersize,
+      page: () => const ExersizeScreen(),
     ),
   ];
 }

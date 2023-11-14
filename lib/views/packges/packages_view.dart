@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mudarribe_trainer/components/packagebox.dart';
+import 'package:mudarribe_trainer/components/topbar.dart';
 
 class PackagesScreen extends StatefulWidget {
   const PackagesScreen({super.key});
@@ -19,67 +20,37 @@ class _PackagesScreenState extends State<PackagesScreen> {
             padding: EdgeInsets.only(top: 10, left: 10, right: 10),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/nevigate.svg',
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      'Packages',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    )
-                  ],
+                TopBar(
+                  text: 'Packages',
                 ),
-                SizedBox(height: 30),
-               PackageCard(),
-                SizedBox(height: 30),
-                  PackageCard(),
-                SizedBox(
-                  height: 40,
-                ),
+                PackageCard(),
+                PackageCard(),
                 Column(
                   children: [
                     Container(
-                      width: 90, // Set the width of the outer container
-                      height: 90, // Set the height of the outer container
+                      width: 90,
+                      height: 90,
                       decoration: BoxDecoration(
-                        shape: BoxShape
-                            .circle, // Make the outer container circular
+                        shape: BoxShape.circle,
                         gradient: LinearGradient(
-                          colors: [
-                            Colors.purple,
-                            Colors.blue
-                          ], // Set your gradient colors
+                          colors: [Colors.purple, Colors.blue],
                         ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(
-                            2.0), // Add padding for space between the image and the border
+                            2.0), 
                         child: Container(
                           decoration: BoxDecoration(
-                            shape: BoxShape
-                                .circle, // Make the inner container circular
+                            shape: BoxShape.circle,
                             color: Colors.black,
-                            // Set the background color of the inner container
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(
-                                2.0), // Add padding for space between the inner container and the image
+                            padding: const EdgeInsets.all(2.0),
                             child: ClipOval(
                               child: Image.asset(
-                                'assets/images/add.png', // Replace 'assets/images/profile.png' with your actual image asset path
-                                width:
-                                    80, // Set the width of the image inside the inner container
-                                height:
-                                    80, // Set the height of the image inside the inner container
-                                // fit: BoxFit
-                                //     .contain, // Adjust the fit property as needed to fit the image within the inner container
+                                'assets/images/add.png',
+                                width: 80,
+                                height: 80,
                               ),
                             ),
                           ),
