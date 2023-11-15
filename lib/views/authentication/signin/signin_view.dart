@@ -81,7 +81,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   )),
                     SizedBox(height: 50,),
-                   GradientButton(title: 'Submit', onPressed: () {})
+                   GradientButton(title: 'Sign In', onPressed: () {})
             ],
           ),
         )),
