@@ -36,7 +36,7 @@ class Card1 extends StatelessWidget {
                         .createShader(Rect.fromLTWH(0, 0, 200, 20))),
             ),
             SizedBox(height: 16,),
-            IconButtons(title: 'upload', onPressed: () {})
+            IconButtons(title: 'Upload', onPressed: () {})
           ],
         ),
         decoration: BoxDecoration(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/userSelectionCard.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 
@@ -42,9 +43,9 @@ class _IntroScreenState extends State<IntroScreen> {
                 height: 40,
               ),
               SelectUserCard(
-                text: 'Existing',
-                selected: introController.selected == 'Existing' ? true : false,
-                ontap: introController.onExistingtap,
+                text: 'New Trainer',
+                selected: introController.selected == 'New' ? true : false,
+                ontap: introController.onNewtap,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12, bottom: 14),
@@ -54,16 +55,22 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
               ),
               SelectUserCard(
-                text: 'New',
-                selected: introController.selected == 'New' ? true : false,
-                ontap: introController.onNewtap,
+                text: 'Existing Trainer',
+                selected: introController.selected == 'Existing' ? true : false,
+                ontap: introController.onExistingtap,
               ),
               SizedBox(
                 height: 80,
               ),
               GradientButton(
-                title: 'next',
-                onPressed: () {},
+                title: 'Next',
+                onPressed: () {
+                  if (introController.selected == 'New') {
+                    Get.offNamed(AppRoutes.signup);
+                  } else if (introController.selected == 'Existing') {
+                    Get.offNamed(AppRoutes.signin);
+                  }
+                },
                 selected: introController.selected == '' ? false : true,
               )
             ],

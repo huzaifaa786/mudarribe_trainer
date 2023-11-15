@@ -34,13 +34,12 @@ void main() async {
 );
   Get.put(IntroController());
   Get.put(SplashController());
-
   Get.put(ChangepasswordController());
   Get.put(PersonalPlanController());
   Get.put(SendPlanController());
   Get.put(ProfileController());
-   Get.put(SignUpController());
-     Get.put(SignInController());
+  Get.put(SignUpController());
+  Get.put(SignInController());
 
   // await LoadingHelper.init();
 

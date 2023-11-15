@@ -47,6 +47,10 @@ dependencies:
   image_picker: ^1.0.4
   motion_tab_bar_v2: ^0.3.0
   change_app_package_name: ^1.1.0
+  google_sign_in: ^6.1.6
+  gap: ^3.0.1
+  firebase_storage: ^11.5.1
+  file_picker: ^6.1.1
 
 dev_dependencies:
   flutter_test:

@@ -12,6 +12,7 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 
@@ -23,20 +24,8 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  String dropdownvalue = 'Item 1';
-
-  // List of items in our dropdown menu
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ];
-
   @override
   Widget build(BuildContext context) {
-    print(signupController.selected);
     return GetBuilder<SignUpController>(
       builder: (controller) => Scaffold(
         body: SafeArea(
@@ -81,63 +70,74 @@ class _SignupViewState extends State<SignupView> {
                       fit: StackFit.expand,
                       children: [
                         CircleAvatar(
-                          backgroundImage: AssetImage("assets/images/logo.png"),
+                          backgroundImage: controller.profileImage != null
+                              ? AssetImage(controller.profileImage!.path)
+                              : AssetImage("assets/images/logo.png"),
                         ),
                         Positioned(
                             bottom: 23,
                             right: 17,
                             child: RawMaterialButton(
-                              onPressed: () {signupController.selectProfileImage();},
+                              onPressed: () {
+                                controller.selectProfileImage();
+                              },
                               elevation: 2.0,
                               // fillColor: Color(0xFFF5F6F9),
                               // ignore: sort_child_properties_last
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: Colors.blue,
-                                size: 39,
-                              ),
+                              child: controller.profileImage != null
+                                  ? Text('')
+                                  : Icon(
+                                      Icons.camera_alt_outlined,
+                                      color: Colors.blue,
+                                      size: 39,
+                                    ),
                               padding: EdgeInsets.all(15.0),
                               shape: CircleBorder(),
                             )),
                       ],
                     ),
                   ),
-                 Padding(
-
-                   padding: const EdgeInsets.only(top: 12),
-                   child: GradientText2(text: 'Choose photo',),
-                 ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12),
+                    child: GradientText2(
+                      text: 'Choose photo',
+                    ),
+                  ),
                   InputField(
                     lable: 'Name',
+                    controller: controller.nameController,
                   ),
                   InputField(
                     lable: 'Email',
+                    controller: controller.emailController,
                   ),
                   PasswordInputField(
-                    lable: 'password',
-                    obscure: signupController.obscureTextPassword,
-                    toggle: signupController.toggle,
+                    lable: 'Password',
+                    obscure: controller.obscureTextPassword,
+                    toggle: controller.togglePassword,
+                    controller: controller.passwordController,
                   ),
                   PasswordInputField(
                     lable: 'Confirm Password',
-                    obscure: signupController.obscureTextCPassword,
-                    toggle: signupController.toggle1,
+                    obscure: controller.obscureTextCPassword,
+                    toggle: controller.toggleCPassword,
+                    controller: controller.confirmPasswordController,
                   ),
                   BioInputField(
                     lable: 'Bio',
+                    controller: controller.bioController,
                   ),
                   Container(
-                    
                     child: DropInputField(
                       label: 'Category Of Train',
                       hint: 'Select Category',
-                      value: dropdownvalue,
+                      value: controller.dropdownvalue,
                       onChanged: (String? newValue) {
                         setState(() {
-                          dropdownvalue = newValue!;
+                          controller.dropdownvalue = newValue!;
                         });
                       },
-                      items: items.map((String item) {
+                      items: controller.items.map((String item) {
                         return DropdownMenuItem<String>(
                           value: item,
                           child: Text(
@@ -151,13 +151,13 @@ class _SignupViewState extends State<SignupView> {
                   DropInputField(
                     label: 'spoken languages',
                     hint: 'Select Category',
-                    value: dropdownvalue,
+                    value: controller.dropdownvalue,
                     onChanged: (String? newValue) {
                       setState(() {
-                        dropdownvalue = newValue!;
+                        controller.dropdownvalue = newValue!;
                       });
                     },
-                    items: items.map((String item) {
+                    items: controller.items.map((String item) {
                       return DropdownMenuItem<String>(
                         value: item,
                         child: Text(
@@ -167,7 +167,6 @@ class _SignupViewState extends State<SignupView> {
                         ),
                       );
                     }).toList(),
-                
                   ),
                   Card1(
                     text: 'Upload Your Certificate',
@@ -179,32 +178,47 @@ class _SignupViewState extends State<SignupView> {
                     padding: const EdgeInsets.only(top: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [GradientText2(text: 'Gender ?',)],),
+                      children: [
+                        GradientText2(
+                          text: 'Gender ?',
+                        )
+                      ],
+                    ),
                   ),
                   Row(
                     children: [
                       GenderCard(
-                        text: 'male',
+                        text: 'Male',
                         image: "assets/images/male.svg",
                         selected:
                             signupController.selected == 'male' ? true : false,
                         ontap: signupController.onmaletap,
-                      
                       ),
                       GenderCard(
-                           text: 'female',
+                        text: 'Female',
                         image: "assets/images/female.svg",
                         ontap: signupController.onfemaletap,
-                         selected:
-                            signupController.selected == 'female' ? true : false,
-                            
+                        selected: signupController.selected == 'female'
+                            ? true
+                            : false,
                       ),
                     ],
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  GradientButton(title: 'Submit', onPressed: () {})
+                  GradientButton(
+                    title: 'Submit',
+                    onPressed: controller.areFieldsFilled.value
+                        ? () {
+                            controller.selectedCategories;
+                          }
+                        : () {
+                            UiUtilites.errorSnackbar('Fill out all fields',
+                                'Please fill all above fields');
+                          },
+                    selected: controller.areFieldsFilled.value,
+                  )
                 ])),
           ),
         ),
