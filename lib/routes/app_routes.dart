@@ -22,4 +22,7 @@ class AppRoutes {
   static const myevent = '/myevent';
   static const signin = '/signin';
   static const exersize = '/exersize';
+  static const addevent = '/addevent';
+
+  
 }
