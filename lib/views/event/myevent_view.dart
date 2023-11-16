@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/eventdetailcard.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -53,15 +54,15 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
         tabBarHeight: 70,
         textStyle: const TextStyle(
           fontSize: 12,
-          color: Colors.black,
+          color: Color.fromARGB(255, 40, 38, 38),
           fontWeight: FontWeight.w500,
         ),
-        tabIconColor: Colors.black,
+        tabIconColor: Color.fromARGB(255, 40, 38, 38),
         tabIconSize: 28.0,
         tabIconSelectedSize: 26.0,
-        tabSelectedColor: Colors.black,
-        tabIconSelectedColor: Colors.white,
-        tabBarColor: Colors.black,
+        tabSelectedColor: Color.fromARGB(255, 40, 38, 38),
+        tabIconSelectedColor: Color.fromARGB(255, 40, 38, 38),
+        tabBarColor: Color.fromARGB(255, 40, 38, 38),
         // onTabItemSelected: (int value) {
         //   // setState(() {
         //   //   // _tabController!.index = value;
@@ -70,30 +71,36 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
         // },
       ),
       floatingActionButton: GestureDetector(
-        onTap: () {
-        
-        },
-        child: Container(
-          width: 70,
-          height: 70,
-          decoration: BoxDecoration(
-              
-              borderRadius: BorderRadius.circular(40),
-              border:GradientBoxBorder(
-                      gradient: LinearGradient(
-                          colors: [borderTop, borderbottom],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomLeft),
-                      width: 4,
-                    )
-                  
+        onTap: () {},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(
+                        colors: [borderTop, borderbottom],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomLeft),
+                    width: 4,
+                  )),
+              child: Icon(
+                Icons.add,
+                color: White,
+              ),
             ),
-          child: Icon(
-            Icons.add,
-            color: White,
-          ),
+            SizedBox(height: 5,),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: GradientText2(
+                text: 'Add New Event',
+              ),
+            )
+          ],
         ),
-        
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SingleChildScrollView(
