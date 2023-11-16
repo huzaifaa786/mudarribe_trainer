@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-
 import 'package:mudarribe_trainer/values/color.dart';
 
 class UiUtilites {
@@ -27,7 +26,7 @@ class UiUtilites {
     Get.snackbar(
       title,
       message,
-      backgroundGradient:  LinearGradient(
+      backgroundGradient: const LinearGradient(
         colors: [borderbottom, borderTop],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,

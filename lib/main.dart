@@ -34,10 +34,15 @@ void main() async {
 );
   Get.put(IntroController());
   Get.put(SplashController());
+  Get.put(ChangepasswordController());
+  Get.put(PersonalPlanController());
+
+  Get.put(SignUpController());
   Get.put(SignInController());
    Get.put(ChangepasswordController());
    Get.put(PersonalPlanController());
     Get.put(SaleController());
+
   // await LoadingHelper.init();
 
   await GetStorage.init();
