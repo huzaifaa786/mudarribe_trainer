@@ -5,7 +5,7 @@ import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/plans/sendplan/sendplan_controller.dart';
+import 'package:mudarribe_trainer/views/sendplan/sendplan_controller.dart';
 
 class HomePlan extends StatefulWidget {
   const HomePlan({super.key});

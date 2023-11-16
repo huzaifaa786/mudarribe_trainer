@@ -10,7 +10,8 @@ import 'package:mudarribe_trainer/components/large_button.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/password/changePassword_controller.dart';
+import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
+
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
