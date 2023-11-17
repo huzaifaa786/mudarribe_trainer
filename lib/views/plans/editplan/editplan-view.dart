@@ -18,7 +18,7 @@ class _EditPlansState extends State<EditPlans> {
         body: SafeArea(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.sizeOf(context).width,
                 height: 90,
                 child: Row(

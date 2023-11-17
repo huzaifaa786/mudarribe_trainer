@@ -19,7 +19,7 @@ class _ChatsState extends State<Chats> {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.sizeOf(context).width,
               height: 90,
               child: Row(

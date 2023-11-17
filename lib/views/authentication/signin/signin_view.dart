@@ -26,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
@@ -40,10 +40,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 padding: const EdgeInsets.only(top: 40),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
-              Text(
+              const Text(
                 'Enter Your Registered Email & Password.',
                 style: TextStyle(color: white, fontSize: 15),
               ),
@@ -52,7 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 300,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 21, 21, 21),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
@@ -65,15 +65,15 @@ class _SignInScreenState extends State<SignInScreen> {
                             lable: 'Email',
                             controller: controller.emailController,
                           ),
-                          SizedBox(height: 20,),
+                          const SizedBox(height: 20,),
                            PasswordInputField(
                         lable: 'password',
                         obscure: signinController.obscureTextPassword,
                         toggle: signinController.toggle,
                         controller: controller.passwordController,
                       ),
-                      SizedBox(height: 20,),
-                      Row(
+                      const SizedBox(height: 20,),
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           GradientText2(text: 'Forget Password ?',),
@@ -83,7 +83,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                   )),
-                    SizedBox(height: 50,),
+                    const SizedBox(height: 50,),
                    GradientButton(title: 'Submit',  onPressed: controller.areFieldsFilled.value
                       ? () {
                           // signInController.signInTrainee();

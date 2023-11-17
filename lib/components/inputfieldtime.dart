@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -10,7 +9,7 @@ class InputFieldTime extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return Padding(
-      padding:  EdgeInsets.only(top: 10),
+      padding:  const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,10 +21,10 @@ class InputFieldTime extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(width: 10), 
+          const SizedBox(width: 10), 
           Container(
             width: MediaQuery.of(context).size.width*0.4,
-            padding: EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 5),
             child: TextField(
              // obscureText: true,
               decoration: InputDecoration(
@@ -35,11 +34,11 @@ class InputFieldTime extends StatelessWidget {
                   gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomLeft,
-                      colors: [Color(4285693389), Color(4278253801)]),
+                      colors: [Color(0xff727dcd), Color(0xff00f8e9)]),
                   width: 1,
                 ),
                // hintText: '22:30',
-                 prefix: Row(
+                 prefix: const Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -55,7 +54,7 @@ class InputFieldTime extends StatelessWidget {
               ),
             ),
           ),
-           VerticalDivider(
+           const VerticalDivider(
                   color: Colors.white, // Change divider color as needed
                   thickness: 1, // Adjust the thickness of the divider
                   width: 10, // Set the width of the divider

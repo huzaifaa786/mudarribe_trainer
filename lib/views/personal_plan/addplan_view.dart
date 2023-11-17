@@ -2,9 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
-import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -18,7 +15,7 @@ import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
 
 class AddPlan extends StatefulWidget {
-  const AddPlan({Key? key});
+  const AddPlan({super.key});
 
   @override
   State<AddPlan> createState() => _AddPlanState();

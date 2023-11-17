@@ -27,10 +27,10 @@ class _IntroScreenState extends State<IntroScreen> {
                 padding: const EdgeInsets.only(left: 23, top: 70),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
@@ -39,7 +39,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               SelectUserCard(
@@ -47,8 +47,8 @@ class _IntroScreenState extends State<IntroScreen> {
                 selected: introController.selected == 'New' ? true : false,
                 ontap: introController.onNewtap,
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 14),
+              const Padding(
+                padding: EdgeInsets.only(top: 12, bottom: 14),
                 child: Text(
                   'OR',
                   style: TextStyle(color: Colors.white),
@@ -59,7 +59,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 selected: introController.selected == 'Existing' ? true : false,
                 ontap: introController.onExistingtap,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               GradientButton(

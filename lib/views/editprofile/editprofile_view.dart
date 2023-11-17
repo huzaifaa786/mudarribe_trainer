@@ -5,9 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
-import 'package:mudarribe_trainer/components/large_button.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -31,7 +29,6 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     Icon(
                       Icons.arrow_back_ios_new,

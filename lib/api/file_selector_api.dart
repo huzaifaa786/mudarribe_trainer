@@ -8,7 +8,6 @@ class FileSelectorApi {
     final pickedFile = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['pdf'],allowMultiple: false);
     if (pickedFile != null) {
-      print(pickedFile.files.first.name);
       return File(pickedFile.paths.first!);
     } else {
       UiUtilites.errorSnackbar(

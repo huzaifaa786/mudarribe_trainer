@@ -23,7 +23,7 @@ class _SaleScreenState extends State<SaleScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Row(
+                const Row(
                   children: [
                     Icon(
                       Icons.arrow_back_ios_new,
@@ -52,27 +52,27 @@ class _SaleScreenState extends State<SaleScreen> {
                       rangeSelectionMode: RangeSelectionMode.enforced,
                       // onDaySelected: saleController.onDaySelected,
                       onRangeSelected: saleController.onRangeSelected,
-                      headerStyle: HeaderStyle(
+                      headerStyle: const HeaderStyle(
                         formatButtonVisible: false,
                         titleCentered: true,
                         titleTextStyle: TextStyle(
-                            color: const Color.fromARGB(255, 56, 125, 181),
+                            color: Color.fromARGB(255, 56, 125, 181),
                             fontSize: 23),
                       ),
                       calendarStyle: CalendarStyle(
-                        defaultTextStyle: TextStyle(color: Colors.white),
+                        defaultTextStyle: const TextStyle(color: Colors.white),
                         todayDecoration: BoxDecoration(
                             color: borderTop.withOpacity(0.5),
                             shape: BoxShape.circle),
-                        selectedDecoration: BoxDecoration(
+                        selectedDecoration: const BoxDecoration(
                             color: borderTop, shape: BoxShape.circle),
                         markerDecoration: BoxDecoration(
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        rangeStartDecoration: BoxDecoration(
+                        rangeStartDecoration: const BoxDecoration(
                             color: borderTop, shape: BoxShape.circle),
-                        rangeEndDecoration: BoxDecoration(
+                        rangeEndDecoration: const BoxDecoration(
                             color: borderTop, shape: BoxShape.circle),
                         rangeHighlightColor: borderTop.withOpacity(0.2),
                         isTodayHighlighted: true,
@@ -95,24 +95,24 @@ class _SaleScreenState extends State<SaleScreen> {
                       startingDayOfWeek: StartingDayOfWeek.monday,
                       daysOfWeekVisible: true,
 
-                      daysOfWeekStyle: DaysOfWeekStyle(
+                      daysOfWeekStyle: const DaysOfWeekStyle(
                         weekdayStyle: TextStyle(color: Colors.white),
                         weekendStyle: TextStyle(color: Colors.white),
                       ),
                     ),
-                    Text('Total Sales',
+                    const Text('Total Sales',
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w500,
                             color: white)),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(top: 40, bottom: 40),
+                      padding: const EdgeInsets.only(top: 40, bottom: 40),
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 79, 75, 75)
+                          color: const Color.fromARGB(255, 79, 75, 75)
                               .withOpacity(0.2),
                           borderRadius: BorderRadius.circular(13)),
-                      child: Align(
+                      child: const Align(
                           alignment: Alignment.center,
                           child: GradientText2(
                             text: 'AED',

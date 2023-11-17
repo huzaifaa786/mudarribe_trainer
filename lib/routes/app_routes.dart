@@ -1,5 +1,3 @@
-import 'package:mudarribe_trainer/views/home/home_view.dart';
-import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 
 class AppRoutes {
   static const splash = '/splash';

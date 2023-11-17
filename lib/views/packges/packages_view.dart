@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mudarribe_trainer/components/packagebox.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 
@@ -17,20 +16,20 @@ class _PackagesScreenState extends State<PackagesScreen> {
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+            padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
             child: Column(
               children: [
-                TopBar(
+                const TopBar(
                   text: 'Packages',
                 ),
-                PackageCard(),
-                PackageCard(),
+                const PackageCard(),
+                const PackageCard(),
                 Column(
                   children: [
                     Container(
                       width: 90,
                       height: 90,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
                           colors: [Colors.purple, Colors.blue],
@@ -40,7 +39,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                         padding: const EdgeInsets.all(
                             2.0), 
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.black,
                           ),
@@ -57,7 +56,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Image.asset('assets/images/addnewpackegs.png'),

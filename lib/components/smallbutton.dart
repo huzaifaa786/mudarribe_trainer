@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
-class smallbutton extends StatelessWidget {
-  const smallbutton({super.key});
+class Smallbutton extends StatelessWidget {
+  const Smallbutton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class smallbutton extends StatelessWidget {
           gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomLeft,
-              colors: [Color(4285693389), Color(4278253801)]),
+              colors: [Color(0xff727dcd), Color(0xff00f8e9)]),
           width: 1,
         ),
       ),

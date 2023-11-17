@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -218,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -269,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -320,7 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -379,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -430,7 +430,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -481,7 +481,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors
@@ -540,7 +540,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape
                                 .circle, // Make the outer container circular
                             gradient: LinearGradient(
-                              colors: [
+                              colors: const [
                                 Colors.purple,
                                 Colors.blue
                               ], // Set your gradient colors

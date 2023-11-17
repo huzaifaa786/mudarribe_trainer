@@ -2,9 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
-import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
@@ -17,7 +14,7 @@ import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
 
 class PersonalPlan extends StatefulWidget {
-  const PersonalPlan({Key? key});
+  const PersonalPlan({super.key});
 
   @override
   State<PersonalPlan> createState() => _PersonalPlanState();

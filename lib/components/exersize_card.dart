@@ -11,35 +11,35 @@ class ExersizeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      margin: EdgeInsets.all(8.0),
-      padding: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-          color: Color(0x872C2723), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0x872C2723), borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: 20, right: 20),
+            padding: const EdgeInsets.only(bottom: 20, right: 20),
             child: SvgPicture.asset('assets/images/ellipseimg.svg'),
           ),
           Padding(
-            padding: EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.only(right: 15),
             child: SvgPicture.asset('assets/images/majesticons.svg'),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title,
                 
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: white,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     )),
                 Text(description,
                 
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: white,
                       fontSize: 10,
                       fontWeight: FontWeight.w400,

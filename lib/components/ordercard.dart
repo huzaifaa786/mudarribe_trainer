@@ -12,6 +12,17 @@ class OrderCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 140,
         padding: const EdgeInsets.all(12.0),
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 22, 22, 22),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(255, 44, 42, 42),
+              offset: Offset(0.0, 0.0),
+              blurRadius: 4.0,
+              spreadRadius: 4.0,
+            ), //BoxShadow
+          ],
+        ),
         child: Row(
           children: [
             Column(
@@ -19,14 +30,14 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [Image.asset('assets/images/person.png'),
               
-              Text('package',style: TextStyle(color: Colors.blue),),
-                Text('price',style: TextStyle(color: Colors.blue),)
+              const Text('package',style: TextStyle(color: Colors.blue),),
+                const Text('price',style: TextStyle(color: Colors.blue),)
               
               
               ],
             ),
-            SizedBox(width: 23,),
-            Column(
+            const SizedBox(width: 23,),
+            const Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  crossAxisAlignment: CrossAxisAlignment.start,
               children: [Text('Ahmad Khan',style: TextStyle(color: White,fontSize: 20),),
@@ -37,19 +48,8 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               
               children: [Image.asset('assets/images/chat.png'),
-              Text('Send plan',style: TextStyle(color: White,fontSize: 14))
+              const Text('Send plan',style: TextStyle(color: White,fontSize: 14))
               ],)
-          ],
-        ),
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 22, 22, 22),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(255, 44, 42, 42),
-              offset: const Offset(0.0, 0.0),
-              blurRadius: 4.0,
-              spreadRadius: 4.0,
-            ), //BoxShadow
           ],
         ),
       ),

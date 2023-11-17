@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/button.dart';
-import 'package:mudarribe_trainer/components/large_button.dart';
-import 'package:mudarribe_trainer/components/smallbutton.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class AddPost extends StatefulWidget {

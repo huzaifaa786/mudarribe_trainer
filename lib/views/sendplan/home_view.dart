@@ -25,7 +25,7 @@ class _HomePlanState extends State<HomePlan> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Row(
+                const Row(
                   children: [
                     Icon(
                       Icons.arrow_back_ios_new,
@@ -43,24 +43,24 @@ class _HomePlanState extends State<HomePlan> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 29,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   height: 70,
-                  child: Align(
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 37, 37, 37),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: const Align(
                       alignment: Alignment.center,
                       child: GradientText2(
                         text: 'Choose Plan ',
                         size: 20.0,
                       )),
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 37, 37, 37),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Column(
@@ -73,7 +73,7 @@ class _HomePlanState extends State<HomePlan> {
                       ontap: sendPlanController.onnutritiontap,
                       text: 'Nutrition Plan',
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     GenderCard(
@@ -86,7 +86,7 @@ class _HomePlanState extends State<HomePlan> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
                 GradientButton(
