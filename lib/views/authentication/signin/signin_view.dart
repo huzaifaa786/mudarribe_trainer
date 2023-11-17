@@ -6,6 +6,7 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -62,12 +63,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         children: [
                           InputField(
                             lable: 'Email',
+                            controller: controller.emailController,
                           ),
                           SizedBox(height: 20,),
                            PasswordInputField(
                         lable: 'password',
                         obscure: signinController.obscureTextPassword,
                         toggle: signinController.toggle,
+                        controller: controller.passwordController,
                       ),
                       SizedBox(height: 20,),
                       Row(
@@ -81,7 +84,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   )),
                     SizedBox(height: 50,),
-                   GradientButton(title: 'Submit', onPressed: () {})
+                   GradientButton(title: 'Submit',  onPressed: controller.areFieldsFilled.value
+                      ? () {
+                          // signInController.signInTrainee();
+                        }
+                      : () {
+                          UiUtilites.errorSnackbar('Fill out all fields',
+                              'Please fill all above fields');
+                        },
+                  selected: controller.areFieldsFilled.value,)
             ],
           ),
         )),
