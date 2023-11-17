@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
-import 'package:mudarribe_trainer/views/addevent/add_event.dart';
+import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
+import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
+import 'package:mudarribe_trainer/views/plans/editplan/editplan-view.dart';
+import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
+import 'package:mudarribe_trainer/views/event/add_event.dart';
 import 'package:mudarribe_trainer/views/Tprofile/Tprofile_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
-import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
+
 import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
-import 'package:mudarribe_trainer/views/editplan/editplan-view.dart';
-import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
+
 import 'package:mudarribe_trainer/views/event/myevent_view.dart';
 import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_binding.dart';
@@ -17,9 +20,10 @@ import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
+import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
-import 'package:mudarribe_trainer/views/sendplan/existing_mealplan.dart';
-import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
+
+import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 
@@ -35,24 +39,22 @@ class AppPages {
       page: () => const SignupView(),
     ),
     GetPage(
-      name: AppRoutes.intro,
-      page: () => const IntroScreen(),
-      binding: IntroBinding()
-
-    ),
+        name: AppRoutes.intro,
+        page: () => const IntroScreen(),
+        binding: IntroBinding()),
     GetPage(
       name: AppRoutes.sale,
       page: () => const SaleScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const OrderScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const Chats(),
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const ChangePassword(),
     ),
@@ -60,54 +62,57 @@ class AppPages {
       name: AppRoutes.orders,
       page: () => const EditPlans(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const EditProfile(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const PersonalPlan(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const HomeScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.orders,
       page: () => const PackagesScreen(),
-     ),
-      GetPage(
+    ),
+    GetPage(
       name: AppRoutes.todaymeals,
-      page: () => const TodayMealsScreen (),
+      page: () => const TodayMealsScreen(),
     ),
-         GetPage(
+    GetPage(
       name: AppRoutes.planhome,
-      page: () => const HomePlan (),
+      page: () => const HomePlan(),
     ),
-       GetPage(
+    GetPage(
       name: AppRoutes.profile,
-      page: () => const ProfileScreen (),
+      page: () => const ProfileScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.addplan,
-      page: () => const AddPlan (),
+      page: () => const AddPlan(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.myevent,
-      page: () => const MyEvent (),
+      page: () => const MyEvent(),
     ),
-      GetPage(
+    GetPage(
       name: AppRoutes.exersize,
       page: () => const ExersizeScreen(),
     ),
-        GetPage(
+    GetPage(
       name: AppRoutes.addevent,
       page: () => const AddEventScreen(),
     ),
-GetPage(
+    GetPage(
       name: AppRoutes.signin,
       page: () => const SignInScreen(),
     ),
-
+     GetPage(
+      name: AppRoutes.addpost,
+      page: () => const AddPost(),
+    ),
   ];
 }

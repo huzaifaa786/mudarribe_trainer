@@ -60,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   Icons.people_alt,
                 ],
                 badges: [null, null, null],
-                tabSize:80,
+                tabSize: 80,
                 tabBarHeight: 50,
                 textStyle: const TextStyle(
                   fontSize: 12,
@@ -80,28 +80,25 @@ class _ProfileScreenState extends State<ProfileScreen>
                 //   // });
                 // },
               ),
-
-              
               floatingActionButton: GestureDetector(
                 onTap: () {
-                  
                   showMenu(
-              context: context,
-              position: RelativeRect.fromLTRB(50, 1000, 0, 50),
-              items: [
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.add),
-                  ),
-                ),
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.remove),
-                  ),
-                ),
-                // Add more PopupMenuItems as needed
-              ],
-            );
+                    context: context,
+                    position: RelativeRect.fromLTRB(50, 1000, 0, 50),
+                    items: [
+                      PopupMenuItem(
+                        child: ListTile(
+                          leading: Icon(Icons.add),
+                        ),
+                      ),
+                      PopupMenuItem(
+                        child: ListTile(
+                          leading: Icon(Icons.remove),
+                        ),
+                      ),
+                      // Add more PopupMenuItems as needed
+                    ],
+                  );
                 },
                 child: Container(
                   width: 70,
@@ -121,20 +118,21 @@ class _ProfileScreenState extends State<ProfileScreen>
                       borderRadius: BorderRadius.circular(45),
                     ),
                   ),
-                  child: Icon(Icons.add,color: White,),
+                  child: Icon(
+                    Icons.add,
+                    color: White,
+                  ),
                 ),
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
-                  
               body: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 30, 29, 29),
-                      borderRadius: BorderRadius.circular(20)
-                    ),
+                        color: Color.fromARGB(255, 30, 29, 29),
+                        borderRadius: BorderRadius.circular(20)),
                     // padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [

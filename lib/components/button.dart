@@ -33,34 +33,34 @@ class _SimpleButtonState extends State<SimpleButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: GestureDetector(
-       
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * widget.sreenRatio,
-          height: 80,
-          child: Container(
-            decoration: BoxDecoration(
-              color: widget.color,
-              borderRadius: BorderRadius.circular(10),
-              border:GradientBoxBorder(
-                      gradient: LinearGradient(
-                          colors: [borderTop, borderbottom],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomLeft),
-                      width: 4,
-                    )
-                  
-            ),
-            child: Center(
-              child: Text(
-                widget.title,
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+    return GestureDetector(
+     
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width *0.98,
+        height: 80,
+        child: Container(
+         decoration: ShapeDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment(-0.96, 0.29),
+                    end: Alignment(0.96, -0.29),
+                    colors: [
+                      Color(0xFF58E0FF),
+                      Color(0xFF727DCD),
+                   
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 0, color: Colors.black),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
                 ),
+          child: Center(
+            child: Text(
+              widget.title,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
