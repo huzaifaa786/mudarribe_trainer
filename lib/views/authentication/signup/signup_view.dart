@@ -75,7 +75,7 @@ class _SignupViewState extends State<SignupView> {
                       children: [
                         CircleAvatar(
                           backgroundImage: controller.profileImage != null
-                              ? AssetImage(controller.profileImage!.path)
+                              ? Image.file(controller.profileImage!).image
                               : AssetImage("assets/images/logo.png"),
                         ),
                         Positioned(
@@ -148,11 +148,17 @@ class _SignupViewState extends State<SignupView> {
                   Gap(8),
                   Card1(
                     text: 'Upload Your Certificate',
-                    ontap: () {},
+                    ontap: () {
+                      controller.selectCertificate();
+                    },
+                    file: controller.certificate,
                   ),
                   Card1(
                     text: 'Upload Your ID or Passport',
-                    ontap: () {},
+                    ontap: () {
+                      controller.selectPassportId();
+                    },
+                    file: controller.passportId,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12),

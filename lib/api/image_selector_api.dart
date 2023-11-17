@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:mudarribe_trainer/exceptions/image_selector_api_exception.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class ImageSelectorApi {
   final picker = ImagePicker();
 
-  Future<File> selectImage() async {
+selectImage() async {
     final pickedFile = await picker.pickImage(
       source: ImageSource.gallery,
     );
@@ -14,10 +14,11 @@ class ImageSelectorApi {
     if (pickedFile != null) {
       return File(pickedFile.path);
     } else {
-      throw ImageSelectorApiException(
-        title: 'Image selection failed',
-        message: 'Failed to select image, please try again.',
-      );
+      UiUtilites.errorSnackbar('Image selection failed', 'Failed to select image, please try again.');
+      // throw ImageSelectorApiException(
+      //   title: 'Image selection failed',
+      //   message: 'Failed to select image, please try again.',
+      // );
     }
   }
 }
