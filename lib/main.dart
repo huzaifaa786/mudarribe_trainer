@@ -9,6 +9,7 @@ import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
 
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
+import 'package:mudarribe_trainer/views/event/add_event.dart';
 
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
       initialBinding: SplashBinding(),
-      home: const ForgetPassword(),
+      home: const AddEventScreen(),
       getPages: AppPages.pages,
     );
   }
