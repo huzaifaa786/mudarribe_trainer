@@ -42,7 +42,7 @@ class _SplashViewState extends State<SplashView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.asset('assets/images/splashLogo.png',height: 210,width: 210,),
+            Image.asset('assets/images/splashLogo.png',height: 210,width: 210,),
             const SizedBox(height: 14),
             const Text(
               "Find Your Personal Trainer",

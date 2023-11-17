@@ -71,7 +71,7 @@ class PasswordInputField extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           fillColor: Colors.white,
           border: GradientOutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(5),
             gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomLeft,

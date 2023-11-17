@@ -56,16 +56,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
+        brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,
         ),
         useMaterial3: true,
+        fontFamily: 'Montserrat',
+
       ),
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
       initialBinding: SplashBinding(),
-      home: const AddEventScreen(),
+      home: const SplashView(),
       getPages: AppPages.pages,
     );
   }

@@ -19,7 +19,7 @@ class GenderCard extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 12),
-          child: InkWell(
+          child: GestureDetector(
             onTap: ontap,
             child: Stack(
               children: [
@@ -39,7 +39,6 @@ class GenderCard extends StatelessWidget {
                             )
                           : Border.all(),
                       color: Color(4279767823),
-                   
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Center(child: SvgPicture.asset(image)),

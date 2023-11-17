@@ -19,6 +19,7 @@ class SignUpController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController bioController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   // documents
   File? profileImage;
@@ -34,19 +35,21 @@ class SignUpController extends GetxController {
 
   RxBool areFieldsFilled = false.obs;
 
-  String dropdownvalue = 'Item 1';
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ];
   String selected = '';
   onfemaletap() {
     selected = 'female';
     update();
     return selected;
+  }
+
+  onchange(List<dynamic> x) {
+    selectedCategories = x.cast<String>();
+    update();
+  }
+
+  onlangchange(List<dynamic> x) {
+    selectedLanguages = x.cast<String>();
+    update();
   }
 
   onmaletap() {
@@ -78,7 +81,8 @@ class SignUpController extends GetxController {
     if (nameController.text.isNotEmpty &&
         emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&
-        confirmPasswordController.text.isNotEmpty && profileImage != null) {
+        confirmPasswordController.text.isNotEmpty &&
+        profileImage != null) {
       areFieldsFilled.value = true;
     } else {
       areFieldsFilled.value = false;
@@ -111,18 +115,18 @@ class SignUpController extends GetxController {
     checkFields();
     update();
   }
+
   Future selectCertificate() async {
     final tempFile = await _fileSelectorApi.selectFile();
     certificate = tempFile;
     checkFields();
     update();
   }
+
   Future selectPassportId() async {
     final tempFile = await _fileSelectorApi.selectFile();
     passportId = tempFile;
     checkFields();
     update();
   }
-
-
 }
