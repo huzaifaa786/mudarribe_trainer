@@ -3,37 +3,37 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mudarribe_trainer/views/addevent/add_event.dart';
+
+import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
+
+
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
-import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
-import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
-import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
-import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
-import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
-import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
-import 'package:mudarribe_trainer/views/editplan/editplan-view.dart';
-import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
+
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
-import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
+
+import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
+
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
+import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 import 'firebase_options.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
-import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   Get.put(IntroController());
   Get.put(SplashController());
   Get.put(ChangepasswordController());
   Get.put(PersonalPlanController());
-
   Get.put(SignUpController());
   Get.put(SignInController());
+  Get.put(ChangepasswordController());
+  Get.put(PersonalPlanController());
+  Get.put(SaleController());
 
   // await LoadingHelper.init();
 

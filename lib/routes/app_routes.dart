@@ -23,6 +23,7 @@ class AppRoutes {
   static const signin = '/signin';
   static const exersize = '/exersize';
   static const addevent = '/addevent';
+  static const addpost = '/addpost';
 
   
 }
