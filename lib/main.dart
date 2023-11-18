@@ -5,7 +5,7 @@ import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
-import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
+
 
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
@@ -17,6 +17,7 @@ import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.da
 import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
 
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
+ 
 import 'firebase_options.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 
@@ -29,7 +30,6 @@ void main() async {
   Get.put(SplashController());
   Get.put(ChangepasswordController());
   Get.put(PersonalPlanController());
-
   Get.put(SignUpController());
   Get.put(SignInController());
   Get.put(ChangepasswordController());
@@ -57,11 +57,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
+        brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,
         ),
         useMaterial3: true,
+        fontFamily: 'Montserrat',
+
       ),
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",

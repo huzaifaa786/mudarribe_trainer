@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/button.dart';
+import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/inputfieldopicity.dart';
@@ -147,45 +148,55 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                   )),
                             ),
                           ),
-                          Column(
-                            //: MainAxisAlignment.start,
-                            children: <Widget>[
-                              ListTile(
-                                title: GradientText('Yes',
-                                    style: TextStyle(
-                                        fontSize: 14.0, fontFamily: "Poppins"),
-                                    colors: [borderbottom, borderTop]),
-                                leading: Radio(
-                                  value: 1,
-                                  groupValue: selectedOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedOption = value!;
-                                    });
-                                  },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: ListTile(
+                                  title: GradientText('Yes',
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontFamily: "Poppins"),
+                                      colors: [borderbottom, borderTop]),
+                                  leading: Radio(
+                                    value: 1,
+                                    groupValue: selectedOption,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedOption = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
-                              ListTile(
-                                title: GradientText('No',
-                                    style: TextStyle(
-                                        fontSize: 14.0, fontFamily: "Poppins"),
-                                    colors: [borderbottom, borderTop]),
-                                leading: Radio(
-                                  value: 2,
-                                  groupValue: selectedOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedOption = value!;
-                                    });
-                                  },
+                              SizedBox(
+                                  width:
+                                      20), // Add some space between the two options
+                              Expanded(
+                                child: ListTile(
+                                  title: GradientText('No',
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontFamily: "Poppins"),
+                                      colors: [borderbottom, borderTop]),
+                                  leading: Radio(
+                                    value: 2,
+                                    groupValue: selectedOption,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedOption = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                         
                         ],
                       ),
                     ),
+                    GradientButton(title: 'Share Event', onPressed: (){}),
+                    SizedBox(height: 20,),
                   ],
                 ),
               ),

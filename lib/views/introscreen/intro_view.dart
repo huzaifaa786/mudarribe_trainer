@@ -66,9 +66,9 @@ class _IntroScreenState extends State<IntroScreen> {
                 title: 'Next',
                 onPressed: () {
                   if (introController.selected == 'New') {
-                    Get.offNamed(AppRoutes.signup);
+                    Get.toNamed(AppRoutes.signup);
                   } else if (introController.selected == 'Existing') {
-                    Get.offNamed(AppRoutes.signin);
+                    Get.toNamed(AppRoutes.signin);
                   }
                 },
                 selected: introController.selected == '' ? false : true,

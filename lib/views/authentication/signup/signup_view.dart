@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -9,12 +11,16 @@ import 'package:mudarribe_trainer/components/dropdown_input.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
+import 'package:mudarribe_trainer/components/multi_select_dropdown.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
+import 'package:mudarribe_trainer/components/search_dropdown.dart';
+import 'package:mudarribe_trainer/values/category_list.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/values/languages.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
-import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
+import 'package:multiselect/multiselect.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -31,14 +37,13 @@ class _SignupViewState extends State<SignupView> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Column(children: [
                   SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Icon(
                         Icons.arrow_back_ios_new,
@@ -48,7 +53,6 @@ class _SignupViewState extends State<SignupView> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
                         'Fill Your Information',
@@ -127,52 +131,28 @@ class _SignupViewState extends State<SignupView> {
                     lable: 'Bio',
                     controller: controller.bioController,
                   ),
-                  Container(
-                    child: DropInputField(
-                      label: 'Category Of Train',
-                      hint: 'Select Category',
-                      value: controller.dropdownvalue,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          controller.dropdownvalue = newValue!;
-                        });
-                      },
-                      items: controller.items.map((String item) {
-                        return DropdownMenuItem<String>(
-                          value: item,
-                          child: Text(
-                            item,
-                            selectionColor: Colors.white,
-                          ),
-                        );
-                      }).toList(),
-                    ),
+                  Gap(16),
+                  MultiSelectDropDown(
+                    label: 'Category of train',
+                    item: CategoryList(),
+                    onchange: controller.onchange,
+                    selected: controller.selectedCategories,
                   ),
-                  DropInputField(
-                    label: 'spoken languages',
-                    hint: 'Select Category',
-                    value: controller.dropdownvalue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        controller.dropdownvalue = newValue!;
-                      });
-                    },
-                    items: controller.items.map((String item) {
-                      return DropdownMenuItem<String>(
-                        value: item,
-                        child: Text(
-                          item,
-                          style: TextStyle(
-                              color: Colors.white), // Set text color to white
-                        ),
-                      );
-                    }).toList(),
+                  Gap(16),
+                  MultiSelectDropDown(
+                    label: 'Spoken Languages',
+                    item: Languages(),
+                    onchange: controller.onlangchange,
+                    selected: controller.selectedLanguages,
                   ),
+                  Gap(8),
                   Card1(
                     text: 'Upload Your Certificate',
+                    ontap: () {},
                   ),
                   Card1(
                     text: 'Upload Your ID or Passport',
+                    ontap: () {},
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
@@ -211,14 +191,15 @@ class _SignupViewState extends State<SignupView> {
                     title: 'Submit',
                     onPressed: controller.areFieldsFilled.value
                         ? () {
-                            controller.selectedCategories;
+                            controller.signUpTrainer();
                           }
                         : () {
                             UiUtilites.errorSnackbar('Fill out all fields',
                                 'Please fill all above fields');
                           },
                     selected: controller.areFieldsFilled.value,
-                  )
+                  ),
+                  Gap(20)
                 ])),
           ),
         ),

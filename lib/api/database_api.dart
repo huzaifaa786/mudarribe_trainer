@@ -7,7 +7,6 @@ class DatabaseApi {
   static final _firestore = FirebaseFirestore.instance;
   final CollectionReference _usersCollection = _firestore.collection("users");
 
-
   Future<void> createUser(AppUser user) async {
     try {
       await _usersCollection.doc(user.id).set(user.toJson());
@@ -24,7 +23,7 @@ class DatabaseApi {
       final userDoc = await _usersCollection.doc(userId).get();
 
       if (!userDoc.exists) {
-        return AppUser(userType: 'trainee', id: '123');
+        return AppUser(userType: 'trainer', id: '123');
       } else {
         final userData = userDoc.data()! as Map<String, dynamic>;
         return AppUser.fromJson(userData);
