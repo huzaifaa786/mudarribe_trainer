@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -9,7 +8,7 @@ class InputFieldPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding:  const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,7 +33,7 @@ class InputFieldPrice extends StatelessWidget {
                   gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomLeft,
-                      colors: [Color(4285693389), Color(4278253801)]),
+                      colors: [Color(0xff727dcd), Color(0xff00f8e9)]),
                   width: 1,
                 ),
                 // hintText: '22:30',

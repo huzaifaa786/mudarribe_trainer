@@ -30,7 +30,6 @@ class SaleController extends GetxController {
     ourdate = focusedDay;
     if (end == null) {
    
-      ;
     } else {
     
     }

@@ -24,7 +24,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
       body: SafeArea(
           child: Column(
         children: [
-          TopBar(
+          const TopBar(
             text: 'Today Meals',
           ),
 
@@ -32,16 +32,16 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
             flex: 1,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.9,
-              padding: EdgeInsets.only(right: 15, left: 15, top: 45),
+              padding: const EdgeInsets.only(right: 15, left: 15, top: 45),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     IconButtons(title: 'Upload New Files', onPressed: () {}),
                     Container(
-                      margin: EdgeInsets.only(top: 15),
-                      padding: EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
-                          color: Color(0x872C2723),
+                          color: const Color(0x872C2723),
                           borderRadius: BorderRadius.circular(10)),
                       child: Row(
                         children: [
@@ -53,7 +53,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                     
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(60),
-                                    gradient: LinearGradient(
+                                    gradient: const LinearGradient(
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
                                       colors: [
@@ -66,7 +66,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                               ),
                             ],
                           ),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(left: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +117,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                       description: description,
                       imgpath1: imgpath1,
                     ),
-                    SizedBox(height: 20)
+                    const SizedBox(height: 20)
                   ],
                 ),
               ),
@@ -126,14 +126,14 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child: IconButtons(
                 onPressed: () {},
                 title: 'Send Plan',
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],

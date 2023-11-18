@@ -2,11 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
-import 'package:mudarribe_trainer/components/large_button.dart';
-import 'package:mudarribe_trainer/values/color.dart';
 
 class PromoCode extends StatefulWidget {
   const PromoCode({super.key});
@@ -31,7 +28,6 @@ class _PromoCodeState extends State<PromoCode> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Icon(
                         Icons.arrow_back_ios_new,

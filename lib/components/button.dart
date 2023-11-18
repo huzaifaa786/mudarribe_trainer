@@ -1,8 +1,9 @@
+// ignore_for_file: unused_field, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
-import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
-class SimpleButton extends StatefulWidget {
+class SimpleButton extends StatelessWidget {
   const SimpleButton({
     Key? key,
     @required this.title,
@@ -24,12 +25,7 @@ class SimpleButton extends StatefulWidget {
   final icon;
   final buttonWidth;
 
-  @override
-  _SimpleButtonState createState() => _SimpleButtonState();
-}
-
-class _SimpleButtonState extends State<SimpleButton> {
-  bool _isPressed = true;
+  final bool _isPressed = true;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +36,7 @@ class _SimpleButtonState extends State<SimpleButton> {
         height: 80,
         child: Container(
          decoration: ShapeDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment(-0.96, 0.29),
                     end: Alignment(0.96, -0.29),
                     colors: [
@@ -50,13 +46,13 @@ class _SimpleButtonState extends State<SimpleButton> {
                     ],
                   ),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 0, color: Colors.black),
+                    side: const BorderSide(width: 0, color: Colors.black),
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
           child: Center(
             child: Text(
-              widget.title,
+              title,
               style: const TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 18,

@@ -3,24 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
-import 'package:mudarribe_trainer/components/dropdown_input.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/multi_select_dropdown.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
-import 'package:mudarribe_trainer/components/search_dropdown.dart';
 import 'package:mudarribe_trainer/values/category_list.dart';
-import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/languages.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
-import 'package:multiselect/multiselect.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
@@ -75,7 +70,7 @@ class _SignupViewState extends State<SignupView> {
                       children: [
                         CircleAvatar(
                           backgroundImage: controller.profileImage != null
-                              ? AssetImage(controller.profileImage!.path)
+                              ? Image.file(controller.profileImage!).image
                               : AssetImage("assets/images/logo.png"),
                         ),
                         Positioned(
@@ -148,11 +143,17 @@ class _SignupViewState extends State<SignupView> {
                   Gap(8),
                   Card1(
                     text: 'Upload Your Certificate',
-                    ontap: () {},
+                    ontap: () {
+                      controller.selectCertificate();
+                    },
+                    file: controller.certificate,
                   ),
                   Card1(
                     text: 'Upload Your ID or Passport',
-                    ontap: () {},
+                    ontap: () {
+                      controller.selectPassportId();
+                    },
+                    file: controller.passportId,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12),

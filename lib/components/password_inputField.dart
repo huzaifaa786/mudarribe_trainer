@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
@@ -43,7 +45,7 @@ class PasswordInputField extends StatelessWidget {
             (validator == true.obs
                 ? AutovalidateMode.always
                 : AutovalidateMode.onUserInteraction),
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
         keyboardType: type,
         decoration: InputDecoration(
           suffixIcon: InkWell(
@@ -75,7 +77,7 @@ class PasswordInputField extends StatelessWidget {
             gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomLeft,
-                colors: [Color(4285693389), Color(4278253801)]),
+                colors: [Color(0xff727dcd), Color(0xff00f8e9)]),
             width: 1,
           ),
           hoverColor: Colors.grey,
@@ -87,11 +89,11 @@ class PasswordInputField extends StatelessWidget {
             fontWeight: FontWeight.w500,
             fontSize: 14,
             foreground: Paint()
-              ..shader = LinearGradient(
+              ..shader = const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomLeft,
-                colors: [Color(4285693389), Color(4284015103)],
-              ).createShader(Rect.fromLTWH(0, 0, 200, 20)),
+                colors: [Color(0xff727dcd), Color(0xff58e1ff)],
+              ).createShader(const Rect.fromLTWH(0, 0, 200, 20)),
           ),
         ),
       ),

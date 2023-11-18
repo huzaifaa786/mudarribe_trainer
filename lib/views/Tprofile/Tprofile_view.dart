@@ -3,15 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
-import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -148,9 +146,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     shape: BoxShape.circle,
                                     border: const GradientBoxBorder(
                                       gradient: LinearGradient(colors: [
-                                        Color(4290773187),
-                                        Color(4285693389),
-                                        Color(4278253801)
+                                        Color(0xffc000c3),
+                                        Color(0xff727dcd),
+                                        Color(0xff00f8e9)
                                       ]),
                                       width: 2,
                                     ),

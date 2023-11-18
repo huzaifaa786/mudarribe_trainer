@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class ChatCard extends StatelessWidget {
@@ -17,7 +19,7 @@ class ChatCard extends StatelessWidget {
                     left: 22,
                     right: 22,
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: 80,
                     width: MediaQuery.sizeOf(context).width,
                     child: Row(
@@ -25,7 +27,7 @@ class ChatCard extends StatelessWidget {
                         Container(
                           height: 60,
                           width: 60,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image:
@@ -44,17 +46,17 @@ class ChatCard extends StatelessWidget {
                                 children: [
                                   Text(
                                     name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontFamily: "Poppins",
                                       fontSize: 16,
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  Row(
+                                  const Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(
+                                        padding: EdgeInsets.only(
                                             top: 5, right: 14),
                                         child: Text(
                                           'you should say  ..',
@@ -67,7 +69,7 @@ class ChatCard extends StatelessWidget {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 5),
+                                        padding: EdgeInsets.only(top: 5),
                                         child: Text(
                                           '3 New Messages',
                                           style: TextStyle(

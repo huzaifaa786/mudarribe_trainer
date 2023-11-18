@@ -32,9 +32,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ],
             ),
             Row(
-              children: [
+              children: const [
                 Padding(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                       left: 5, bottom: 110, right: 108, top: 30),
                   child: Text(
                     'Forget Password.',
@@ -54,14 +54,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
+                children: const [
                   Text(
                     'Enter your Email please',
                     style: TextStyle(
-                        color: const Color.fromARGB(255, 195, 186, 186)),
+                        color: Color.fromARGB(255, 195, 186, 186)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
+                    padding: EdgeInsets.only(bottom: 20),
                     child: InputField(
                       lable: 'Email',
                     ),

@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/button.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -9,7 +7,6 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/inputfieldopicity.dart';
 import 'package:mudarribe_trainer/components/inputfieldprice.dart';
 import 'package:mudarribe_trainer/components/inputfieldtime.dart';
-import 'package:mudarribe_trainer/components/smallbutton.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -30,11 +27,11 @@ class _AddEventScreenState extends State<AddEventScreen> {
       body: SafeArea(
           child: Column(
         children: [
-          TopBar(text: 'Add Event'),
+          const TopBar(text: 'Add Event'),
           Flexible(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 right: 10,
                 left: 10,
               ),
@@ -57,14 +54,14 @@ class _AddEventScreenState extends State<AddEventScreen> {
                         children: [
                           Image.asset('assets/images/heroicon.png'),
                           GradientText('Upload Event Photo',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14.0, fontFamily: "Poppins"),
-                              colors: [borderbottom, borderTop]),
+                              colors: const [borderbottom, borderTop]),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Text("Event Title",
                           style: TextStyle(
                             color: white.withOpacity(0.4),
@@ -72,9 +69,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                             fontWeight: FontWeight.w400,
                           )),
                     ),
-                    InputField(),
+                    const InputField(),
                     Padding(
-                      padding: EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Text('Date',
                           style: TextStyle(
                             color: white.withOpacity(0.4),
@@ -82,15 +79,15 @@ class _AddEventScreenState extends State<AddEventScreen> {
                             fontWeight: FontWeight.w400,
                           )),
                     ),
-                    InputField(),
-                    Row(
+                    const InputField(),
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InputFieldTime(text: 'from'),
                         InputFieldTime(text: 'to')
                       ],
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InputFieldPrice(text: 'Price'),
@@ -98,7 +95,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -109,7 +106,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 fontWeight: FontWeight.w400,
                               )),
                           Container(
-                            margin: EdgeInsets.only(top: 5),
+                            margin: const EdgeInsets.only(top: 5),
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.10,
                             decoration: BoxDecoration(
@@ -123,21 +120,21 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
                                       'assets/images/selectgooglemapicon.png'),
                                 ),
                                 GradientText('Select From Google Map',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 14.0, fontFamily: "Poppins"),
-                                    colors: [borderbottom, borderTop]),
+                                    colors: const [borderbottom, borderTop]),
                               ],
                             ),
                           ),
                           Center(
                             child: Container(
-                              margin: EdgeInsets.only(top: 50),
-                              child: Text(
+                              margin: const EdgeInsets.only(top: 50),
+                              child: const Text(
                                   "Would you like your event to be in\nthe Banner?",
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.ellipsis,

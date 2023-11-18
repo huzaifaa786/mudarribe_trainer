@@ -16,10 +16,10 @@ class MealsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15),
-      padding: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-          color: Color(0x872C2723), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0x872C2723), borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
           Column(
@@ -28,7 +28,7 @@ class MealsCard extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: Image.asset(
                       imgpath1,
                       // 'assets/images/containimg.jpeg'
@@ -40,7 +40,7 @@ class MealsCard extends StatelessWidget {
                     ),
                   ),
                   ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: Image.asset(
                       'assets/images/gridicon.png',
                       fit: BoxFit.fill,
@@ -51,21 +51,21 @@ class MealsCard extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: white,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(description,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: white,
                       fontSize: 10,
                       fontWeight: FontWeight.w600,
