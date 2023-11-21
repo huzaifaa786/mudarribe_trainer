@@ -85,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 onTap: () {
                   AddPostbutton(
                     title: 'add post',
-                    onPressed: ,
+                    onPressed:() {},
                     selected: profileController.selected == '' ? false : true,
                   );
                 },
