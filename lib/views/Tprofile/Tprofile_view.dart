@@ -6,6 +6,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/addpostbutton.dart';
+import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
@@ -21,6 +22,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with TickerProviderStateMixin {
   MotionTabBarController? _motionTabBarController;
+
+  bool _smallButtonsVisible = false;
+
+  void toggleSmallButtonsVisibility() {
+    setState(() {
+      _smallButtonsVisible = !_smallButtonsVisible;
+    });
+  }
 
   @override
   void initState() {
@@ -83,11 +92,12 @@ class _ProfileScreenState extends State<ProfileScreen>
               ),
               floatingActionButton: GestureDetector(
                 onTap: () {
-                  AddPostbutton(
-                    title: 'add post',
-                    onPressed:() {},
-                    selected: profileController.selected == '' ? false : true,
-                  );
+                  toggleSmallButtonsVisibility();
+                  // AddPostbutton(
+                  //   title: 'add post',
+                  //   onPressed: () {},
+                  //   selected: profileController.selected == '' ? false : true,
+                  // );
                 },
                 child: Container(
                   width: 70,
@@ -116,122 +126,159 @@ class _ProfileScreenState extends State<ProfileScreen>
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               body: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 30, 29, 29),
-                        borderRadius: BorderRadius.circular(20)),
-                    // padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, right: 10, top: 15),
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 92,
-                                  width: 90,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: const GradientBoxBorder(
-                                      gradient: LinearGradient(colors: [
-                                        Color(0xffc000c3),
-                                        Color(0xff727dcd),
-                                        Color(0xff00f8e9)
-                                      ]),
-                                      width: 2,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Image.asset(
-                                        'assets/images/profile.png',
-                                        fit: BoxFit.fill),
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
+                child: Stack(
+                    // padding: const EdgeInsets.only(left: 15, right: 15),
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.transparent.withOpacity(0.0),
+                            borderRadius: BorderRadius.circular(20)),
+                        // padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10, right: 10, top: 15),
+                              child: Row(
+                                children: [
+                                  Container(
+                                      height: 92,
+                                      width: 90,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: const GradientBoxBorder(
+                                          gradient: LinearGradient(colors: [
+                                            Color(0xffc000c3),
+                                            Color(0xff727dcd),
+                                            Color(0xff00f8e9)
+                                          ]),
+                                          width: 2,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Image.asset(
+                                            'assets/images/profile.png',
+                                            fit: BoxFit.fill),
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 12),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          'Salim Ahmed',
-                                          style: TextStyle(
-                                              color: White,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Salim Ahmed',
+                                              style: TextStyle(
+                                                  color: White,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 7),
+                                              child: Image.asset(
+                                                'assets/images/verified_tick.png',
+                                                width: 20,
+                                                height: 20,
+                                              ),
+                                            )
+                                          ],
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 7),
-                                          child: Image.asset(
-                                            'assets/images/verified_tick.png',
-                                            width: 20,
-                                            height: 20,
+                                          padding: const EdgeInsets.only(
+                                              top: 8, bottom: 8),
+                                          child: Text(
+                                            'Body Building& lifting trainer',
+                                            style: TextStyle(
+                                                color: profilesubheading,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400),
                                           ),
-                                        )
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.6,
+                                          child: Text(
+                                            'Body Building & lifting  trainer, let me help you to get your dream body!  ',
+                                            style: TextStyle(
+                                                color: White,
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.w400),
+                                            maxLines: 2,
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8, bottom: 8),
-                                      child: Text(
-                                        'Body Building& lifting trainer',
-                                        style: TextStyle(
-                                            color: profilesubheading,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.6,
-                                      child: Text(
-                                        'Body Building & lifting  trainer, let me help you to get your dream body!  ',
-                                        style: TextStyle(
-                                            color: White,
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.w400),
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 15, bottom: 10, top: 35),
-                          child: Divider(
-                            thickness: 1,
-                            color: dividercolor,
-                          ),
-                        ),
-                        Flexible(
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
+                                  )
+                                ],
+                              ),
                             ),
-                            itemCount: controller.gridItems.length,
-                            itemBuilder: (context, index) {
-                              return Image.asset(
-                                controller.gridItems[index],
-                                fit: BoxFit.cover,
-                              );
-                            },
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15, right: 15, bottom: 10, top: 35),
+                              child: Divider(
+                                thickness: 1,
+                                color: dividercolor,
+                              ),
+                            ),
+                            Flexible(
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                ),
+                                itemCount: controller.gridItems.length,
+                                itemBuilder: (context, index) {
+                                  return Image.asset(
+                                    controller.gridItems[index],
+                                    fit: BoxFit.cover,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 50,
+                        left: 110,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Visibility(
+                            visible: _smallButtonsVisible,
+                            child: Container(
+                              margin: EdgeInsets.only(bottom: 10),
+                              child: Column(
+                                children: [
+                                  AddPostbutton(
+                                    title: 'Add Post',
+                                    onPressed: () {},
+                                    selected: false,
+                                    buttonWidth: 0.4,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  AddPostbutton(
+                                    title: 'Add Story',
+                                    onPressed: () {},
+                                    selected: false,
+                                    type: 'story',
+                                    buttonWidth: 0.4,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                        ),
+                      )
+                    ]),
               ),
             ));
   }
