@@ -5,7 +5,10 @@ import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
+import 'package:mudarribe_trainer/components/addpostbutton.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -80,22 +83,10 @@ class _ProfileScreenState extends State<ProfileScreen>
               ),
               floatingActionButton: GestureDetector(
                 onTap: () {
-                  showMenu(
-                    context: context,
-                    position: RelativeRect.fromLTRB(50, 1000, 0, 50),
-                    items: [
-                      PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.add),
-                        ),
-                      ),
-                      PopupMenuItem(
-                        child: ListTile(
-                          leading: Icon(Icons.remove),
-                        ),
-                      ),
-                      // Add more PopupMenuItems as needed
-                    ],
+                  AddPostbutton(
+                    title: 'add post',
+                    onPressed: ,
+                    selected: profileController.selected == '' ? false : true,
                   );
                 },
                 child: Container(

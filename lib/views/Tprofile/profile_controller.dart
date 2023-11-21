@@ -27,7 +27,11 @@ class ProfileController extends GetxController {
     update();
   }
 
-
+  onclick() {
+    print(selected);
+    selected = 'click';
+    update();
+  }
 
 
 
