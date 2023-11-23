@@ -10,9 +10,12 @@ import 'package:mudarribe_trainer/api/file_selector_api.dart';
 import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/api/storage_api.dart';
 import 'package:mudarribe_trainer/exceptions/auth_api_exception.dart';
+import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
+import 'package:mudarribe_trainer/enums/enums.dart';
 
 class SignUpController extends GetxController {
   static SignUpController instance = Get.find();
@@ -20,7 +23,7 @@ class SignUpController extends GetxController {
   final _storageApi = StorageApi();
   final _imageSelectorApi = ImageSelectorApi();
   final _fileSelectorApi = FileSelectorApi();
-    final _authApi = AuthApi();
+  final _authApi = AuthApi();
   final _userService = UserService();
 
   // text editing controllers
@@ -38,40 +41,37 @@ class SignUpController extends GetxController {
 
   // selectors
   String gender = '';
-  List selectedCategories = [];
-  List selectedLanguages = [];
+  List<String> selectedCategories = [];
+  List<String> selectedLanguages = [];
 
   // listners
 
   RxBool areFieldsFilled = false.obs;
 
-  String selected = '';
   onfemaletap() {
-    selected = 'female';
+    gender = 'female';
+    checkFields();
     update();
-    return selected;
+    return gender;
   }
 
   onchange(List<dynamic> x) {
     selectedCategories = x.cast<String>();
+    checkFields();
     update();
   }
 
   onlangchange(List<dynamic> x) {
     selectedLanguages = x.cast<String>();
+    checkFields();
     update();
   }
 
   onmaletap() {
-    selected = 'male';
+    gender = 'male';
+    checkFields();
     update();
-    return selected;
-  }
-
-  onclick() {
-    selected = 'click';
-    print(selected);
-    update();
+    return gender;
   }
 
   bool obscureTextPassword = true;
@@ -92,7 +92,12 @@ class SignUpController extends GetxController {
         emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&
         confirmPasswordController.text.isNotEmpty &&
-        profileImage != null) {
+        profileImage != null &&
+        certificate != null &&
+        passportId != null &&
+        selectedCategories != [] &&
+        selectedLanguages != [] &&
+        gender != '') {
       areFieldsFilled.value = true;
     } else {
       areFieldsFilled.value = false;
@@ -140,6 +145,30 @@ class SignUpController extends GetxController {
     update();
   }
 
+  Future _saveCertificate(userId) async {
+    if (certificate != null) {
+      final CloudStorageResult storageResult = await _storageApi
+          .uploadCertificate(userId: userId, certificate: certificate!);
+      return storageResult;
+    }
+  }
+
+  Future _savePassportId(userId) async {
+    if (passportId != null) {
+      final CloudStorageResult storageResult = await _storageApi
+          .uploadPassportId(userId: userId, passport: passportId!);
+      return storageResult;
+    }
+  }
+
+  Future _saveProfileImage(userId) async {
+    if (profileImage != null) {
+      final CloudStorageResult storageResult = await _storageApi
+          .uploadProfileImage(userId: userId, imageToUpload: profileImage!);
+      return storageResult;
+    }
+  }
+
   Future signUpTrainer() async {
     try {
       final User user = await _authApi.signUpWithEmail(
@@ -148,21 +177,51 @@ class SignUpController extends GetxController {
       );
 
       if (user.uid.isNotEmpty) {
+        CloudStorageResult imageResult = await _saveProfileImage(user.uid);
+        CloudStorageResult certificateResult = await _saveCertificate(user.uid);
+        CloudStorageResult passportResult = await _savePassportId(user.uid);
+
         await _userService.syncOrCreateUser(
           user: AppUser(
               id: user.uid,
+              name: nameController.text,
               userType: 'trainer',
               email: user.email,
               bio: bioController.text,
               gender: gender,
-              ),
+              status: TrainerStatus.pending,
+              profileImageFileName: imageResult.imageFileName,
+              profileImageUrl: imageResult.imageUrl,
+              certificateFileName: certificateResult.imageFileName,
+              certificateUrl: certificateResult.imageUrl,
+              passportIdFileName: passportResult.imageFileName,
+              passportIdUrl: passportResult.imageUrl,
+              categories: selectedCategories,
+              languages: selectedLanguages),
         );
-        UiUtilites.successSnackbar(
-            'Register User', 'User registered successfully & sent for approval');
-        // Get.offNamed(AppRoutes.footer);
+        UiUtilites.successSnackbar('Register User',
+            'User registered successfully & sent for approval');
+        clearValues();
+        Get.offNamed(AppRoutes.signin);
       }
     } on AuthApiException catch (e) {
       UiUtilites.errorSnackbar('Signup Failed', e.toString());
     }
+  }
+
+  clearValues() {
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
+    bioController.clear();
+    searchController.clear();
+    profileImage = null;
+    certificate = null;
+    passportId = null;
+    gender = '';
+    selectedCategories.clear();
+    selectedLanguages.clear();
+    areFieldsFilled.value = false;
   }
 }

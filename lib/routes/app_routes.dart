@@ -7,6 +7,7 @@ class AppRoutes {
   static const orders = '/orders';
   static const chats = '/chats';
   static const changepassword = '/changepassword';
+  static const forgetpassword = '/forgetpassword';
   static const editplan = '/editplan';
   static const editprofile = '/editprofile';
   static const personalplan = '/personalplan';

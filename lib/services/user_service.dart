@@ -21,6 +21,17 @@ class UserService {
     return false;
   }
 
+  Future getAuthUser() async {
+    final userId = _authApi.currentUser!.uid;
+    final userAccount = await _databaseApi.getUserLogin(userId);
+
+    if (userAccount.id != '123') {
+      _currentUser = userAccount;
+      return _currentUser;
+    }
+    return null;
+  }
+
   Future<void> syncOrCreateUser({
     required AppUser user,
   }) async {

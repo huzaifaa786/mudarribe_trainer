@@ -46,6 +46,84 @@ class StorageApi {
     }
   }
 
+  Future<CloudStorageResult> uploadCertificate({
+    required String userId,
+    required File certificate,
+  }) async {
+    final imageFileName = "CF._$userId";
+
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("certificates/$userId/$imageFileName");
+
+    try {
+      final storage.UploadTask uploadTask =
+          storageReference.putFile(certificate);
+
+      final storage.TaskSnapshot storageTaskSnapshot =
+          await Future.value(uploadTask);
+
+      final downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
+
+      if (uploadTask.storage.bucket.isNotEmpty) {
+        final url = downloadUrl.toString();
+        return CloudStorageResult(
+          imageUrl: url,
+          imageFileName: imageFileName,
+        );
+      } else {
+        throw StorageApiException(
+          title: 'Server Error',
+          message: 'An error occured while uploading the certificate.',
+        );
+      }
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload certificate',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<CloudStorageResult> uploadPassportId({
+    required String userId,
+    required File passport,
+  }) async {
+    final imageFileName = "PID._$userId";
+
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("passports/$userId/$imageFileName");
+
+    try {
+      final storage.UploadTask uploadTask =
+          storageReference.putFile(passport);
+
+      final storage.TaskSnapshot storageTaskSnapshot =
+          await Future.value(uploadTask);
+
+      final downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
+
+      if (uploadTask.storage.bucket.isNotEmpty) {
+        final url = downloadUrl.toString();
+        return CloudStorageResult(
+          imageUrl: url,
+          imageFileName: imageFileName,
+        );
+      } else {
+        throw StorageApiException(
+          title: 'Server Error',
+          message: 'An error occured while uploading the passport.',
+        );
+      }
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload passport',
+        message: e.message,
+      );
+    }
+  }
+
   Future<CloudStorageResult> uploadServiceImage({
     required String serviceId,
     required File imageToUpload,

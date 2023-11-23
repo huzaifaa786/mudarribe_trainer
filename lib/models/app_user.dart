@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_collection_literals
+import 'package:mudarribe_trainer/enums/enums.dart';
 
 class AppUser {
   late String id;
@@ -7,13 +8,32 @@ class AppUser {
   String? email;
   String? bio;
   String? gender;
+  String? profileImageFileName;
   String? profileImageUrl;
+  String? certificateFileName;
   String? certificateUrl;
+  String? passportIdFileName;
   String? passportIdUrl;
+  TrainerStatus? status;
   List<String>? categories;
   List<String>? languages;
 
-  AppUser({required this.id, this.name, this.email, required this.userType,this.bio,this.gender,this.profileImageUrl,this.certificateUrl,this.passportIdUrl,this.categories,this.languages});
+  AppUser(
+      {required this.id,
+      this.name,
+      this.email,
+      required this.userType,
+      this.bio,
+      this.gender,
+      this.profileImageFileName,
+      this.profileImageUrl,
+      this.certificateFileName,
+      this.passportIdFileName,
+      this.certificateUrl,
+      this.passportIdUrl,
+      this.categories,
+      this.languages,
+      this.status});
 
   AppUser.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -22,11 +42,15 @@ class AppUser {
     userType = json['userType'];
     bio = json['bio'];
     gender = json['gender'];
+    profileImageFileName = json['profileImageFileName'];
     profileImageUrl = json['profileImageUrl'];
+    certificateUrl = json['certificateFileName'];
     certificateUrl = json['certificateUrl'];
+    passportIdUrl = json['passportIdFileName'];
     passportIdUrl = json['passportIdUrl'];
-    categories = json['categories'];
-    languages = json['languages'];
+    categories = json['categories'].cast<String>();
+    languages = json['languages'].cast<String>();
+    status = _$enumDecode(_$TrainerStatusEnumMap,json['status']);
   }
 
   Map<String, dynamic> toJson() {
@@ -40,9 +64,44 @@ class AppUser {
     data['profileImageUrl'] = profileImageUrl;
     data['certificateUrl'] = certificateUrl;
     data['passportIdUrl'] = passportIdUrl;
+    data['profileImageFileName'] = profileImageFileName;
+    data['certificateFileName'] = certificateFileName;
+    data['passportIdFileName'] = passportIdFileName;
     data['categories'] = categories;
     data['languages'] = languages;
+    data['status'] = _$TrainerStatusEnumMap[status];
 
     return data;
   }
+}
+
+const _$TrainerStatusEnumMap = {
+  TrainerStatus.pending: 1,
+  TrainerStatus.approved: 2,
+};
+
+_$enumDecode<K, V>(
+  Map<K, V> enumValues,
+  Object? source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError(
+      'A value must be provided. Supported values: '
+      '${enumValues.values.join(', ')}',
+    );
+  }
+
+  return enumValues.entries.singleWhere(
+    (e) => e.value == source,
+    orElse: () {
+      if (unknownValue == null) {
+        throw ArgumentError(
+          '`$source` is not one of the supported values: '
+          '${enumValues.values.join(', ')}',
+        );
+      }
+      return MapEntry(unknownValue, enumValues.values.first);
+    },
+  ).key;
 }

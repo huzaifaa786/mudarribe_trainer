@@ -4,6 +4,7 @@ import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
@@ -20,7 +21,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignInController>(
-      builder: (controller) =>  Scaffold(
+      builder: (controller) => Scaffold(
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -65,34 +66,49 @@ class _SignInScreenState extends State<SignInScreen> {
                             lable: 'Email',
                             controller: controller.emailController,
                           ),
-                          const SizedBox(height: 20,),
-                           PasswordInputField(
-                        lable: 'password',
-                        obscure: signinController.obscureTextPassword,
-                        toggle: signinController.toggle,
-                        controller: controller.passwordController,
-                      ),
-                      const SizedBox(height: 20,),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GradientText2(text: 'Forget Password ?',),
-                        ],
-                      )
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          PasswordInputField(
+                            lable: 'Password',
+                            obscure: signinController.obscureTextPassword,
+                            toggle: signinController.toggle,
+                            controller: controller.passwordController,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.forgetpassword);
+                                  },
+                                  child: const GradientText2(
+                                    text: 'Forget Password?',
+                                  )),
+                            ],
+                          )
                         ],
                       ),
                     ),
                   )),
-                    const SizedBox(height: 50,),
-                   GradientButton(title: 'Submit',  onPressed: controller.areFieldsFilled.value
-                      ? () {
-                          // signInController.signInTrainee();
-                        }
-                      : () {
-                          UiUtilites.errorSnackbar('Fill out all fields',
-                              'Please fill all above fields');
-                        },
-                  selected: controller.areFieldsFilled.value,)
+              const SizedBox(
+                height: 50,
+              ),
+              GradientButton(
+                title: 'Submit',
+                onPressed: controller.areFieldsFilled.value
+                    ? () {
+                        controller.signInTrainer();
+                      }
+                    : () {
+                        UiUtilites.errorSnackbar('Fill out all fields',
+                            'Please fill all above fields');
+                      },
+                selected: controller.areFieldsFilled.value,
+              )
             ],
           ),
         )),

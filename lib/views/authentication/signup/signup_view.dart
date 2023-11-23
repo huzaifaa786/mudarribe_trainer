@@ -172,14 +172,14 @@ class _SignupViewState extends State<SignupView> {
                         text: 'Male',
                         image: "assets/images/male.svg",
                         selected:
-                            signupController.selected == 'male' ? true : false,
+                            signupController.gender == 'male' ? true : false,
                         ontap: signupController.onmaletap,
                       ),
                       GenderCard(
                         text: 'Female',
                         image: "assets/images/female.svg",
                         ontap: signupController.onfemaletap,
-                        selected: signupController.selected == 'female'
+                        selected: signupController.gender == 'female'
                             ? true
                             : false,
                       ),
@@ -193,6 +193,7 @@ class _SignupViewState extends State<SignupView> {
                     onPressed: controller.areFieldsFilled.value
                         ? () {
                             controller.signUpTrainer();
+                            
                           }
                         : () {
                             UiUtilites.errorSnackbar('Fill out all fields',

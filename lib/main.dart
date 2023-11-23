@@ -3,21 +3,15 @@ import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mudarribe_trainer/views/Tprofile/Tprofile_view.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
-
 import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
-import 'package:mudarribe_trainer/views/event/add_event.dart';
-
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
-
 import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
-
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
- 
+import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 import 'firebase_options.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 
@@ -35,7 +29,7 @@ void main() async {
   Get.put(ChangepasswordController());
   Get.put(PersonalPlanController());
   Get.put(SaleController());
-   Get.put(ProfileController());
+  Get.put(ProfileController());
 
   // await LoadingHelper.init();
 
@@ -65,12 +59,11 @@ class _MyAppState extends State<MyApp> {
         ),
         useMaterial3: true,
         fontFamily: 'Montserrat',
-
       ),
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
       initialBinding: SplashBinding(),
-      home: const ProfileScreen(),
+      home: const SplashView(),
       getPages: AppPages.pages,
     );
   }
