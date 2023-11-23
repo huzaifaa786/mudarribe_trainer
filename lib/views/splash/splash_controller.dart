@@ -21,9 +21,9 @@ class SplashController extends GetxController {
       final AppUser appUser = await _userService.getAuthUser();
 
       if (appUser.status == TrainerStatus.approved) {
-        Get.offAllNamed(AppRoutes.profile);
-      }else{
-         Get.off(() => const IntroScreen());
+        Get.offAllNamed(AppRoutes.HomeScreen);
+      } else {
+        Get.off(() => const IntroScreen());
       }
     } else {
       Get.off(() => const IntroScreen());

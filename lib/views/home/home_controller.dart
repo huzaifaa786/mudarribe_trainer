@@ -1,15 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 
-class EditProfileContoller extends GetxController {
-  static EditProfileContoller instance = Get.find();
-
-  TextEditingController nameController = TextEditingController();
-  TextEditingController bioController = TextEditingController();
-
+class HomeContoller extends GetxController {
+  static HomeContoller instance = Get.find();
   final _userService = UserService();
   AppUser? currentUser;
 
@@ -23,8 +18,7 @@ class EditProfileContoller extends GetxController {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
-      nameController.text = currentUser!.name!;
-      bioController.text = currentUser!.bio!;
+   
     }
     update();
   }

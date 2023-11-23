@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/middleware/middlewares.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/forget_password_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
+import 'package:mudarribe_trainer/views/editprofile/editprofile_binding.dart';
+import 'package:mudarribe_trainer/views/home/home_binding.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan-view.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
 import 'package:mudarribe_trainer/views/event/add_event.dart';
-import 'package:mudarribe_trainer/views/Tprofile/Tprofile_view.dart';
+import 'package:mudarribe_trainer/views/Tprofile/profile_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
 
@@ -70,16 +73,18 @@ class AppPages {
       page: () => const EditPlans(),
     ),
     GetPage(
-      name: AppRoutes.orders,
-      page: () => const EditProfile(),
-    ),
+        name: AppRoutes.editprofile,
+        page: () => const EditProfile(),
+        binding: EditProfileBinding()),
     GetPage(
       name: AppRoutes.orders,
       page: () => const PersonalPlan(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.HomeScreen,
       page: () => const HomeScreen(),
+      binding: HomeBinding(),
+      // middlewares: [AuthGuard()]
     ),
     GetPage(
       name: AppRoutes.orders,
@@ -95,7 +100,7 @@ class AppPages {
     // ),
     GetPage(
       name: AppRoutes.profile,
-      page: () => const ProfileScreen(),
+      page: () => const ProfileView(),
     ),
     GetPage(
       name: AppRoutes.addplan,
@@ -117,7 +122,7 @@ class AppPages {
       name: AppRoutes.signin,
       page: () => const SignInScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.addpost,
       page: () => const AddPost(),
     ),
