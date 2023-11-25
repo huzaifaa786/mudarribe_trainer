@@ -17,6 +17,17 @@ class DatabaseApi {
         message: e.message,
       );
     }
+  }  
+  
+  Future<void> updateUser(id, user) async {
+    try {
+      await _usersCollection.doc(id).update(user);
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to update User',
+        message: e.message,
+      );
+    }
   }
 
   Future<AppUser> getUserLogin(String userId) async {

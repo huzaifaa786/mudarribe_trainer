@@ -99,8 +99,10 @@ class SignUpController extends GetxController {
         selectedLanguages != [] &&
         gender != '') {
       areFieldsFilled.value = true;
+      update();
     } else {
       areFieldsFilled.value = false;
+      update();
     }
   }
 

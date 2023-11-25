@@ -53,9 +53,9 @@ class SignInController extends GetxController {
       );
 
       if (user.uid.isNotEmpty) {
-        final AppUser appUser = await _userService.getAuthUser();
+         AppUser? appUser = await _userService.getAuthUser();
         
-        if (appUser.status == TrainerStatus.approved) {
+        if (appUser != null && appUser.status == TrainerStatus.approved) {
           Get.offAllNamed(AppRoutes.HomeScreen);
         } else {
           UiUtilites.errorSnackbar(
