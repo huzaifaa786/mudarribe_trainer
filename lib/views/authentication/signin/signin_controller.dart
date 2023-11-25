@@ -56,7 +56,7 @@ class SignInController extends GetxController {
         final AppUser appUser = await _userService.getAuthUser();
         
         if (appUser.status == TrainerStatus.approved) {
-          Get.offAllNamed(AppRoutes.profile);
+          Get.offAllNamed(AppRoutes.HomeScreen);
         } else {
           UiUtilites.errorSnackbar(
               'Pending Approval', 'Trainer not approved yet from admin');

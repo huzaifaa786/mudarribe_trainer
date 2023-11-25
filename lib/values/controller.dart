@@ -11,6 +11,7 @@ import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
 import 'package:mudarribe_trainer/views/sendplan/sendplan_controller.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
 import 'package:mudarribe_trainer/views/home/home_controller.dart';
+import 'package:mudarribe_trainer/views/Tprofile/addpost_controller.dart';
 
 SplashController splashController = SplashController.instance;
 IntroController introController = IntroController.instance;
@@ -24,4 +25,5 @@ SignInController signinController = SignInController.instance;
 SaleController saleController = SaleController.instance;
 ForgotPasswordContoller forgotPasswordContoller = ForgotPasswordContoller.instance;
 HomeContoller homeContoller = HomeContoller.instance;
+
 

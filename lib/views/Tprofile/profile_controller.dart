@@ -1,11 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
+import 'package:mudarribe_trainer/models/trainer_post.dart';
+import 'package:mudarribe_trainer/services/post_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 
 class ProfileController extends GetxController {
   static ProfileController instance = Get.find();
-  
+  final _postService = PostService();
+
+  List<TrainerPost> posts = [];
 
   RxList<String> gridItems = [
     'assets/images/post1.png',
@@ -43,6 +47,7 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     getAppUser();
+   
     super.onInit();
   }
 
@@ -50,7 +55,14 @@ class ProfileController extends GetxController {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
+       getTrainerPosts();
     }
+    update();
+  }
+
+  Future getTrainerPosts() async {
+    posts = await _postService.getTrainerPosts(trainerId: currentUser!.id);
+    print(posts);
     update();
   }
 }
