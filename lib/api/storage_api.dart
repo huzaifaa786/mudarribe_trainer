@@ -44,6 +44,30 @@ class StorageApi {
         message: e.message,
       );
     }
+  }  
+  
+  Future<bool> deleteProfileImage({
+    required String userId,
+    required String fileName,
+  }) async {
+   final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("profileImages/$userId/$fileName");
+
+    try {
+      bool result = false;
+
+      await storageReference.delete().then(
+            (_) => result = true,
+          );
+
+      return result;
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload image',
+        message: e.message,
+      );
+    }
   }
 
   Future<CloudStorageResult> uploadCertificate({
@@ -316,29 +340,7 @@ class StorageApi {
     }
   }
 
-  Future<bool> deleteProfileImage(
-    String serviceId,
-    String imageFileName,
-  ) async {
-    final storage.Reference storageReference = storage.FirebaseStorage.instance
-        .ref()
-        .child("profileImages/$serviceId/$imageFileName");
 
-    try {
-      bool result = false;
-
-      await storageReference.delete().then(
-            (_) => result = true,
-          );
-
-      return result;
-    } on PlatformException catch (e) {
-      throw StorageApiException(
-        title: 'Failed to upload image',
-        message: e.message,
-      );
-    }
-  }
 
   Future<bool> deleteServiceImage(
     String userId,

@@ -22,27 +22,7 @@ class PersonalPlan extends StatefulWidget {
 
 class _PersonalPlanState extends State<PersonalPlan>
     with TickerProviderStateMixin {
-  MotionTabBarController? _motionTabBarController;
 
-  @override
-  void initState() {
-    super.initState();
-
-    _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
-      length: 4,
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    _motionTabBarController!.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GetBuilder<PersonalPlanController>(
       builder: (controller) => Scaffold(

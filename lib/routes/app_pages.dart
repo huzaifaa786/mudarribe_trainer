@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/middleware/middlewares.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
+import 'package:mudarribe_trainer/views/changepassword/changepassword_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/forget_password_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
@@ -60,8 +61,9 @@ class AppPages {
       page: () => const Chats(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.changepassword,
       page: () => const ChangePassword(),
+        binding: ChangePasswordBinding(),
     ),
     GetPage(
       name: AppRoutes.forgetpassword,

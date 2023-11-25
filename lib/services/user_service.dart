@@ -38,7 +38,15 @@ class UserService {
     await syncUser().then((value) async {
       if (/*_currentUser == null*/ value == false) {
         await _databaseApi.createUser(user);
-      } else {}
+      } else {
+      }
     });
+  }
+
+  Future<void> updateUser({
+    required id,
+    required user,
+  }) async {
+    await _databaseApi.updateUser(id,user);
   }
 }

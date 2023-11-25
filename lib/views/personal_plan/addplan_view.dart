@@ -22,25 +22,7 @@ class AddPlan extends StatefulWidget {
 }
 
 class _AddPlanState extends State<AddPlan> with TickerProviderStateMixin {
-  MotionTabBarController? _motionTabBarController;
 
-  @override
-  void initState() {
-    super.initState();
-
-    _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
-      length: 4,
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    _motionTabBarController!.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +118,7 @@ class _AddPlanState extends State<AddPlan> with TickerProviderStateMixin {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 30,left: 20,right: 20),
+          padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
           child: GradientButton(
             title: 'next',
             onPressed: () {},

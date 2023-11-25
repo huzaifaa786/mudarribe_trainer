@@ -17,10 +17,11 @@ class SplashController extends GetxController {
 
   Future checkFirstSeen() async {
     final User? user = FirebaseAuth.instance.currentUser;
+   Get.toNamed(AppRoutes.intro);
     if (user != null) {
-      final AppUser appUser = await _userService.getAuthUser();
+       AppUser? appUser = await _userService.getAuthUser();
 
-      if (appUser.status == TrainerStatus.approved) {
+      if (appUser != null && appUser.status == TrainerStatus.approved) {
         Get.offAllNamed(AppRoutes.HomeScreen);
       } else {
         Get.off(() => const IntroScreen());

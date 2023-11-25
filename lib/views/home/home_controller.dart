@@ -18,8 +18,13 @@ class HomeContoller extends GetxController {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
-   
     }
     update();
   }
+
+//   userlogout() {
+// logout();
+
+
+//   }
 }
