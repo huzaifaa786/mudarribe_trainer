@@ -6,7 +6,7 @@ class PromoCodeContoller extends GetxController {
   static PromoCodeContoller instance = Get.find();
   TextEditingController nameController = TextEditingController();
   TextEditingController percentagecontroller = TextEditingController();
-
+  String? id;
   RxBool areFieldsFilled = false.obs;
 
   @override
@@ -41,10 +41,13 @@ class PromoCodeContoller extends GetxController {
             firestore.collection('promocodes').doc();
 
         Map<String, dynamic> data = {
+          'id': id,
           'name': nameController.text,
           'percentage': percentagecontroller.text,
         };
         await promoCodeRef.set(data);
+        nameController.clear();
+        percentagecontroller.clear();
       } catch (error) {
         print('Error storing promo code: $error');
       }

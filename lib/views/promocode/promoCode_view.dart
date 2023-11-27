@@ -10,8 +10,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_controller.dart';
 
 class PromoCode extends StatefulWidget {
-  const PromoCode({super.key});
-
+  const PromoCode({Key? key}) : super(key: key);
   @override
   State<PromoCode> createState() => _PromoCodeState();
 }
@@ -19,68 +18,69 @@ class PromoCode extends StatefulWidget {
 class _PromoCodeState extends State<PromoCode> {
   @override
   Widget build(BuildContext context) {
+    String id = Get.arguments;
     return GetBuilder<PromoCodeContoller>(
       builder: (controller) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(1.0),
               child: Column(
                 children: [
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
+                 Row(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Icon(
                         Icons.arrow_back_ios_new,
-                        color: white,
+                        color: Colors.white,
                       ),
                     ],
                   ),
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5, bottom: 110, right: 108, top: 30),
+                        padding: const EdgeInsets.only(top: 40, bottom: 50,left: 15,right: 15),
                         child: Text(
-                          'My Promo Code.',
+                          'My Promo code',
                           style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w600),
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: white),
                         ),
                       ),
                     ],
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.94,
-                    height: 250,
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 22, 22, 22),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromARGB(255, 44, 42, 42),
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 4.0,
-                          spreadRadius: 4.0,
-                        ), //BoxShadow
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        InputField(
-                          lable: 'Promo name',
-                          controller: controller.nameController,
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        InputField(
-                          lable: 'discount percentage',
-                          controller: controller.percentagecontroller,
-                        ),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      // height: 300,
+                      padding: EdgeInsets.only(
+                          left: 15, right: 15, top:40, bottom: 70),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 15, 15, 15),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                          InputField(
+                            lable: 'Promo name',
+                            controller: controller.nameController,
+                          ),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          InputField(
+                            lable: 'discount percentage',
+                            controller: controller.percentagecontroller,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -99,19 +99,20 @@ class _PromoCodeState extends State<PromoCode> {
                   SizedBox(
                     height: 150,
                   ),
-                    GradientButton(
-                          title: 'Save Changes',
-                          onPressed: controller.areFieldsFilled.value
-                              ? () {
-                                  controller.storePromocode();
-                                }
-                              : () {
-                                  UiUtilites.errorSnackbar(
-                                      'Fill out all fields',
-                                      'Please fill all above fields');
-                                },
-                          selected: controller.areFieldsFilled.value,
-                        )
+                  GradientButton(
+                    title: 'Save Changes',
+                    onPressed: controller.areFieldsFilled.value
+                        ? () {
+                            controller.id = id;
+                            print('object');
+                            controller.storePromocode();
+                          }
+                        : () {
+                            UiUtilites.errorSnackbar('Fill out all fields',
+                                'Please fill all above fields');
+                          },
+                    selected: controller.areFieldsFilled.value,
+                  )
                 ],
               ),
             ),

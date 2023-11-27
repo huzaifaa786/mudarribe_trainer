@@ -120,7 +120,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.toNamed(AppRoutes.promocode);
+                           Get.toNamed(AppRoutes.promocode, arguments: controller.currentUser!.id);
                           },
                           child: Row(
                             children: [

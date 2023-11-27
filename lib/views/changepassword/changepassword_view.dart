@@ -47,18 +47,29 @@ class _ChangePasswordState extends State<ChangePassword> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5, bottom: 110, right: 108, top: 30),
+                        padding: const EdgeInsets.only(top: 40, bottom: 50),
                         child: Text(
                           'Change Password.',
                           style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
-                              color: White),
+                              color: white),
                         ),
                       ),
                     ],
                   ),
+                   Container(
+                    // height: 300,
+                    padding: EdgeInsets.only(
+                        left: 15, right: 15, top:40, bottom: 25),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 15, 15, 15),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                   PasswordInputField(
                     lable: 'Password',
                     controller: controller.oldpassword,
@@ -82,7 +93,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     lable: 'Confirm New Password',
                     obscure: changepasswordController.obscureTextCPassword,
                     toggle: changepasswordController.toggle1,
-                  ),
+                  ),])),
                   SizedBox(
                     height: 59,
                   ),
@@ -106,7 +117,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     title: 'Submit',
                     onPressed: controller.areFieldsFilled.value
                         ? () {
-                           controller.changePassword();
+                            controller.changePassword();
                           }
                         : () {
                             UiUtilites.errorSnackbar('Fill out all fields',

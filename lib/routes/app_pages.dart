@@ -31,6 +31,7 @@ import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
 import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
+import 'package:mudarribe_trainer/views/promocode/promoCode_binding.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 
@@ -105,6 +106,7 @@ class AppPages {
       GetPage(
       name: AppRoutes.promocode,
       page: () => const PromoCode(),
+      binding: PromoCodeBinding()
     ),
    
     GetPage(
