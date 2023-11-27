@@ -49,12 +49,15 @@ dependencies:
   motion_tab_bar_v2: ^0.3.0
   change_app_package_name: ^1.1.0
   google_sign_in: ^6.1.6
-
   firebase_storage: ^11.5.1
   file_picker: ^6.1.1
   multiselect: ^0.1.0
-  intl: ^0.18.1
-  flutter_datetime_picker: ^1.5.1
+  json_annotation: ^4.8.1
+  stories_editor:
+    git:
+      url: https://github.com/AdnanKhan45/stories_editor
+      ref: feature/dependencyUpdate
+  flutter_datetime_picker_plus: ^2.1.0
 
 dev_dependencies:
   flutter_test:

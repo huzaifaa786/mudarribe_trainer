@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class Scheduleinput extends StatelessWidget {
@@ -51,7 +54,10 @@ class Scheduleinput extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 4),
             child: Text(
               text,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  fontSize: 14,
+                  color: white.withOpacity(0.45),
+                  fontWeight: FontWeight.w400),
             ),
           ),
           SizedBox(
@@ -63,27 +69,31 @@ class Scheduleinput extends StatelessWidget {
               enabled: enabled,
               obscureText: obscure,
               controller: controller,
-              style: TextStyle(fontSize: fontSize, color: maincolor),
+              style: TextStyle(fontSize: fontSize, color: white),
               keyboardType: type,
               validator: validator,
               decoration: InputDecoration(
                 filled: true,
                 fillColor:
-                    enabled ? Colors.white : Colors.grey.withOpacity(0.5),
+                    enabled ? Colors.black : Colors.grey.withOpacity(0.5),
                 hintText: hint,
                 contentPadding: const EdgeInsets.only(
                     left: 12.0, right: 12, top: 12, bottom: 16),
                 hintStyle: TextStyle(color: white.withOpacity(0.5)),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.grey[500]!),
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                enabledBorder: GradientOutlineInputBorder(
+                  gradient: LinearGradient(
+                      colors: [borderTop, borderbottom],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter),
+                  width: 1,
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.grey[500]!),
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                focusedBorder: GradientOutlineInputBorder(
+                  gradient: LinearGradient(colors: [borderTop, borderbottom],begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter),
+                  width: 1,
                 ),
               ),
-              cursorColor: Colors.black,
+              // cursorColor: Colors.black,
               maxLines: maxlines == true ? null : 1,
             ),
           ),

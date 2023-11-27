@@ -6,12 +6,14 @@ class AppRoutes {
   static const orders = '/orders';
   static const chats = '/chats';
   static const changepassword = '/changepassword';
+  static const forgetpassword = '/forgetpassword';
   static const editplan = '/editplan';
   static const editprofile = '/editprofile';
   static const personalplan = '/personalplan';
   static const forgot = '/forgot';
   static const homeScreen = '/homeScreen';
   static const packagesScreen = '/PackagesScreen';
+  static const promocode = '/promocode';
   static const todaymeals = '/existingmealpaln';
   static const planhome = '/sendplanhome';
   static const profile = '/profile';

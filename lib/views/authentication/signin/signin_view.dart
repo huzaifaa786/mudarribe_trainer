@@ -70,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             height: 20,
                           ),
                           PasswordInputField(
-                            lable: 'password',
+                            lable: 'Password',
                             obscure: signinController.obscureTextPassword,
                             toggle: signinController.toggle,
                             controller: controller.passwordController,
@@ -81,14 +81,13 @@ class _SignInScreenState extends State<SignInScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              InkWell(
-                                onTap: (){
-                                  Get.toNamed(AppRoutes.forgot);
-                                },
-                                child: const GradientText2(
-                                  text: 'Forget Password ?',
-                                ),
-                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.forgetpassword);
+                                  },
+                                  child: const GradientText2(
+                                    text: 'Forget Password?',
+                                  )),
                             ],
                           )
                         ],
@@ -102,8 +101,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 title: 'Submit',
                 onPressed: controller.areFieldsFilled.value
                     ? () {
-                      Get.toNamed(AppRoutes.homeScreen);
-                        // signInController.signInTrainee();
+                        controller.signInTrainer();
                       }
                     : () {
                         UiUtilites.errorSnackbar('Fill out all fields',

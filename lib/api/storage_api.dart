@@ -44,6 +44,108 @@ class StorageApi {
         message: e.message,
       );
     }
+  }  
+  
+  Future<bool> deleteProfileImage({
+    required String userId,
+    required String fileName,
+  }) async {
+   final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("profileImages/$userId/$fileName");
+
+    try {
+      bool result = false;
+
+      await storageReference.delete().then(
+            (_) => result = true,
+          );
+
+      return result;
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload image',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<CloudStorageResult> uploadCertificate({
+    required String userId,
+    required File certificate,
+  }) async {
+    final imageFileName = "CF._$userId";
+
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("certificates/$userId/$imageFileName");
+
+    try {
+      final storage.UploadTask uploadTask =
+          storageReference.putFile(certificate);
+
+      final storage.TaskSnapshot storageTaskSnapshot =
+          await Future.value(uploadTask);
+
+      final downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
+
+      if (uploadTask.storage.bucket.isNotEmpty) {
+        final url = downloadUrl.toString();
+        return CloudStorageResult(
+          imageUrl: url,
+          imageFileName: imageFileName,
+        );
+      } else {
+        throw StorageApiException(
+          title: 'Server Error',
+          message: 'An error occured while uploading the certificate.',
+        );
+      }
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload certificate',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<CloudStorageResult> uploadPassportId({
+    required String userId,
+    required File passport,
+  }) async {
+    final imageFileName = "PID._$userId";
+
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("passports/$userId/$imageFileName");
+
+    try {
+      final storage.UploadTask uploadTask =
+          storageReference.putFile(passport);
+
+      final storage.TaskSnapshot storageTaskSnapshot =
+          await Future.value(uploadTask);
+
+      final downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
+
+      if (uploadTask.storage.bucket.isNotEmpty) {
+        final url = downloadUrl.toString();
+        return CloudStorageResult(
+          imageUrl: url,
+          imageFileName: imageFileName,
+        );
+      } else {
+        throw StorageApiException(
+          title: 'Server Error',
+          message: 'An error occured while uploading the passport.',
+        );
+      }
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload passport',
+        message: e.message,
+      );
+    }
   }
 
   Future<CloudStorageResult> uploadServiceImage({
@@ -238,29 +340,7 @@ class StorageApi {
     }
   }
 
-  Future<bool> deleteProfileImage(
-    String serviceId,
-    String imageFileName,
-  ) async {
-    final storage.Reference storageReference = storage.FirebaseStorage.instance
-        .ref()
-        .child("profileImages/$serviceId/$imageFileName");
 
-    try {
-      bool result = false;
-
-      await storageReference.delete().then(
-            (_) => result = true,
-          );
-
-      return result;
-    } on PlatformException catch (e) {
-      throw StorageApiException(
-        title: 'Failed to upload image',
-        message: e.message,
-      );
-    }
-  }
 
   Future<bool> deleteServiceImage(
     String userId,

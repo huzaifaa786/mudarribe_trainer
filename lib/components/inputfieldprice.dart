@@ -12,21 +12,22 @@ class InputFieldPrice extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
-              text,
-              style: TextStyle(
-                color: white.withOpacity(0.4),
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+          Text(
+            text,
+            style: TextStyle(
+              color: white.withOpacity(0.4),
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
+          ),
           Container(
-            width: MediaQuery.of(context).size.width*0.6,
-            padding: const EdgeInsets.only(top: 5),
+            width: MediaQuery.of(context).size.width * 0.6,
+            padding: EdgeInsets.only(top: 5),
             child: TextField(
               // obscureText: true,
               decoration: InputDecoration(
                 fillColor: Colors.white,
+                     suffixIcon: Align(alignment: Alignment.centerRight,child: Text('|  AED      ',style: TextStyle(color: white),)),
                 border: GradientOutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   gradient: const LinearGradient(
@@ -36,18 +37,7 @@ class InputFieldPrice extends StatelessWidget {
                   width: 1,
                 ),
                 // hintText: '22:30',
-                prefix: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    VerticalDivider(
-                      color: Colors.amber, // Customize divider color
-                      thickness: 3, // Adjust divider thickness
-                      width: 10, // Set divider width
-                    ),
-                    Text('AED'),
-                  ],
-                ),
+               
               ),
             ),
           ),

@@ -172,14 +172,14 @@ class _SignupViewState extends State<SignupView> {
                         text: 'Male',
                         image: "assets/images/male.svg",
                         selected:
-                            signupController.selected == 'male' ? true : false,
+                            signupController.gender == 'male' ? true : false,
                         ontap: signupController.onmaletap,
                       ),
                       GenderCard(
                         text: 'Female',
                         image: "assets/images/female.svg",
                         ontap: signupController.onfemaletap,
-                        selected: signupController.selected == 'female'
+                        selected: signupController.gender == 'female'
                             ? true
                             : false,
                       ),
@@ -192,8 +192,8 @@ class _SignupViewState extends State<SignupView> {
                     title: 'Submit',
                     onPressed: controller.areFieldsFilled.value
                         ? () {
-                          UiUtilites.successAlert(context,'You have Successfully\nsubmitted Your Application!');
-                            // controller.signUpTrainer();
+                            controller.signUpTrainer();
+                            
                           }
                         : () {
                           UiUtilites.successAlert(context,'You have Successfully\nsubmitted Your Application!');

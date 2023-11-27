@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as picker;
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
-import 'package:mudarribe_trainer/components/inputfieldopicity.dart';
-import 'package:mudarribe_trainer/components/inputfieldprice.dart';
-import 'package:mudarribe_trainer/components/inputfieldtime.dart';
 import 'package:mudarribe_trainer/components/schedule.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +20,7 @@ class AddEventScreen extends StatefulWidget {
 
 class _AddEventScreenState extends State<AddEventScreen> {
   int selectedOption = 1;
-   final TextEditingController startTimeController = TextEditingController();
+  final TextEditingController startTimeController = TextEditingController();
   final TextEditingController endTimeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -117,13 +116,12 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           text: 'Start Time'.tr,
                           controller: startTimeController,
                           onpressed: () {
-                            DatePicker.showTimePicker(context,
-                                showTitleActions: true,
-                                showSecondsColumn: false, onChanged: (val) {
+                            picker.DatePicker.showTime12hPicker(context,
+                                showTitleActions: true, onChanged: (val) {
                               var end = val.add(Duration(minutes: 1));
                               var time = DateFormat.Hm().format(val);
                               var endTime = DateFormat.Hm().format(end);
-                              // startTimeController.text = time;
+                              startTimeController.text = time;
                               // endTimeController.text = endTime;
                               // controller.startTime = time;
                               // controller.endTime = endTime;
@@ -151,9 +149,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           text: 'End Time'.tr,
                           controller: endTimeController,
                           onpressed: () {
-                            DatePicker.showTimePicker(context,
-                                showTitleActions: true,
-                                showSecondsColumn: false, onConfirm: (val) {
+                            picker.DatePicker.showTime12hPicker(context,
+                                showTitleActions: true, onConfirm: (val) {
                               var end = DateFormat.Hm().format(val);
                               // endTimeController.text = end;
                               // controller.endTime = end;
@@ -226,43 +223,56 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                   )),
                             ),
                           ),
-                          Column(
-                            //: MainAxisAlignment.start,
-                            children: <Widget>[
-                              ListTile(
-                                title: GradientText('Yes',
-                                    style: const TextStyle(
-                                        fontSize: 14.0, fontFamily: "Poppins"),
-                                    colors: const [borderbottom, borderTop]),
-                                leading: Radio(
-                                  value: 1,
-                                  groupValue: selectedOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedOption = value!;
-                                    });
-                                  },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: ListTile(
+                                  title: GradientText('Yes',
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontFamily: "Poppins"),
+                                      colors: [borderbottom, borderTop]),
+                                  leading: Radio(
+                                    value: 1,
+                                    groupValue: selectedOption,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedOption = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
-                              ListTile(
-                                title: GradientText('No',
-                                    style: const TextStyle(
-                                        fontSize: 14.0, fontFamily: "Poppins"),
-                                    colors: const [borderbottom, borderTop]),
-                                leading: Radio(
-                                  value: 2,
-                                  groupValue: selectedOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedOption = value!;
-                                    });
-                                  },
+                              SizedBox(
+                                  width:
+                                      20), // Add some space between the two options
+                              Expanded(
+                                child: ListTile(
+                                  title: GradientText('No',
+                                      style: TextStyle(
+                                          fontSize: 14.0,
+                                          fontFamily: "Poppins"),
+                                      colors: [borderbottom, borderTop]),
+                                  leading: Radio(
+                                    value: 2,
+                                    groupValue: selectedOption,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedOption = value!;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ],
                       ),
+                    ),
+                    GradientButton(title: 'Share Event', onPressed: () {}),
+                    SizedBox(
+                      height: 20,
                     ),
                   ],
                 ),

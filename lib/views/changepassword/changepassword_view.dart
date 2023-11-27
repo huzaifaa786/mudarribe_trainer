@@ -10,8 +10,8 @@ import 'package:mudarribe_trainer/components/large_button.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
-
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -47,20 +47,32 @@ class _ChangePasswordState extends State<ChangePassword> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5, bottom: 110, right: 108, top: 30),
+                        padding: const EdgeInsets.only(top: 40, bottom: 50),
                         child: Text(
                           'Change Password.',
                           style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
-                              color: White),
+                              color: white),
                         ),
                       ),
                     ],
                   ),
+                   Container(
+                    // height: 300,
+                    padding: EdgeInsets.only(
+                        left: 15, right: 15, top:40, bottom: 25),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 15, 15, 15),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                   PasswordInputField(
-                    lable: 'password',
+                    lable: 'Password',
+                    controller: controller.oldpassword,
                     obscure: changepasswordController.obscureTextOldPassword,
                     toggle: changepasswordController.toggle2,
                   ),
@@ -68,7 +80,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                     height: 18,
                   ),
                   PasswordInputField(
-                    lable: 'New password',
+                    lable: 'New Password',
+                    controller: controller.newpassword,
                     obscure: changepasswordController.obscureTextPassword,
                     toggle: changepasswordController.toggle,
                   ),
@@ -76,34 +89,42 @@ class _ChangePasswordState extends State<ChangePassword> {
                     height: 18,
                   ),
                   PasswordInputField(
+                    controller: controller.confirmPassword,
                     lable: 'Confirm New Password',
                     obscure: changepasswordController.obscureTextCPassword,
                     toggle: changepasswordController.toggle1,
-                  ),
+                  ),])),
                   SizedBox(
                     height: 59,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/images/Vector (1).svg'),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Password Updated Successfully',
-                        style: TextStyle(color: Colors.green),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     SvgPicture.asset('assets/images/Vector (1).svg'),
+                  //     SizedBox(
+                  //       width: 5,
+                  //     ),
+                  //     Text(
+                  //       'Password Updated Successfully',
+                  //       style: TextStyle(color: Colors.green),
+                  //     ),
+                  //   ],
+                  // ),
                   SizedBox(
                     height: 96,
                   ),
                   GradientButton(
-                    title: 'Confirm',
-                    onPressed: () {},
-                    selected: changepasswordController.selected == '' ? false : true,
-                  )
+                    title: 'Submit',
+                    onPressed: controller.areFieldsFilled.value
+                        ? () {
+                            controller.changePassword();
+                          }
+                        : () {
+                            UiUtilites.errorSnackbar('Fill out all fields',
+                                'Please fill all above fields');
+                          },
+                    selected: controller.areFieldsFilled.value,
+                  ),
                 ],
               ),
             ),
