@@ -2,8 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
+import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
+import 'package:mudarribe_trainer/views/promocode/promoCode_controller.dart';
 
 class PromoCode extends StatefulWidget {
   const PromoCode({super.key});
@@ -15,12 +19,12 @@ class PromoCode extends StatefulWidget {
 class _PromoCodeState extends State<PromoCode> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return GetBuilder<PromoCodeContoller>(
+      builder: (controller) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(4.0),
               child: Column(
                 children: [
                   SizedBox(
@@ -31,7 +35,7 @@ class _PromoCodeState extends State<PromoCode> {
                     children: [
                       Icon(
                         Icons.arrow_back_ios_new,
-                        color: Colors.black,
+                        color: white,
                       ),
                     ],
                   ),
@@ -48,35 +52,66 @@ class _PromoCodeState extends State<PromoCode> {
                       ),
                     ],
                   ),
-                  InputField(
-                    lable: 'Promo name',
-                  ),
-                  SizedBox(
-                    height: 18,
-                  ),
-                  InputField(
-                    lable: 'discount percentage',
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    height: 250,
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 22, 22, 22),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 44, 42, 42),
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 4.0,
+                          spreadRadius: 4.0,
+                        ), //BoxShadow
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        InputField(
+                          lable: 'Promo name',
+                          controller: controller.nameController,
+                        ),
+                        SizedBox(
+                          height: 18,
+                        ),
+                        InputField(
+                          lable: 'discount percentage',
+                          controller: controller.percentagecontroller,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 40,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/images/Vector (1).svg'),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text('Promo Code Added Successfully'),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     SvgPicture.asset('assets/images/Vector (1).svg'),
+                  //     SizedBox(
+                  //       width: 5,
+                  //     ),
+                  //     Text('Promo Code Added Successfully'),
+                  //   ],
+                  // ),
                   SizedBox(
                     height: 150,
                   ),
-                  GradientButton(
-                    title: 'Confirm',
-                    onPressed: () {},
-                  )
+                    GradientButton(
+                          title: 'Save Changes',
+                          onPressed: controller.areFieldsFilled.value
+                              ? () {
+                                  controller.storePromocode();
+                                }
+                              : () {
+                                  UiUtilites.errorSnackbar(
+                                      'Fill out all fields',
+                                      'Please fill all above fields');
+                                },
+                          selected: controller.areFieldsFilled.value,
+                        )
                 ],
               ),
             ),

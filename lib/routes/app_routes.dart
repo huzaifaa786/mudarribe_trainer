@@ -11,7 +11,7 @@ class AppRoutes {
   static const editplan = '/editplan';
   static const editprofile = '/editprofile';
   static const personalplan = '/personalplan';
-
+  static const promocode = '/promocode';
   static const HomeScreen = '/HomeScreen';
   static const PackagesScreen = '/PackagesScreen';
   static const todaymeals = '/existingmealpaln';

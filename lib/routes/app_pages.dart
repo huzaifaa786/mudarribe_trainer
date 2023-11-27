@@ -27,6 +27,7 @@ import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
 import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
+import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 
 // import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
@@ -96,10 +97,11 @@ class AppPages {
       name: AppRoutes.todaymeals,
       page: () => const TodayMealsScreen(),
     ),
-    // GetPage(
-    //   name: AppRoutes.planhome,
-    //   page: () => const HomePlan(),
-    // ),
+      GetPage(
+      name: AppRoutes.promocode,
+      page: () => const PromoCode(),
+    ),
+   
     GetPage(
       name: AppRoutes.profile,
       page: () => const ProfileView(),

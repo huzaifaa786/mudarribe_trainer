@@ -118,38 +118,45 @@ class _EditProfileState extends State<EditProfile> {
                         SizedBox(
                           height: 30,
                         ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 6.0),
-                              child: SvgPicture.asset(
-                                'assets/images/iconamoon_discount.svg',
-                                width: 24,
-                                height: 24,
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.promocode);
+                          },
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 6.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/iconamoon_discount.svg',
+                                  width: 24,
+                                  height: 24,
+                                ),
                               ),
-                            ),
-                            Text(
-                              " Promo Code",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  foreground: Paint()
-                                    ..shader = LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomLeft,
-                                        colors: [
-                                          Color(4285693389),
-                                          Color(4284015103)
-                                        ]).createShader(
-                                        Rect.fromLTWH(0, 0, 200, 20))),
-                            )
-                          ],
+                              Text(
+                                " Promo Code",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    foreground: Paint()
+                                      ..shader = LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomLeft,
+                                          colors: [
+                                            Color(4285693389),
+                                            Color(4284015103)
+                                          ]).createShader(
+                                          Rect.fromLTWH(0, 0, 200, 20))),
+                              )
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         InkWell(
-                          onTap: (){ Get.offNamed(AppRoutes.changepassword);},
+                          onTap: () {
+                            Get.offNamed(AppRoutes.changepassword);
+                          },
                           child: Row(
                             children: [
                               Padding(
@@ -182,14 +189,14 @@ class _EditProfileState extends State<EditProfile> {
                           height: 20,
                         ),
                         InkWell(
-                          
-                             onTap: (){ controller.logout();},
-                          
+                          onTap: () {
+                            controller.logout();
+                          },
                           child: Row(
                             children: [
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 6.0, right: 6.0),
+                                padding: const EdgeInsets.only(
+                                    left: 6.0, right: 6.0),
                                 child: SvgPicture.asset(
                                   'assets/images/Vector.svg',
                                   width: 24,
