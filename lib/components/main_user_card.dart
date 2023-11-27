@@ -53,11 +53,11 @@ class MainUserCard extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(45),
-                      child: Image.asset(
+                      child: Image.network(
                         img,
                         width: 90,
                         height: 90,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

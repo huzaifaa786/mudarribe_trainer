@@ -39,15 +39,19 @@ class _AddPlanState extends State<AddPlan> {
                 children: [
                   InputField(
                     lable: 'Plan Title',
+                    controller: controller.packagenameController,
                   ),
                   PriceInputField(
                     lable: 'Price',
+                    controller: controller.priceController,
                   ),
                   InputField(
                     lable: 'Duration',
+                    controller: controller.durationController,
                   ),
                   BioInputField(
                     lable: 'Discription',
+                    controller: controller.discriptionController,
                   ),
                   SizedBox(
                     height: 20,
@@ -63,13 +67,13 @@ class _AddPlanState extends State<AddPlan> {
                         image: "assets/images/excercise.svg",
                         ontap: controller.onexcercisetap,
                         selected:
-                            controller.selected == 'excercise' ? true : false,
+                            controller.categary == 'excercise' ? true : false,
                         text: 'Exercises',
                       ),
                       GenderCard(
                         image: "assets/images/nutrition.svg",
                         selected:
-                            controller.selected == 'nutrition' ? true : false,
+                            controller.categary == 'nutrition' ? true : false,
                         ontap: controller.onnutritiontap,
                         text: 'Nutrition',
                       ),
@@ -81,10 +85,10 @@ class _AddPlanState extends State<AddPlan> {
                   SelectPlanCard(
                     image: "assets/images/nutrition.svg",
                     image1: "assets/images/excercise.svg",
-                    selected: personalPlanController.selected == 'both'
+                    selected: controller.categary == 'excercise & nutrition'
                         ? true
                         : false,
-                    ontap: personalPlanController.onbothtap,
+                    ontap: controller.onbothtap,
                     text: ' Exercises & Nutrition',
                   ),
                   SizedBox(
@@ -99,10 +103,15 @@ class _AddPlanState extends State<AddPlan> {
           padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
           child: GradientButton(
             title: 'Submit ',
-            onPressed: () {
-              UiUtilites.successAlert(context, 'Package Added\nSuccessfully !');
-            },
-            selected: personalPlanController.selected == '' ? false : true,
+            onPressed: controller.areFieldsFilled.value
+                ? () {
+                    controller.addpackage();
+                  }
+                : () {
+                    UiUtilites.successAlert(
+                        context, 'Package Added\nSuccessfully !');
+                  },
+            selected: controller.areFieldsFilled.value,
           ),
         ),
       ),
