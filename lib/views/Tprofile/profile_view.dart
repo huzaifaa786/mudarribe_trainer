@@ -8,10 +8,13 @@ import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/addpostbutton.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
+import 'package:mudarribe_trainer/views/Tprofile/addpost_view.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:stories_editor/stories_editor.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -245,10 +248,10 @@ class _ProfileViewState extends State<ProfileView>
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 3,
                                   ),
-                                  itemCount: controller.gridItems.length,
+                                  itemCount: controller.posts!.length,
                                   itemBuilder: (context, index) {
-                                    return Image.asset(
-                                      controller.gridItems[index],
+                                    return Image.network(
+                                      controller.posts![index].imageUrl!,
                                       fit: BoxFit.cover,
                                     );
                                   },
@@ -270,7 +273,9 @@ class _ProfileViewState extends State<ProfileView>
                                   children: [
                                     AddPostbutton(
                                       title: 'Add Post',
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.toNamed(AppRoutes.addpost);
+                                      },
                                       selected: false,
                                       buttonWidth: 0.4,
                                     ),
@@ -279,7 +284,23 @@ class _ProfileViewState extends State<ProfileView>
                                     ),
                                     AddPostbutton(
                                       title: 'Add Story',
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    StoriesEditor(
+                                                      onDoneButtonStyle: Container(decoration: BoxDecoration(border: Border.all(color: white)),padding: EdgeInsets.all(4),child: Text('Done'),),
+                                                      middleBottomWidget: Image.asset('assets/images/logo.png'),
+                                                      giphyKey:
+                                                          'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
+                                                        
+                                                      onDone: (uri) {
+                                                        debugPrint(uri);
+                                                        // Share.shareFiles([uri]);
+                                                      },
+                                                    )));
+                                      },
                                       selected: false,
                                       type: 'story',
                                       buttonWidth: 0.4,

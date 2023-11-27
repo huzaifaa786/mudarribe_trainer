@@ -54,7 +54,10 @@ dependencies:
   file_picker: ^6.1.1
   multiselect: ^0.1.0
   json_annotation: ^4.8.1
-
+  stories_editor:
+    git:
+      url: https://github.com/AdnanKhan45/stories_editor
+      ref: feature/dependencyUpdate
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/middleware/middlewares.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
-import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
+import 'package:mudarribe_trainer/views/Tprofile/addpost_binding.dart';
+import 'package:mudarribe_trainer/views/Tprofile/addpost_view.dart';
+import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
+import 'package:mudarribe_trainer/views/authentication/signin/signin_binding.dart';
+import 'package:mudarribe_trainer/views/authentication/signup/signup_binding.dart';
+
 import 'package:mudarribe_trainer/views/changepassword/changepassword_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/forget_password_binding.dart';
@@ -44,6 +48,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.signup,
       page: () => const SignupView(),
+      binding: SignUpBinding()
     ),
     GetPage(
         name: AppRoutes.intro,
@@ -105,6 +110,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.profile,
       page: () => const ProfileView(),
+      binding: ProfileBinding()
     ),
     GetPage(
       name: AppRoutes.addplan,
@@ -125,10 +131,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.signin,
       page: () => const SignInScreen(),
+      binding: SignInBinding()
     ),
     GetPage(
       name: AppRoutes.addpost,
       page: () => const AddPost(),
+      binding: AddPostBinding()
     ),
   ];
 }
