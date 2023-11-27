@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/inputfieldopicity.dart';
 import 'package:mudarribe_trainer/components/inputfieldprice.dart';
 import 'package:mudarribe_trainer/components/inputfieldtime.dart';
-import 'package:mudarribe_trainer/components/topbar.dart';
+import 'package:mudarribe_trainer/components/schedule.dart';
+import 'package:mudarribe_trainer/components/title_topbar.dart';
+import 'package:intl/intl.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -17,28 +21,39 @@ class AddEventScreen extends StatefulWidget {
 
 class _AddEventScreenState extends State<AddEventScreen> {
   int selectedOption = 1;
+   final TextEditingController startTimeController = TextEditingController();
+  final TextEditingController endTimeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        forceMaterialTransparency: true,
+        title: TitleTopBar(
+          name: 'Add Events',
+          ontap: () {
+            Get.back();
+          },
+        ),
+      ),
       body: SafeArea(
           child: Column(
         children: [
-          const TopBar(text: 'Add Event'),
           Flexible(
             flex: 1,
             child: Container(
               margin: const EdgeInsets.only(
-                right: 10,
-                left: 10,
+                right: 15,
+                left: 15,
               ),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 10),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.25,
+                      padding: const EdgeInsets.only(bottom: 50, top: 50),
                       decoration: BoxDecoration(
                           border: const GradientBoxBorder(
                             gradient: LinearGradient(
@@ -50,10 +65,14 @@ class _AddEventScreenState extends State<AddEventScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset('assets/images/heroicon.png'),
-                          GradientText('Upload Event Photo',
-                              style: const TextStyle(
-                                  fontSize: 14.0, fontFamily: "Poppins"),
-                              colors: const [borderbottom, borderTop]),
+                          GradientText(
+                            'Upload Event Photo',
+                            style: const TextStyle(
+                                fontSize: 14.0,
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.w400),
+                            colors: const [borderbottom, borderTop],
+                          ),
                         ],
                       ),
                     ),
@@ -77,18 +96,83 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           )),
                     ),
                     const InputField(),
-                    const Row(
+                    // const Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     InputFieldTime(text: 'from'),
+                    //     InputFieldTime(text: 'to')
+                    //   ],
+                    // ),
+                    // const Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     InputFieldPrice(text: 'Price'),
+                    //     InputFieldOpicity(text: 'Opacity')
+                    //   ],
+                    // ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InputFieldTime(text: 'from'),
-                        InputFieldTime(text: 'to')
-                      ],
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InputFieldPrice(text: 'Price'),
-                        InputFieldOpicity(text: 'Opacity')
+                        Scheduleinput(
+                          text: 'Start Time'.tr,
+                          controller: startTimeController,
+                          onpressed: () {
+                            DatePicker.showTimePicker(context,
+                                showTitleActions: true,
+                                showSecondsColumn: false, onChanged: (val) {
+                              var end = val.add(Duration(minutes: 1));
+                              var time = DateFormat.Hm().format(val);
+                              var endTime = DateFormat.Hm().format(end);
+                              // startTimeController.text = time;
+                              // endTimeController.text = endTime;
+                              // controller.startTime = time;
+                              // controller.endTime = endTime;
+                              // translatorProfileController
+                              //     .calTotalTime(widget.detail!);
+                              setState(() {});
+                            }, onConfirm: (val) {
+                              var end = val.add(Duration(minutes: 1));
+                              var time = DateFormat.Hm().format(val);
+                              var endTime = DateFormat.Hm().format(end);
+                              // startTimeController.text = time;
+                              // endTimeController.text = endTime;
+                              // controller.startTime = time;
+                              // controller.endTime = endTime;
+                              // translatorProfileController
+                              //     .calTotalTime(widget.detail!);
+                              setState(() {});
+                            }, currentTime: DateTime.now());
+                          },
+                          hint: '9:00',
+                          fontSize: 18.0,
+                        ),
+                        Text("To".tr),
+                        Scheduleinput(
+                          text: 'End Time'.tr,
+                          controller: endTimeController,
+                          onpressed: () {
+                            DatePicker.showTimePicker(context,
+                                showTitleActions: true,
+                                showSecondsColumn: false, onConfirm: (val) {
+                              var end = DateFormat.Hm().format(val);
+                              // endTimeController.text = end;
+                              // controller.endTime = end;
+                              // translatorProfileController
+                              //     .calTotalTime(widget.detail!);
+                              setState(() {});
+                            }, onChanged: (val) {
+                              var end = DateFormat.Hm().format(val);
+                              // endTimeController.text = end;
+                              // controller.endTime = end;
+                              // translatorProfileController
+                              //     .calTotalTime(widget.detail!);
+                              setState(() {});
+                            }, currentTime: DateTime.now());
+                          },
+                          hint: '9:30',
+                          fontSize: 18.0,
+                          // enabled: controller.startTime == '' ? false : true,
+                        ),
                       ],
                     ),
                     Padding(
@@ -177,7 +261,6 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               ),
                             ],
                           ),
-                         
                         ],
                       ),
                     ),

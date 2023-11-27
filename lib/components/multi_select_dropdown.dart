@@ -15,7 +15,7 @@ class MultiSelectDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55,
+      height: 50,
       child: DropDownMultiSelect(
         
         decoration: InputDecoration(
@@ -32,7 +32,7 @@ class MultiSelectDropDown extends StatelessWidget {
                     .createShader(Rect.fromLTWH(0, 0, 200, 15))),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           enabledBorder: GradientOutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(2),
             gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomLeft,

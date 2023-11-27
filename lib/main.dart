@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
 
-
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
 
@@ -57,13 +56,16 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.black
+          
+        ),
         scaffoldBackgroundColor: Colors.black,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,
         ),
         useMaterial3: true,
         fontFamily: 'Montserrat',
-
       ),
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",

@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/ordercard.dart';
-import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/components/title_topbar.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -12,34 +15,28 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        forceMaterialTransparency: true,
+        title: TitleTopBar(
+          name: 'Orders',
+          ontap: () {
+            Get.back();
+          },
+        ),
+      ),
       body: SafeArea(
-          child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 23,
-                ),
-                Text(
-                  'Orders',
-                  style: TextStyle(color: White, fontSize: 28),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            OrderCard(),
-            OrderCard(),
-            OrderCard(),
-          ],
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 15, right: 15),
+          child: Column(
+            children: [
+              OrderCard(),
+              OrderCard(),
+              OrderCard(),
+            ],
+          ),
         ),
       )),
     );

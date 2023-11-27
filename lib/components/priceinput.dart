@@ -32,44 +32,55 @@ class PriceInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
-        child: TextFormField(
-            readOnly: readOnly,
-            obscureText: obscure,
-            controller: controller,
-            validator: validator,
-            autovalidateMode: autovalidateMode ??
-                (validator == true.obs
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.onUserInteraction),
-            style: TextStyle(color: Colors.white),
-            keyboardType: type,
-            decoration: InputDecoration(
-                suffixIcon: Align(alignment: Alignment.centerRight,child: Text('|  AED      ',style: TextStyle(color: white),)),
-                
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                fillColor: Colors.white,
-                border: GradientOutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomLeft,
-                      colors: [Color(4285693389), Color(4278253801)]),
-                  width: 1,
+      padding: const EdgeInsets.only(top: 15),
+      child: TextFormField(
+          readOnly: readOnly,
+          obscureText: obscure,
+          controller: controller,
+          validator: validator,
+          autovalidateMode: autovalidateMode ??
+              (validator == true.obs
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.onUserInteraction),
+          style: TextStyle(color: Colors.white),
+          keyboardType: type,
+          decoration: InputDecoration(
+              suffixIcon: Padding(
+                padding: const EdgeInsets.only(top: 14, right: 10),
+                child: Text(
+                  '|   AED',
+                  style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
                 ),
-                hoverColor: Colors.grey,
-                focusColor: Colors.grey,
-                labelText: lable,
-                hintText: hint,
-                labelStyle: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    foreground: Paint()
-                      ..shader = LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomLeft,
-                              colors: [Color(4285693389), Color(4284015103)])
-                          .createShader(Rect.fromLTWH(0, 0, 200, 20))))));
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              fillColor: Colors.white,
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+              border: GradientOutlineInputBorder(
+                borderRadius: BorderRadius.circular(2),
+                gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomLeft,
+                    colors: [Color(4285693389), Color(4278253801)]),
+                width: 1,
+              ),
+              hoverColor: Colors.grey,
+              focusColor: Colors.grey,
+              labelText: lable,
+              hintText: hint,
+              labelStyle: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                  foreground: Paint()
+                    ..shader = LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomLeft,
+                            colors: [Color(4285693389), Color(4284015103)])
+                        .createShader(Rect.fromLTWH(0, 0, 200, 15))))),
+    );
   }
 }

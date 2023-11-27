@@ -38,21 +38,18 @@ class GenderCard extends StatelessWidget {
                               width: 3,
                             )
                           : Border.all(),
-                      color: Color(4279767823),
+                      color: bgContainer,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Center(child: SvgPicture.asset(image)),
+                    child: Center(
+                        child: SvgPicture.asset(
+                      image,
+                      fit: BoxFit.scaleDown,
+                      height: 30,
+                      width: 35,
+                    )),
                   ),
                 ),
-                // selected == true
-                //     ? Positioned(
-                //       right: 12,
-                //       top: 8,
-                //         child: Icon(
-                //         Icons.check_circle,
-                //         color: mainColor,
-                //       ))
-                //     : Positioned(child: Text(''))
               ],
             ),
           ),
@@ -63,7 +60,10 @@ class GenderCard extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.w400, color: white),
+            fontFamily: "Poppins",
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
         )
       ],
     );

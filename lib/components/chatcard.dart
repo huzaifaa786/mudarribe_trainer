@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 
@@ -12,86 +12,69 @@ class ChatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 22,
-                    right: 22,
-                  ),
-                  child: SizedBox(
-                    height: 80,
-                    width: MediaQuery.sizeOf(context).width,
-                    child: Row(
+    return Container(
+      margin: const EdgeInsets.only(top: 12),
+      width: MediaQuery.sizeOf(context).width,
+      child: Row(
+        children: [
+          Container(
+            height: 60,
+            width: 60,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage('assets/images/Rectangle 31.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontFamily: "Poppins",
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image:
-                                  AssetImage('assets/images/Rectangle 31.png'),
-                              fit: BoxFit
-                                  .cover, // You can specify how the image should be fitted within the circle
-                            ),
+                        Text(
+                          'you should say  .. ',
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 14,
+                            color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, top: 6),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    name,
-                                    style: const TextStyle(
-                                      fontFamily: "Poppins",
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  const Row(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 5, right: 14),
-                                        child: Text(
-                                          'you should say  ..',
-                                          style: TextStyle(
-                                            fontFamily: "Poppins",
-                                            fontSize: 14,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 5),
-                                        child: Text(
-                                          '3 New Messages',
-                                          style: TextStyle(
-                                            fontFamily: "Poppins",
-                                            color: Colors.white,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        Text(
+                          '3 New Messages',
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            );
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

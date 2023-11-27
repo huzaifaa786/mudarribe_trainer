@@ -23,7 +23,7 @@ class SelectPlanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        InkWell(
+        GestureDetector(
           onTap: ontap,
           child: Stack(
             children: [
@@ -42,29 +42,34 @@ class SelectPlanCard extends StatelessWidget {
                             width: 3,
                           )
                         : Border.all(),
-                    color: Color.fromARGB(255, 22, 22, 22),
-                  
+                    color: bgContainer,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(image),
-                      Icon(Icons.add,color: white,size: 29,),
-                      SvgPicture.asset(image1),
+                      SvgPicture.asset(
+                        image1,
+                        fit: BoxFit.scaleDown,
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Icon(
+                          Icons.add,
+                          color: borderbottom,
+                          size: 14,
+                        ),
+                      ),
+                      SvgPicture.asset(
+                        image,
+                        fit: BoxFit.scaleDown,
+                        height: 30,
+                      ),
                     ],
                   ),
                 ),
               ),
-              // selected == true
-              //     ? Positioned(
-              //       right: 12,
-              //       top: 8,
-              //         child: Icon(
-              //         Icons.check_circle,
-              //         color: mainColor,
-              //       ))
-              //     : Positioned(child: Text(''))
             ],
           ),
         ),
@@ -75,7 +80,10 @@ class SelectPlanCard extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.w400, color: white,),
+            fontFamily: "Poppins",
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
         )
       ],
     );

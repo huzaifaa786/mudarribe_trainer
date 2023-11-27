@@ -192,9 +192,12 @@ class _SignupViewState extends State<SignupView> {
                     title: 'Submit',
                     onPressed: controller.areFieldsFilled.value
                         ? () {
-                            controller.signUpTrainer();
+                          UiUtilites.successAlert(context,'You have Successfully\nsubmitted Your Application!');
+                            // controller.signUpTrainer();
                           }
                         : () {
+                          UiUtilites.successAlert(context,'You have Successfully\nsubmitted Your Application!');
+
                             UiUtilites.errorSnackbar('Fill out all fields',
                                 'Please fill all above fields');
                           },

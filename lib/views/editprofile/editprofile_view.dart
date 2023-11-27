@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class EditProfile extends StatefulWidget {
@@ -82,89 +84,104 @@ class _EditProfileState extends State<EditProfile> {
                 SizedBox(
                   height: 30,
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6.0),
-                      child: SvgPicture.asset(
-                        'assets/images/iconamoon_discount.svg',
-                        width: 24,
-                        height: 24,
+                GestureDetector(
+                  onTap: (){
+                    Get.toNamed(AppRoutes.promoCode);
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 6.0),
+                        child: SvgPicture.asset(
+                          'assets/images/iconamoon_discount.svg',
+                          width: 24,
+                          height: 24,
+                        ),
                       ),
-                    ),
-                    Text(
-                      " Promo Code",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          foreground: Paint()
-                            ..shader = LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  Color(4285693389),
-                                  Color(4284015103)
-                                ]).createShader(Rect.fromLTWH(0, 0, 200, 20))),
-                    )
-                  ],
+                      Text(
+                        " Promo Code",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            foreground: Paint()
+                              ..shader = LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Color(4285693389),
+                                    Color(4284015103)
+                                  ]).createShader(Rect.fromLTWH(0, 0, 200, 20))),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6.0),
-                      child: SvgPicture.asset(
-                        'assets/images/mdi_password-outline.svg',
-                        width: 24,
-                        height: 24,
+                GestureDetector(
+                  onTap: (){
+                    Get.toNamed(AppRoutes.changepassword);
+
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 6.0),
+                        child: SvgPicture.asset(
+                          'assets/images/mdi_password-outline.svg',
+                          width: 24,
+                          height: 24,
+                        ),
                       ),
-                    ),
-                    Text(
-                      " Change Password",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          foreground: Paint()
-                            ..shader = LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  Color(4285693389),
-                                  Color(4284015103)
-                                ]).createShader(Rect.fromLTWH(0, 0, 200, 20))),
-                    )
-                  ],
+                      Text(
+                        " Change Password",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            foreground: Paint()
+                              ..shader = LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Color(4285693389),
+                                    Color(4284015103)
+                                  ]).createShader(Rect.fromLTWH(0, 0, 200, 20))),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 6.0, right: 6.0),
-                      child: SvgPicture.asset(
-                        'assets/images/Vector.svg',
-                        width: 24,
-                        height: 24,
+                GestureDetector(
+                  onTap: (){
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 6.0, right: 6.0),
+                        child: SvgPicture.asset(
+                          'assets/images/Vector.svg',
+                          width: 24,
+                          height: 24,
+                        ),
                       ),
-                    ),
-                    Text(
-                      " Log out",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          foreground: Paint()
-                            ..shader = LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  Color(4285693389),
-                                  Color(4284015103)
-                                ]).createShader(Rect.fromLTWH(0, 0, 200, 20))),
-                    )
-                  ],
+                      Text(
+                        " Log out",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            foreground: Paint()
+                              ..shader = LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Color(4285693389),
+                                    Color(4284015103)
+                                  ]).createShader(Rect.fromLTWH(0, 0, 200, 20))),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 24,

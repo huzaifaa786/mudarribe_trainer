@@ -50,7 +50,7 @@ class BioInputField extends StatelessWidget {
                   // contentPadding: EdgeInsets.only(top: 60),
                 fillColor: Colors.white,
                 border: GradientOutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(2),
                   gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomLeft,

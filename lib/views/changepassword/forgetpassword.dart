@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -18,16 +19,21 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.white,
+                InkWell(
+                  onTap: (){
+                    Get.back();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),
@@ -35,7 +41,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               children: const [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: 5, bottom: 110, right: 108, top: 30),
+                      left: 5, bottom: 70, right: 108, top: 50),
                   child: Text(
                     'Forget Password.',
                     style: TextStyle(
@@ -47,13 +53,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ],
             ),
             Container(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(12.0),
               width: MediaQuery.of(context).size.width,
-              height: 250,
-              decoration: BoxDecoration(color: Color.fromARGB(255, 29, 28, 28)),
+              height: 300,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 21, 21, 21),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: const [
                   Text(
                     'Enter your Email please',

@@ -1,10 +1,14 @@
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost.dart';
+import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
-import 'package:mudarribe_trainer/views/plans/editplan/editplan-view.dart';
+import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
+import 'package:mudarribe_trainer/views/plans/addplans/addplan_binding.dart';
+import 'package:mudarribe_trainer/views/plans/editplan/editplan_binding.dart';
+import 'package:mudarribe_trainer/views/plans/editplan/editplan_view.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
-import 'package:mudarribe_trainer/views/event/add_event.dart';
+import 'package:mudarribe_trainer/views/event/add_event/add_event.dart';
 import 'package:mudarribe_trainer/views/Tprofile/Tprofile_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
@@ -18,9 +22,10 @@ import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
 import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
-import 'package:mudarribe_trainer/views/personal_plan/addplan_view.dart';
+import 'package:mudarribe_trainer/views/plans/addplans/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
 import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
+import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 
 // import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
@@ -51,31 +56,37 @@ class AppPages {
       page: () => const OrderScreen(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.chats,
       page: () => const Chats(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.changepassword,
       page: () => const ChangePassword(),
     ),
     GetPage(
-      name: AppRoutes.orders,
-      page: () => const EditPlans(),
+      name: AppRoutes.editplan,
+      page: () => const EditPlanView(),
+      binding: EditPlanBinding()
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.editprofile,
       page: () => const EditProfile(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.promoCode,
+      page: () => const PromoCode(),
+      // binding: 
+    ),
+    GetPage(
+      name: AppRoutes.personalplan,
       page: () => const PersonalPlan(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.homeScreen,
       page: () => const HomeScreen(),
     ),
     GetPage(
-      name: AppRoutes.orders,
+      name: AppRoutes.packagesScreen,
       page: () => const PackagesScreen(),
     ),
     GetPage(
@@ -88,11 +99,13 @@ class AppPages {
     // ),
     GetPage(
       name: AppRoutes.profile,
+      binding: ProfileBinding(),
       page: () => const ProfileScreen(),
     ),
     GetPage(
       name: AppRoutes.addplan,
       page: () => const AddPlan(),
+      binding: AddPlanBinding(),
     ),
     GetPage(
       name: AppRoutes.myevent,
@@ -110,9 +123,13 @@ class AppPages {
       name: AppRoutes.signin,
       page: () => const SignInScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.addpost,
       page: () => const AddPost(),
+    ),
+    GetPage(
+      name: AppRoutes.forgot,
+      page: () => const ForgetPassword(),
     ),
   ];
 }

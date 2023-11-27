@@ -1,38 +1,41 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 
 class PackageCard extends StatelessWidget {
-  const PackageCard({super.key});
-
+  const PackageCard({super.key, this.ontap});
+  final ontap;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        color: const Color(0x512c2723),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset('assets/images/edit.png'),
-                  SvgPicture.asset(
-                    'assets/images/delete.svg',
-                  ),
-                ],
+      margin: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+          color: bgContainer, borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: ontap,
+                child: Image.asset('assets/images/edit.png'),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/dumble.png'),
-                const SizedBox(
-                  width: 10,
-                ),
-                const Column(
+              SvgPicture.asset(
+                'assets/images/delete.svg',
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset('assets/images/dumble.png'),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("1 month Plan",
@@ -41,45 +44,38 @@ class PackageCard extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                         )),
-                    Text("Included Exercises Plan only",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                        ))
+                    Padding(
+                      padding: EdgeInsets.only(top: 8.0),
+                      child: Text("Included Exercises Plan only",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    )
                   ],
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-         
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("150.44",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                      )),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text("AED",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ))
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("150.44",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  )),
+              Text("  AED",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                  ))
+            ],
+          )
+        ],
       ),
     );
   }

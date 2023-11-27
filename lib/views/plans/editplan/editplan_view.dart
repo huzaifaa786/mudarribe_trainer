@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
@@ -10,69 +9,34 @@ import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
-import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
+import 'package:mudarribe_trainer/views/plans/editplan/editplan_controller.dart';
 
-class AddPlan extends StatefulWidget {
-  const AddPlan({super.key});
+class EditPlanView extends StatefulWidget {
+  const EditPlanView({super.key});
 
   @override
-  State<AddPlan> createState() => _AddPlanState();
+  State<EditPlanView> createState() => _EditPlanViewState();
 }
 
-class _AddPlanState extends State<AddPlan> with TickerProviderStateMixin {
-  MotionTabBarController? _motionTabBarController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
-      length: 4,
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    _motionTabBarController!.dispose();
-  }
-
+class _EditPlanViewState extends State<EditPlanView> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PersonalPlanController>(
+    return GetBuilder<EditPlanController>(
       builder: (controller) => Scaffold(
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+          automaticallyImplyLeading: false,
+          title: TitleTopBar(name: 'Edit Package', ontap: () {}),
+        ),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 15, right: 15),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 23,
-                      ),
-                      Text(
-                        'New Package',
-                        style: TextStyle(
-                            color: White,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   InputField(
                     lable: 'Plan Title',
                   ),
@@ -83,35 +47,33 @@ class _AddPlanState extends State<AddPlan> with TickerProviderStateMixin {
                     lable: 'Duration',
                   ),
                   BioInputField(
-                    lable: 'discription',
+                    lable: 'Discription',
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   GradientText2(
-                    text: 'Select plan catigory ',
+                    text: 'Select plan category ',
                     size: 18.0,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GenderCard(
-                        image: "assets/images/nutrition.svg",
-                        selected: personalPlanController.selected == 'nutrition'
-                            ? true
-                            : false,
-                        ontap: personalPlanController.onnutritiontap,
-                        text: 'Nutrition Plan',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
                       GenderCard(
                         image: "assets/images/excercise.svg",
                         ontap: personalPlanController.onexcercisetap,
                         selected: personalPlanController.selected == 'excercise'
                             ? true
                             : false,
-                        text: 'Exercises Plan',
+                        text: 'Exercises',
+                      ),
+                      GenderCard(
+                        image: "assets/images/nutrition.svg",
+                        selected: personalPlanController.selected == 'nutrition'
+                            ? true
+                            : false,
+                        ontap: personalPlanController.onnutritiontap,
+                        text: 'Nutrition',
                       ),
                     ],
                   ),
@@ -125,7 +87,7 @@ class _AddPlanState extends State<AddPlan> with TickerProviderStateMixin {
                         ? true
                         : false,
                     ontap: personalPlanController.onbothtap,
-                    text: ' Exercises & Nutrition \n Plan',
+                    text: ' Exercises & Nutrition',
                   ),
                   SizedBox(
                     height: 25,
@@ -136,10 +98,12 @@ class _AddPlanState extends State<AddPlan> with TickerProviderStateMixin {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 30,left: 20,right: 20),
+          padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
           child: GradientButton(
-            title: 'next',
-            onPressed: () {},
+            title: 'Submit ',
+            onPressed: () {
+              UiUtilites.successAlert(context, 'Package Edited\nSuccessfully !');
+            },
             selected: personalPlanController.selected == '' ? false : true,
           ),
         ),

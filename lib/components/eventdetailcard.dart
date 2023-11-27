@@ -16,7 +16,7 @@ class EventDetailsCard extends StatelessWidget {
     return Card(
       color: bgContainer,
       child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.86,
+        width: MediaQuery.sizeOf(context).width,
         padding: EdgeInsets.all(12),
         child: Column(
           children: [
@@ -52,61 +52,77 @@ class EventDetailsCard extends StatelessWidget {
                 Row(
                   children: [
                     SvgPicture.asset('assets/images/location.svg'),
-                    Text(
-                        ' Dubai',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Text(
-                      '   Street 2367, Zaied Hotiel',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 197, 191, 191),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                    Padding(
+                      padding: EdgeInsets.only(left: 8, right: 8),
+                      child: Row(
+                        children: [
+                          Text(
+                            ' Dubai',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            'Street 2367, Zaied Hotiel',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 197, 191, 191),
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                            ),
+                          )
+                        ],
                       ),
                     )
                   ],
                 ),
+                SizedBox(height: 4),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SvgPicture.asset('assets/images/timeline.svg'),
-                    Text(
-                      '  from 3 : 00 to 05 : 00 pm',
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 202, 200, 200),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
+                      child: Text(
+                        'from 3 : 00 to 05 : 00 pm',
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 202, 200, 200),
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        ),
                       ),
                     )
                   ],
                 ),
+                SizedBox(height: 4),
                 Row(
                   children: [
                     SvgPicture.asset('assets/images/calender1.svg'),
-                    Text(
-                      '    23/11/2023',
-                      style: TextStyle(
-                        color: const Color.fromARGB(255, 218, 216, 216),
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                    Padding(
+                      padding: EdgeInsets.only(left: 8, right: 8),
+                      child: Text(
+                        '23/11/2023',
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 218, 216, 216),
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        ),
                       ),
                     )
                   ],
                 ),
+                SizedBox(height: 4),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SvgPicture.asset('assets/images/peoplesharp.svg'),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, bottom: 4),
+                      padding: EdgeInsets.only(left: 8),
                       child: Text(
                         'Total People amount:',
                         style: TextStyle(
@@ -116,11 +132,13 @@ class EventDetailsCard extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
-                      
                     ),
-                    GradientText2(text: ' 3/34',)
+                    GradientText2(
+                      text: ' 3/34',
+                    )
                   ],
                 ),
+                SizedBox(height: 4),
                 Row(
                   children: [
                     Text(
@@ -145,18 +163,15 @@ class EventDetailsCard extends StatelessWidget {
                 ),
               ],
             ),
-             Padding(
-                  padding: const EdgeInsets.only(right: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GradientText2(
-                        text: 'Join Event',
-                        size: 12.0,
-                      ),
-                    ],
-                  ),
-                )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GradientText2(
+                  text: 'Close Event',
+                  size: 16.0,
+                ),
+              ],
+            )
           ],
         ),
       ),

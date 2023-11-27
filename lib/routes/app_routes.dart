@@ -1,4 +1,3 @@
-
 class AppRoutes {
   static const splash = '/splash';
   static const intro = '/intro';
@@ -10,12 +9,13 @@ class AppRoutes {
   static const editplan = '/editplan';
   static const editprofile = '/editprofile';
   static const personalplan = '/personalplan';
-  // ignore: constant_identifier_names
-  static const HomeScreen = '/HomeScreen';
-  static const PackagesScreen = '/PackagesScreen';
+  static const forgot = '/forgot';
+  static const homeScreen = '/homeScreen';
+  static const packagesScreen = '/PackagesScreen';
   static const todaymeals = '/existingmealpaln';
   static const planhome = '/sendplanhome';
   static const profile = '/profile';
+  static const promoCode ='/promoCode';
   static const addplan = '/addplan';
   static const myevent = '/myevent';
   static const signin = '/signin';

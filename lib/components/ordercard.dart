@@ -1,58 +1,123 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_adjacent_string_concatenation
+
 import 'package:flutter/material.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 140,
-        padding: const EdgeInsets.all(12.0),
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 22, 22, 22),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(255, 44, 42, 42),
-              offset: Offset(0.0, 0.0),
-              blurRadius: 4.0,
-              spreadRadius: 4.0,
-            ), //BoxShadow
-          ],
+    return Stack(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.only(left:20,right: 20,top: 10,bottom: 10),
+          decoration: BoxDecoration(
+              color: bgContainer, borderRadius: BorderRadius.circular(10)),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/images/person.png',
+                        height: 35,
+                        width: 35,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "Ahmed Yusif",
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w700),
+                        ),
+                      )
+                    ],
+                  ),
+                  Image.asset('assets/images/chat.png'),
+                ],
+              ),
+              Row(
+                children: [
+                  GradientText(
+                    'Package :',
+                    style: TextStyle(
+                      fontFamily: "Montserrat",
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    colors: [borderTop, borderbottom],
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "1 month Lose Whight Plan",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  GradientText(
+                    '      Price :',
+                    style: TextStyle(
+                      fontFamily: "Montserrat",
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    colors: [borderTop, borderbottom],
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      child: Text(
+                        '250.44' + ' AED',
+                        style: const TextStyle(
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.left,
+                      ))
+                ],
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: GradientText(
+                  'Send Plan',
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  colors: [borderTop, borderbottom],
+                ),
+              )
+            ],
+          ),
         ),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Image.asset('assets/images/person.png'),
-              
-              const Text('package',style: TextStyle(color: Colors.blue),),
-                const Text('price',style: TextStyle(color: Colors.blue),)
-              
-              
-              ],
-            ),
-            const SizedBox(width: 23,),
-            const Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 crossAxisAlignment: CrossAxisAlignment.start,
-              children: [Text('Ahmad Khan',style: TextStyle(color: White,fontSize: 20),),
-            Text('1 month Lose Wieght Plan',style: TextStyle(color: White,fontSize: 16)),
-            Text('250.44 AED',style: TextStyle(color: White,fontSize: 16))],),
-
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              
-              children: [Image.asset('assets/images/chat.png'),
-              const Text('Send plan',style: TextStyle(color: White,fontSize: 14))
-              ],)
-          ],
+        Positioned(
+          top: 22,
+          left: 11,
+          child: Container(
+            height: 7,
+            width: 7,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(colors: [borderTop, borderbottom])),
+            // color: borderbottom,
+          ),
         ),
-      ),
+      ],
     );
   }
 }

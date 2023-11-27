@@ -37,7 +37,7 @@ class UiUtilites {
     );
   }
 
-  static successAlert(context) {
+  static successAlert(context,title) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -71,7 +71,7 @@ class UiUtilites {
                       color: Colors.black)
                 ],
                 border: GradientBoxBorder(
-                  gradient: LinearGradient(colors: [Colors.blue, Colors.red]),
+                  gradient: LinearGradient(colors: [borderTop, borderbottom]),
                   width: 1,
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -86,7 +86,7 @@ class UiUtilites {
                       height: 50, width: 50),
                   Gap(10),
                   Text(
-                    "Changes Are Saved!",
+                    title,
                     style: const TextStyle(
                       fontFamily: "Montserrat",
                       fontSize: 12,
