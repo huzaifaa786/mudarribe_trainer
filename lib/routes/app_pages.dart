@@ -3,11 +3,12 @@ import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
+import 'package:mudarribe_trainer/views/event/add_event/add_event_binding.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan_view.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_view.dart';
-import 'package:mudarribe_trainer/views/event/add_event/add_event.dart';
+import 'package:mudarribe_trainer/views/event/add_event/add_event_view.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost_binding.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_binding.dart';
@@ -137,6 +138,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.addevent,
       page: () => const AddEventScreen(),
+      binding: AddEventBinding()
     ),
     GetPage(
       name: AppRoutes.signin,

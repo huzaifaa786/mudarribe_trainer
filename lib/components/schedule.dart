@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
@@ -45,24 +45,24 @@ class Scheduleinput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 2),
+      padding: const EdgeInsets.only(top:15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 4),
+            padding: const EdgeInsets.only(bottom: 4,left: 4,right: 4),
             child: Text(
               text,
               style: TextStyle(
-                  fontSize: 14,
-                  color: white.withOpacity(0.45),
-                  fontWeight: FontWeight.w400),
+                  fontFamily: "Poppins",
+fontSize: 14,
+fontWeight: FontWeight.w400,color: white.withOpacity(0.45)),
             ),
           ),
           SizedBox(
-            height: 60,
-            width: MediaQuery.of(context).size.width * 0.3,
+            height: 50,
+            width: MediaQuery.of(context).size.width * 0.4,
             child: TextFormField(
               readOnly: true,
               onTap: onpressed,
