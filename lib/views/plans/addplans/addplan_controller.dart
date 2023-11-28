@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
+import 'package:mudarribe_trainer/models/packages.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/services/package_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class AddPlanController extends GetxController {
   static AddPlanController instance = Get.find();
@@ -13,29 +17,30 @@ class AddPlanController extends GetxController {
   TextEditingController durationController = TextEditingController();
   TextEditingController discriptionController = TextEditingController();
   RxBool areFieldsFilled = false.obs;
-  
+  final _packageService = PackageService();
+
   final _authApi = AuthApi();
   AppUser? currentUser;
   final _userService = UserService();
 
-  String categary = '';
+  String category = '';
 
   onnutritiontap() {
-    categary = 'nutrition';
+    category = 'nutrition';
     update();
-    return categary;
+    return category;
   }
 
   onexcercisetap() {
-    categary = 'excercise';
+    category = 'excercise';
     update();
-    return categary;
+    return category;
   }
 
   onbothtap() {
-    categary = 'excercise & nutrition';
+    category = 'excercise&nutrition';
     update();
-    return categary;
+    return category;
   }
 
   Future getAppUser() async {
@@ -69,9 +74,8 @@ class AddPlanController extends GetxController {
     if (packagenameController.text.isNotEmpty &&
         priceController.text.isNotEmpty &&
         durationController.text.isNotEmpty &&
-        discriptionController.text.isNotEmpty&&
-        categary != ''
-        ) {
+        discriptionController.text.isNotEmpty &&
+        category != '') {
       areFieldsFilled.value = true;
       update();
     } else {
@@ -80,29 +84,28 @@ class AddPlanController extends GetxController {
     }
   }
 
-  Future<void> addpackage() async {
-    if (areFieldsFilled.value) {
-      try {
-        FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Future<void> addpackage(context) async {
+    final packageId = DateTime.now().millisecondsSinceEpoch.toString();
 
-        DocumentReference promoCodeRef = firestore.collection('packages').doc();
+    await _packageService.createPackage(
+        package: Package(
+            id: packageId,
+            trainerid: currentUser!.id,
+            name: packagenameController.text,
+            price: priceController.text,
+            duration: durationController.text,
+            discription: discriptionController.text,
+            category: category));
+    UiUtilites.successAlert(context, 'Package Added\nSuccessfully !');
 
-        Map<String, dynamic> data = {
-          'id': currentUser!.id,
-          'packagename': packagenameController.text,
-          'price': priceController.text,
-          'duration': durationController.text,
-          'discription': discriptionController.text,
-          'categary': categary
-        };
-        await promoCodeRef.set(data);
-        packagenameController.clear();
-        priceController.clear();
-        durationController.clear();
-        discriptionController.clear();
-      } catch (error) {
-        print('Error storing promo code: $error');
-      }
-    }
+    packagenameController.clear();
+    priceController.clear();
+    durationController.clear();
+    discriptionController.clear();
+    category='';
+    areFieldsFilled = true.obs;
+    
+
+    Get.toNamed(AppRoutes.packagesScreen);
   }
 }
