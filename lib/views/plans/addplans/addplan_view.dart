@@ -66,13 +66,13 @@ class _AddPlanState extends State<AddPlan> {
                         image: "assets/images/excercise.svg",
                         ontap: controller.onexcercisetap,
                         selected:
-                            controller.categary == 'excercise' ? true : false,
+                            controller.category == 'excercise' ? true : false,
                         text: 'Exercises',
                       ),
                       GenderCard(
                         image: "assets/images/nutrition.svg",
                         selected:
-                            controller.categary == 'nutrition' ? true : false,
+                            controller.category == 'nutrition' ? true : false,
                         ontap: controller.onnutritiontap,
                         text: 'Nutrition',
                       ),
@@ -84,7 +84,7 @@ class _AddPlanState extends State<AddPlan> {
                   SelectPlanCard(
                     image: "assets/images/nutrition.svg",
                     image1: "assets/images/excercise.svg",
-                    selected: controller.categary == 'excercise & nutrition'
+                    selected: controller.category == 'excercise&nutrition'
                         ? true
                         : false,
                     ontap: controller.onbothtap,
@@ -104,11 +104,11 @@ class _AddPlanState extends State<AddPlan> {
             title: 'Submit ',
             onPressed: controller.areFieldsFilled.value
                 ? () {
-                    controller.addpackage();
+                    controller.addpackage(context);
                   }
                 : () {
-                    UiUtilites.successAlert(
-                        context, 'Package Added\nSuccessfully !');
+                    UiUtilites.errorSnackbar(
+                        'Fill out all fields', 'Please fill all above fields');
                   },
             selected: controller.areFieldsFilled.value,
           ),
