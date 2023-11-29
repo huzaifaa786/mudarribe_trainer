@@ -78,7 +78,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
-                            colors: [borderTop, borderbottom],
+                            colors: const [borderTop, borderbottom],
                           ),
                         ),
                       ],

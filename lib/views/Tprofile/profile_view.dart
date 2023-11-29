@@ -3,17 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
-import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/addpostbutton.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
-import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
-import 'package:mudarribe_trainer/views/Tprofile/addpost_view.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
-import 'package:provider/provider.dart';
 import 'package:stories_editor/stories_editor.dart';
 
 class ProfileView extends StatefulWidget {
@@ -25,7 +19,6 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView>
     with TickerProviderStateMixin {
-  MotionTabBarController? _motionTabBarController;
 
   bool _smallButtonsVisible = false;
 
@@ -33,24 +26,6 @@ class _ProfileViewState extends State<ProfileView>
     setState(() {
       _smallButtonsVisible = !_smallButtonsVisible;
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
-      length: 4,
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    _motionTabBarController!.dispose();
   }
 
   @override
@@ -65,35 +40,9 @@ class _ProfileViewState extends State<ProfileView>
                     color: White,
                   ),
                 ),
-                bottomNavigationBar: MotionTabBar(
-                  controller: _motionTabBarController,
-                  initialSelectedTab: "Home",
-                  labels: const ["Dashboard", "Home", 'saasd'],
-                  icons: const [
-                    Icons.dashboard,
-                    Icons.add,
-                    Icons.people_alt,
-                  ],
-                  badges: [null, null, null],
-                  tabSize: 80,
-                  tabBarHeight: 50,
-                  textStyle: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  tabIconColor: Colors.black,
-                  tabIconSize: 28.0,
-                  tabIconSelectedSize: 26.0,
-                  tabSelectedColor: Colors.black,
-                  tabIconSelectedColor: Colors.white,
-                  tabBarColor: Colors.black,
-                  // onTabItemSelected: (int value) {
-                  //   // setState(() {
-                  //   //   // _tabController!.index = value;
-                  //   //   _motionTabBarController!.index = value;
-                  //   // });
-                  // },
+                bottomNavigationBar: Container(
+                  height: 50,
+                  color: bgContainer,
                 ),
                 floatingActionButton: GestureDetector(
                   onTap: () {
@@ -118,7 +67,7 @@ class _ProfileViewState extends State<ProfileView>
                         ],
                       ),
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 0, color: Colors.black),
+                        side: BorderSide(width: 3, color: bgContainer),
                         borderRadius: BorderRadius.circular(45),
                       ),
                     ),
@@ -143,7 +92,7 @@ class _ProfileViewState extends State<ProfileView>
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10, right: 10, top: 15),
+                                    left: 15, right: 15, top: 15),
                                 child: Row(
                                   children: [
                                     Container(
@@ -154,10 +103,13 @@ class _ProfileViewState extends State<ProfileView>
                                           border: const GradientBoxBorder(
                                             gradient: LinearGradient(colors: [
                                               Color(0xffc000c3),
-                                              Color(0xff727dcd),
-                                              Color(0xff00f8e9)
+                                              borderTop,
+                                              borderTop,
+                                              borderbottom,
+                                              Color(0xff00f8e9),
+                                              borderbottom
                                             ]),
-                                            width: 2,
+                                            width: 1,
                                           ),
                                         ),
                                         child: Padding(
@@ -200,9 +152,10 @@ class _ProfileViewState extends State<ProfileView>
                                               )
                                             ],
                                           ),
-                                          Padding(
+                                          Container(
+                                            width: MediaQuery.of(context).size.width*0.6,
                                             padding: const EdgeInsets.only(
-                                                top: 8, bottom: 8),
+                                                top: 2, bottom: 8),
                                             child: Text(
                                               controller
                                                   .currentUser!.categories!
@@ -248,10 +201,10 @@ class _ProfileViewState extends State<ProfileView>
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 3,
                                   ),
-                                  itemCount: controller.posts!.length,
+                                  itemCount: controller.posts.length,
                                   itemBuilder: (context, index) {
                                     return Image.network(
-                                      controller.posts![index].imageUrl!,
+                                      controller.posts[index].imageUrl!,
                                       fit: BoxFit.cover,
                                     );
                                   },
@@ -290,11 +243,20 @@ class _ProfileViewState extends State<ProfileView>
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     StoriesEditor(
-                                                      onDoneButtonStyle: Container(decoration: BoxDecoration(border: Border.all(color: white)),padding: EdgeInsets.all(4),child: Text('Done'),),
-                                                      middleBottomWidget: Image.asset('assets/images/logo.png'),
+                                                      onDoneButtonStyle:
+                                                          Container(
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: white)),
+                                                        padding:
+                                                            EdgeInsets.all(4),
+                                                        child: Text('Done'),
+                                                      ),
+                                                      middleBottomWidget:
+                                                          Image.asset(
+                                                              'assets/images/logo.png'),
                                                       giphyKey:
                                                           'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                                        
                                                       onDone: (uri) {
                                                         debugPrint(uri);
                                                         // Share.shareFiles([uri]);

@@ -8,7 +8,7 @@ class InputFieldOpicity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,7 +22,7 @@ class InputFieldOpicity extends StatelessWidget {
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.3,
-            padding: EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 5),
             child: TextField(
               // obscureText: true,
               decoration: InputDecoration(

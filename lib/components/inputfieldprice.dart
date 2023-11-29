@@ -22,12 +22,12 @@ class InputFieldPrice extends StatelessWidget {
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.6,
-            padding: EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 5),
             child: TextField(
               // obscureText: true,
               decoration: InputDecoration(
                 fillColor: Colors.white,
-                     suffixIcon: Align(alignment: Alignment.centerRight,child: Text('|  AED      ',style: TextStyle(color: white),)),
+                     suffixIcon: const Align(alignment: Alignment.centerRight,child: Text('|  AED      ',style: TextStyle(color: white),)),
                 border: GradientOutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   gradient: const LinearGradient(
