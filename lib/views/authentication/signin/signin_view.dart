@@ -6,7 +6,6 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 
@@ -71,8 +70,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           PasswordInputField(
                             lable: 'Password',
-                            obscure: signinController.obscureTextPassword,
-                            toggle: signinController.toggle,
+                            obscure: controller.obscureTextPassword,
+                            toggle: controller.toggle,
                             controller: controller.passwordController,
                           ),
                           const SizedBox(

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:mudarribe_trainer/values/color.dart';
 
 class PriceInputWithoutLabel extends StatelessWidget {
   const PriceInputWithoutLabel({

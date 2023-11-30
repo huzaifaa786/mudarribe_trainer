@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gif_view/gif_view.dart';
 
 class BasicLoader extends StatelessWidget {
   final bool background;
@@ -16,8 +17,11 @@ class BasicLoader extends StatelessWidget {
       : progressIndicator;
 }
 
-Widget progressIndicator = const Center(
-  child: CircularProgressIndicator(
-    strokeWidth: 2,
+Widget progressIndicator = Center(
+  child: GifView.asset(
+    'assets/images/infinity-loop.gif',
+    height: 200,
+    width: 200,
+    frameRate: 60,
   ),
 );

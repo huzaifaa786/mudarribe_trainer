@@ -8,7 +8,7 @@ class InputFieldTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,10 +20,10 @@ class InputFieldTime extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Container(
             width: MediaQuery.of(context).size.width * 0.4,
-            padding: EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 5),
             child: TextField(
               // obscureText: true,
               decoration: InputDecoration(
@@ -40,7 +40,7 @@ class InputFieldTime extends StatelessWidget {
               ),
             ),
           ),
-          VerticalDivider(
+          const VerticalDivider(
             color: Colors.white, // Change divider color as needed
             thickness: 1, // Adjust the thickness of the divider
             width: 10, // Set the width of the divider

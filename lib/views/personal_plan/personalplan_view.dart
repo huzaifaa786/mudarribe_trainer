@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
@@ -23,6 +22,7 @@ class PersonalPlan extends StatefulWidget {
 class _PersonalPlanState extends State<PersonalPlan>
     with TickerProviderStateMixin {
 
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<PersonalPlanController>(
       builder: (controller) => Scaffold(

@@ -2,13 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
-import 'package:mudarribe_trainer/components/button.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/Tprofile/addpost_controller.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class AddPost extends StatefulWidget {
   const AddPost({super.key});
@@ -65,15 +66,40 @@ class _AddPostState extends State<AddPost> {
                                 controller.postImage!,
                                 fit: BoxFit.cover,
                               )
-                            : Image.asset(
-                                'assets/images/newpost.png',
-                                fit: BoxFit.cover,
+                            : Container(
+                              decoration: BoxDecoration(border: GradientBoxBorder(
+
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                  colors: [borderTop,borderbottom]),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(6)),
+                              child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/heroicon.png'),
+                            GradientText(
+                              'Upload Photo',
+                              style: const TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
                               ),
+                              colors: const [borderbottom, borderTop],
+                            ),
+                          ],
+                        ),
+                            ),
                       ),
                     ),
-                    BioInputField(
-                      lable: 'Write a caption',
-                      controller: controller.captionController,
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: BioInputField(
+                        lable: 'Write a caption',
+                        controller: controller.captionController,
+                      ),
                     ),
                     SizedBox(
                       height: 20,
