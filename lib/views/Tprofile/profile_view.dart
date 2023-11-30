@@ -248,10 +248,10 @@ class _ProfileViewState extends State<ProfileView>
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 3,
                                   ),
-                                  itemCount: controller.posts!.length,
+                                  itemCount: controller.posts.length,
                                   itemBuilder: (context, index) {
                                     return Image.network(
-                                      controller.posts![index].imageUrl!,
+                                      controller.posts[index].imageUrl!,
                                       fit: BoxFit.cover,
                                     );
                                   },
@@ -290,14 +290,26 @@ class _ProfileViewState extends State<ProfileView>
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     StoriesEditor(
-                                                      onDoneButtonStyle: Container(decoration: BoxDecoration(border: Border.all(color: white)),padding: EdgeInsets.all(4),child: Text('Done'),),
-                                                      middleBottomWidget: Image.asset('assets/images/logo.png'),
+                                                      onDoneButtonStyle:
+                                                          Container(
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: white)),
+                                                        padding:
+                                                            EdgeInsets.all(4),
+                                                        child: Text('Done'),
+                                                      ),
+                                                      middleBottomWidget:
+                                                          Image.asset(
+                                                              'assets/images/logo.png'),
                                                       giphyKey:
                                                           'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                                        
                                                       onDone: (uri) {
                                                         debugPrint(uri);
-                                                        // Share.shareFiles([uri]);
+                                                        controller
+                                                            .addStory(
+                                                                uri);
+                                                   
                                                       },
                                                     )));
                                       },

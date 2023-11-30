@@ -1,25 +1,27 @@
 // ignore_for_file: prefer_collection_literals
 import 'package:mudarribe_trainer/enums/enums.dart';
 
-class TrainerPost {
+class TrainerStory {
   late String id;
   String? caption;
   String? trainerId;
   String? imageFileName;
   String? imageUrl;
+  String? postedTime;
   MediaType? mediaType;
  
-  TrainerPost(
+  TrainerStory(
       {required this.id,
-   this.caption,this.imageFileName,this.imageUrl,this.trainerId,this.mediaType});
+   this.caption,this.imageFileName,this.imageUrl,this.trainerId,this.mediaType,this.postedTime});
 
-  TrainerPost.fromJson(Map<String, dynamic> json) {
+  TrainerStory.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     caption = json['caption'];
     trainerId = json['trainerId'];
     imageFileName = json['imageFileName'];
     imageUrl = json['imageUrl'];
-    mediaType = _$enumDecode(_$PostMediaTypeEnumMap,json['mediaType']);
+    postedTime = json['postedTime'];
+    mediaType = _$enumDecode(_$StoryMediaTypeEnumMap,json['mediaType']);
   }
 
   Map<String, dynamic> toJson() {
@@ -29,13 +31,14 @@ class TrainerPost {
     data['trainerId'] = trainerId;
     data['imageFileName'] = imageFileName;
     data['imageUrl'] = imageUrl;
-    data['mediaType'] = _$PostMediaTypeEnumMap[mediaType];
+    data['postedTime'] = postedTime;
+    data['mediaType'] = _$StoryMediaTypeEnumMap[mediaType];
 
     return data;
   }
 }
 
-const _$PostMediaTypeEnumMap = {
+const _$StoryMediaTypeEnumMap = {
   MediaType.image: 'image',
   MediaType.video: 'video',
 };

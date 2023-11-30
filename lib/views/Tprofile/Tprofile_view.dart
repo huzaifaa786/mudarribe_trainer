@@ -211,10 +211,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                             ),
-                            itemCount: controller.gridItems.length,
+                            itemCount: controller.posts.length,
                             itemBuilder: (context, index) {
                               return Image.asset(
-                                controller.gridItems[index],
+                                controller.posts[index].imageUrl!,
                                 fit: BoxFit.cover,
                               );
                             },

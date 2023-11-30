@@ -8,15 +8,13 @@ import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
-import 'package:mudarribe_trainer/components/bio_input.dart';
-import 'package:mudarribe_trainer/components/color_button.dart';
-import 'package:mudarribe_trainer/components/inputfield.dart';
+
 import 'package:mudarribe_trainer/components/multi_select_dropdown.dart';
-import 'package:mudarribe_trainer/routes/app_routes.dart';
+
 import 'package:mudarribe_trainer/values/category_list.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
-import 'package:mudarribe_trainer/routes/app_routes.dart';
+
 import 'package:mudarribe_trainer/views/editprofile/editprofile_controller.dart';
 
 class EditProfile extends StatefulWidget {

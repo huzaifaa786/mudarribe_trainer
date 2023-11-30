@@ -13,7 +13,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
   // await LoadingHelper.init();
 
   await GetStorage.init();
@@ -38,10 +37,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.black
-          
-        ),
+        appBarTheme: AppBarTheme(backgroundColor: Colors.black),
         scaffoldBackgroundColor: Colors.black,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,

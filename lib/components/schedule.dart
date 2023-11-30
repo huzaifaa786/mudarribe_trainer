@@ -21,7 +21,7 @@ class Scheduleinput extends StatelessWidget {
       this.suffix,
       this.type = TextInputType.text,
       this.fontSize = 14.0,
-      this.width = 0.98,
+      this.width = 0.4,
       this.onpressed})
       : super(key: key);
 
@@ -62,7 +62,7 @@ fontWeight: FontWeight.w400,color: white.withOpacity(0.45)),
           ),
           SizedBox(
             height: 50,
-            width: MediaQuery.of(context).size.width * 0.4,
+            width: MediaQuery.of(context).size.width * width,
             child: TextFormField(
               readOnly: true,
               onTap: onpressed,

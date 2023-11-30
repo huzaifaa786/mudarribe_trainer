@@ -1,42 +1,26 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/api/post_storage_api.dart';
+import 'package:mudarribe_trainer/enums/enums.dart';
+import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_post.dart';
+import 'package:mudarribe_trainer/models/trainer_story.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/post_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class ProfileController extends GetxController {
   static ProfileController instance = Get.find();
   final _postService = PostService();
+  final _postStorageApi = PostStorageApi();
 
   List<TrainerPost> posts = [];
+  File? storyImage;
 
-  RxList<String> gridItems = [
-    'assets/images/post1.png',
-    'assets/images/post2.png',
-    'assets/images/post1.png',
-    'assets/images/post2.png',
-    'assets/images/post3.png',
-    'assets/images/post4.png',
-    'assets/images/post5.png',
-    'assets/images/post6.png',
-    'assets/images/post1.png',
-    'assets/images/post2.png',
-    'assets/images/post3.png',
-    'assets/images/post4.png',
-    'assets/images/post5.png',
-    'assets/images/post6.png',
-    'assets/images/post4.png',
-    'assets/images/post5.png',
-    'assets/images/post6.png',
-        'assets/images/post3.png',
-    'assets/images/post4.png',
-    'assets/images/post5.png',
-    'assets/images/post6.png',
-      'assets/images/post4.png',
-    'assets/images/post5.png',
-    'assets/images/post6.png',
-  ].obs;
   String selected = '';
   ontap() {
     print(selected);
@@ -56,7 +40,7 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     getAppUser();
-   
+
     super.onInit();
   }
 
@@ -64,9 +48,40 @@ class ProfileController extends GetxController {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
-       getTrainerPosts();
+      getTrainerPosts();
     }
     update();
+  }
+
+  Future _saveStoryImage(storyId) async {
+    if (storyImage != null) {
+      final CloudStorageResult storageResult = await _postStorageApi
+          .uploadStoryImage(storyId: storyId, imageToUpload: storyImage!);
+      return storageResult;
+    }
+  }
+
+  Future addStory(String url) async {
+    storyImage = File(url);
+    final storyId = DateTime.now().millisecondsSinceEpoch.toString();
+
+    CloudStorageResult imageResult = await _saveStoryImage(storyId);
+    if (imageResult.imageUrl != '') {
+      await _postService.createStory(
+          story: TrainerStory(
+              id: storyId,
+              trainerId: currentUser!.id,
+              imageFileName: imageResult.imageFileName,
+              imageUrl: imageResult.imageUrl,
+              mediaType: MediaType.image,
+              postedTime: DateTime.now().millisecondsSinceEpoch.toString()));
+
+      storyImage = null;
+
+      UiUtilites.successSnackbar(
+          'Story has been created successfully', 'Story Created');
+      Get.toNamed(AppRoutes.profile);
+    }
   }
 
   Future getTrainerPosts() async {
