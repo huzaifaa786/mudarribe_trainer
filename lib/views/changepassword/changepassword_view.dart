@@ -64,8 +64,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                         left: 15, right: 15, top:40, bottom: 25),
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 15, 15, 15),
-                        borderRadius: BorderRadius.circular(10)),
+                        color: Color.fromARGB(255, 21, 21, 21),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,19 +97,6 @@ class _ChangePasswordState extends State<ChangePassword> {
                   SizedBox(
                     height: 59,
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     SvgPicture.asset('assets/images/Vector (1).svg'),
-                  //     SizedBox(
-                  //       width: 5,
-                  //     ),
-                  //     Text(
-                  //       'Password Updated Successfully',
-                  //       style: TextStyle(color: Colors.green),
-                  //     ),
-                  //   ],
-                  // ),
                   SizedBox(
                     height: 96,
                   ),

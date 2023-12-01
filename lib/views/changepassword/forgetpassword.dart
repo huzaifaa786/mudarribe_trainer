@@ -23,7 +23,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       builder: (controller) => Scaffold(
         body: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(top:10,right: 15,left: 15),
           child: Column(
             children: [
               Row(
@@ -40,7 +40,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 children: const [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: 5, bottom: 110, right: 108, top: 30),
+                        left: 5, bottom: 50, top: 40),
                     child: Text(
                       'Forget Password.',
                       style: TextStyle(
@@ -52,14 +52,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(12.0),
                 width: MediaQuery.of(context).size.width,
                 height: 250,
                 decoration:
-                    BoxDecoration(color: Color.fromARGB(255, 29, 28, 28)),
+                    BoxDecoration(color: Color.fromARGB(255, 21, 21, 21),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children:  [
                     Text(
                       'Enter your Email please',

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';

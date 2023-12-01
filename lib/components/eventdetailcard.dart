@@ -9,7 +9,29 @@ import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class EventDetailsCard extends StatelessWidget {
-  const EventDetailsCard({super.key});
+  const EventDetailsCard({
+    Key? key,
+    required this.title,
+    required this.imageUrl,
+    required this.onPressDelete,
+    required this.address,
+    required this.startTime,
+    required this.endTime,
+    required this.date,
+    required this.price,
+    required this.capacity,
+    required this.eventStatus,
+  }) : super(key: key);
+  final title;
+  final imageUrl;
+  final onPressDelete;
+  final address;
+  final startTime;
+  final endTime;
+  final date;
+  final price;
+  final capacity;
+  final eventStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +48,7 @@ class EventDetailsCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Fitness ClubEvent!',
+                    title,
                     style: TextStyle(
                       fontSize: 16,
                       fontFamily: 'Montserrat',
@@ -34,8 +56,11 @@ class EventDetailsCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SvgPicture.asset(
-                    'assets/images/delete.svg',
+                  InkWell(
+                    onTap: onPressDelete,
+                    child: SvgPicture.asset(
+                      'assets/images/delete.svg',
+                    ),
                   ),
                 ],
               ),
@@ -43,9 +68,7 @@ class EventDetailsCard extends StatelessWidget {
             Container(
               height: 200,
               width: MediaQuery.sizeOf(context).width,
-              child: Image.asset(
-                'assets/images/cardImage.png',
-              ),
+              child: Image.network(imageUrl),
             ),
             Column(
               children: [
@@ -57,16 +80,7 @@ class EventDetailsCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            ' Dubai',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            'Street 2367, Zaied Hotiel',
+                            address,
                             style: TextStyle(
                               color: Color.fromARGB(255, 197, 191, 191),
                               fontFamily: 'Montserrat',
@@ -87,7 +101,7 @@ class EventDetailsCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: Text(
-                        'from 3 : 00 to 05 : 00 pm',
+                        'from $startTime to $endTime',
                         style: TextStyle(
                           color: const Color.fromARGB(255, 202, 200, 200),
                           fontFamily: 'Montserrat',
@@ -105,7 +119,7 @@ class EventDetailsCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8),
                       child: Text(
-                        '23/11/2023',
+                        date,
                         style: TextStyle(
                           color: const Color.fromARGB(255, 218, 216, 216),
                           fontFamily: 'Montserrat',
@@ -134,7 +148,7 @@ class EventDetailsCard extends StatelessWidget {
                       ),
                     ),
                     GradientText2(
-                      text: ' 3/34',
+                      text: '0/$capacity',
                     )
                   ],
                 ),
@@ -151,7 +165,7 @@ class EventDetailsCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      ' 150.00 AED',
+                      '$price AED',
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Montserrat',

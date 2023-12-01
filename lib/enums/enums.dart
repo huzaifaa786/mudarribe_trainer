@@ -15,3 +15,24 @@ enum MediaType {
   @JsonValue('video')
   video
 }
+
+enum EventType {
+  @JsonValue('paid')
+  paid,
+  @JsonValue('free')
+  free
+}
+
+enum PaymentStatus {
+  @JsonValue('pending')
+  pending,
+  @JsonValue('paid')
+  paid
+}
+
+enum EventStatus {
+  @JsonValue('open')
+  open,
+  @JsonValue('closed')
+  closed
+}

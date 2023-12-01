@@ -56,6 +56,7 @@ class SignInController extends GetxController {
          AppUser? appUser = await _userService.getAuthUser();
         
         if (appUser != null && appUser.status == TrainerStatus.approved) {
+         obscureTextPassword = true;
           Get.offAllNamed(AppRoutes.homeScreen);
         } else {
           UiUtilites.errorSnackbar(

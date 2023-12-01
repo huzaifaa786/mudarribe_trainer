@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/event_inputfield.dart';
-import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/price_input__without_label.dart';
 import 'package:mudarribe_trainer/components/schedule.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
@@ -16,6 +15,8 @@ import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/event/add_event/add_event_controller.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddEventScreen extends StatefulWidget {
   const AddEventScreen({super.key});
@@ -54,30 +55,41 @@ class _AddEventScreenState extends State<AddEventScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 10),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.only(bottom: 50, top: 50),
-                        decoration: BoxDecoration(
-                            border: const GradientBoxBorder(
-                              gradient: LinearGradient(
-                                  colors: [borderbottom, borderTop]),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/images/heroicon.png'),
-                            GradientText(
-                              'Upload Event Photo',
-                              style: const TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
+                      InkWell(
+                        onTap: () {
+                          controller.selectEventImage();
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          // padding: const EdgeInsets.only(bottom: 50, top: 50),
+                          decoration: BoxDecoration(
+                              border: const GradientBoxBorder(
+                                gradient: LinearGradient(
+                                    colors: [borderbottom, borderTop]),
+                                width: 1,
                               ),
-                              colors: const [borderbottom, borderTop],
-                            ),
-                          ],
+                              borderRadius: BorderRadius.circular(6)),
+                          child: controller.eventImage != null
+                              ? Image.file(
+                                  controller.eventImage!,
+                                  fit: BoxFit.fill,
+                                )
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset('assets/images/heroicon.png'),
+                                    GradientText(
+                                      'Upload Event Photo',
+                                      style: const TextStyle(
+                                        fontFamily: "Poppins",
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      colors: const [borderbottom, borderTop],
+                                    ),
+                                  ],
+                                ),
                         ),
                       ),
                       Padding(
@@ -91,18 +103,28 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               fontWeight: FontWeight.w400,
                             )),
                       ),
-                      const EventInputField(),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 4, left: 4, right: 4),
-                        child: Text('Date',
-                            style: TextStyle(
-                              color: white.withOpacity(0.4),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            )),
+                      EventInputField(
+                        controller: controller.eventTitleController,
                       ),
-                      const EventInputField(),
+                      Scheduleinput(
+                        text: 'Date',
+                        controller: controller.dateController,
+                        width: 1.0,
+                        onpressed: () {
+                          picker.DatePicker.showDatePicker(context,
+                              showTitleActions: true, onChanged: (val) {
+                            var date = DateFormat('d/M/y').format(val);
+                            controller.dateController.text = date;
+                            controller.checkFields();
+                          }, onConfirm: (val) {
+                            var date = DateFormat('d/M/y').format(val);
+                            controller.dateController.text = date;
+                            controller.checkFields();
+                          }, currentTime: DateTime.now());
+                        },
+                        hint: DateFormat('d/M/y').format(DateTime.now()),
+                        fontSize: 18.0,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,6 +140,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 var endTime = DateFormat('hh:mm a').format(end);
                                 controller.startTimeController.text = time;
                                 controller.endTimeController.text = endTime;
+                                controller.checkFields();
+
                                 setState(() {});
                               }, onConfirm: (val) {
                                 var end = val.add(Duration(minutes: 1));
@@ -125,6 +149,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 var endTime = DateFormat.Hm().format(end);
                                 controller.startTimeController.text = time;
                                 controller.endTimeController.text = endTime;
+                                controller.checkFields();
+
                                 setState(() {});
                               }, currentTime: DateTime.now());
                             },
@@ -139,11 +165,11 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                   showTitleActions: true, onConfirm: (val) {
                                 var end = DateFormat('hh:mm a').format(val);
                                 controller.endTimeController.text = end;
-                                setState(() {});
+                                controller.checkFields();
                               }, onChanged: (val) {
                                 var end = DateFormat.Hm().format(val);
                                 controller.endTimeController.text = end;
-                                setState(() {});
+                                controller.checkFields();
                               }, currentTime: DateTime.now());
                             },
                             hint: '9:30 am',
@@ -172,7 +198,10 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width * 0.5,
-                                  child: const PriceInputWithoutLabel()),
+                                  child: PriceInputWithoutLabel(
+                                    type: TextInputType.number,
+                                    controller: controller.priceController,
+                                  )),
                             ],
                           ),
                           Column(
@@ -192,7 +221,10 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width * 0.35,
-                                  child: const EventInputField()),
+                                  child: EventInputField(
+                                    controller: controller.capacityController,
+                                    type: TextInputType.number,
+                                  )),
                             ],
                           ),
                         ],
@@ -208,32 +240,75 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                 )),
-                            Container(
-                              margin: const EdgeInsets.only(top: 4),
-                              padding: EdgeInsets.only(top: 12, bottom: 12),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  border: const GradientBoxBorder(
-                                    gradient: LinearGradient(
-                                        colors: [borderbottom, borderTop]),
-                                    width: 1,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PlacePicker(
+                                      apiKey:
+                                          "AIzaSyB8nRxHRnBw9rzrWFcVA45CmtDq7FzLb4A",
+                                      onPlacePicked: (result) {
+                                        controller.address =
+                                            result.formattedAddress!;
+
+                                        Navigator.of(context).pop();
+                                        setState(() {});
+
+                                        controller.checkFields();
+                                      },
+                                      initialPosition: LatLng(23.4241, 53.8478),
+                                      useCurrentLocation: true,
+                                      resizeToAvoidBottomInset:
+                                          false, // only works in page mode, less flickery, remove if wrong offsets
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.circular(6)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                        'assets/images/selectgooglemapicon.png'),
-                                  ),
-                                  GradientText('Select From Google Map',
-                                      style: const TextStyle(
-                                        fontSize: 14.0,
-                                        fontFamily: "Poppins",
+                                );
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(top: 4),
+                                padding: EdgeInsets.only(top: 12, bottom: 12),
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    border: const GradientBoxBorder(
+                                      gradient: LinearGradient(
+                                          colors: [borderbottom, borderTop]),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(6)),
+                                child: controller.address.isEmpty
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Image.asset(
+                                                'assets/images/selectgooglemapicon.png'),
+                                          ),
+                                          GradientText('Select From Google Map',
+                                              style: const TextStyle(
+                                                fontSize: 14.0,
+                                                fontFamily: "Poppins",
+                                              ),
+                                              colors: const [
+                                                borderTop,
+                                                borderbottom
+                                              ]),
+                                        ],
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: GradientText(controller.address,
+                                            style: const TextStyle(
+                                              fontSize: 14.0,
+                                              fontFamily: "Poppins",
+                                            ),
+                                            colors: const [
+                                              borderTop,
+                                              borderbottom
+                                            ]),
                                       ),
-                                      colors: const [borderTop, borderbottom]),
-                                ],
                               ),
                             ),
                             Center(
@@ -308,14 +383,23 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           ],
                         ),
                       ),
-                      GradientButton(
-                          title: 'Share Event',
-                          onPressed: () {
-                            controller.selectedOption == 2
-                                ? UiUtilites.successAlert(
-                                    context, 'Event Shared Successfully ')
-                                : null;
-                          }),
+                      controller.selectedOption == 2
+                          ? GradientButton(
+                              title: 'Share Event',
+                              selected: controller.areFieldsFilled.value,
+                              onPressed: () {
+                                controller.areFieldsFilled.value == true
+                                    ? controller.addEvent()
+                                    : null;
+                              })
+                          : GradientButton(
+                              title: 'Checkout',
+                              selected: controller.areFieldsFilled.value,
+                              onPressed: () {
+                                controller.areFieldsFilled.value == true
+                                    ? controller.addEvent()
+                                    : null;
+                              }),
                       SizedBox(
                         height: 30,
                       ),

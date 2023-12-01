@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -44,7 +44,7 @@ class AddPostbutton extends StatelessWidget {
           decoration: BoxDecoration(
             border: GradientBoxBorder(gradient: LinearGradient(
               colors: 
-                   [borderTop, borderbottom]
+                   const [borderTop, borderbottom]
                   ,
               begin: Alignment.topLeft,
               end: Alignment.topRight,
