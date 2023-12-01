@@ -105,7 +105,7 @@ class _AddPlanState extends State<AddPlan> {
             title: 'Submit ',
             onPressed: controller.areFieldsFilled.value
                 ? () {
-                    controller.addpackage(context);
+                    controller.addpackage();
                   }
                 : () {
                     UiUtilites.errorSnackbar(

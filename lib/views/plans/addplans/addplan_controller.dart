@@ -27,18 +27,21 @@ class AddPlanController extends GetxController {
 
   onnutritiontap() {
     category = 'nutrition';
+    checkFields();
     update();
     return category;
   }
 
   onexcercisetap() {
     category = 'excercise';
+    checkFields();
     update();
     return category;
   }
 
   onbothtap() {
     category = 'excercise&nutrition';
+    checkFields();
     update();
     return category;
   }
@@ -67,6 +70,7 @@ class AddPlanController extends GetxController {
     discriptionController.addListener(() {
       checkFields();
     });
+
     super.onInit();
   }
 
@@ -84,28 +88,27 @@ class AddPlanController extends GetxController {
     }
   }
 
-  Future<void> addpackage(context) async {
+  Future addpackage() async {
     final packageId = DateTime.now().millisecondsSinceEpoch.toString();
 
     await _packageService.createPackage(
         package: Package(
             id: packageId,
-            trainerid: currentUser!.id,
+            trainerId: currentUser!.id,
             name: packagenameController.text,
             price: priceController.text,
             duration: durationController.text,
             discription: discriptionController.text,
             category: category));
-    UiUtilites.successAlert(context, 'Package Added\nSuccessfully !');
+    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
 
     packagenameController.clear();
     priceController.clear();
     durationController.clear();
     discriptionController.clear();
-    category='';
-    areFieldsFilled = true.obs;
-    
+    category = '';
+    areFieldsFilled.value = false;
 
-    Get.toNamed(AppRoutes.packagesScreen);
+    await Get.toNamed(AppRoutes.packagesScreen);
   }
 }

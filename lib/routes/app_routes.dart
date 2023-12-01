@@ -16,7 +16,7 @@ class AppRoutes {
   static const promocode = '/promocode';
   static const todaymeals = '/existingmealpaln';
   static const planhome = '/sendplanhome';
-  static const profile = '/profile';
+  static const profile = '/profile'; 
   static const promoCode ='/promoCode';
   static const addplan = '/addplan';
   static const myevent = '/myevent';

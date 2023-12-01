@@ -5,8 +5,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class PackageCard extends StatelessWidget {
-  const PackageCard({super.key, this.ontap});
+  const PackageCard(
+      {super.key,
+      this.ontap,
+      this.name,
+      this.discription,
+      this.price,
+      this.onPressed,
+      this.image});
   final ontap;
+  final name;
+  final onPressed;
+  final discription;
+  final price;
+  final image;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,8 +35,11 @@ class PackageCard extends StatelessWidget {
                 onTap: ontap,
                 child: Image.asset('assets/images/edit.png'),
               ),
-              SvgPicture.asset(
-                'assets/images/delete.svg',
+              InkWell(
+                onTap: onPressed,
+                child: SvgPicture.asset(
+                  'assets/images/delete.svg',
+                ),
               ),
             ],
           ),
@@ -32,13 +47,43 @@ class PackageCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/dumble.png'),
+              image == 'nutrition'
+                  ? SvgPicture.asset(
+                      'assets/images/nutrition.svg',
+                      color: const Color.fromARGB(255, 49, 141, 216),
+                      width: 35,
+                      height: 35,
+                    )
+                  : image == 'exercise'
+                      ? SvgPicture.asset(
+                          'assets/images/excercise.svg',
+                          color: const Color.fromARGB(255, 49, 141, 216),
+                          width: 35,
+                          height: 35,
+                        )
+                      : Row(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/nutrition.svg',
+                              color: const Color.fromARGB(255, 49, 141, 216),
+                              width: 35,
+                              height: 35,
+                            ),
+                            Text(' + '),
+                            SvgPicture.asset(
+                              'assets/images/excercise.svg',
+                              color: const Color.fromARGB(255, 49, 141, 216),
+                              width: 35,
+                              height: 35,
+                            )
+                          ],
+                        ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("1 month Plan",
+                    Text(name.toString(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -46,7 +91,7 @@ class PackageCard extends StatelessWidget {
                         )),
                     Padding(
                       padding: EdgeInsets.only(top: 8.0),
-                      child: Text("Included Exercises Plan only",
+                      child: Text(discription.toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 13,
@@ -61,7 +106,7 @@ class PackageCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("150.44",
+              Text(price.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
