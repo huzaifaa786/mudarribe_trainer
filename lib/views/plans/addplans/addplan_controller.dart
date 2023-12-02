@@ -102,7 +102,7 @@ class AddPlanController extends GetxController {
             duration: durationController.text,
             discription: discriptionController.text,
             category: category));
-    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
+    print('object+++++++++++++++++++++');
 
     packagenameController.clear();
     priceController.clear();
@@ -111,6 +111,7 @@ class AddPlanController extends GetxController {
     category = '';
     areFieldsFilled.value = false;
 
-    await Get.toNamed(AppRoutes.packagesScreen);
+    Get.back();
+    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
   }
 }

@@ -28,7 +28,7 @@ class _AddPlanState extends State<AddPlan> {
         appBar: AppBar(
           forceMaterialTransparency: true,
           automaticallyImplyLeading: false,
-          title: TitleTopBar(name: 'New Package', ontap: () {}),
+          title: TitleTopBar(name: 'New Package', ontap: () { Get.back();}),
         ),
         body: SingleChildScrollView(
           child: SafeArea(

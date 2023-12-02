@@ -52,10 +52,12 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                             arguments:
                                                 controller.packages[index].id);
                                       },
-                                      onPressed: (){
-                                        String id = controller.packages[index].id;
-                                        
-                                        Get.toNamed(controller.deletePackageById(id));},
+                                      onPressed: () {
+                                        String id =
+                                            controller.packages[index].id;
+
+                                        controller.deletePackageById(id);
+                                      },
                                       name: controller.packages[index].name,
                                       discription: controller
                                           .packages[index].discription,
@@ -71,7 +73,9 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     padding: const EdgeInsets.only(top: 30, bottom: 30),
                     child: GestureDetector(
                       onTap: () {
-                        Get.toNamed(AppRoutes.addplan);
+                        Get.toNamed(AppRoutes.addplan)!.then((value) {
+                          controller.getAppUser();
+                        });
                       },
                       child: Column(
                         children: [

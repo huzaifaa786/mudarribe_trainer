@@ -36,6 +36,7 @@ class EditPlanController extends GetxController {
   onbothtap() {
     category = 'excercise&nutrition';
     update();
+      checkFields();
     return category;
   }
 
@@ -43,6 +44,19 @@ class EditPlanController extends GetxController {
     packagenameController.addListener(() {
       checkFields();
     });
+    priceController.addListener(() {
+      checkFields();
+    });
+    durationController.addListener(() {
+      checkFields();
+    });
+    discriptionController.addListener(() {
+      checkFields();
+    });
+  
+      
+    
+
     super.onInit();
   }
   //   onchange(List<dynamic> x) {
@@ -79,9 +93,9 @@ class EditPlanController extends GetxController {
     durationController.text = package!.duration!;
     discriptionController.text = package!.discription!;
     category = package!.category!;
-    
 
     print(package!.name);
+    checkFields();
     update();
   }
 
@@ -93,7 +107,7 @@ class EditPlanController extends GetxController {
       'discription': discriptionController.text,
       'category': category,
     });
-    UiUtilites.successSnackbar('Update Package', 'Package updated successfully');
+     Get.back();
+    UiUtilites.successAlert(Get.context, 'Package Edit\nSuccessfully !');
   }
-
 }

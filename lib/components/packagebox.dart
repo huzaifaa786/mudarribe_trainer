@@ -38,70 +38,78 @@ class PackageCard extends StatelessWidget {
               InkWell(
                 onTap: onPressed,
                 child: SvgPicture.asset(
-                  'assets/images/delete.svg',
+                  'assets/images/delete.svg', 
                 ),
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              image == 'nutrition'
-                  ? SvgPicture.asset(
-                      'assets/images/nutrition.svg',
-                      color: const Color.fromARGB(255, 49, 141, 216),
-                      width: 35,
-                      height: 35,
-                    )
-                  : image == 'exercise'
-                      ? SvgPicture.asset(
-                          'assets/images/excercise.svg',
-                          color: const Color.fromARGB(255, 49, 141, 216),
-                          width: 35,
-                          height: 35,
-                        )
-                      : Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/nutrition.svg',
-                              color: const Color.fromARGB(255, 49, 141, 216),
-                              width: 35,
-                              height: 35,
-                            ),
-                            Text(' + '),
-                            SvgPicture.asset(
-                              'assets/images/excercise.svg',
-                              color: const Color.fromARGB(255, 49, 141, 216),
-                              width: 35,
-                              height: 35,
-                            )
-                          ],
-                        ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(name.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Text(discription.toString(),
+          Container(
+            width: MediaQuery.of(context).size.width*0.6,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                image == 'nutrition'
+                    ? SvgPicture.asset(
+                        'assets/images/nutrition.svg',
+                        color: const Color.fromARGB(255, 49, 141, 216),
+                        width: 35,
+                        height: 35,
+                      )
+                    : image == 'exercise'
+                        ? SvgPicture.asset(
+                            'assets/images/excercise.svg',
+                            color: const Color.fromARGB(255, 49, 141, 216),
+                            width: 35,
+                            height: 35,
+                          )
+                        : Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/nutrition.svg',
+                                color: const Color.fromARGB(255, 49, 141, 216),
+                                width: 35,
+                                height: 35,
+                              ),
+                              Text(' + '),
+                              SvgPicture.asset(
+                                'assets/images/excercise.svg',
+                                color: const Color.fromARGB(255, 49, 141, 216),
+                                width: 35,
+                                height: 35,
+                              )
+                            ],
+                          ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(name.toString(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
                           )),
-                    )
-                  ],
-                ),
-              )
-            ],
+                      Padding(
+                        padding: EdgeInsets.only(top: 8.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.2,
+                          child: Text(discription.toString(),
+                          maxLines: 2,
+                              style: TextStyle(
+                                color: Colors.white,
+                                
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

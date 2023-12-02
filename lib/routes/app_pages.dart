@@ -4,6 +4,8 @@ import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
 import 'package:mudarribe_trainer/views/event/add_event/add_event_binding.dart';
+import 'package:mudarribe_trainer/views/event/myevent_binding.dart';
+import 'package:mudarribe_trainer/views/packges/package_binding.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan_binding.dart';
@@ -94,7 +96,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.personalplan,
-      page: () => const PersonalPlan(),
+      page: () => const PersonalPlanScreen(),
       binding: PersonalPlanBinding(),
     ),
     GetPage(

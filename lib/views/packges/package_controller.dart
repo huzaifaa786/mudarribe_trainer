@@ -34,8 +34,6 @@ class PackageController extends GetxController {
   }
 
   Future getTrainerPackages() async {
-    log('dddddddddddddddddddddddddddddddddddddddddddddddddddd');
-    log(currentUser!.id);
     packages =
         await _packageService.getTrainerPackages(trainerId: currentUser!.id);
     print(packages);
