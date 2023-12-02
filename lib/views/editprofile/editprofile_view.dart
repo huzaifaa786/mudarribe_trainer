@@ -13,6 +13,7 @@ import 'package:mudarribe_trainer/values/category_list.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_controller.dart';
+import 'package:mudarribe_trainer/components/title_topbar.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -27,24 +28,23 @@ class _EditProfileState extends State<EditProfile> {
     return GetBuilder<EditProfileContoller>(
       builder: (controller) => controller.currentUser != null
           ? Scaffold(
+              appBar: AppBar(
+                forceMaterialTransparency: true,
+                automaticallyImplyLeading: false,
+                title: TitleTopBar(
+                  name: '',
+                  ontap: () {
+                    Get.back();
+                  },
+                ),
+              ),
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
+                       
                         SizedBox(
                           height: 115,
                           width: 115,
@@ -119,7 +119,8 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                         InkWell(
                           onTap: () {
-                           Get.toNamed(AppRoutes.promocode, arguments: controller.currentUser!.id);
+                            Get.toNamed(AppRoutes.promocode,
+                                arguments: controller.currentUser!.id);
                           },
                           child: Row(
                             children: [

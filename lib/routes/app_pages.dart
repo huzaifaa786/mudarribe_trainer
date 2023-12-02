@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
@@ -51,10 +52,9 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
-      name: AppRoutes.signup,
-      page: () => const SignupView(),
-      binding: SignUpBinding()
-    ),
+        name: AppRoutes.signup,
+        page: () => const SignupView(),
+        binding: SignUpBinding()),
     GetPage(
         name: AppRoutes.intro,
         page: () => const IntroScreen(),
@@ -74,7 +74,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.changepassword,
       page: () => const ChangePassword(),
-        binding: ChangePasswordBinding(),
+      binding: ChangePasswordBinding(),
     ),
     GetPage(
       name: AppRoutes.forgetpassword,
@@ -82,10 +82,9 @@ class AppPages {
       binding: ForgotPasswordBinding(),
     ),
     GetPage(
-      name: AppRoutes.editplan,
-      page: () => const EditPlanView(),
-      binding: EditPlanBinding()
-    ),
+        name: AppRoutes.editplan,
+        page: () => const EditPlanView(),
+        binding: EditPlanBinding()),
     GetPage(
         name: AppRoutes.editprofile,
         page: () => const EditProfile(),
@@ -93,12 +92,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.promoCode,
       page: () => const PromoCode(),
-      // binding: 
+      // binding:
     ),
     GetPage(
       name: AppRoutes.personalplan,
       page: () => const PersonalPlan(),
-         binding: PersonalPlanBinding(),
+      binding: PersonalPlanBinding(),
     ),
     GetPage(
       name: AppRoutes.homeScreen,
@@ -114,46 +113,40 @@ class AppPages {
       name: AppRoutes.todaymeals,
       page: () => const TodayMealsScreen(),
     ),
-      GetPage(
-      name: AppRoutes.promocode,
-      page: () => const PromoCode(),
-      binding: PromoCodeBinding()
-    ),
-   
     GetPage(
-      name: AppRoutes.profile,
-      page: () => const ProfileView(),
-      binding: ProfileBinding()
-    ),
+        name: AppRoutes.promocode,
+        page: () => const PromoCode(),
+        binding: PromoCodeBinding()),
+    GetPage(
+        name: AppRoutes.profile,
+        page: () => const ProfileView(),
+        binding: ProfileBinding()),
     GetPage(
       name: AppRoutes.addplan,
       page: () => const AddPlan(),
       binding: AddPlanBinding(),
     ),
     GetPage(
-      name: AppRoutes.myevent,
-      page: () => const MyEvent(),
-      binding: MyEventBinding()
-    ),
+        name: AppRoutes.myevent,
+        page: () => const MyEvent(),
+        binding: MyEventBinding()),
     GetPage(
       name: AppRoutes.exersize,
       page: () => const ExersizeScreen(),
     ),
     GetPage(
-      name: AppRoutes.addevent,
-      page: () => const AddEventScreen(),
-      binding: AddEventBinding()
-    ),
+        name: AppRoutes.addevent,
+        page: () => const AddEventScreen(),
+        binding: AddEventBinding()),
     GetPage(
       name: AppRoutes.signin,
       page: () => const SignInScreen(),
-      binding: SignInBinding()
+      binding: SignInBinding(),
     ),
     GetPage(
-      name: AppRoutes.addpost,
-      page: () => const AddPost(),
-      binding: AddPostBinding()
-    ),
+        name: AppRoutes.addpost,
+        page: () => const AddPost(),
+        binding: AddPostBinding()),
     GetPage(
       name: AppRoutes.forgot,
       page: () => const ForgetPassword(),

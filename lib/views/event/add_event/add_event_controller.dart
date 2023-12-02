@@ -104,22 +104,27 @@ class AddEventContoller extends GetxController {
   }
 
   Future addEvent() async {
+    
     final eventId = DateTime.now().millisecondsSinceEpoch.toString();
     CloudStorageResult? imageResult = await _saveEventImage(eventId);
     if (imageResult!.imageUrl != '') {
       await _eventService.createEvent(
           event: TrainerEvent(
-              id: eventId,
-              title: eventTitleController.text,
-              price: priceController.text,
-              date: dateController.text,
-              startTime: startTimeController.text,
-              endTime: endTimeController.text,
-              trainerId: currentUser!.id,
-              capacity: capacityController.text,
-              address: address,
-              eventType: selectedOption == 1 ? EventType.paid : EventType.free,
-              paymentStatus: PaymentStatus.pending,eventStatus: EventStatus.open));
+        id: eventId,
+        title: eventTitleController.text,
+        price: priceController.text,
+        date: dateController.text,
+        startTime: startTimeController.text,
+        endTime: endTimeController.text,
+        trainerId: currentUser!.id,
+        capacity: capacityController.text,
+        imageUrl: imageResult.imageUrl,
+        imageFileName: imageResult.imageFileName,
+        address: address,
+        eventType: selectedOption == 1 ? EventType.paid : EventType.free,
+        paymentStatus: PaymentStatus.pending,
+        eventStatus: EventStatus.open,
+      ));
       clearValues();
       UiUtilites.successAlert(Get.context, 'Event Shared Successfully');
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
@@ -16,7 +17,7 @@ void main() async {
   // await LoadingHelper.init();
 
   await GetStorage.init();
-
+  Get.put<BusyController>(BusyController());
   runApp(
     const MyApp(),
   );
@@ -37,10 +38,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black
-          
-        ),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
         scaffoldBackgroundColor: Colors.black,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Colors.white,
@@ -53,6 +51,7 @@ class _MyAppState extends State<MyApp> {
       initialBinding: SplashBinding(),
       home: const SplashView(),
       getPages: AppPages.pages,
+   
     );
   }
 }

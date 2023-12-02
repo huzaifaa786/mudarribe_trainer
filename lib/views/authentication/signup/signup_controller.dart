@@ -11,6 +11,7 @@ import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/api/storage_api.dart';
 import 'package:mudarribe_trainer/exceptions/auth_api_exception.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
@@ -19,6 +20,7 @@ import 'package:mudarribe_trainer/enums/enums.dart';
 
 class SignUpController extends GetxController {
   static SignUpController instance = Get.find();
+  final BusyController busyController = Get.find();
   final _databaseApi = DatabaseApi();
   final _storageApi = StorageApi();
   final _imageSelectorApi = ImageSelectorApi();
@@ -172,6 +174,7 @@ class SignUpController extends GetxController {
   }
 
   Future signUpTrainer() async {
+    busyController.setBusy(true);
     try {
       final User user = await _authApi.signUpWithEmail(
         email: emailController.text,
@@ -201,14 +204,16 @@ class SignUpController extends GetxController {
               categories: selectedCategories,
               languages: selectedLanguages),
         );
-        UiUtilites.successSnackbar('Register User',
-            'User registered successfully & sent for approval');
+
+        UiUtilites.successAlert(
+            Get.context, 'You have Successfully submitted Your Application!');
         clearValues();
         Get.offNamed(AppRoutes.signin);
       }
     } on AuthApiException catch (e) {
       UiUtilites.errorSnackbar('Signup Failed', e.toString());
     }
+    busyController.setBusy(false);
   }
 
   clearValues() {
