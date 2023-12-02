@@ -10,7 +10,24 @@ class PackageService {
     await _packageApi.createPackage(package);
   }
 
-  // Future<List<TrainerPost>> getTrainerPosts({required trainerId}) async {
-  //   return await _packageApi.getTrainerPosts(trainerId);
-  // }
+  Future<List<Package>> getTrainerPackages({required trainerId}) async {
+    return await _packageApi.getTrainerPackages(trainerId);
+  }
+
+  Future<Package?> getTrainerPackage({required id}) async {
+    return await _packageApi.getPackageById(id);
+  }
+    Future<void> updatePackage({
+    required id,
+    required Package,
+  }) async {
+    await _packageApi.updatePackage(id,Package);
+  }
+
+   Future<void> deletePackage({
+    required id,
+  
+  }) async {
+    await _packageApi.deletePackage(id);
+  }
 }

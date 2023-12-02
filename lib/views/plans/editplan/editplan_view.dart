@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
@@ -24,12 +26,18 @@ class EditPlanView extends StatefulWidget {
 class _EditPlanViewState extends State<EditPlanView> {
   @override
   Widget build(BuildContext context) {
+    String id = Get.arguments;
     return GetBuilder<EditPlanController>(
+      initState: (state) async {
+        Future.delayed(Duration(seconds: 2), () {
+          state.controller!.getTrainerPackage(id);
+        });
+      },
       builder: (controller) => Scaffold(
         appBar: AppBar(
           forceMaterialTransparency: true,
           automaticallyImplyLeading: false,
-          title: TitleTopBar(name: 'Edit Package', ontap: () {}),
+          title: TitleTopBar(name: 'Edit Package', ontap: () { Get.back();}),
         ),
         body: SingleChildScrollView(
           child: SafeArea(
@@ -39,14 +47,18 @@ class _EditPlanViewState extends State<EditPlanView> {
                 children: [
                   InputField(
                     lable: 'Plan Title',
+                    controller: controller.packagenameController,
                   ),
                   PriceInputField(
+                    controller: controller.priceController,
                     lable: 'Price',
                   ),
                   InputField(
+                    controller: controller.durationController,
                     lable: 'Duration',
                   ),
                   BioInputField(
+                    controller: controller.discriptionController,
                     lable: 'Discription',
                   ),
                   SizedBox(
@@ -61,18 +73,18 @@ class _EditPlanViewState extends State<EditPlanView> {
                     children: [
                       GenderCard(
                         image: "assets/images/excercise.svg",
-                        ontap: personalPlanController.onexcercisetap,
-                        selected: personalPlanController.selected == 'excercise'
+                        ontap: editplanController.onexcercisetap,
+                        selected: editplanController.category == 'excercise'
                             ? true
                             : false,
                         text: 'Exercises',
                       ),
                       GenderCard(
                         image: "assets/images/nutrition.svg",
-                        selected: personalPlanController.selected == 'nutrition'
+                        selected: editplanController.category == 'nutrition'
                             ? true
                             : false,
-                        ontap: personalPlanController.onnutritiontap,
+                        ontap: editplanController.onnutritiontap,
                         text: 'Nutrition',
                       ),
                     ],
@@ -83,10 +95,11 @@ class _EditPlanViewState extends State<EditPlanView> {
                   SelectPlanCard(
                     image: "assets/images/nutrition.svg",
                     image1: "assets/images/excercise.svg",
-                    selected: personalPlanController.selected == 'both'
-                        ? true
-                        : false,
-                    ontap: personalPlanController.onbothtap,
+                    selected:
+                        editplanController.category == 'excercise&nutrition'
+                            ? true
+                            : false,
+                    ontap: editplanController.onbothtap,
                     text: ' Exercises & Nutrition',
                   ),
                   SizedBox(
@@ -101,10 +114,15 @@ class _EditPlanViewState extends State<EditPlanView> {
           padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
           child: GradientButton(
             title: 'Submit ',
-            onPressed: () {
-              UiUtilites.successAlert(context, 'Package Edited\nSuccessfully !');
-            },
-            selected: personalPlanController.selected == '' ? false : true,
+            onPressed: controller.areFieldsFilled.value
+                ? () {
+                    controller.updatePackage();
+                  }
+                : () {
+                    UiUtilites.errorSnackbar(
+                        'Fill out all fields', 'Please fill all above fields');
+                  },
+            selected: controller.areFieldsFilled.value,
           ),
         ),
       ),

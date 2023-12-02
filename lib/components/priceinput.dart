@@ -27,6 +27,7 @@ class PriceInputField extends StatelessWidget {
   final autovalidateMode;
   final maxlines;
   final readOnly;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class PriceInputField extends StatelessWidget {
                   ? AutovalidateMode.always
                   : AutovalidateMode.onUserInteraction),
           style: TextStyle(color: Colors.white),
-          keyboardType: type,
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
               suffixIcon: Padding(
                 padding: const EdgeInsets.only(top: 14, right: 10),

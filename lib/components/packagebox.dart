@@ -5,8 +5,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class PackageCard extends StatelessWidget {
-  const PackageCard({super.key, this.ontap});
+  const PackageCard(
+      {super.key,
+      this.ontap,
+      this.name,
+      this.discription,
+      this.price,
+      this.onPressed,
+      this.image});
   final ontap;
+  final name;
+  final onPressed;
+  final discription;
+  final price;
+  final image;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,45 +35,86 @@ class PackageCard extends StatelessWidget {
                 onTap: ontap,
                 child: Image.asset('assets/images/edit.png'),
               ),
-              SvgPicture.asset(
-                'assets/images/delete.svg',
+              InkWell(
+                onTap: onPressed,
+                child: SvgPicture.asset(
+                  'assets/images/delete.svg', 
+                ),
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset('assets/images/dumble.png'),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("1 month Plan",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Text("Included Exercises Plan only",
+          Container(
+            width: MediaQuery.of(context).size.width*0.6,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                image == 'nutrition'
+                    ? SvgPicture.asset(
+                        'assets/images/nutrition.svg',
+                        color: const Color.fromARGB(255, 49, 141, 216),
+                        width: 35,
+                        height: 35,
+                      )
+                    : image == 'exercise'
+                        ? SvgPicture.asset(
+                            'assets/images/excercise.svg',
+                            color: const Color.fromARGB(255, 49, 141, 216),
+                            width: 35,
+                            height: 35,
+                          )
+                        : Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/nutrition.svg',
+                                color: const Color.fromARGB(255, 49, 141, 216),
+                                width: 35,
+                                height: 35,
+                              ),
+                              Text(' + '),
+                              SvgPicture.asset(
+                                'assets/images/excercise.svg',
+                                color: const Color.fromARGB(255, 49, 141, 216),
+                                width: 35,
+                                height: 35,
+                              )
+                            ],
+                          ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(name.toString(),
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
                           )),
-                    )
-                  ],
-                ),
-              )
-            ],
+                      Padding(
+                        padding: EdgeInsets.only(top: 8.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*0.2,
+                          child: Text(discription.toString(),
+                          maxLines: 2,
+                              style: TextStyle(
+                                color: Colors.white,
+                                
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("150.44",
+              Text(price.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
