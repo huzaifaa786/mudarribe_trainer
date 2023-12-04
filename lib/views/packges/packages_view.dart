@@ -9,6 +9,7 @@ import 'package:mudarribe_trainer/components/packagebox.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/packges/package_controller.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -52,14 +53,22 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                             controller.packages[index].category,
                                         ontap: () {
                                           Get.toNamed(AppRoutes.editplan,
-                                              arguments: controller
-                                                  .packages[index].id)!.then((value) => controller.getTrainerPackages());
+                                                  arguments: controller
+                                                      .packages[index].id)!
+                                              .then((value) => controller
+                                                  .getTrainerPackages());
                                         },
                                         onPressed: () {
                                           String id =
                                               controller.packages[index].id;
 
-                                          controller.deletePackageById(id);
+                                          UiUtilites.confirmAlert(context,
+                                              'Are you sure you want to delete this package?',
+                                              () {
+                                            controller.deletePackageById(id);
+                                          }, () {
+                                            Get.back();
+                                          }, 'Yes', 'Cancel');
                                         },
                                         name: controller.packages[index].name,
                                         discription: controller
