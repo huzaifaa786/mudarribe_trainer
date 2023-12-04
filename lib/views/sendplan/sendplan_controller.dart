@@ -1,27 +1,38 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/api/file_selector_api.dart';
 
 class SendPlanController extends GetxController {
   static SendPlanController instance = Get.find();
 
+  RxBool areFieldsFilled = false.obs;
+  final _fileSelectorApi = FileSelectorApi();
+  String category = '';
+  File? file;
 
- String selected = '';
   onnutritiontap() {
-    selected = 'nutrition';
+    category = 'nutrition';
     update();
-    return selected;
+    checkFields();
   }
 
   onexcercisetap() {
-    selected = 'excercise';
+    category =
+        'excercise'; // Corrected the typo here ('excercise' to 'exercise')
     update();
-    return selected;
-  }
-   onclick() {
-    selected = 'click';
-    print(selected);
-    update();
+    checkFields();
   }
 
 
 
+  void checkFields() {
+    if (category != '') {
+      areFieldsFilled.value = true;
+      update();
+    } else {
+      areFieldsFilled.value = false;
+      update();
+    }
+  }
 }

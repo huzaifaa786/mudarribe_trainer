@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/sendplan/sendplan_controller.dart';
 
 class HomePlan extends StatefulWidget {
@@ -67,7 +69,7 @@ class _HomePlanState extends State<HomePlan> {
                   children: [
                     GenderCard(
                       image: "assets/images/nutrition.svg",
-                      selected: sendPlanController.selected == 'nutrition'
+                      selected: sendPlanController.category == 'nutrition'
                           ? true
                           : false,
                       ontap: sendPlanController.onnutritiontap,
@@ -79,7 +81,7 @@ class _HomePlanState extends State<HomePlan> {
                     GenderCard(
                       image: "assets/images/excercise.svg",
                       ontap: sendPlanController.onexcercisetap,
-                      selected: sendPlanController.selected == 'excercise'
+                      selected: sendPlanController.category == 'excercise'
                           ? true
                           : false,
                       text: 'Exercises Plan',
@@ -90,9 +92,20 @@ class _HomePlanState extends State<HomePlan> {
                   height: 60,
                 ),
                 GradientButton(
-                  title: 'next',
-                  onPressed: () {},
-                  selected: sendPlanController.selected == '' ? false : true,
+                  title: 'Save Changes',
+                  onPressed: controller.areFieldsFilled.value
+                      ? () {
+                          if (controller.category == 'nutrition' ||
+                              controller.category == 'excercise') {
+                            Get.toNamed(AppRoutes.exercise,
+                                arguments: controller.category);
+                          }
+                        }
+                      : () {
+                          UiUtilites.errorSnackbar('Fill out all fields',
+                              'Please fill all above fields');
+                        },
+                  selected: controller.areFieldsFilled.value,
                 )
               ],
             )),

@@ -31,7 +31,7 @@ import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_binding.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
-import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
+import 'package:mudarribe_trainer/views/sendplan/exercises/exercises.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
@@ -39,6 +39,11 @@ import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_binding.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
+import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_binding.dart';
+import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
+import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_binding.dart';
+import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_view.dart';
+import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
 
 // import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
@@ -128,13 +133,13 @@ class AppPages {
       binding: AddPlanBinding(),
     ),
     GetPage(
-      name: AppRoutes.myevent,
-      page: () => const MyEvent(),
-      binding: MyEventBinding()
-    ),
+        name: AppRoutes.myevent,
+        page: () => const MyEvent(),
+        binding: MyEventBinding()),
     GetPage(
-      name: AppRoutes.exersize,
-      page: () => const ExersizeScreen(),
+      name: AppRoutes.exercise,
+      page: () => const ExercisesScreen(),
+      binding: ExercisesBinding()
     ),
     GetPage(
         name: AppRoutes.addevent,
@@ -152,5 +157,13 @@ class AppPages {
       name: AppRoutes.forgot,
       page: () => const ForgetPassword(),
     ),
+    GetPage(
+        name: AppRoutes.sendplanhome,
+        page: () => const HomePlan(),
+        binding: SendPlanBinding()),
+         GetPage(
+        name: AppRoutes.nutrition,
+        page: () => const NutritionScreen(),
+        binding: NutritionBinding()),
   ];
 }
