@@ -6,6 +6,8 @@ import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart'
 import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
 import 'package:mudarribe_trainer/views/event/add_event/add_event_binding.dart';
 import 'package:mudarribe_trainer/views/event/myevent_binding.dart';
+import 'package:mudarribe_trainer/views/event_checkout/event_checkout_binding.dart';
+import 'package:mudarribe_trainer/views/event_checkout/event_checkout_view.dart';
 import 'package:mudarribe_trainer/views/packges/package_binding.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_binding.dart';
@@ -100,6 +102,11 @@ class AppPages {
       name: AppRoutes.personalplan,
       page: () => const PersonalPlanScreen(),
       binding: PersonalPlanBinding(),
+    ),
+     GetPage(
+      name: AppRoutes.eventcheckout,
+      page: () => const EventcheckoutView(),
+      binding: EventcheckoutBinding(),
     ),
     GetPage(
       name: AppRoutes.homeScreen,

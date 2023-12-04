@@ -2,6 +2,7 @@ import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_controller.dart';
 import 'package:mudarribe_trainer/views/changepassword/changePassword_controller.dart';
 import 'package:mudarribe_trainer/views/changepassword/forget_password_controller.dart';
+import 'package:mudarribe_trainer/views/event_checkout/event_checkout_controller.dart';
 
 import 'package:mudarribe_trainer/views/introscreen/intro_controller.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_controller.dart';
@@ -36,5 +37,6 @@ PackageController packageController = PackageController.instance;
 EditPlanController editplanController = EditPlanController.instance;
 ExercisesController exercisesController = ExercisesController.instance;
 NutritionController uutritionController = NutritionController.instance;
+EventcheckoutController eventcheckoutController =EventcheckoutController.instance;
 
 
