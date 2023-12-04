@@ -74,7 +74,7 @@ class _PromoCodeState extends State<PromoCode> {
                             height: 18,
                           ),
                           InputField(
-                            lable: 'discount percentage',
+                            lable: 'Discount percentage',
                             controller: controller.percentagecontroller,
                           ),
                         ],

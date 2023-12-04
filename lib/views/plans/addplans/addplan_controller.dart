@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/packages.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
@@ -14,6 +15,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class AddPlanController extends GetxController {
   static AddPlanController instance = Get.find();
+  final BusyController busyController = Get.find();
   TextEditingController packagenameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController durationController = TextEditingController();
@@ -91,6 +93,7 @@ class AddPlanController extends GetxController {
   }
 
   Future addpackage() async {
+    busyController.setBusy(true);
     final packageId = DateTime.now().millisecondsSinceEpoch.toString();
 
     await _packageService.createPackage(
@@ -102,7 +105,6 @@ class AddPlanController extends GetxController {
             duration: durationController.text,
             discription: discriptionController.text,
             category: category));
-    print('object+++++++++++++++++++++');
 
     packagenameController.clear();
     priceController.clear();
@@ -110,7 +112,7 @@ class AddPlanController extends GetxController {
     discriptionController.clear();
     category = '';
     areFieldsFilled.value = false;
-
+    busyController.setBusy(false);
     Get.back();
     UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
   }

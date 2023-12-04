@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/packages.dart';
 import 'package:mudarribe_trainer/services/package_service.dart';
@@ -10,6 +11,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class PackageController extends GetxController {
   static PackageController instance = Get.find();
+  final BusyController busyController = Get.find();
 
   final _packageService = PackageService();
 
@@ -34,18 +36,20 @@ class PackageController extends GetxController {
   }
 
   Future getTrainerPackages() async {
+    busyController.setBusy(true);
     packages =
         await _packageService.getTrainerPackages(trainerId: currentUser!.id);
-    print(packages);
+
     update();
+
+    busyController.setBusy(false);
+        print(packages.first.category!);
   }
 
   deletePackageById(String id) async {
-    
-      await _packageService.deletePackage(id: id);
-      getTrainerPackages();
-      UiUtilites.successSnackbar(
-          'Delete Package', 'Package deleted successfully');
-   
+    await _packageService.deletePackage(id: id);
+    getTrainerPackages();
+    UiUtilites.successSnackbar(
+        'Delete Package', 'Package deleted successfully');
   }
 }

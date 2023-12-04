@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
@@ -48,7 +46,7 @@ class ChangepasswordController extends GetxController {
   }
 
   void checkFields() {
-    log('fffffffffffffffffffffffffffffffffffffffffffffffffffff');
+
     if (newpassword.text.isNotEmpty &&
         oldpassword.text.isNotEmpty &&
         confirmPassword.text.isNotEmpty) {

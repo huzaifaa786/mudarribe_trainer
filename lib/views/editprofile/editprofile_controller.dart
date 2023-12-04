@@ -8,6 +8,7 @@ import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/api/storage_api.dart';
 import 'package:mudarribe_trainer/exceptions/auth_api_exception.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
@@ -15,12 +16,13 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class EditProfileContoller extends GetxController {
   static EditProfileContoller instance = Get.find();
+  final BusyController busyController = Get.find();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController bioController = TextEditingController();
   final _imageSelectorApi = ImageSelectorApi();
   final _storageApi = StorageApi();
-   final _authApi = AuthApi();
+  final _authApi = AuthApi();
 
   final _userService = UserService();
   AppUser? currentUser;
@@ -86,6 +88,7 @@ class EditProfileContoller extends GetxController {
   }
 
   Future updateTrainer() async {
+    busyController.setBusy(true);
     if (profileImage != null) {
       CloudStorageResult? imageResult = await updateProfileImg(currentUser!);
       if (imageResult!.imageUrl != '') {
@@ -109,7 +112,9 @@ class EditProfileContoller extends GetxController {
       );
       UiUtilites.successSnackbar('Update User', 'User updated successfully');
     }
+    busyController.setBusy(false);
   }
+
   Future logout() async {
     try {
       await _authApi.logout();

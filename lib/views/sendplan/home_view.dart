@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
+import 'package:mudarribe_trainer/components/plan_category_card.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/views/sendplan/sendplan_controller.dart';
@@ -76,7 +77,7 @@ class _HomePlanState extends State<HomePlan> {
                     const SizedBox(
                       height: 50,
                     ),
-                    GenderCard(
+                    PlanCategoryCard(
                       image: "assets/images/excercise.svg",
                       ontap: sendPlanController.onexcercisetap,
                       selected: sendPlanController.selected == 'excercise'
