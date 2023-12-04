@@ -43,13 +43,14 @@ class PackageController extends GetxController {
     update();
 
     busyController.setBusy(false);
-        print(packages.first.category!);
+    print(packages.first.category!);
   }
 
   deletePackageById(String id) async {
     await _packageService.deletePackage(id: id);
     getTrainerPackages();
-    UiUtilites.successSnackbar(
-        'Delete Package', 'Package deleted successfully');
+    Get.back();
+    UiUtilites.successAlert(
+        Get.context, 'Package deleted successfully');
   }
 }

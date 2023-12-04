@@ -5,10 +5,10 @@ import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
-import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
-import 'package:mudarribe_trainer/views/splash/splash_view.dart';
-import 'firebase_options.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
+import 'package:mudarribe_trainer/views/splash/splash_view.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,7 +53,6 @@ class _MyAppState extends State<MyApp> {
       initialBinding:SplashBinding (),
       home: const SplashView(),
       getPages: AppPages.pages,
-   
     );
   }
 }
