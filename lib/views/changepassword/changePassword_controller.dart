@@ -61,7 +61,7 @@ class ChangepasswordController extends GetxController {
 
   Future changePassword() async {
     busyController.setBusy(true);
-    if (newpassword != confirmPassword) {
+    if (newpassword.text != confirmPassword.text) {
       UiUtilites.successSnackbar('Password are not similar', 'Password');
     } else {
       final response =
