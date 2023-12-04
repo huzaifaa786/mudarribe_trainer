@@ -50,8 +50,8 @@ class _MyAppState extends State<MyApp> {
       ),
       debugShowCheckedModeBanner: false,
       title: "Mudarribe",
-      initialBinding:SendPlanBinding (),
-      home: const HomePlan(),
+      initialBinding:SplashBinding (),
+      home: const SplashView(),
       getPages: AppPages.pages,
    
     );

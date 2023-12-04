@@ -95,11 +95,7 @@ class AppPages {
         name: AppRoutes.editprofile,
         page: () => const EditProfile(),
         binding: EditProfileBinding()),
-    GetPage(
-      name: AppRoutes.promoCode,
-      page: () => const PromoCode(),
-      // binding:
-    ),
+   
     GetPage(
       name: AppRoutes.personalplan,
       page: () => const PersonalPlanScreen(),
@@ -122,7 +118,7 @@ class AppPages {
     ),
     GetPage(
         name: AppRoutes.promocode,
-        page: () => const PromoCode(),
+        page: () => const PromoCodeScreen(),
         binding: PromoCodeBinding()),
     GetPage(
         name: AppRoutes.profile,

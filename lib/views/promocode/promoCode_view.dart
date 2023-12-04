@@ -8,13 +8,13 @@ import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_controller.dart';
 
-class PromoCode extends StatefulWidget {
-  const PromoCode({Key? key}) : super(key: key);
+class PromoCodeScreen extends StatefulWidget {
+  const PromoCodeScreen({Key? key}) : super(key: key);
   @override
-  State<PromoCode> createState() => _PromoCodeState();
+  State<PromoCodeScreen> createState() => _PromoCodeScreenState();
 }
 
-class _PromoCodeState extends State<PromoCode> {
+class _PromoCodeScreenState extends State<PromoCodeScreen> {
   @override
   Widget build(BuildContext context) {
     String id = Get.arguments;
