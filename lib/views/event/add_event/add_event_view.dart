@@ -12,7 +12,7 @@ import 'package:mudarribe_trainer/components/schedule.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:intl/intl.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/ui_utils.dart';
+
 import 'package:mudarribe_trainer/views/event/add_event/add_event_controller.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
@@ -135,20 +135,17 @@ class _AddEventScreenState extends State<AddEventScreen> {
                             onpressed: () {
                               picker.DatePicker.showTime12hPicker(context,
                                   showTitleActions: true, onChanged: (val) {
-                                var end = val.add(Duration(minutes: 1));
+                             
                                 var time = DateFormat('hh:mm a').format(val);
-                                var endTime = DateFormat('hh:mm a').format(end);
+                            
                                 controller.startTimeController.text = time;
-                                controller.endTimeController.text = endTime;
+                           
                                 controller.checkFields();
 
                                 setState(() {});
                               }, onConfirm: (val) {
-                                var end = val.add(Duration(minutes: 1));
-                                var time = DateFormat.Hm().format(val);
-                                var endTime = DateFormat.Hm().format(end);
+                                var time = DateFormat('hh:mm a').format(val);
                                 controller.startTimeController.text = time;
-                                controller.endTimeController.text = endTime;
                                 controller.checkFields();
 
                                 setState(() {});
@@ -167,7 +164,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 controller.endTimeController.text = end;
                                 controller.checkFields();
                               }, onChanged: (val) {
-                                var end = DateFormat.Hm().format(val);
+                                var end = DateFormat('hh:mm a').format(val);
                                 controller.endTimeController.text = end;
                                 controller.checkFields();
                               }, currentTime: DateTime.now());

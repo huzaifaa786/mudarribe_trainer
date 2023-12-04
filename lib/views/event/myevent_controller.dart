@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/api/event_api.dart';
+import 'package:mudarribe_trainer/api/event_storage_api.dart';
 
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_event.dart';
 import 'package:mudarribe_trainer/services/event_service.dart';
 
 import 'package:mudarribe_trainer/services/user_service.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class MyEventController extends GetxController {
   static MyEventController instance = Get.find();
@@ -16,6 +19,8 @@ class MyEventController extends GetxController {
 
   final _userService = UserService();
   AppUser? currentUser;
+  final _eventApi = EventApi();
+  final _eventStorageApi = EventStorageApi();
 
   @override
   void onInit() {
@@ -34,7 +39,18 @@ class MyEventController extends GetxController {
 
   Future getTrainerEvents() async {
     events = await _eventService.getTrainerEvents(trainerId: currentUser!.id);
-   
-    update();
+    update(events, true);
+  }
+
+  Future deleteEvent(TrainerEvent event) async {
+    bool isDeleted = await _eventApi.deleteEvent(event.id);
+
+    if (isDeleted) {
+      _eventStorageApi.deleteEventImage(event.id, event.imageFileName!);
+      await getTrainerEvents();
+      Get.back();
+      UiUtilites.successSnackbar(
+          'Event has been Deleted Successfully', 'Event Deleted');
+    }
   }
 }

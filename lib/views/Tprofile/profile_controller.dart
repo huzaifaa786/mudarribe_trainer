@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/post_storage_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_post.dart';
 import 'package:mudarribe_trainer/models/trainer_story.dart';
@@ -15,6 +16,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class ProfileController extends GetxController {
   static ProfileController instance = Get.find();
+  final BusyController busyController = Get.find();
   final _postService = PostService();
   final _postStorageApi = PostStorageApi();
 
@@ -45,12 +47,14 @@ class ProfileController extends GetxController {
   }
 
   Future getAppUser() async {
+
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
       getTrainerPosts();
     }
     update();
+  
   }
 
   Future _saveStoryImage(storyId) async {
@@ -62,6 +66,7 @@ class ProfileController extends GetxController {
   }
 
   Future addStory(String url) async {
+    busyController.setBusy(true);
     storyImage = File(url);
     final storyId = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -81,12 +86,15 @@ class ProfileController extends GetxController {
       UiUtilites.successSnackbar(
           'Story has been created successfully', 'Story Created');
       Get.toNamed(AppRoutes.profile);
+      busyController.setBusy(false);
     }
   }
 
   Future getTrainerPosts() async {
+    busyController.setBusy(true);
     posts = await _postService.getTrainerPosts(trainerId: currentUser!.id);
     print(posts);
     update();
+    busyController.setBusy(false);
   }
 }

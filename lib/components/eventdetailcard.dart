@@ -58,8 +58,11 @@ class EventDetailsCard extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: onPressDelete,
-                    child: SvgPicture.asset(
-                      'assets/images/delete.svg',
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: SvgPicture.asset(
+                        'assets/images/delete.svg',
+                      ),
                     ),
                   ),
                 ],

@@ -21,6 +21,7 @@ class PostApi {
       );
     }
   }
+
   Future<void> createStory(TrainerStory story) async {
     try {
       await _trainerStoryCollection.doc(story.id).set(story.toJson());
@@ -34,7 +35,8 @@ class PostApi {
 
   Future<List<TrainerPost>> getTrainerPosts(trainerId) async {
     try {
-      final result = await _trainerPostCollection.get();
+      final result =
+          await _trainerPostCollection.orderBy('id', descending: true).get();
 
       final posts = result.docs
           .map(

@@ -52,6 +52,7 @@ class SelectPlanCard extends StatelessWidget {
                         image1,
                         fit: BoxFit.scaleDown,
                         height: 30,
+                        color: Colors.white,
                       ),
                       Padding(
                         padding: EdgeInsets.all(8),
@@ -59,11 +60,13 @@ class SelectPlanCard extends StatelessWidget {
                           Icons.add,
                           color: borderbottom,
                           size: 14,
+                          
                         ),
                       ),
                       SvgPicture.asset(
                         image,
                         fit: BoxFit.scaleDown,
+                        color: Colors.white,
                         height: 30,
                       ),
                     ],

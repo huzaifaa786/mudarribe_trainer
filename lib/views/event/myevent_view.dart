@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-
+import 'dart:ui';
+import 'package:gap/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
@@ -12,7 +12,9 @@ import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/event/myevent_controller.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class MyEvent extends StatefulWidget {
   const MyEvent({super.key});
@@ -161,7 +163,14 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                                   title: controller.events[index].title,
                                   imageUrl: controller.events[index].imageUrl,
                                   onPressDelete: () {
-                                  
+                                    UiUtilites.confirmAlert(context,
+                                        'Are you sure you want to delete this event?',
+                                        () {
+                                      controller.deleteEvent(
+                                          controller.events[index]);
+                                    }, () {
+                                      Get.back();
+                                    }, 'Yes', 'Cancel');
                                   },
                                   address: controller.events[index].address,
                                   startTime: controller.events[index].startTime,

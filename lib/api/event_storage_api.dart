@@ -44,4 +44,29 @@ class EventStorageApi {
       );
     }
   }
+
+  Future<bool> deleteEventImage(
+    String eventId,
+    String imageFileName,
+  ) async {
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("eventImages/$eventId/$imageFileName");
+
+    try {
+      bool result = false;
+
+      await storageReference.delete().then(
+            (_) => result = true,
+          );
+          
+
+      return result;
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload image',
+        message: e.message,
+      );
+    }
+  }
 }

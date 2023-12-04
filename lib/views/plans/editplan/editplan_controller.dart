@@ -1,13 +1,13 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/packages.dart';
 import 'package:mudarribe_trainer/services/package_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class EditPlanController extends GetxController {
   static EditPlanController instance = Get.find();
+  final BusyController busyController = Get.find();
 
   TextEditingController packagenameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -17,27 +17,27 @@ class EditPlanController extends GetxController {
   final _packageService = PackageService();
 
   String selected = '';
-  Package? package; // Change packages to package
+  Package? package;
 
   String category = '';
 
   onnutritiontap() {
     category = 'nutrition';
     update();
-    return category;
+    checkFields();
   }
 
   onexcercisetap() {
     category = 'excercise';
+
     update();
-    return category;
+    checkFields();
   }
 
   onbothtap() {
     category = 'excercise&nutrition';
     update();
-      checkFields();
-    return category;
+    checkFields();
   }
 
   void onInit() {
@@ -53,17 +53,9 @@ class EditPlanController extends GetxController {
     discriptionController.addListener(() {
       checkFields();
     });
-  
-      
-    
 
     super.onInit();
   }
-  //   onchange(List<dynamic> x) {
-  //   selectedCategories = x.cast<String>();
-  //   checkFields();
-  //   update();
-  // }
 
   void checkFields() {
     if (packagenameController.text.isNotEmpty &&
@@ -81,7 +73,7 @@ class EditPlanController extends GetxController {
 
   onclick() {
     selected = 'click';
-    print(selected);
+
     update();
   }
 
@@ -94,12 +86,12 @@ class EditPlanController extends GetxController {
     discriptionController.text = package!.discription!;
     category = package!.category!;
 
-    print(package!.name);
     checkFields();
     update();
   }
 
   Future updatePackage() async {
+    busyController.setBusy(true);
     await _packageService.updatePackage(id: package!.id, Package: {
       'name': packagenameController.text,
       'price': priceController.text,
@@ -107,7 +99,8 @@ class EditPlanController extends GetxController {
       'discription': discriptionController.text,
       'category': category,
     });
-     Get.back();
+    busyController.setBusy(false);
+    Get.back();
     UiUtilites.successAlert(Get.context, 'Package Edit\nSuccessfully !');
   }
 }

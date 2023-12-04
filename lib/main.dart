@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
@@ -18,7 +19,7 @@ void main() async {
   // await LoadingHelper.init();
 
   await GetStorage.init();
-
+  Get.put<BusyController>(BusyController());
   runApp(
     const MyApp(),
   );
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
       initialBinding:SendPlanBinding (),
       home: const HomePlan(),
       getPages: AppPages.pages,
+   
     );
   }
 }

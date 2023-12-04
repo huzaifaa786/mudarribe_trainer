@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
@@ -146,9 +147,10 @@ class AppPages {
         page: () => const AddEventScreen(),
         binding: AddEventBinding()),
     GetPage(
-        name: AppRoutes.signin,
-        page: () => const SignInScreen(),
-        binding: SignInBinding()),
+      name: AppRoutes.signin,
+      page: () => const SignInScreen(),
+      binding: SignInBinding(),
+    ),
     GetPage(
         name: AppRoutes.addpost,
         page: () => const AddPost(),
