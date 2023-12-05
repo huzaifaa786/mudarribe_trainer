@@ -7,6 +7,7 @@ import 'package:mudarribe_trainer/api/event_storage_api.dart';
 import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_event.dart';
 import 'package:mudarribe_trainer/services/event_service.dart';
@@ -15,6 +16,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class AddEventContoller extends GetxController {
   static AddEventContoller instance = Get.find();
+  final BusyController busyController = Get.find();
   final _imageSelectorApi = ImageSelectorApi();
   final _eventStorageApi = EventStorageApi();
   final _userService = UserService();
@@ -27,6 +29,7 @@ class AddEventContoller extends GetxController {
   TextEditingController priceController = TextEditingController();
   TextEditingController capacityController = TextEditingController();
   String address = '';
+
   // listners
 
   RxBool areFieldsFilled = false.obs;
@@ -104,7 +107,7 @@ class AddEventContoller extends GetxController {
   }
 
   Future addEvent() async {
-    
+    busyController.setBusy(true);
     final eventId = DateTime.now().millisecondsSinceEpoch.toString();
     CloudStorageResult? imageResult = await _saveEventImage(eventId);
     if (imageResult!.imageUrl != '') {
@@ -128,6 +131,7 @@ class AddEventContoller extends GetxController {
       clearValues();
       UiUtilites.successAlert(Get.context, 'Event Shared Successfully');
     }
+    busyController.setBusy(false);
   }
 
   clearValues() {

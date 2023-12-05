@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/promocode.dart';
 import 'package:mudarribe_trainer/services/promocode_service.dart';
@@ -11,6 +12,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class PromoCodeContoller extends GetxController {
   static PromoCodeContoller instance = Get.find();
+  final BusyController busyController = Get.find();
   TextEditingController nameController = TextEditingController();
   TextEditingController percentagecontroller = TextEditingController();
   String? id;
@@ -37,7 +39,6 @@ class PromoCodeContoller extends GetxController {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
-
       update();
     }
   }
@@ -54,7 +55,7 @@ class PromoCodeContoller extends GetxController {
   }
 
   Future storePromocode() async {
-    
+    busyController.setBusy(true);
     final promoId = DateTime.now().millisecondsSinceEpoch.toString();
 
     await _promocodeService.createpromocode(
@@ -64,16 +65,13 @@ class PromoCodeContoller extends GetxController {
       name: nameController.text,
       discount: percentagecontroller.text,
     ));
-    print('object+++++++++++++++++++++');
 
     nameController.clear();
     percentagecontroller.clear();
 
     areFieldsFilled.value = false;
-
+    busyController.setBusy(false);
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
+    UiUtilites.successAlert(Get.context, 'Promo Code Added\nSuccessfully!');
   }
-
-
 }
