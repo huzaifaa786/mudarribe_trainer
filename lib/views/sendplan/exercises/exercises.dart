@@ -8,7 +8,7 @@ import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_controller.dart';
-import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_controller.dart';
+
 
 class ExercisesScreen extends StatefulWidget {
   const ExercisesScreen({super.key});
@@ -70,7 +70,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                               padding:
                                   const EdgeInsets.only(top: 25, bottom: 25),
                               child: IconButtons(
-                                  title: 'Upload Plan Files', onPressed: () {controller.selectFilee();}),
+                                  title: 'Upload Plan Files', onPressed: () {controller.selectmultipleFilee();}),
                             ),
                           ],
                         ),

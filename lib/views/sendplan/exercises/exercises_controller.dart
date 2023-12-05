@@ -7,7 +7,9 @@ import 'package:mudarribe_trainer/api/auth_api.dart';
 import 'package:mudarribe_trainer/api/file_selector_api.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/plan.dart';
+import 'package:mudarribe_trainer/models/plan_file.dart';
 import 'package:mudarribe_trainer/services/plan_service.dart';
+import 'package:mudarribe_trainer/services/planfile_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
@@ -23,6 +25,7 @@ class ExercisesController extends GetxController {
   AppUser? currentUser;
   final _userService = UserService();
   final _planService = PlanService();
+  final _planfileService = PlanFileService();
 
   void checkFields() {
     if (filenameController.text.isNotEmpty && file != []) {
@@ -43,8 +46,10 @@ class ExercisesController extends GetxController {
     }
   }
 
-  Future selectFilee() async {
-    final tempFile = await _fileSelectorApi.selectFile();
+
+
+  Future selectmultipleFilee() async {
+    final tempFile = await _fileSelectorApi.selectMultipleFiles();
     file = tempFile;
     checkFields();
     update();
@@ -56,6 +61,7 @@ class ExercisesController extends GetxController {
     super.onInit();
   }
 
+////////////////////////plan////////////////////////////////
   Future addplan() async {
     final planId = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -71,18 +77,28 @@ class ExercisesController extends GetxController {
 
     category = '';
     areFieldsFilled.value = false;
-    storepalnfiles(planId);
+    storeplanfiles(planId);
 
     Get.back();
     UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
   }
 
-  Future storepalnfiles(planId) async {
+//////////////////////////////////file////////////////////////////////////
+  ///
+  ///
+  Future storeplanfiles(planId) async {
     final fileId = DateTime.now().millisecondsSinceEpoch.toString();
 
+    // await _planfileService.createPlanFile(
+    //     planfile:
+    //         PlanFile(id: fileId, planId: planId, file: file, type: 'category'));
 
+    filenameController.clear();
 
+    category = '';
+    areFieldsFilled.value = false;
 
-    
+    Get.back();
+    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
   }
 }

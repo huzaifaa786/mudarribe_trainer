@@ -44,8 +44,7 @@ import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_binding.dart';
 import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
-import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_binding.dart';
-import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_view.dart';
+
 import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
 
 // import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
@@ -166,9 +165,6 @@ class AppPages {
         name: AppRoutes.sendplanhome,
         page: () => const HomePlan(),
         binding: SendPlanBinding()),
-         GetPage(
-        name: AppRoutes.nutrition,
-        page: () => const NutritionScreen(),
-        binding: NutritionBinding()),
+      
   ];
 }
