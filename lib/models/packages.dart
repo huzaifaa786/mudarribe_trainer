@@ -6,7 +6,7 @@ class Package {
   String? duration;
   String? discription;
   String? category;
-  String? trainerid;
+  String? trainerId;
 
   Package({
     required this.id,
@@ -15,12 +15,12 @@ class Package {
     this.duration,
     this.discription,
     this.category,
-    this.trainerid
+    this.trainerId
   });
 
   Package.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    trainerid = json[trainerid];
+    trainerId = json[trainerId];
     name = json['name'];
     price = json['price'];
     duration = json['duration'];
@@ -31,7 +31,7 @@ class Package {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
-    data['trainerid'] =trainerid;
+    data['trainerId'] =trainerId;
     data['name'] = name;
     data['price'] = price;
     data['duration'] = duration;

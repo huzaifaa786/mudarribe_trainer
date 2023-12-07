@@ -1,9 +1,14 @@
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
 import 'package:mudarribe_trainer/views/changepassword/forgetpassword.dart';
 import 'package:mudarribe_trainer/views/event/add_event/add_event_binding.dart';
+import 'package:mudarribe_trainer/views/event/myevent_binding.dart';
+import 'package:mudarribe_trainer/views/event_checkout/event_checkout_binding.dart';
+import 'package:mudarribe_trainer/views/event_checkout/event_checkout_view.dart';
+import 'package:mudarribe_trainer/views/packges/package_binding.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan_binding.dart';
@@ -29,7 +34,7 @@ import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_binding.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
-import 'package:mudarribe_trainer/views/plans/exersize/exersize.dart';
+import 'package:mudarribe_trainer/views/sendplan/exercises/exercises.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
@@ -37,6 +42,11 @@ import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_binding.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
+import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_binding.dart';
+import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
+import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_binding.dart';
+import 'package:mudarribe_trainer/views/sendplan/nutrition/nutrition_view.dart';
+import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
 
 // import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
@@ -50,10 +60,9 @@ class AppPages {
       binding: SplashBinding(),
     ),
     GetPage(
-      name: AppRoutes.signup,
-      page: () => const SignupView(),
-      binding: SignUpBinding()
-    ),
+        name: AppRoutes.signup,
+        page: () => const SignupView(),
+        binding: SignUpBinding()),
     GetPage(
         name: AppRoutes.intro,
         page: () => const IntroScreen(),
@@ -73,7 +82,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.changepassword,
       page: () => const ChangePassword(),
-        binding: ChangePasswordBinding(),
+      binding: ChangePasswordBinding(),
     ),
     GetPage(
       name: AppRoutes.forgetpassword,
@@ -81,23 +90,23 @@ class AppPages {
       binding: ForgotPasswordBinding(),
     ),
     GetPage(
-      name: AppRoutes.editplan,
-      page: () => const EditPlanView(),
-      binding: EditPlanBinding()
-    ),
+        name: AppRoutes.editplan,
+        page: () => const EditPlanView(),
+        binding: EditPlanBinding()),
     GetPage(
         name: AppRoutes.editprofile,
         page: () => const EditProfile(),
         binding: EditProfileBinding()),
-    GetPage(
-      name: AppRoutes.promoCode,
-      page: () => const PromoCode(),
-      // binding: 
-    ),
+   
     GetPage(
       name: AppRoutes.personalplan,
-      page: () => const PersonalPlan(),
-         binding: PersonalPlanBinding(),
+      page: () => const PersonalPlanScreen(),
+      binding: PersonalPlanBinding(),
+    ),
+     GetPage(
+      name: AppRoutes.eventcheckout,
+      page: () => const EventcheckoutView(),
+      binding: EventcheckoutBinding(),
     ),
     GetPage(
       name: AppRoutes.homeScreen,
@@ -108,53 +117,58 @@ class AppPages {
     GetPage(
       name: AppRoutes.packagesScreen,
       page: () => const PackagesScreen(),
+      binding: PackageBinding(),
     ),
     GetPage(
       name: AppRoutes.todaymeals,
       page: () => const TodayMealsScreen(),
     ),
-      GetPage(
-      name: AppRoutes.promocode,
-      page: () => const PromoCode(),
-      binding: PromoCodeBinding()
-    ),
-   
     GetPage(
-      name: AppRoutes.profile,
-      page: () => const ProfileView(),
-      binding: ProfileBinding()
-    ),
+        name: AppRoutes.promocode,
+        page: () => const PromoCodeScreen(),
+        binding: PromoCodeBinding()),
+    GetPage(
+        name: AppRoutes.profile,
+        page: () => const ProfileView(),
+        binding: ProfileBinding()),
     GetPage(
       name: AppRoutes.addplan,
       page: () => const AddPlan(),
       binding: AddPlanBinding(),
     ),
     GetPage(
-      name: AppRoutes.myevent,
-      page: () => const MyEvent(),
+        name: AppRoutes.myevent,
+        page: () => const MyEvent(),
+        binding: MyEventBinding()),
+    GetPage(
+      name: AppRoutes.exercise,
+      page: () => const ExercisesScreen(),
+      binding: ExercisesBinding()
     ),
     GetPage(
-      name: AppRoutes.exersize,
-      page: () => const ExersizeScreen(),
-    ),
-    GetPage(
-      name: AppRoutes.addevent,
-      page: () => const AddEventScreen(),
-      binding: AddEventBinding()
-    ),
+        name: AppRoutes.addevent,
+        page: () => const AddEventScreen(),
+        binding: AddEventBinding()),
     GetPage(
       name: AppRoutes.signin,
       page: () => const SignInScreen(),
-      binding: SignInBinding()
+      binding: SignInBinding(),
     ),
     GetPage(
-      name: AppRoutes.addpost,
-      page: () => const AddPost(),
-      binding: AddPostBinding()
-    ),
+        name: AppRoutes.addpost,
+        page: () => const AddPost(),
+        binding: AddPostBinding()),
     GetPage(
       name: AppRoutes.forgot,
       page: () => const ForgetPassword(),
     ),
+    GetPage(
+        name: AppRoutes.sendplanhome,
+        page: () => const HomePlan(),
+        binding: SendPlanBinding()),
+         GetPage(
+        name: AppRoutes.nutrition,
+        page: () => const NutritionScreen(),
+        binding: NutritionBinding()),
   ];
 }

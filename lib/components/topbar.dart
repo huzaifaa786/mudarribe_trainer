@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TopBar extends StatelessWidget {
-  const TopBar({super.key, required this.text});
-  final String text;
+  final  text;
+
+
+  const TopBar({Key? key,  this.text, })
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

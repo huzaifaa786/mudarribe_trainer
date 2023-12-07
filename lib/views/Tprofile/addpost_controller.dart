@@ -7,6 +7,7 @@ import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/api/post_storage_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_post.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
@@ -16,6 +17,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class AddPostController extends GetxController {
   static AddPostController instance = Get.find();
+  final BusyController busyController = Get.find();
   final _imageSelectorApi = ImageSelectorApi();
   final _postService = PostService();
   final _postStorageApi = PostStorageApi();
@@ -64,6 +66,7 @@ class AddPostController extends GetxController {
   }
 
   Future createPost() async {
+    busyController.setBusy(true);
     final postId = DateTime.now().millisecondsSinceEpoch.toString();
 
     CloudStorageResult imageResult = await _savePostImage(postId);
@@ -79,9 +82,11 @@ class AddPostController extends GetxController {
       captionController.clear();
       postImage = null;
       areFieldsFilled = true.obs;
+      update();
+
+      busyController.setBusy(false);
       UiUtilites.successSnackbar(
           'Post has been created successfully', 'Post Created');
-      Get.toNamed(AppRoutes.profile);
     }
   }
 }

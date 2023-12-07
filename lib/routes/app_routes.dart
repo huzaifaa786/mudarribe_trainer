@@ -15,15 +15,17 @@ class AppRoutes {
   static const packagesScreen = '/PackagesScreen';
   static const promocode = '/promocode';
   static const todaymeals = '/existingmealpaln';
-  static const planhome = '/sendplanhome';
-  static const profile = '/profile';
+  static const sendplanhome = '/sendplanhome';
+  static const profile = '/profile'; 
   static const promoCode ='/promoCode';
   static const addplan = '/addplan';
   static const myevent = '/myevent';
   static const signin = '/signin';
-  static const exersize = '/exersize';
+  static const exercise = '/exercise';
+    static const nutrition = '/nutrition';
   static const addevent = '/addevent';
   static const addpost = '/addpost';
+  static const eventcheckout = '/eventcheckout';
 
   
 }

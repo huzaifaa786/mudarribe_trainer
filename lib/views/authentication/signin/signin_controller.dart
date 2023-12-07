@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/exceptions/auth_api_exception.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
@@ -13,6 +14,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class SignInController extends GetxController {
   static SignInController instance = Get.find();
+  final BusyController busyController = Get.find();
   final _authApi = AuthApi();
   final _userService = UserService();
   TextEditingController emailController = TextEditingController();
@@ -46,6 +48,8 @@ class SignInController extends GetxController {
   }
 
   Future signInTrainer() async {
+    busyController.setBusy(true);
+
     try {
       final User user = await _authApi.loginWithEmail(
         email: emailController.text,
@@ -53,18 +57,21 @@ class SignInController extends GetxController {
       );
 
       if (user.uid.isNotEmpty) {
-         AppUser? appUser = await _userService.getAuthUser();
-        
+        AppUser? appUser = await _userService.getAuthUser();
+
         if (appUser != null && appUser.status == TrainerStatus.approved) {
-         obscureTextPassword = true;
-          Get.offAllNamed(AppRoutes.homeScreen);
+          obscureTextPassword = true;
+
+          Get.offNamed(AppRoutes.homeScreen);
         } else {
           UiUtilites.errorSnackbar(
               'Pending Approval', 'Trainer not approved yet from admin');
         }
       }
     } on AuthApiException catch (e) {
+      busyController.setBusy(false);
       UiUtilites.errorSnackbar('Signin Failed', e.toString());
     }
+    busyController.setBusy(false);
   }
 }

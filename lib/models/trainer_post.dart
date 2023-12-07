@@ -36,8 +36,8 @@ class TrainerPost {
 }
 
 const _$PostMediaTypeEnumMap = {
-  MediaType.image: 1,
-  MediaType.video: 2,
+  MediaType.image: 'image',
+  MediaType.video: 'video',
 };
 
 _$enumDecode<K, V>(

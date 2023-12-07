@@ -1,12 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
+import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class ChangepasswordController extends GetxController {
   static ChangepasswordController instance = Get.find();
+  final BusyController busyController = Get.find();
 
   String selected = '';
   bool obscureTextOldPassword = true;
@@ -48,7 +48,6 @@ class ChangepasswordController extends GetxController {
   }
 
   void checkFields() {
-    log('fffffffffffffffffffffffffffffffffffffffffffffffffffff');
     if (newpassword.text.isNotEmpty &&
         oldpassword.text.isNotEmpty &&
         confirmPassword.text.isNotEmpty) {
@@ -61,7 +60,8 @@ class ChangepasswordController extends GetxController {
   }
 
   Future changePassword() async {
-    if (newpassword != confirmPassword) {
+    busyController.setBusy(true);
+    if (newpassword.text != confirmPassword.text) {
       UiUtilites.successSnackbar('Password are not similar', 'Password');
     } else {
       final response =
@@ -78,5 +78,6 @@ class ChangepasswordController extends GetxController {
         UiUtilites.successSnackbar('Password has been updated', 'Password');
       }
     }
+    busyController.setBusy(false);
   }
 }
