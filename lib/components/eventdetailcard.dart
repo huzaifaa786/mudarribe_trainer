@@ -14,17 +14,22 @@ class EventDetailsCard extends StatelessWidget {
     required this.title,
     required this.imageUrl,
     required this.onPressDelete,
+    required this.onPressClose,
+    this.isClose = false,
     required this.address,
     required this.startTime,
     required this.endTime,
     required this.date,
     required this.price,
     required this.capacity,
+    required this.attendees,
     required this.eventStatus,
   }) : super(key: key);
   final title;
   final imageUrl;
   final onPressDelete;
+  final onPressClose;
+  final isClose;
   final address;
   final startTime;
   final endTime;
@@ -32,6 +37,7 @@ class EventDetailsCard extends StatelessWidget {
   final price;
   final capacity;
   final eventStatus;
+  final attendees;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +157,7 @@ class EventDetailsCard extends StatelessWidget {
                       ),
                     ),
                     GradientText2(
-                      text: '0/$capacity',
+                      text: '$attendees/$capacity',
                     )
                   ],
                 ),
@@ -180,15 +186,31 @@ class EventDetailsCard extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GradientText2(
-                  text: 'Close Event',
-                  size: 16.0,
-                ),
-              ],
-            )
+            isClose == false
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: onPressClose,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: GradientText2(
+                            text: 'Close Event',
+                            size: 16.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Closed',
+                        style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                      ),
+                    ],
+                  ),
           ],
         ),
       ),

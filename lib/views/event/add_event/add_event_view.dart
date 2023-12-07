@@ -13,7 +13,6 @@ import 'package:mudarribe_trainer/components/schedule.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:intl/intl.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-
 import 'package:mudarribe_trainer/views/event/add_event/add_event_controller.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
@@ -115,16 +114,16 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           onpressed: () {
                             picker.DatePicker.showDatePicker(context,
                                 showTitleActions: true, onChanged: (val) {
-                              var date = DateFormat('d/M/y').format(val);
+                              var date = DateFormat('dd/MM/y').format(val);
                               controller.dateController.text = date;
                               controller.checkFields();
                             }, onConfirm: (val) {
-                              var date = DateFormat('d/M/y').format(val);
+                              var date = DateFormat('dd/MM/y').format(val);
                               controller.dateController.text = date;
                               controller.checkFields();
                             }, currentTime: DateTime.now());
                           },
-                          hint: DateFormat('d/M/y').format(DateTime.now()),
+                          hint: DateFormat('dd/MM/y').format(DateTime.now()),
                           fontSize: 18.0,
                         ),
                         Row(
@@ -137,19 +136,18 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               onpressed: () {
                                 picker.DatePicker.showTime12hPicker(context,
                                     showTitleActions: true, onChanged: (val) {
-                               
                                   var time = DateFormat('hh:mm a').format(val);
-                              
+
                                   controller.startTimeController.text = time;
-                             
+
                                   controller.checkFields();
-      
+
                                   setState(() {});
                                 }, onConfirm: (val) {
                                   var time = DateFormat('hh:mm a').format(val);
                                   controller.startTimeController.text = time;
                                   controller.checkFields();
-      
+
                                   setState(() {});
                                 }, currentTime: DateTime.now());
                               },
@@ -218,8 +216,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                       )),
                                 ),
                                 SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.35,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.35,
                                     child: EventInputField(
                                       controller: controller.capacityController,
                                       type: TextInputType.number,
@@ -250,13 +248,14 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         onPlacePicked: (result) {
                                           controller.address =
                                               result.formattedAddress!;
-      
+
                                           Navigator.of(context).pop();
                                           setState(() {});
-      
+
                                           controller.checkFields();
                                         },
-                                        initialPosition: LatLng(23.4241, 53.8478),
+                                        initialPosition:
+                                            LatLng(23.4241, 53.8478),
                                         useCurrentLocation: true,
                                         resizeToAvoidBottomInset:
                                             false, // only works in page mode, less flickery, remove if wrong offsets
@@ -281,11 +280,13 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Image.asset(
                                                   'assets/images/selectgooglemapicon.png'),
                                             ),
-                                            GradientText('Select From Google Map',
+                                            GradientText(
+                                                'Select From Google Map',
                                                 style: const TextStyle(
                                                   fontSize: 14.0,
                                                   fontFamily: "Poppins",
@@ -298,7 +299,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         )
                                       : Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: GradientText(controller.address,
+                                          child: GradientText(
+                                              controller.address,
                                               style: const TextStyle(
                                                 fontSize: 14.0,
                                                 fontFamily: "Poppins",
@@ -326,7 +328,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 ),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: ListTile(
@@ -362,7 +365,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                               fontFamily: "Poppins"),
                                           colors: [borderbottom, borderTop]),
                                       leading: Radio(
-                                        fillColor: MaterialStateColor.resolveWith(
+                                        fillColor:
+                                            MaterialStateColor.resolveWith(
                                           (Set<MaterialState> states) {
                                             if (states.contains(
                                                 MaterialState.selected)) {

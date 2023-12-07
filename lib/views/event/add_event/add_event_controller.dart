@@ -10,6 +10,7 @@ import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_event.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/event_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
@@ -128,10 +129,16 @@ class AddEventContoller extends GetxController {
         paymentStatus: PaymentStatus.pending,
         eventStatus: EventStatus.open,
       ));
-      clearValues();
-      UiUtilites.successAlert(Get.context, 'Event Shared Successfully');
+      if (selectedOption == 1) {
+        Get.toNamed(AppRoutes.eventcheckout, arguments: eventId)!;
+        clearValues();
+      } else {
+        clearValues();
+
+        UiUtilites.successAlert(Get.context, 'Event Shared Successfully');
+        busyController.setBusy(false);
+      }
     }
-    busyController.setBusy(false);
   }
 
   clearValues() {
