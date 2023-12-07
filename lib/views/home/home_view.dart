@@ -7,7 +7,6 @@ import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/main_card.dart';
 import 'package:mudarribe_trainer/components/main_user_card.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
-import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/views/chat/chat_list.dart';
 
 import 'package:mudarribe_trainer/views/home/home_controller.dart';
