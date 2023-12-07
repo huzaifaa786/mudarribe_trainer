@@ -38,34 +38,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  MainCard(
-                                    name: "View Profile",
-                                    ontap: () {
-                                      Get.toNamed(AppRoutes.profile);
-                                    },
-                                    image: 'assets/images/person.svg',
-                                  ),
-                                  MainCard(
-                                    name: 'Chats',
-                                    ontap: () {
-                                      Get.to(() => ChatListScreen());
-                                    },
-                                    image: 'assets/images/chats.svg',
-                                  ),
-                                  MainCard(
-                                    name: 'Orders',
-                                    ontap: () {
-                                      Get.toNamed(AppRoutes.orders);
-                                    },
-                                    image: 'assets/images/orders.svg',
-                                  ),
-                                ],
+                              MainCard(
+                                name: "View Profile",
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.profile);
+                                },
+                                image: 'assets/images/person.svg',
+                              ),
+                              MainCard(
+                                name: 'Chats',
+                                ontap: () {
+                                  Get.to(() => ChatListScreen());
+                                },
+                                image: 'assets/images/chats.svg',
+                              ),
+                              MainCard(
+                                name: 'Orders',
+                                ontap: () {
+                                  Get.toNamed(AppRoutes.orders);
+                                },
+                                image: 'assets/images/orders.svg',
                               ),
                             ],
                           ),
