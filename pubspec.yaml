@@ -60,6 +60,10 @@ dependencies:
   flutter_datetime_picker_plus: ^2.1.0
   gif_view: ^0.3.1
   convex_bottom_bar: ^3.2.0
+  firebase_pagination: ^3.0.1
+  provider: ^6.1.1
+  badges: ^3.1.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
