@@ -9,7 +9,9 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'package:mudarribe_trainer/views/chat/controller.dart';
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,22 +49,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-        scaffoldBackgroundColor: Colors.black,
-        textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: Colors.white,
+    return MultiProvider(
+      providers: [
+        Provider<ChatProvider>(
+          create: (_) => ChatProvider(),
         ),
-        useMaterial3: true,
-        fontFamily: 'Montserrat',
+      ],
+      child: GetMaterialApp(
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+          scaffoldBackgroundColor: Colors.black,
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Colors.white,
+          ),
+          useMaterial3: true,
+          fontFamily: 'Montserrat',
+        ),
+        debugShowCheckedModeBanner: false,
+        title: "Mudarribe",
+        initialBinding: SplashBinding(),
+        home: const SplashView(),
+        getPages: AppPages.pages,
       ),
-      debugShowCheckedModeBanner: false,
-      title: "Mudarribe",
-      initialBinding: SplashBinding(),
-      home: const SplashView(),
-      getPages: AppPages.pages,
     );
   }
 }
