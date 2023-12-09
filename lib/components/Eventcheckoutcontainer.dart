@@ -7,8 +7,19 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class EventcheckoutContainer extends StatelessWidget {
-  const EventcheckoutContainer({super.key});
-
+  const EventcheckoutContainer({
+    Key? key,
+    required this.userName,
+    required this.userImage,
+    required this.userBio,
+    required this.eventDate,
+    required this.bannerPrice,
+  });
+  final userName;
+  final userImage;
+  final userBio;
+  final eventDate;
+  final bannerPrice;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,8 +53,8 @@ class EventcheckoutContainer extends StatelessWidget {
                         width: 2,
                       ),
                       image: DecorationImage(
-                        image: AssetImage('assets/images/profile.jpg'),
-                        fit: BoxFit.contain,
+                        image: NetworkImage(userImage),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -56,7 +67,7 @@ class EventcheckoutContainer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Salim Ahmed',
+                            userName,
                             style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Montserrat',
@@ -65,7 +76,7 @@ class EventcheckoutContainer extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Body Building& lifting trainer',
+                            userBio,
                             style: TextStyle(
                               fontSize: 12,
                               fontFamily: 'Montserrat',
@@ -80,10 +91,10 @@ class EventcheckoutContainer extends StatelessWidget {
                               children: [
                                 SvgPicture.asset('assets/images/calender1.svg'),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, bottom: 0),
+                                  padding: const EdgeInsets.only(
+                                      left: 10, bottom: 0),
                                   child: Text(
-                                    '23/11/2023',
+                                    eventDate,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
@@ -107,9 +118,11 @@ class EventcheckoutContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                  padding: const EdgeInsets.only(right: 14, ),
+                  padding: const EdgeInsets.only(
+                    right: 14,
+                  ),
                   child: Text(
-                    ' 150.00 AED',
+                    '$bannerPrice AED',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Montserrat',

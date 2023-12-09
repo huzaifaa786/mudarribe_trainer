@@ -4,6 +4,7 @@ import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
+import 'package:mudarribe_trainer/views/chat/chat_list.dart';
 
 class SplashController extends GetxController {
   static SplashController instance = Get.find();

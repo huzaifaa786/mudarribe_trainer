@@ -17,13 +17,11 @@ class HomeContoller extends GetxController {
   }
 
   Future getAppUser() async {
-    busyController.setBusy(true);
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
     }
     update();
-    busyController.setBusy(false);
   }
 
 //   userlogout() {

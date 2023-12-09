@@ -12,4 +12,8 @@ class EventService {
 
     return await _eventApi.getTrainerEvents(trainerId);
   }
+  Future<TrainerEvent> getTrainerEvent({required eventId}) async {
+
+    return await _eventApi.getEvent(eventId);
+  }
 }

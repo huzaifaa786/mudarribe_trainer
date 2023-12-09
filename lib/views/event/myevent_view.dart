@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'dart:ui';
-import 'package:gap/gap.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
@@ -9,6 +9,7 @@ import 'package:mudarribe_trainer/components/eventdetailcard.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
+import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -163,6 +164,17 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                               physics: BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return EventDetailsCard(
+                                    onPressClose: () {
+                                      UiUtilites.confirmAlert(context,
+                                          'Are you sure you want to close this event?',
+                                          () {
+                                        controller.closeEvent(
+                                            controller.events[index]);
+                                      }, () {
+                                        Get.back();
+                                      }, 'Yes', 'Cancel');
+                                    },
+                                    attendees: 0,
                                     title: controller.events[index].title,
                                     imageUrl: controller.events[index].imageUrl,
                                     onPressDelete: () {
@@ -175,6 +187,11 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                                         Get.back();
                                       }, 'Yes', 'Cancel');
                                     },
+                                    isClose:
+                                        controller.events[index].eventStatus ==
+                                                EventStatus.closed
+                                            ? true
+                                            : false,
                                     address: controller.events[index].address,
                                     startTime:
                                         controller.events[index].startTime,

@@ -63,6 +63,12 @@ dependencies:
   gif_view: ^0.3.1
   convex_bottom_bar: ^3.2.0
   path: ^1.8.3
+  flutter_stripe: ^9.5.0+1
+  flutter_dotenv: ^5.1.0
+  firebase_pagination: ^3.0.1
+  provider: ^6.1.1
+  badges: ^3.1.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -94,6 +100,7 @@ flutter:
     - assets/images/mdi_password-outline.svg
     - assets/images/Vector.svg
     - assets/images/Vector (1).svg
+    - assets/.env
     
    
     # - images/a_dot_ham.jpeg

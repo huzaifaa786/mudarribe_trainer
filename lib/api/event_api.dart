@@ -22,7 +22,7 @@ class EventApi {
 
   Future<List<TrainerEvent>> getTrainerEvents(trainerId) async {
     try {
-      final result = await _trainerEventCollection.get();
+      final result = await _trainerEventCollection.orderBy('id',descending: true).get();
 
       final events = result.docs
           .map(
@@ -48,6 +48,53 @@ class EventApi {
           .doc(eventId)
           .delete()
           .whenComplete(() => result = true);
+
+      return result;
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to delete service',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<TrainerEvent> getEvent(String eventId) async {
+    try {
+      var docSnapshot = await _trainerEventCollection.doc(eventId).get();
+
+      return TrainerEvent.fromJson(docSnapshot.data()! as Map<String, dynamic>);
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to delete service',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<bool> closeEvent(String eventId) async {
+    try {
+      bool result = false;
+
+      _trainerEventCollection.doc(eventId).update({
+        "eventStatus": "closed",
+      }).whenComplete(() => result = true);
+
+      return result;
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to delete service',
+        message: e.message,
+      );
+    }
+  }
+
+  Future<bool> updateEventPaymentStatus(String eventId) async {
+    try {
+      bool result = false;
+
+     await _trainerEventCollection.doc(eventId).update({
+        "paymentStatus": "paid",
+      }).whenComplete(() => result = true);
 
       return result;
     } on PlatformException catch (e) {

@@ -43,7 +43,7 @@ class PackageController extends GetxController {
     update();
 
     busyController.setBusy(false);
-    print(packages.first.category!);
+   
   }
 
   deletePackageById(String id) async {
