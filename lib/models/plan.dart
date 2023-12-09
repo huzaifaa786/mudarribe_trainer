@@ -12,7 +12,7 @@ class Plan {
 
   Plan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    trainerId = json[trainerId];
+    trainerId = json['trainerId'];
     name = json['name'];
     file = json['file'];
 

@@ -28,8 +28,7 @@ class FileSelectorApi {
       allowedExtensions: [
         'pdf',
         'mp4',
-      
-      ], // Add video file extensions
+      ],
       allowMultiple: true,
     );
 

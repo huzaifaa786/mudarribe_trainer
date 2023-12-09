@@ -165,6 +165,11 @@ class AppPages {
         name: AppRoutes.sendplanhome,
         page: () => const HomePlan(),
         binding: SendPlanBinding()),
+
+         GetPage(
+        name: AppRoutes.sendplan,
+        page: () => const HomePlan (),
+        binding: SendPlanBinding()),
       
   ];
 }

@@ -26,6 +26,7 @@ class AppRoutes {
   static const addevent = '/addevent';
   static const addpost = '/addpost';
   static const eventcheckout = '/eventcheckout';
+  static const sendplan = '/sendplan';
 
   
 }

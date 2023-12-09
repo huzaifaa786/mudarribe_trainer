@@ -86,6 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           image: 'assets/images/events.svg',
                         ),
+
+                          
                       ],
                     ),
                     SizedBox(height: 8),
@@ -98,6 +100,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             Get.toNamed(AppRoutes.sale);
                           },
                           image: 'assets/images/sales.svg',
+                        ),
+                        MainCard(
+                          name: 'My Events',
+                          ontap: () {
+                            Get.toNamed(AppRoutes.sendplan);
+                          },
+                          image: 'assets/images/events.svg',
                         ),
                       ],
                     ),

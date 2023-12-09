@@ -36,3 +36,12 @@ enum EventStatus {
   @JsonValue('closed')
   closed
 }
+enum FileType{
+
+  @JsonValue('mp4')
+  mp4,
+  @JsonValue('pdf')
+  pdf
+
+
+}
