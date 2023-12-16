@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lecle_yoyo_player/lecle_yoyo_player.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 
 class VideoPlay extends StatefulWidget {
   const VideoPlay({Key? key});
@@ -41,7 +42,7 @@ class _VideoPlayState extends State<VideoPlay> {
             ),
             videoLoadingStyle: VideoLoadingStyle(
               loading: Center(
-                child: CircularProgressIndicator(color: borderDown,)
+                child: CircularProgressIndicator(color: borderbottom,)
               ),
             ),
             allowCacheFile: true,
