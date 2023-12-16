@@ -10,7 +10,7 @@ import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
-import 'package:stories_editor/stories_editor.dart';
+// import 'package:stories_editor/stories_editor.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -238,26 +238,26 @@ class _ProfileViewState extends State<ProfileView>
                               AddPostbutton(
                                 title: 'Add Story',
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => StoriesEditor(
-                                                onDoneButtonStyle: Container(
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          color: white)),
-                                                  padding: EdgeInsets.all(4),
-                                                  child: Text('Done'),
-                                                ),
-                                                middleBottomWidget: Image.asset(
-                                                    'assets/images/logo.png'),
-                                                giphyKey:
-                                                    'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                                onDone: (uri) {
-                                                  debugPrint(uri);
-                                                  controller.addStory(uri);
-                                                },
-                                              )));
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => StoriesEditor(
+                                  //               onDoneButtonStyle: Container(
+                                  //                 decoration: BoxDecoration(
+                                  //                     border: Border.all(
+                                  //                         color: white)),
+                                  //                 padding: EdgeInsets.all(4),
+                                  //                 child: Text('Done'),
+                                  //               ),
+                                  //               middleBottomWidget: Image.asset(
+                                  //                   'assets/images/logo.png'),
+                                  //               giphyKey:
+                                  //                   'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
+                                  //               onDone: (uri) {
+                                  //                 debugPrint(uri);
+                                  //                 controller.addStory(uri);
+                                  //               },
+                                  //             )));
                                 },
                                 selected: false,
                                 type: 'story',

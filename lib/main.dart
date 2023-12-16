@@ -25,7 +25,7 @@ void main() async {
   Get.put<BusyController>(BusyController());
   Stripe.publishableKey =
       "pk_test_51JvIZ1Ey3DjpASZjPAzcOwqhblOq2hbchp6i56BsjapvhWcooQXqh33XwCrKiULfAe7NKFwKUhn2nqURE7VZcXXf00wMDzp4YN";
-      
+
   // Stripe.merchantIdentifier = 'merchant.com.ezmove';
   Stripe.urlScheme = 'flutterstripe';
   await Stripe.instance.applySettings();

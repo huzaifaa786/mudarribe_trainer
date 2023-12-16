@@ -47,14 +47,12 @@ class ProfileController extends GetxController {
   }
 
   Future getAppUser() async {
-
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       currentUser = await _userService.getAuthUser();
+      update();
       getTrainerPosts();
     }
-    update();
-  
   }
 
   Future _saveStoryImage(storyId) async {
