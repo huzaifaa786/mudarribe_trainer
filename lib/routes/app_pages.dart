@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_binding.dart';
 import 'package:mudarribe_trainer/views/changepassword/changepassword_view.dart';
@@ -43,6 +42,8 @@ import 'package:mudarribe_trainer/views/promocode/promoCode_binding.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
 import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_binding.dart';
+import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_mealplan.dart';
+import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_plan_binding.dart';
 import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
 
 import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
@@ -96,13 +97,12 @@ class AppPages {
         name: AppRoutes.editprofile,
         page: () => const EditProfile(),
         binding: EditProfileBinding()),
-   
     GetPage(
       name: AppRoutes.personalplan,
       page: () => const PersonalPlanScreen(),
       binding: PersonalPlanBinding(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.eventcheckout,
       page: () => const EventcheckoutView(),
       binding: EventcheckoutBinding(),
@@ -140,10 +140,9 @@ class AppPages {
         page: () => const MyEvent(),
         binding: MyEventBinding()),
     GetPage(
-      name: AppRoutes.exercise,
-      page: () => const ExercisesScreen(),
-      binding: ExercisesBinding()
-    ),
+        name: AppRoutes.exercise,
+        page: () => const ExercisesScreen(),
+        binding: ExercisesBinding()),
     GetPage(
         name: AppRoutes.addevent,
         page: () => const AddEventScreen(),
@@ -165,11 +164,13 @@ class AppPages {
         name: AppRoutes.sendplanhome,
         page: () => const HomePlan(),
         binding: SendPlanBinding()),
-
-         GetPage(
+    GetPage(
         name: AppRoutes.sendplan,
-        page: () => const HomePlan (),
+        page: () => const HomePlan(),
         binding: SendPlanBinding()),
-      
+    GetPage(
+        name: AppRoutes.existingsendplan,
+        page: () => const TodayMealsScreen(),
+        binding: ExistingPlanBinding()),
   ];
 }

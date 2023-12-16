@@ -7,4 +7,7 @@ class PlanFileService {
   Future<void> createPlanFile({required PlanFile planfile}) async {
     await _planFileApi.createPlanFile(planfile);
   }
+    Future<List<PlanFile>> getTrainerFiles({required planId}) async {
+    return await _planFileApi.getFilesByPlanId(planId);
+  }
 }

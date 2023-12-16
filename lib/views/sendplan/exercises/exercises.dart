@@ -6,6 +6,7 @@ import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_controller.dart';
@@ -23,7 +24,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
   @override
   Widget build(BuildContext context) {
     var category = Get.arguments as String;
-    print(category);
+
     return GetBuilder<ExercisesController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
@@ -95,8 +96,8 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                               fontWeight: FontWeight.w700,
                             )),
                         Container(
-                          height:  MediaQuery.of(context).size.height * 0.8,
-                          width: MediaQuery.of(context).size.width*0.9,
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          width: MediaQuery.of(context).size.width * 0.9,
                           child: ListView.builder(
                             itemCount: controller.plans.length,
                             itemBuilder: (context, index) => ExersizeCard(
@@ -110,19 +111,6 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                             ),
                           ),
                         ),
-                        Padding(
-                            padding: const EdgeInsets.only(top: 20, bottom: 20),
-                            child: GradientButton(
-                              title: 'Next',
-                              onPressed: controller.areFieldsFilled.value
-                                  ? () {}
-                                  : () {
-                                      UiUtilites.errorSnackbar(
-                                          'Fill out all fields',
-                                          'Please fill all above fields');
-                                    },
-                              selected: controller.areFieldsFilled.value,
-                            )),
                       ],
                     ),
                   ),
@@ -130,6 +118,22 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
               )
             ],
           )),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GradientButton(
+              title: 'Next ',
+              onPressed: controller.areFieldsFilled.value
+                  ? () {
+                      Get.toNamed(AppRoutes.existingsendplan,
+                          arguments: controller.selectedPlan);
+                    }
+                  : () {
+                      UiUtilites.errorSnackbar('Fill out all fields',
+                          'Please fill all above fields');
+                    },
+              selected: controller.areFieldsFilled.value,
+            ),
+          ),
         ),
       ),
     );

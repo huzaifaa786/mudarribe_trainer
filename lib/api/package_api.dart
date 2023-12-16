@@ -24,8 +24,7 @@ class PackageApi {
   }
    Future<List<Package>> getTrainerPackages(trainerId) async {
     try {
-      log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdfdggfgfgqqqqq');
-      log(trainerId);
+   
       final result = await _trainerPackagesCollection.get();
 
       final packages = result.docs

@@ -13,6 +13,7 @@ import 'package:mudarribe_trainer/views/plans/editplan/editplan_controller.dart'
 import 'package:mudarribe_trainer/views/promocode/promoCode_controller.dart';
 import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
 import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_controller.dart';
+import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_plan_controller.dart';
 
 import 'package:mudarribe_trainer/views/sendplan/sendplan_controller.dart';
 import 'package:mudarribe_trainer/views/splash/splash_controller.dart';
@@ -35,7 +36,7 @@ AddPlanController addPlanController = AddPlanController.instance;
 PackageController packageController = PackageController.instance;
 EditPlanController editplanController = EditPlanController.instance;
 ExercisesController exercisesController = ExercisesController.instance;
-
+ExistingPlanController existingPlanController = ExistingPlanController.instance;
 EventcheckoutController eventcheckoutController =EventcheckoutController.instance;
 
 

@@ -27,6 +27,7 @@ class ExercisesController extends GetxController {
   final _fileSelectorApi = FileSelectorApi();
   String category = '';
   List<Plan> plans = [];
+  List<PlanFile> planfiles = [];
   List<File> selectedFiles = [];
   final _authApi = AuthApi();
   AppUser? currentUser;
@@ -34,7 +35,7 @@ class ExercisesController extends GetxController {
   final _planService = PlanService();
   final _planfileService = PlanFileService();
   final _planfileStorageApi = PlanStorageApi();
-  String selectedPlan='';
+  String selectedPlan = '';
 
   void checkFields() {
     if (filenameController.text.isNotEmpty) {
@@ -52,16 +53,16 @@ class ExercisesController extends GetxController {
       currentUser = await _userService.getAuthUser();
 
       update();
-       getTrainerPlan();
+      getTrainerPlan();
     }
   }
-changePlan(value){
-selectedPlan =value;
-update();
 
+  changePlan(value) {
+    selectedPlan = value;
+    areFieldsFilled.value = true;
+    update();
+  }
 
-
-}
   Future selectmultipleFiles() async {
     final tempFile = await _fileSelectorApi.selectMultipleFiles();
     selectedFiles = tempFile;
@@ -75,7 +76,6 @@ update();
 
   void onInit() {
     getAppUser();
-   
 
     super.onInit();
   }
@@ -124,15 +124,20 @@ update();
   }
 
   Future getTrainerPlan() async {
-
     plans = await _planService.getTrainerPlans(
         category: category, trainerId: currentUser!.id);
-        print(currentUser!.id);
-        print(category);
-        print('ffffffffffffffffffffffffffffffffff');
+
     update();
-  
-    print(plans);
-   
+  }
+
+////////////////////////////planfiles///////////////////////////////////////
+  Future getTrainerFiles() async {
+    busyController.setBusy(true);
+    planfiles = await _planfileService.getTrainerFiles(planId: selectedPlan);
+
+    update();
+    
+
+    busyController.setBusy(false);
   }
 }
