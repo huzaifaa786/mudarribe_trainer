@@ -11,6 +11,12 @@ class ChatProvider {
     return uploadTask;
   }
 
+  UploadTask uploadPdf(File pdfFile, String fileName) {
+    Reference reference = FirebaseStorage.instance.ref().child(fileName);
+    UploadTask uploadTask = reference.putFile(pdfFile);
+    return uploadTask;
+  }
+
   Future<void> updateDataFirestore(String collectionPath, String docPath,
       Map<String, dynamic> dataNeedUpdate) {
     return FirebaseFirestore.instance
@@ -67,6 +73,7 @@ class ChatProvider {
 class TypeMessage {
   static const text = 0;
   static const image = 1;
-  static const location = 2;
-  static const bill = 3;
+  static const document = 2;
+  static const myplan = 3;
+  static const rating = 4;
 }
