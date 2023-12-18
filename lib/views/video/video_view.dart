@@ -41,8 +41,9 @@ class _VideoPlayState extends State<VideoPlay> {
             ),
             videoLoadingStyle: VideoLoadingStyle(
               loading: Center(
-                child: CircularProgressIndicator(color: borderDown,)
-              ),
+                  child: CircularProgressIndicator(
+                color: borderDown,
+              )),
             ),
             allowCacheFile: true,
             onCacheFileCompleted: (files) {
