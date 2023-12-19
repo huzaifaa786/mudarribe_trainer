@@ -8,7 +8,6 @@ import 'package:mudarribe_trainer/services/personal_plan.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
-
 class PersonalPlanController extends GetxController {
   static PersonalPlanController instance = Get.find();
 
@@ -16,7 +15,7 @@ class PersonalPlanController extends GetxController {
   TextEditingController priceController = TextEditingController();
 
   RxBool areFieldsFilled = false.obs;
-   final _personalplanService = PersonalPlanService();
+  final _personalplanService = PersonalPlanService();
 
   final _authApi = AuthApi();
   AppUser? currentUser;
@@ -79,26 +78,36 @@ class PersonalPlanController extends GetxController {
     }
   }
 
+  String? content;
   Future addplan() async {
     final packageId = DateTime.now().millisecondsSinceEpoch.toString();
-
+    content = 'PlanTitle:' +
+        plantitleController.text +
+        '~~AMOUNT:' +
+        priceController.text +
+        '~~PlanCategory:' +
+        category +
+        '~~pay:' +
+        'false' +
+        '~~PlanId:' +
+        packageId;
+    update();
     await _personalplanService.createpersonalPlan(
         personalPlan: PersonalPlan(
             id: packageId,
             trainerId: currentUser!.id,
             name: plantitleController.text,
             price: priceController.text,
-          
             category: category));
     print('object+++++++++++++++++++++');
 
     plantitleController.clear();
     priceController.clear();
-  
+
     category = '';
     areFieldsFilled.value = false;
 
-    Get.back();
-    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
+    // Get.back();
+    // UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
   }
 }
