@@ -26,12 +26,16 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var planId = Get.parameters['planId'] ?? '';
+    var planId = Get.parameters['planId'] as String;
+    var userId = Get.parameters['userId'] as String;
+    var orderId = Get.parameters['orderId'] as String;
 
     return GetBuilder<ExistingPlanController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
           state.controller!.planId = planId;
+          state.controller!.userId = userId;
+          state.controller!.orderId = orderId;
           state.controller!.getTrainerFiles();
         });
       },
@@ -74,10 +78,12 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => VideoPlay(
-                                                        path:controller
-                                                  .planfiles[index].fileUrl
-                                                            ),
+                                                    builder: (context) =>
+                                                        VideoPlay(
+                                                            path: controller
+                                                                .planfiles[
+                                                                    index]
+                                                                .fileUrl),
                                                   ),
                                                 );
                                               },
@@ -89,7 +95,9 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                                   .planfiles[index].fileUrl,
                                               futureFunc: controller
                                                   .genrateVideoThumbnail(
-                                                      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'),
+                                                      controller
+                                                          .planfiles[index]
+                                                          .fileUrl),
                                               onDeleteTap: () {
                                                 UiUtilites.confirmAlert(context,
                                                     'Are you sure you want to delete this File?',

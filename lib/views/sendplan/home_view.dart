@@ -21,6 +21,7 @@ class _HomePlanState extends State<HomePlan> {
   Widget build(BuildContext context) {
     var userId = Get.parameters['userId'] as String;
     var orderId = Get.parameters['orderId'] as String;
+  
     return GetBuilder<SendPlanController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
@@ -63,9 +64,8 @@ class _HomePlanState extends State<HomePlan> {
                       children: [
                         GenderCard(
                           image: "assets/images/nutrition.svg",
-                          selected: controller.category == 'nutrition'
-                              ? true
-                              : false,
+                          selected:
+                              controller.category == 'nutrition' ? true : false,
                           ontap: controller.onnutritiontap,
                           text: 'Nutrition Plan',
                         ),
@@ -75,9 +75,8 @@ class _HomePlanState extends State<HomePlan> {
                         PlanCategoryCard(
                           image: "assets/images/excercise.svg",
                           ontap: controller.onexcercisetap,
-                          selected: controller.category == 'excercise'
-                              ? true
-                              : false,
+                          selected:
+                              controller.category == 'excercise' ? true : false,
                           text: 'Exercises Plan',
                         ),
                       ],
