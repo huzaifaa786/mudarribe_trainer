@@ -9,7 +9,6 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
 

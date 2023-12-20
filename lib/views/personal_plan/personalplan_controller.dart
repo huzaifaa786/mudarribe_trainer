@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, prefer_interpolation_to_compose_strings
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +8,6 @@ import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/personal_plan.dart';
 import 'package:mudarribe_trainer/services/personal_plan.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
-import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class PersonalPlanController extends GetxController {
   static PersonalPlanController instance = Get.find();

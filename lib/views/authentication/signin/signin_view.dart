@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
-import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';

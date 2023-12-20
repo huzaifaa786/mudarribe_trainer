@@ -6,8 +6,6 @@ import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/components/plan_category_card.dart';
-import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/sendplan/sendplan_controller.dart';
 

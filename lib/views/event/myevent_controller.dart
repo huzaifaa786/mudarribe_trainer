@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/event_api.dart';

@@ -1,8 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:async';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:mudarribe_trainer/api/file_selector_api.dart';
 import 'package:mudarribe_trainer/api/plan_storage_api.dart';
 import 'package:mudarribe_trainer/api/planfile_api.dart';
@@ -11,7 +12,6 @@ import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/plan_api.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';

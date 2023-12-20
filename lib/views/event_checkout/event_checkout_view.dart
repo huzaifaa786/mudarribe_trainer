@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/Eventcheckoutcontainer.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
-
-import 'package:mudarribe_trainer/components/checkbox.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/values/color.dart';

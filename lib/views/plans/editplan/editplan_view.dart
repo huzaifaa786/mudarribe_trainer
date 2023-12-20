@@ -12,7 +12,6 @@ import 'package:mudarribe_trainer/components/plan_category_card.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan_controller.dart';
 

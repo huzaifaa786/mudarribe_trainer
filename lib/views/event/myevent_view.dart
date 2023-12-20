@@ -16,7 +16,6 @@ import 'package:mudarribe_trainer/values/color.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/event/myevent_controller.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class MyEvent extends StatefulWidget {
   const MyEvent({super.key});

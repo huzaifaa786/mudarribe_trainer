@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/banner_api.dart';
 import 'package:mudarribe_trainer/api/event_api.dart';
-import 'package:mudarribe_trainer/api/event_storage_api.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/banner_charges.dart';

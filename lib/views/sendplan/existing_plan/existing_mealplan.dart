@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
@@ -12,10 +9,8 @@ import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/chat/pdf_view.dart';
-
 import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_plan_controller.dart';
 import 'package:mudarribe_trainer/views/video/video_view.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 
 class TodayMealsScreen extends StatefulWidget {
   const TodayMealsScreen({super.key});

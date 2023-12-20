@@ -10,7 +10,6 @@ import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_post.dart';
-import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/post_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
