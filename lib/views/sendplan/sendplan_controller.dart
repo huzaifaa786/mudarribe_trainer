@@ -10,6 +10,8 @@ class SendPlanController extends GetxController {
   final _fileSelectorApi = FileSelectorApi();
   String category = '';
   File? file;
+  String userId = '';
+  String orderId = '';
 
   onnutritiontap() {
     category = 'nutrition';

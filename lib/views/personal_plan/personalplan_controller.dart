@@ -90,7 +90,6 @@ class PersonalPlanController extends GetxController {
             price: priceController.text,
           
             category: category));
-    print('object+++++++++++++++++++++');
 
     plantitleController.clear();
     priceController.clear();

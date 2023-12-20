@@ -7,6 +7,7 @@ import 'package:mudarribe_trainer/views/event/add_event/add_event_binding.dart';
 import 'package:mudarribe_trainer/views/event/myevent_binding.dart';
 import 'package:mudarribe_trainer/views/event_checkout/event_checkout_binding.dart';
 import 'package:mudarribe_trainer/views/event_checkout/event_checkout_view.dart';
+import 'package:mudarribe_trainer/views/order/order_binding.dart';
 import 'package:mudarribe_trainer/views/packges/package_binding.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_binding.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_binding.dart';
@@ -37,7 +38,7 @@ import 'package:mudarribe_trainer/views/sendplan/exercises/exercises.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
-import 'package:mudarribe_trainer/views/plans/send_plan/today_meals.dart';
+
 import 'package:mudarribe_trainer/views/promocode/promoCode_binding.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
@@ -74,6 +75,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.orders,
       page: () => const OrderScreen(),
+      binding: OrderBinding(),
     ),
     GetPage(
       name: AppRoutes.chats,
@@ -169,8 +171,9 @@ class AppPages {
         page: () => const HomePlan(),
         binding: SendPlanBinding()),
     GetPage(
-        name: AppRoutes.existingsendplan,
-        page: () => const TodayMealsScreen(),
-        binding: ExistingPlanBinding()),
+      name: AppRoutes.existingsendplan,
+      page: () => const TodayMealsScreen(),
+      binding: ExistingPlanBinding(),
+    ),
   ];
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class TopBar extends StatelessWidget {
-  final  text;
+  final text;
 
-
-  const TopBar({Key? key,  this.text, })
-      : super(key: key);
+  const TopBar({
+    Key? key,
+    this.text,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,13 @@ class TopBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15, left: 10, bottom: 10),
       child: Row(
         children: [
-          SvgPicture.asset(
-            'assets/images/nevigate.svg',
+          InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: SvgPicture.asset(
+              'assets/images/nevigate.svg',
+            ),
           ),
           const SizedBox(
             width: 15,

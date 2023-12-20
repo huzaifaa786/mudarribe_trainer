@@ -11,6 +11,7 @@ import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/plan.dart';
 import 'package:mudarribe_trainer/models/plan_file.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/plan_service.dart';
 import 'package:mudarribe_trainer/services/planfile_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
@@ -26,6 +27,9 @@ class ExercisesController extends GetxController {
   RxBool areFieldsFilled = false.obs;
   final _fileSelectorApi = FileSelectorApi();
   String category = '';
+  String userId = '';
+  String orderId = '';
+
   List<Plan> plans = [];
   List<PlanFile> planfiles = [];
   List<File> selectedFiles = [];
@@ -64,6 +68,10 @@ class ExercisesController extends GetxController {
   }
 
   Future selectmultipleFiles() async {
+    if (filenameController.text.isEmpty) {
+      UiUtilites.errorSnackbar('Empty Field', 'Please Enter name first');
+      return;
+    }
     final tempFile = await _fileSelectorApi.selectMultipleFiles();
     selectedFiles = tempFile;
     update();
@@ -103,14 +111,15 @@ class ExercisesController extends GetxController {
 
 //////////////////////////////////file////////////////////////////////////
 
-  Future storeplanfiles(planId) async {
+  Future storeplanfiles(String planId) async {
     for (File file in selectedFiles) {
       final id = DateTime.now().millisecondsSinceEpoch.toString();
       final fileExtension = extension(file.path);
       final fileName = basenameWithoutExtension(file.path);
-      CloudStorageResult cloudStorageResult = await _planfileStorageApi
-          .uploadPlanFile(planFileId: id, fileToUpload: file);
-      _planfileService.createPlanFile(
+      CloudStorageResult cloudStorageResult =
+          await _planfileStorageApi.uploadPlanFile(
+              planFileId: id, fileToUpload: file, extentsion: fileExtension);
+      await _planfileService.createPlanFile(
           planfile: PlanFile(
               id: id,
               planId: planId,
@@ -119,15 +128,25 @@ class ExercisesController extends GetxController {
               fileUrl: cloudStorageResult.imageUrl,
               FileId: cloudStorageResult.imageFileName));
     }
-    Get.back();
+    if (planId != '') {
+      var data = {
+        "planId": planId,
+        "userId": userId,
+        "orderId": planId,
+      };
+      Get.offNamed(AppRoutes.existingsendplan, parameters: data);
+    }
+
     UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
   }
 
   Future getTrainerPlan() async {
+    busyController.setBusy(true);
     plans = await _planService.getTrainerPlans(
         category: category, trainerId: currentUser!.id);
 
     update();
+    busyController.setBusy(false);
   }
 
 ////////////////////////////planfiles///////////////////////////////////////
@@ -136,7 +155,6 @@ class ExercisesController extends GetxController {
     planfiles = await _planfileService.getTrainerFiles(planId: selectedPlan);
 
     update();
-    
 
     busyController.setBusy(false);
   }

@@ -8,7 +8,6 @@ import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'package:mudarribe_trainer/views/chat/controller.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';

@@ -9,8 +9,9 @@ class PlanStorageApi {
   Future<CloudStorageResult> uploadPlanFile({
     required String planFileId,
     required File fileToUpload,
+    required String extentsion, 
   }) async {
-    final fileName = "PF._$planFileId";
+    final fileName = "PF._$planFileId$extentsion";
 
     final storage.Reference storageReference = storage.FirebaseStorage.instance
         .ref()
@@ -52,6 +53,30 @@ class PlanStorageApi {
     final storage.Reference storageReference = storage.FirebaseStorage.instance
         .ref()
         .child("PlanImages/$PlanId/$imageFileName");
+
+    try {
+      bool result = false;
+
+      await storageReference.delete().then(
+            (_) => result = true,
+          );
+
+      return result;
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload image',
+        message: e.message,
+      );
+    }
+  }
+  
+  Future<bool> deletePlanFile(
+    String planFileId,
+    String fileName,
+  ) async {
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("planFiles/$planFileId/$fileName");
 
     try {
       bool result = false;
