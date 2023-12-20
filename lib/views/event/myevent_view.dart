@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
+import 'package:mudarribe_trainer/api/event_api.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/eventdetailcard.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
@@ -163,44 +163,64 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                               itemCount: controller.events.length,
                               physics: BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
-                                return EventDetailsCard(
-                                    onPressClose: () {
-                                      UiUtilites.confirmAlert(context,
-                                          'Are you sure you want to close this event?',
-                                          () {
-                                        controller.closeEvent(
-                                            controller.events[index]);
-                                      }, () {
-                                        Get.back();
-                                      }, 'Yes', 'Cancel');
-                                    },
-                                    attendees: 0,
-                                    title: controller.events[index].title,
-                                    imageUrl: controller.events[index].imageUrl,
-                                    onPressDelete: () {
-                                      UiUtilites.confirmAlert(context,
-                                          'Are you sure you want to delete this event?',
-                                          () {
-                                        controller.deleteEvent(
-                                            controller.events[index]);
-                                      }, () {
-                                        Get.back();
-                                      }, 'Yes', 'Cancel');
-                                    },
-                                    isClose:
-                                        controller.events[index].eventStatus ==
-                                                EventStatus.closed
-                                            ? true
-                                            : false,
-                                    address: controller.events[index].address,
-                                    startTime:
-                                        controller.events[index].startTime,
-                                    endTime: controller.events[index].endTime,
-                                    date: controller.events[index].date,
-                                    price: controller.events[index].price,
-                                    capacity: controller.events[index].capacity,
-                                    eventStatus:
-                                        controller.events[index].eventStatus);
+                               
+                                return FutureBuilder(
+                                    future: EventApi.geteventAttendees(
+                                        controller.events[index].id),
+                                    builder: (context, snapshot) {
+                                      String length = '';
+                                      if (!snapshot.hasData) {
+                                        length = "0";
+                                      } else if (snapshot.hasError) {
+                                        length = "0";
+                                      } else {
+                                        length = snapshot.data!.docs.length
+                                            .toString();
+                                      }
+
+                                      return EventDetailsCard(
+                                          onPressClose: () {
+                                            UiUtilites.confirmAlert(context,
+                                                'Are you sure you want to close this event?',
+                                                () {
+                                              controller.closeEvent(
+                                                  controller.events[index]);
+                                            }, () {
+                                              Get.back();
+                                            }, 'Yes', 'Cancel');
+                                          },
+                                          attendees: length,
+                                          title: controller.events[index].title,
+                                          imageUrl:
+                                              controller.events[index].imageUrl,
+                                          onPressDelete: () {
+                                            UiUtilites.confirmAlert(context,
+                                                'Are you sure you want to delete this event?',
+                                                () {
+                                              controller.deleteEvent(
+                                                  controller.events[index]);
+                                            }, () {
+                                              Get.back();
+                                            }, 'Yes', 'Cancel');
+                                          },
+                                          isClose: controller.events[index]
+                                                      .eventStatus ==
+                                                  EventStatus.closed
+                                              ? true
+                                              : false,
+                                          address:
+                                              controller.events[index].address,
+                                          startTime: controller
+                                              .events[index].startTime,
+                                          endTime:
+                                              controller.events[index].endTime,
+                                          date: controller.events[index].date,
+                                          price: controller.events[index].price,
+                                          capacity:
+                                              controller.events[index].capacity,
+                                          eventStatus: controller
+                                              .events[index].eventStatus);
+                                    });
                               })
                         ],
                       ),

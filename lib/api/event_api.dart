@@ -22,7 +22,8 @@ class EventApi {
 
   Future<List<TrainerEvent>> getTrainerEvents(trainerId) async {
     try {
-      final result = await _trainerEventCollection.orderBy('id',descending: true).get();
+      final result =
+          await _trainerEventCollection.orderBy('id', descending: true).get();
 
       final events = result.docs
           .map(
@@ -38,6 +39,14 @@ class EventApi {
         message: e.message,
       );
     }
+  }
+
+  static Future<QuerySnapshot> geteventAttendees(eventId) async {
+    QuerySnapshot eventSnapshot = await FirebaseFirestore.instance
+        .collection('event_attendees')
+        .where('eventId', isEqualTo: eventId)
+        .get();
+    return eventSnapshot;
   }
 
   Future<bool> deleteEvent(String eventId) async {
@@ -92,7 +101,7 @@ class EventApi {
     try {
       bool result = false;
 
-     await _trainerEventCollection.doc(eventId).update({
+      await _trainerEventCollection.doc(eventId).update({
         "paymentStatus": "paid",
       }).whenComplete(() => result = true);
 

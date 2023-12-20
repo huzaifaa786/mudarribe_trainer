@@ -45,20 +45,21 @@ class MealsCard extends StatelessWidget {
                         FutureBuilder<String?>(
                             future: futureFunc,
                             builder: (context, snapshot) {
-                      
                               return ClipRRect(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(10)),
-                                child: Image.asset(
-                                  snapshot.data != null
-                                      ? snapshot.data!
-                                      : 'assets/images/containimg.jpeg',
-                                  width:
-                                      120, // Specify the width of the image to fit the Container
-                                  height:
-                                      77, // Specify the height of the image to fit the Container
-                                  fit: BoxFit.fill,
-                                ),
+                                child: snapshot.data != null
+                                    ? Image.file(
+                                        File(snapshot.data!),
+                                      )
+                                    : Image.asset(
+                                        'assets/images/containimg.png',
+                                        width:
+                                            120, // Specify the width of the image to fit the Container
+                                        height:
+                                            77, // Specify the height of the image to fit the Container
+                                        fit: BoxFit.fill,
+                                      ),
                               );
                             }),
                         ClipRRect(
@@ -76,7 +77,6 @@ class MealsCard extends StatelessWidget {
                 Gap(10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  
                   children: [
                     Text(title,
                         maxLines: 1,
@@ -99,7 +99,9 @@ class MealsCard extends StatelessWidget {
               ],
             ),
           ),
-          InkWell(onTap: onDeleteTap, child: SvgPicture.asset('assets/images/delete.svg')),
+          InkWell(
+              onTap: onDeleteTap,
+              child: SvgPicture.asset('assets/images/delete.svg')),
         ],
       ),
     );

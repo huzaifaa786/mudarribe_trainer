@@ -8,6 +8,7 @@ import 'package:mudarribe_trainer/api/plan_storage_api.dart';
 import 'package:mudarribe_trainer/api/planfile_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -57,8 +58,9 @@ class ExistingPlanController extends GetxController {
 
   Future sendPlan() async {
     busyController.setBusy(true);
-    final planId = DateTime.now().millisecondsSinceEpoch.toString();
-    await _planApi.sendPlan(planId, {
+    final planFileId = DateTime.now().millisecondsSinceEpoch.toString();
+    await _planApi.sendPlan(planFileId, {
+      "id": planFileId,
       "userId": userId,
       "planId": planId,
       "orderId": orderId,
@@ -66,6 +68,9 @@ class ExistingPlanController extends GetxController {
     });
 
     busyController.setBusy(false);
+    Get.offNamed(AppRoutes.orders);
+     UiUtilites.successAlert(Get.context, 'Plan Sent Successfully');
+
   }
 
   Future storeplanfiles(String planId) async {
@@ -102,11 +107,14 @@ class ExistingPlanController extends GetxController {
   }
 
   Future deleteFile(PlanFile planFile) async {
-    bool isDeleted = await _planFileApi.deleteFile(planFile.id);
-    await _planfileStorageApi.deletePlanFile(planFile.id, planFile.fileName!);
-    getTrainerFiles();
-    Get.back();
-    UiUtilites.successAlert(Get.context, 'File Deleted Successfully');
+    if (planFile.FileId != null && planFile.fileName != null) {
+      await _planfileStorageApi.deletePlanFile(planFile.id, planFile.FileId!);
+      bool isDeleted = await _planFileApi.deleteFile(planFile.id);
+      await getTrainerFiles();
+
+      Get.back();
+      UiUtilites.successAlert(Get.context, 'File Deleted Successfully');
+    }
   }
 
   Future<File> createFileOfPdfUrl(pdf) async {

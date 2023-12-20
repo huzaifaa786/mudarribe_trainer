@@ -26,6 +26,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
     var category = Get.parameters['category'] as String;
     var userId = Get.parameters['userId'] as String;
     var orderId = Get.parameters['orderId'] as String;
+     
 
     return GetBuilder<ExercisesController>(
       initState: (state) async {
