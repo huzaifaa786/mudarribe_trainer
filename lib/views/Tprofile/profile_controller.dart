@@ -65,6 +65,7 @@ class ProfileController extends GetxController {
 
   Future addStory(String url) async {
     busyController.setBusy(true);
+    Get.offNamed(AppRoutes.profile);
     storyImage = File(url);
     final storyId = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -81,9 +82,8 @@ class ProfileController extends GetxController {
 
       storyImage = null;
 
-      UiUtilites.successSnackbar(
-          'Story has been created successfully', 'Story Created');
-      Get.toNamed(AppRoutes.profile);
+      UiUtilites.successAlert(Get.context, 'Story Created');
+
       busyController.setBusy(false);
     }
   }

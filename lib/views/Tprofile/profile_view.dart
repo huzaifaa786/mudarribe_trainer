@@ -1,15 +1,20 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/addpostbutton.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
+import 'package:mudarribe_trainer/components/boxing_trainers_card.dart';
+import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
+import 'package:mudarribe_trainer/components/storyButton.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:stories_editor/stories_editor.dart';
 
 class ProfileView extends StatefulWidget {
@@ -27,6 +32,31 @@ class _ProfileViewState extends State<ProfileView>
     setState(() {
       _smallButtonsVisible = !_smallButtonsVisible;
     });
+  }
+
+  Future<bool> getpermission() async {
+    bool serviceEnabled = false;
+
+    Permission mediaLocation = await Permission.accessMediaLocation;
+    Permission permission = await Permission.manageExternalStorage;
+    Permission storagepermission = await Permission.storage;
+    Permission cameraPermission = await Permission.camera;
+    Permission mediaPermission = await Permission.mediaLibrary;
+    if (permission.status.isGranted == false &&
+        storagepermission.status.isGranted == false &&
+        cameraPermission.status.isGranted == false &&
+        mediaPermission.status.isGranted == false &&
+        mediaLocation.status.isGranted == false) {
+      return serviceEnabled;
+    } else {
+      return serviceEnabled = true;
+    }
+  }
+
+  @override
+  void initState() {
+    getpermission();
+    super.initState();
   }
 
   @override
@@ -211,9 +241,19 @@ class _ProfileViewState extends State<ProfileView>
                                   ),
                                   itemCount: controller.posts.length,
                                   itemBuilder: (context, index) {
-                                    return Image.network(
-                                      controller.posts[index].imageUrl!,
-                                      fit: BoxFit.cover,
+                                    return InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    PostCard(userimg: controller.currentUser!.profileImageUrl!,username:controller.currentUser!.name,postdescription: controller.posts[index].caption!,postimg:controller.posts[index].imageUrl! ,
+                                            )));
+                                      },
+                                      child: Image.network(
+                                        controller.posts[index].imageUrl!,
+                                        fit: BoxFit.cover,
+                                      ),
                                     );
                                   },
                                 ),
@@ -247,32 +287,35 @@ class _ProfileViewState extends State<ProfileView>
                                     ),
                                     AddPostbutton(
                                       title: 'Add Story',
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    StoriesEditor(
-                                                      onDoneButtonStyle:
-                                                          Container(
-                                                        decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                                color: white)),
-                                                        padding:
-                                                            EdgeInsets.all(4),
-                                                        child: Text('Done'),
-                                                      ),
-                                                      middleBottomWidget:
-                                                          Image.asset(
-                                                              'assets/images/logo.png'),
-                                                      giphyKey:
-                                                          'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                                      onDone: (uri) {
-                                                        debugPrint(uri);
-                                                        controller
-                                                            .addStory(uri);
-                                                      },
-                                                    )));
+                                      onPressed: () async {
+                                        if (await getpermission() == true)
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      StoriesEditor(
+                                                          onDoneButtonStyle:
+                                                              Container(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    4),
+                                                            child: StoryButton(
+                                                              title: "Upload",
+                                                              selected: true,
+                                                            ),
+                                                          ),
+                                                          middleBottomWidget:
+                                                              Image.asset(
+                                                                  'assets/images/logo.png'),
+                                                          editorBackgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          giphyKey:
+                                                              'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
+                                                          onDone: (uri) {
+                                                            controller
+                                                                .addStory(uri);
+                                                          })));
                                       },
                                       selected: false,
                                       type: 'story',

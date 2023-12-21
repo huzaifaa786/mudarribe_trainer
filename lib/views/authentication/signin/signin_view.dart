@@ -5,6 +5,7 @@ import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
+import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
@@ -23,21 +24,16 @@ class _SignInScreenState extends State<SignInScreen> {
     return GetBuilder<SignInController>(
       builder: (controller) => BusyIndicator(
         child: Scaffold(
+          appBar: AppBar(
+          automaticallyImplyLeading: false,
+          forceMaterialTransparency: true,
+          title: TopBar(text: "",),),
           body: SafeArea(
               child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
+             
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Image.asset('assets/images/logo.png'),

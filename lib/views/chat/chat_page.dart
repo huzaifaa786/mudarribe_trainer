@@ -221,10 +221,12 @@ class ChatPageState extends State<ChatPage> {
         isLoading = false;
         onSendMessage(pdfUrl, TypeMessage.document);
       });
+      Get.back();
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
       });
+      Get.back();
       print(e);
     }
   }
@@ -239,11 +241,14 @@ class ChatPageState extends State<ChatPage> {
         isLoading = false;
         onSendMessage(imageUrl, TypeMessage.image);
       });
+      Get.back();
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
       });
+
       print(e);
+      Get.back();
       // Fluttertoast.showToast(msg: e.message ?? e.toString());
     }
   }
@@ -264,6 +269,18 @@ class ChatPageState extends State<ChatPage> {
     } else {
       // Fluttertoast.showToast(msg: 'Nothing to send', backgroundColor: ColorConstants.greyColor);
     }
+  }
+
+  get_text_between(text, start, end) {
+    var index = text.indexOf(start);
+    if (index == -1) {
+      return "";
+    }
+    var index2 = text.indexOf(end, index + start.length);
+    if (index2 == -1) {
+      return "";
+    }
+    return text.substring(index + start.length, index2);
   }
 
   Widget buildItem(int index, DocumentSnapshot? document) {
@@ -414,7 +431,7 @@ class ChatPageState extends State<ChatPage> {
                                           )),
                                       SizedBox(
                                         width: 200,
-                                        child: Text(messageChat.content,
+                                        child: Text(get_text_between(messageChat.content, "/o/", "?"),
                                             overflow: TextOverflow.ellipsis,
                                             style:
                                                 TextStyle(color: Colors.black)),
@@ -711,7 +728,7 @@ class ChatPageState extends State<ChatPage> {
                                             )),
                                         SizedBox(
                                           width: 200,
-                                          child: Text(messageChat.content,
+                                          child: Text(get_text_between(messageChat.content, "/o/", "?"),
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: Colors.white)),

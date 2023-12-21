@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,6 +34,9 @@ void main() async {
 
   //Load our .env file that contains our Stripe Secret key
   await dotenv.load(fileName: "assets/.env");
+    if(Platform.isAndroid) {
+    AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+  }
   runApp(
     const MyApp(),
   );

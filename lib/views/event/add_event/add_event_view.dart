@@ -17,6 +17,8 @@ import 'package:mudarribe_trainer/views/event/add_event/add_event_controller.dar
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:geolocator/geolocator.dart';
 
 class AddEventScreen extends StatefulWidget {
   const AddEventScreen({super.key});
@@ -26,6 +28,46 @@ class AddEventScreen extends StatefulWidget {
 }
 
 class _AddEventScreenState extends State<AddEventScreen> {
+  Future<bool> getpermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      await Permission.location;
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      permission = await Geolocator.requestPermission();
+      // return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return false;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return false;
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    await Geolocator.getCurrentPosition();
+    return true;
+  }
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddEventContoller>(
@@ -238,30 +280,32 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     fontWeight: FontWeight.w400,
                                   )),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PlacePicker(
-                                        apiKey:
-                                            "AIzaSyB8nRxHRnBw9rzrWFcVA45CmtDq7FzLb4A",
-                                        onPlacePicked: (result) {
-                                          controller.address =
-                                              result.formattedAddress!;
+                                onTap: () async {
+                                  if (await getpermission() == true) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PlacePicker(
+                                          apiKey:
+                                              "AIzaSyB8nRxHRnBw9rzrWFcVA45CmtDq7FzLb4A",
+                                          onPlacePicked: (result) {
+                                            controller.address =
+                                                result.formattedAddress!;
 
-                                          Navigator.of(context).pop();
-                                          setState(() {});
+                                            Navigator.of(context).pop();
+                                            setState(() {});
 
-                                          controller.checkFields();
-                                        },
-                                        initialPosition:
-                                            LatLng(23.4241, 53.8478),
-                                        useCurrentLocation: true,
-                                        resizeToAvoidBottomInset:
-                                            false, // only works in page mode, less flickery, remove if wrong offsets
+                                            controller.checkFields();
+                                          },
+                                          initialPosition:
+                                              LatLng(25.1972, 55.2744),
+                                          useCurrentLocation: true,
+                                          resizeToAvoidBottomInset:
+                                              false, // only works in page mode, less flickery, remove if wrong offsets
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  }
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.only(top: 4),

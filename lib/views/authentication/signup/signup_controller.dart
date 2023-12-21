@@ -175,13 +175,14 @@ class SignUpController extends GetxController {
 
   Future signUpTrainer() async {
     busyController.setBusy(true);
+
     try {
       final User user = await _authApi.signUpWithEmail(
         email: emailController.text,
         password: passwordController.text,
       );
 
-      if (user.uid.isNotEmpty) {
+      if (user.uid.isNotEmpty && areFieldsFilled.value == true) {
         CloudStorageResult imageResult = await _saveProfileImage(user.uid);
         CloudStorageResult certificateResult = await _saveCertificate(user.uid);
         CloudStorageResult passportResult = await _savePassportId(user.uid);
@@ -204,6 +205,7 @@ class SignUpController extends GetxController {
               categories: selectedCategories,
               languages: selectedLanguages),
         );
+    
 
         UiUtilites.successAlert(
             Get.context, 'You have Successfully submitted Your Application!');
