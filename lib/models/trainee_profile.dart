@@ -4,12 +4,14 @@ class TraineeProfile {
   String? name;
   String? email;
   String? imageUrl;
+  String? firebaseToken;
   TraineeProfile(
       {required this.id,
       this.name,
       this.email,
       required this.userType,
-      this.imageUrl});
+      this.imageUrl,
+      this.firebaseToken});
 
   TraineeProfile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -17,6 +19,7 @@ class TraineeProfile {
     email = json['email'];
     userType = json['userType'];
     imageUrl = json['profileImageUrl'] ?? '';
+    firebaseToken = json['firebaseToken'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -36,6 +39,7 @@ class TraineeProfile {
       name: map['name'],
       email: map['email'],
       imageUrl: map['profileImageUrl'],
+      firebaseToken: map['firebaseToken'],
     );
   }
 }

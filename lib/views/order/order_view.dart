@@ -64,6 +64,14 @@ class _OrderScreenState extends State<OrderScreen> {
                                             "userId": combinedOrderData[index]
                                                 .trainee
                                                 .id,
+                                            "firebaseToken":
+                                                combinedOrderData[index]
+                                                    .trainee
+                                                    .firebaseToken
+                                                    .toString(),
+                                              "trainerName": combinedOrderData[index]
+                                                .trainer
+                                                .name.toString(),       
                                             "orderId": combinedOrderData[index]
                                                 .order
                                                 .id

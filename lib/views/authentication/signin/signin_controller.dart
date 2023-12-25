@@ -1,9 +1,11 @@
 // ignore_for_file: unused_field
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
+import 'package:mudarribe_trainer/api/database_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/exceptions/auth_api_exception.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
@@ -17,6 +19,7 @@ class SignInController extends GetxController {
   final BusyController busyController = Get.find();
   final _authApi = AuthApi();
   final _userService = UserService();
+  final _databaseApi = DatabaseApi();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   RxBool areFieldsFilled = false.obs;
@@ -61,7 +64,8 @@ class SignInController extends GetxController {
 
         if (appUser != null && appUser.status == TrainerStatus.approved) {
           obscureTextPassword = true;
-
+          var token = await FirebaseMessaging.instance.getToken();
+          await updateUser(id: user.uid, user: {"firebaseToken": token});
           Get.offNamed(AppRoutes.homeScreen);
         } else {
           UiUtilites.errorSnackbar(
@@ -69,8 +73,15 @@ class SignInController extends GetxController {
         }
       }
     } on AuthApiException catch (e) {
-          UiUtilites.errorSnackbar('Signin Failed', e.toString());
+      UiUtilites.errorSnackbar('Signin Failed', e.toString());
     }
     busyController.setBusy(false);
+  }
+
+  Future<void> updateUser({
+    required id,
+    required user,
+  }) async {
+    await _databaseApi.updateUser(id, user);
   }
 }

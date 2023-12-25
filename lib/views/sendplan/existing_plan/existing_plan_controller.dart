@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mudarribe_trainer/api/file_selector_api.dart';
@@ -10,6 +11,7 @@ import 'package:mudarribe_trainer/api/planfile_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/services/notification_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -31,11 +33,15 @@ class ExistingPlanController extends GetxController {
   String userId = '';
   String orderId = '';
   String planId = '';
+  String firebaseToken = '';
+  String trainerName = '';
+  String category = '';
   final _planfileService = PlanFileService();
   final _planApi = PlanApi();
   final _planFileApi = PlanFileApi();
   final _fileSelectorApi = FileSelectorApi();
   final _planfileStorageApi = PlanStorageApi();
+  final notificationService = NotificationService();
 
   Future getTrainerFiles() async {
     plan = await _planApi.getPlanById(planId);
@@ -66,11 +72,41 @@ class ExistingPlanController extends GetxController {
       "orderId": orderId,
       "trainerId": FirebaseAuth.instance.currentUser!.uid,
     });
-
+    await notificationCreated(orderId, userId);
+    notificationService.postNotification(
+        title: '$trainerName sent you a $category Plan',
+        body: 'Open app and check it out.',
+        receiverToken: firebaseToken);
     busyController.setBusy(false);
     Get.offNamed(AppRoutes.orders);
-     UiUtilites.successAlert(Get.context, 'Plan Sent Successfully');
+    UiUtilites.successAlert(Get.context, 'Plan Sent Successfully');
+  }
 
+  notificationCreated(String orderId, String userId) async {
+    try {
+      // LoadingHelper.show();
+      String notiId = DateTime.now().millisecondsSinceEpoch.toString();
+      await FirebaseFirestore.instance
+          .collection('notifications')
+          .doc(notiId)
+          .set({
+        'id': notiId,
+        'userId': userId,
+        'trainerId': FirebaseAuth.instance.currentUser!.uid,
+        'content': category == 'excercise'
+            ? 'You have received new exercises plan'
+            : 'You have received new Nutrition plan',
+        'orderId': orderId,
+        'seen': false,
+        "planId": planId,
+        'planName': plan!.name,
+        'type': 'plans'
+      });
+      // LoadingHelper.dismiss();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future storeplanfiles(String planId) async {

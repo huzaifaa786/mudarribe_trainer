@@ -31,7 +31,8 @@ class ExercisesController extends GetxController {
   String category = '';
   String userId = '';
   String orderId = '';
-
+  String firebaseToken = '';
+  String trainerName = '';
   List<Plan> plans = [];
   List<PlanFile> planfiles = [];
   List<File> selectedFiles = [];

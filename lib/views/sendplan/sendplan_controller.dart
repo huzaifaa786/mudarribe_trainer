@@ -14,6 +14,8 @@ class SendPlanController extends GetxController {
   File? file;
   String userId = '';
   String orderId = '';
+  String firebaseToken = '';
+  String trainerName = '';
 
   onnutritiontap() {
     category = 'nutrition';

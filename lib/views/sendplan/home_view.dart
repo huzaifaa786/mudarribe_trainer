@@ -21,12 +21,16 @@ class _HomePlanState extends State<HomePlan> {
   Widget build(BuildContext context) {
     var userId = Get.parameters['userId'] as String;
     var orderId = Get.parameters['orderId'] as String;
-  
+    var firebaseToken = Get.parameters['firebaseToken'] as String;
+    var trainerName = Get.parameters['trainerName'] as String;
+
     return GetBuilder<SendPlanController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
           state.controller!.userId = userId;
           state.controller!.orderId = orderId;
+          state.controller!.firebaseToken = firebaseToken;
+          state.controller!.trainerName = trainerName;
         });
       },
       builder: (controller) => Scaffold(
@@ -91,9 +95,11 @@ class _HomePlanState extends State<HomePlan> {
                               if (controller.category == 'nutrition' ||
                                   controller.category == 'excercise') {
                                 Get.toNamed(AppRoutes.exercise, parameters: {
+                                  'firebaseToken': controller.firebaseToken,
                                   "category": controller.category,
                                   "userId": controller.userId,
                                   "orderId": controller.orderId,
+                                  'trainerName' : controller.trainerName,
                                 });
                               }
                             }

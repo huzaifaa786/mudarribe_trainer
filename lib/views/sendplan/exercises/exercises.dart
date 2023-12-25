@@ -26,14 +26,17 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
     var category = Get.parameters['category'] as String;
     var userId = Get.parameters['userId'] as String;
     var orderId = Get.parameters['orderId'] as String;
+    var firebaseToken = Get.parameters['firebaseToken'] as String;
+    var trainerName = Get.parameters['trainerName'] as String;
      
-
     return GetBuilder<ExercisesController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
           state.controller!.category = category;
           state.controller!.orderId = orderId;
           state.controller!.userId = userId;
+          state.controller!.firebaseToken = firebaseToken;
+          state.controller!.trainerName = trainerName;
         });
       },
       builder: (controller) => BusyIndicator(
@@ -152,7 +155,10 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                       Get.offNamed(AppRoutes.existingsendplan, parameters: {
                         "planId": controller.selectedPlan,
                         "userId": controller.userId,
-                        "orderId": controller.orderId
+                        "orderId": controller.orderId,
+                        'firebaseToken': controller.firebaseToken,
+                        'category': controller.category,
+                        'trainerName': controller.trainerName
                       });
                     }
                   : () {

@@ -17,7 +17,7 @@ class AppUser {
   TrainerStatus? status;
   List<String>? categories;
   List<String>? languages;
-
+  String? firebaseToken;
   AppUser(
       {required this.id,
       this.name,
@@ -33,6 +33,7 @@ class AppUser {
       this.passportIdUrl,
       this.categories,
       this.languages,
+      this.firebaseToken,
       this.status});
 
   AppUser.fromJson(Map<String, dynamic> json) {
@@ -48,9 +49,10 @@ class AppUser {
     certificateUrl = json['certificateUrl'];
     passportIdUrl = json['passportIdFileName'];
     passportIdUrl = json['passportIdUrl'];
+    firebaseToken = json['firebaseToken'] ?? '';
     categories = json['categories'].cast<String>();
     languages = json['languages'].cast<String>();
-    status = _$enumDecode(_$TrainerStatusEnumMap,json['status']);
+    status = _$enumDecode(_$TrainerStatusEnumMap, json['status']);
   }
 
   Map<String, dynamic> toJson() {
@@ -68,6 +70,7 @@ class AppUser {
     data['certificateFileName'] = certificateFileName;
     data['passportIdFileName'] = passportIdFileName;
     data['categories'] = categories;
+    data['firebaseToken'] = this.firebaseToken;
     data['languages'] = languages;
     data['status'] = _$TrainerStatusEnumMap[status];
 

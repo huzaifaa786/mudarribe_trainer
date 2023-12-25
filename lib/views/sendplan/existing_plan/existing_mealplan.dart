@@ -29,6 +29,11 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
     var planId = Get.parameters['planId'] as String;
     var userId = Get.parameters['userId'] as String;
     var orderId = Get.parameters['orderId'] as String;
+    var firebaseToken = Get.parameters['firebaseToken'] as String;
+    var category = Get.parameters['category'] as String;
+    var trainerName = Get.parameters['trainerName'] as String;
+
+
 
     return GetBuilder<ExistingPlanController>(
       initState: (state) async {
@@ -36,6 +41,9 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
           state.controller!.planId = planId;
           state.controller!.userId = userId;
           state.controller!.orderId = orderId;
+          state.controller!.firebaseToken = firebaseToken;
+          state.controller!.trainerName = trainerName;
+          state.controller!.category = category;
           state.controller!.getTrainerFiles();
         });
       },

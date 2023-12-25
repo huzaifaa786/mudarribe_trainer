@@ -82,6 +82,8 @@ dependencies:
   permission_handler: ^11.0.1
   geolocator: ^10.1.0
   cached_network_image: ^3.3.0
+  firebase_messaging: ^14.7.9
+  flutter_local_notifications: ^16.2.0
   # whatsapp_story_editor: ^0.0.6
 
 dev_dependencies:

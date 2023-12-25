@@ -14,16 +14,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mudarribe_trainer/views/chat/controller.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // await LoadingHelper.init();
-
-  await GetStorage.init();
+  Get.put(NotificationService());
+ await GetStorage.init();
   Get.put<BusyController>(BusyController());
   Stripe.publishableKey =
       "pk_test_51JvIZ1Ey3DjpASZjPAzcOwqhblOq2hbchp6i56BsjapvhWcooQXqh33XwCrKiULfAe7NKFwKUhn2nqURE7VZcXXf00wMDzp4YN";
