@@ -32,14 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       name: controller.currentUser!.name,
                       img: controller.currentUser!.profileImageUrl!,
                       category: controller.currentUser!.categories!.join('& '),
+                      onUserImgTap: () {
+                        Get.toNamed(AppRoutes.stories, parameters: {
+                          "trainer_id": controller.currentUser!.id
+                        });
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 60.0),
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               MainCard(
                                 name: "View Profile",

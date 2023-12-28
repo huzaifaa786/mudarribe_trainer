@@ -28,6 +28,7 @@ class AppRoutes {
   static const eventcheckout = '/eventcheckout';
   static const sendplan = '/sendplan';
   static const existingsendplan = '/existingsendplan';
+    static const stories = '/stories';
 
   
 }
