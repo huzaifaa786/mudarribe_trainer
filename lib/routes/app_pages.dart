@@ -53,6 +53,8 @@ import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
 // import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
+import 'package:mudarribe_trainer/views/story/story_binding.dart';
+import 'package:mudarribe_trainer/views/story/story_view.dart';
 
 class AppPages {
   static final List<GetPage> pages = [
@@ -69,6 +71,11 @@ class AppPages {
         name: AppRoutes.intro,
         page: () => const IntroScreen(),
         binding: IntroBinding()),
+    GetPage(
+      name: AppRoutes.stories,
+      page: () => const StoriesView(),
+      binding: TrainerStoryBinding(),
+    ),
     GetPage(
         name: AppRoutes.sale,
         page: () => const SaleScreen(),

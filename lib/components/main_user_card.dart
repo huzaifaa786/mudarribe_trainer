@@ -5,10 +5,11 @@ import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class MainUserCard extends StatelessWidget {
-  const MainUserCard({super.key, this.img, this.name, this.category});
+  const MainUserCard({super.key, this.img, this.name, this.category,this.onUserImgTap});
   final img;
   final name;
   final category;
+  final onUserImgTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,29 +36,32 @@ class MainUserCard extends StatelessWidget {
           child: Column(
             children: [
               Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      border: GradientBoxBorder(
-                        gradient: LinearGradient(colors: [
-                          Color(4290773187),
-                          borderTop,
-                          borderTop,
-                          borderbottom
-                        ]),
-                        width: 1,
+                child: InkWell(
+                  onTap: onUserImgTap,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(60),
+                        border: GradientBoxBorder(
+                          gradient: LinearGradient(colors: [
+                            Color(4290773187),
+                            borderTop,
+                            borderTop,
+                            borderbottom
+                          ]),
+                          width: 1,
+                        ),
                       ),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(45),
-                      child: Image.network(
-                        img,
-                        width: 90,
-                        height: 90,
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(45),
+                        child: Image.network(
+                          img,
+                          width: 90,
+                          height: 90,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
