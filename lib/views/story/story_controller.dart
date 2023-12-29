@@ -22,17 +22,18 @@ class TrainerStoryContoller extends GetxController {
   Rx<AppUser>? trainer;
 
   Future<void> getTrainerStories(id) async {
+    firebaseStories = <TrainerStory>[].obs;
+    stories = <StoryItem>[].obs;
     trainer = await _homeApi.fetchTrainerData(id).then((value) => value.obs);
     firebaseStories =
         await _homeApi.fetchTrainerStoryData(id).then((value) => value.obs);
-    for (var i = 0; i < firebaseStories.length; i++) {
+    for (var story in firebaseStories) {
       stories.add(StoryItem.inlineImage(
-          key: Key(i.toString()),
-          url: firebaseStories[i].imageUrl!,
+          key: Key(story.id.toString()),
+          url: story.imageUrl!,
           controller: storyController,
           roundedBottom: false,
           roundedTop: false));
-      update();
     }
 
     update();
@@ -53,11 +54,17 @@ class TrainerStoryContoller extends GetxController {
   deletStory() async {
     busyController.setBusy(true);
 
-    await _homeApi.deleteStory(firebaseStories[int.parse(currentIndex)].id);
+    await _homeApi.deleteStory(currentIndex);
 
-    busyController.setBusy(false);
-    refresh();
-    Get.offNamed(AppRoutes.homeScreen);
+    Get.offAndToNamed(AppRoutes.homeScreen);
+    firebaseStories = <TrainerStory>[].obs;
+    stories = <StoryItem>[].obs;
+    storyController.play();
+    print(
+        'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    print(stories.length);
+    print(firebaseStories.length);
+    // await getTrainerStories(trainer!.value.id);
     UiUtilites.successAlert(Get.context, "Story deleted successfully");
   }
 }
