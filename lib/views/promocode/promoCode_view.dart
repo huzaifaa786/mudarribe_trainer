@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/api/promocode.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
@@ -10,6 +12,8 @@ import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_controller.dart';
+import 'package:firebase_pagination/firebase_pagination.dart';
+import 'package:mudarribe_trainer/models/promo_code.dart';
 
 class PromoCodeScreen extends StatefulWidget {
   const PromoCodeScreen({Key? key}) : super(key: key);
@@ -20,7 +24,6 @@ class PromoCodeScreen extends StatefulWidget {
 class _PromoCodeScreenState extends State<PromoCodeScreen> {
   @override
   Widget build(BuildContext context) {
-    String id = Get.arguments;
     return GetBuilder<PromoCodeContoller>(
       builder: (controller) => controller.currentUser != null
           ? BusyIndicator(
@@ -100,27 +103,102 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                           //     Text('Promo Code Added Successfully'),
                           //   ],
                           // ),
-                          SizedBox(
-                            height: 150,
+                          FirestorePagination(
+                            shrinkWrap: true,
+                            isLive: true,
+                            limit: 6,
+                            onEmpty: Text(''),
+                            viewType: ViewType.list,
+                            physics: BouncingScrollPhysics(),
+                            query: PromoCodeApi.promoCodes,
+                            bottomLoader:
+                                Center(child: CircularProgressIndicator()),
+                            itemBuilder: (context, documentSnapshot, index) {
+                              final promoCodeData = documentSnapshot.data()
+                                  as Map<String, dynamic>;
+                              final promoCode =
+                                  PromoCodeModal.fromMap(promoCodeData);
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, right: 20, bottom: 12),
+                                child: ListTile(
+                                  tileColor: bgContainer,
+                                  title: Text(
+                                      'Promo Code: ${promoCode.promoCodeName}'),
+                                  subtitle: Text(
+                                      'Description: ${promoCode.promoCodeDiscount}'),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () {
+                                          FirebaseFirestore.instance
+                                              .collection('promocodes')
+                                              .where('id',
+                                                  isEqualTo:
+                                                      promoCode.promoCodeId)
+                                              .get()
+                                              .then((QuerySnapshot snapshot) {
+                                            snapshot.docs.forEach(
+                                                (DocumentSnapshot doc) {
+                                              doc.reference.delete();
+                                              UiUtilites.successSnackbar(
+                                                  'Promo Code deleted successfully!',
+                                                  '');
+                                            });
+                                          });
+                                        },
+                                      ),
+                                      IconButton(
+                                        icon:
+                                            Icon(Icons.edit, color: borderTop),
+                                        onPressed: () {
+                                          controller.nameController.text =
+                                              promoCode.promoCodeName;
+                                          controller.percentagecontroller.text =
+                                              promoCode.promoCodeDiscount;
+                                          controller.id = promoCode.promoCodeId;
+                                          controller.edit = true;
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                              // return PromoCodeCard(
+                              //   promoCodeDiscount: promoCode.promoCodeDiscount,
+                              //   promoCodeName: promoCode.promoCodeName,
+                              //   promoCodeId: promoCode.promoCodeId,
+                              // );
+                            },
                           ),
-                          GradientButton(
-                            title: 'Save Changes',
-                            onPressed: controller.areFieldsFilled.value
-                                ? () {
-                                    controller.id = id;
-                                 
-                                    controller.storePromocode();
-                                  }
-                                : () {
-                                    UiUtilites.errorSnackbar(
-                                        'Fill out all fields',
-                                        'Please fill all above fields');
-                                  },
-                            selected: controller.areFieldsFilled.value,
-                          )
+                          // SizedBox(
+                          //   height: 150,
+                          // ),
                         ],
                       ),
                     ),
+                  ),
+                ),
+                bottomNavigationBar: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: GradientButton(
+                    title: !controller.edit ? 'Save Changes' : 'Edit Changes',
+                    onPressed: controller.areFieldsFilled.value
+                        ? () {
+                            !controller.edit
+                                ? controller.storePromocode()
+                                : controller.updatePromocode();
+                          }
+                        : () {
+                            UiUtilites.errorSnackbar('Fill out all fields',
+                                'Please fill all above fields');
+                          },
+                    selected: controller.areFieldsFilled.value,
                   ),
                 ),
               ),

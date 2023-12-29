@@ -44,6 +44,9 @@ class UiUtilites {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
+          Future.delayed(Duration(seconds: 2), () {
+            Get.back();
+          });
           return BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
             child: AlertDialog(
@@ -110,7 +113,8 @@ class UiUtilites {
         });
   }
 
-  static confirmAlert(context, title,onPressOK,onPressCancel,textOk,textCancel) {
+  static confirmAlert(
+      context, title, onPressOK, onPressCancel, textOk, textCancel) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
