@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -10,6 +12,10 @@ class SendPlanController extends GetxController {
   final _fileSelectorApi = FileSelectorApi();
   String category = '';
   File? file;
+  String userId = '';
+  String orderId = '';
+  String firebaseToken = '';
+  String trainerName = '';
 
   onnutritiontap() {
     category = 'nutrition';

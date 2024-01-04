@@ -22,7 +22,7 @@ class PlanFile {
     planId = json['planId'];
     fileUrl = json['fileUrl'];
     fileName = json['fileName'];
-    FileId = json[FileId];
+    FileId = json['FileId'];
 
     fileType = _$enumDecode(_$FileTypeEnumMap, json['fileType']);
   }

@@ -20,7 +20,7 @@ class Package {
 
   Package.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    trainerId = json[trainerId];
+    trainerId = json['trainerId'];
     name = json['name'];
     price = json['price'];
     duration = json['duration'];

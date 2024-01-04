@@ -1,13 +1,25 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_adjacent_string_concatenation
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class OrderCard extends StatelessWidget {
-  const OrderCard({super.key});
+  const OrderCard(
+      {super.key,
+      this.userName,
+      this.profileImage,
+      this.onTapMessage,
+      this.onTapSendPlan,
+      this.packageName,
+      this.price});
+
+  final userName;
+  final profileImage;
+  final onTapMessage;
+  final onTapSendPlan;
+  final packageName;
+  final price;
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +39,37 @@ class OrderCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Image.asset(
-                        'assets/images/person.png',
-                        height: 35,
-                        width: 35,
-                      ),
+                      profileImage != ''
+                          ? ClipRRect(
+                            borderRadius: BorderRadius.circular(45),
+                            child: Image.network(
+                                profileImage,
+                                height: 35,
+                                width: 35,
+                                fit: BoxFit.cover,
+                              ),
+                          )
+                          : ClipRRect(
+                                borderRadius: BorderRadius.circular(45),
+                            child: Image.asset(
+                                'assets/images/person.png',
+                                height: 35,
+                                width: 35,
+                              ),
+                          ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          "Ahmed Yusif",
+                          userName,
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w700),
                         ),
                       )
                     ],
                   ),
-                  Image.asset('assets/images/chat.png'),
+                  InkWell(
+                      onTap: onTapMessage,
+                      child: Image.asset('assets/images/chat.png')),
                 ],
               ),
               Row(
@@ -51,7 +78,7 @@ class OrderCard extends StatelessWidget {
                     'Package :',
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                     colors: [borderTop, borderbottom],
@@ -60,7 +87,7 @@ class OrderCard extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.6,
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "1 month Lose Whight Plan",
+                      packageName,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -75,7 +102,7 @@ class OrderCard extends StatelessWidget {
                     '      Price :',
                     style: TextStyle(
                       fontFamily: "Montserrat",
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                     colors: [borderTop, borderbottom],
@@ -83,7 +110,7 @@ class OrderCard extends StatelessWidget {
                   Padding(
                       padding: const EdgeInsets.only(left: 8, right: 8),
                       child: Text(
-                        '250.44' + ' AED',
+                        price + ' AED',
                         style: const TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 16,
@@ -94,9 +121,7 @@ class OrderCard extends StatelessWidget {
                 ],
               ),
               InkWell(
-                onTap: () {
-                  Get.toNamed(AppRoutes.sendplanhome);
-                },
+                onTap: onTapSendPlan,
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: GradientText(

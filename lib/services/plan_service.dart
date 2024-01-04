@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:mudarribe_trainer/api/plan_api.dart';
 import 'package:mudarribe_trainer/models/plan.dart';
 

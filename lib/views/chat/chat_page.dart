@@ -3,6 +3,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:mudarribe_trainer/components/color_button.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/views/chat/full_photo_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
@@ -19,6 +22,7 @@ import 'package:mudarribe_trainer/views/chat/constants.dart';
 import 'package:mudarribe_trainer/views/chat/controller.dart';
 import 'package:mudarribe_trainer/views/chat/pdf_view.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // import 'pages.dart';
@@ -217,10 +221,12 @@ class ChatPageState extends State<ChatPage> {
         isLoading = false;
         onSendMessage(pdfUrl, TypeMessage.document);
       });
+      Get.back();
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
       });
+      Get.back();
       print(e);
     }
   }
@@ -235,11 +241,14 @@ class ChatPageState extends State<ChatPage> {
         isLoading = false;
         onSendMessage(imageUrl, TypeMessage.image);
       });
+      Get.back();
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
       });
+
       print(e);
+      Get.back();
       // Fluttertoast.showToast(msg: e.message ?? e.toString());
     }
   }
@@ -260,6 +269,18 @@ class ChatPageState extends State<ChatPage> {
     } else {
       // Fluttertoast.showToast(msg: 'Nothing to send', backgroundColor: ColorConstants.greyColor);
     }
+  }
+
+  get_text_between(text, start, end) {
+    var index = text.indexOf(start);
+    if (index == -1) {
+      return "";
+    }
+    var index2 = text.indexOf(end, index + start.length);
+    if (index2 == -1) {
+      return "";
+    }
+    return text.substring(index + start.length, index2);
   }
 
   Widget buildItem(int index, DocumentSnapshot? document) {
@@ -346,14 +367,14 @@ class ChatPageState extends State<ChatPage> {
                                 clipBehavior: Clip.hardEdge,
                               ),
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => FullPhotoPage(
-                                //       url: messageChat.content,
-                                //     ),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FullPhotoPage(
+                                      url: messageChat.content,
+                                    ),
+                                  ),
+                                );
                               },
                               style: ButtonStyle(
                                   padding:
@@ -383,7 +404,8 @@ class ChatPageState extends State<ChatPage> {
                                 child: Container(
                                   width: 250,
                                   height: 60,
-                                  margin: EdgeInsets.only(left: 10, bottom: 10),
+                                  margin:
+                                      EdgeInsets.only(right: 10, bottom: 10),
                                   decoration: BoxDecoration(
                                       color: white,
                                       borderRadius: BorderRadius.circular(8)),
@@ -409,16 +431,100 @@ class ChatPageState extends State<ChatPage> {
                                           )),
                                       SizedBox(
                                         width: 200,
-                                        child: Text(
-                                          messageChat.content,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                        child: Text(get_text_between(messageChat.content, "/o/", "?"),
+                                            overflow: TextOverflow.ellipsis,
+                                            style:
+                                                TextStyle(color: Colors.black)),
                                       ),
                                     ],
                                   ),
                                 ),
                               )
-                            : SizedBox()
+                            : messageChat.type == TypeMessage.myplan
+                                ? Container(
+                                    width: 250,
+                                    margin:
+                                        EdgeInsets.only(right: 10, bottom: 10),
+                                    padding: EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Plan Title: ',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16),
+                                            ),
+                                            Text(
+                                              messageChat.content
+                                                  .split("~~")[0]
+                                                  .split(":")[1],
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Amount: ',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16),
+                                            ),
+                                            Text(
+                                              messageChat.content
+                                                  .split("~~")[1]
+                                                  .split(":")[1],
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Plan Category: ',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16),
+                                            ),
+                                            Text(
+                                              messageChat.content
+                                                  .split("~~")[2]
+                                                  .split(":")[1],
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ),
+                                        GradientButton(
+                                          title: messageChat.content
+                                                      .split("~~")[2]
+                                                      .split(":")[1] ==
+                                                  'true'
+                                              ? 'Paid'
+                                              : 'Unpaid',
+                                          onPressed: () {},
+                                          selected: messageChat.content
+                                                      .split("~~")[2]
+                                                      .split(":")[1] ==
+                                                  'true'
+                                              ? true
+                                              : false,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : SizedBox()
               ],
               mainAxisAlignment: MainAxisAlignment.end,
             ),
@@ -556,13 +662,13 @@ class ChatPageState extends State<ChatPage> {
                                   clipBehavior: Clip.hardEdge,
                                 ),
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => FullPhotoPage(
-                                  //         url: messageChat.content),
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FullPhotoPage(
+                                          url: messageChat.content),
+                                    ),
+                                  );
                                 },
                                 style: ButtonStyle(
                                     padding:
@@ -595,7 +701,7 @@ class ChatPageState extends State<ChatPage> {
                                     margin:
                                         EdgeInsets.only(left: 10, bottom: 10),
                                     decoration: BoxDecoration(
-                                        color: white,
+                                        color: bgContainer,
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Row(
                                       children: [
@@ -622,10 +728,10 @@ class ChatPageState extends State<ChatPage> {
                                             )),
                                         SizedBox(
                                           width: 200,
-                                          child: Text(
-                                            messageChat.content,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
+                                          child: Text(get_text_between(messageChat.content, "/o/", "?"),
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  color: Colors.white)),
                                         ),
                                       ],
                                     ),
@@ -864,11 +970,50 @@ class ChatPageState extends State<ChatPage> {
             children: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(5),
                             topRight: Radius.circular(5))),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
+                onPressed: () {
+                  Get.toNamed(AppRoutes.personalplan)!.then((returnedValue) {
+                    if (returnedValue != null) {
+                      print(
+                          'Returned value from personalplan screen12: $returnedValue');
+                      onSendMessage(returnedValue, TypeMessage.myplan);
+                      Get.back();
+                    }
+                  });
+                },
+                child: GradientText(
+                  'Personal Plan',
+                  colors: [borderTop, borderbottom],
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(0))),
                   ),
                   minimumSize:
                       MaterialStateProperty.all(Size(double.infinity, 50)),
@@ -890,11 +1035,13 @@ class ChatPageState extends State<ChatPage> {
                   height: 0.5),
               ElevatedButton(
                 style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(5),
-                            bottomRight: Radius.circular(5))),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0))),
                   ),
                   minimumSize:
                       MaterialStateProperty.all(Size(double.infinity, 50)),
@@ -910,9 +1057,39 @@ class ChatPageState extends State<ChatPage> {
                   ),
                 ),
               ),
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(5),
+                            bottomRight: Radius.circular(5))),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
+                onPressed: () {},
+                child: Text(
+                  'Rate Us',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff0f0a06),
+                  ),
+                ),
+              ),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0)),

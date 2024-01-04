@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
+import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
@@ -21,21 +22,16 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return GetBuilder<ForgotPasswordContoller>(
       builder: (controller) => Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          forceMaterialTransparency: true,
+          title: TopBar(text: "",),),
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.only(top:10,right: 15,left: 15),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
+             
               Row(
                 children: const [
                   Padding(

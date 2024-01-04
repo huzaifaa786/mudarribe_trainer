@@ -59,7 +59,7 @@ class ExersizeCard extends StatelessWidget {
                     )),
                 Text(description,
                     style: const TextStyle(
-                      color: white,
+                      color: Colors.grey,
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
                     ))

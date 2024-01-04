@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -13,7 +12,7 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/multi_select_dropdown.dart';
 import 'package:mudarribe_trainer/components/password_inputField.dart';
-import 'package:mudarribe_trainer/helpers/loading_helper.dart';
+import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/values/category_list.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/languages.dart';
@@ -33,23 +32,18 @@ class _SignupViewState extends State<SignupView> {
     return GetBuilder<SignUpController>(
       builder: (controller) => BusyIndicator(
         child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            forceMaterialTransparency: true,
+            title: TopBar(
+              text: "",
+            ),
+          ),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -183,8 +177,9 @@ class _SignupViewState extends State<SignupView> {
                           text: 'Female',
                           image: "assets/images/female.svg",
                           ontap: signupController.onfemaletap,
-                          selected:
-                              signupController.gender == 'female' ? true : false,
+                          selected: signupController.gender == 'female'
+                              ? true
+                              : false,
                         ),
                       ],
                     ),
@@ -198,9 +193,7 @@ class _SignupViewState extends State<SignupView> {
                               controller.signUpTrainer();
                             }
                           : () {
-                              UiUtilites.successAlert(context,
-                                  'You have Successfully\nsubmitted Your Application!');
-      
+        
                               UiUtilites.errorSnackbar('Fill out all fields',
                                   'Please fill all above fields');
                             },

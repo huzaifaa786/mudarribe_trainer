@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,6 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
 
@@ -20,12 +19,12 @@ class PersonalPlanScreen extends StatefulWidget {
   State<PersonalPlanScreen> createState() => _PersonalPlanScreenState();
 }
 
-class _PersonalPlanScreenState extends State<PersonalPlanScreen>
-    with TickerProviderStateMixin {
+class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PersonalPlanController>(
       builder: (controller) => Scaffold(
+        appBar: AppBar(),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -54,28 +53,27 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen>
                     height: 20,
                   ),
                   InputField(
-                     controller: controller.plantitleController,
+                    controller: controller.plantitleController,
                     lable: 'Plan Title',
                   ),
                   PriceInputField(
-                     controller: controller.priceController,
+                    controller: controller.priceController,
                     lable: 'Price',
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   GradientText2(
-                    text: 'Select plan catigory ',
+                    text: 'Select plan category ',
                     size: 18.0,
                   ),
                   Row(
                     children: [
                       GenderCard(
                         image: "assets/images/nutrition.svg",
-                        selected: personalPlanController.category == 'nutrition'
-                            ? true
-                            : false,
-                        ontap: personalPlanController.onnutritiontap,
+                        selected:
+                            controller.category == 'nutrition' ? true : false,
+                        ontap: controller.onnutritiontap,
                         text: 'Nutrition Plan',
                       ),
                       SizedBox(
@@ -83,10 +81,9 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen>
                       ),
                       GenderCard(
                         image: "assets/images/excercise.svg",
-                        ontap: personalPlanController.onexcercisetap,
-                        selected: personalPlanController.category == 'excercise'
-                            ? true
-                            : false,
+                        ontap: controller.onexcercisetap,
+                        selected:
+                            controller.category == 'excercise' ? true : false,
                         text: 'Exercises Plan',
                       ),
                     ],
@@ -97,9 +94,10 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen>
                   SelectPlanCard(
                     image: "assets/images/nutrition.svg",
                     image1: "assets/images/excercise.svg",
-                    selected:
-                        personalPlanController.category == 'excercise&nutrition' ? true : false,
-                    ontap: personalPlanController.onbothtap,
+                    selected: controller.category == 'excercise&nutrition'
+                        ? true
+                        : false,
+                    ontap: controller.onbothtap,
                     text: ' Exercises & Nutrition \n Plan',
                   ),
                   SizedBox(
@@ -109,7 +107,9 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen>
                     title: 'Submit ',
                     onPressed: controller.areFieldsFilled.value
                         ? () {
-                            controller.addplan();
+                            controller.addplan().then((value) {
+                              Get.back(result: controller.content);
+                            });
                           }
                         : () {
                             UiUtilites.errorSnackbar('Fill out all fields',

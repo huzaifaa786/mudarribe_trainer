@@ -19,10 +19,26 @@ class PlanFileApi {
     }
   }
 
+  Future<bool> deleteFile(String fileId) async {
+    try {
+      bool result = false;
+
+      _trainerplanfileCollection
+          .doc(fileId)
+          .delete()
+          .whenComplete(() => result = true);
+
+      return result;
+    } on PlatformException catch (e) {
+      throw DatabaseApiException(
+        title: 'Failed to delete file',
+        message: e.message,
+      );
+    }
+  }
+
   Future<List<PlanFile>> getFilesByPlanId(planId) async {
     try {
-      print(planId);
-    
       QuerySnapshot querySnapshot = await _trainerplanfileCollection
           .where('planId', isEqualTo: planId)
           .get();

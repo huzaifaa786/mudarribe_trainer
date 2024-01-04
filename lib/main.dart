@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,20 +11,18 @@ import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 import 'package:mudarribe_trainer/views/chat/controller.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // await LoadingHelper.init();
-
-  await GetStorage.init();
+  Get.put(NotificationService());
+ await GetStorage.init();
   Get.put<BusyController>(BusyController());
   Stripe.publishableKey =
       "pk_test_51JvIZ1Ey3DjpASZjPAzcOwqhblOq2hbchp6i56BsjapvhWcooQXqh33XwCrKiULfAe7NKFwKUhn2nqURE7VZcXXf00wMDzp4YN";
@@ -32,6 +33,9 @@ void main() async {
 
   //Load our .env file that contains our Stripe Secret key
   await dotenv.load(fileName: "assets/.env");
+    if(Platform.isAndroid) {
+    AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+  }
   runApp(
     const MyApp(),
   );

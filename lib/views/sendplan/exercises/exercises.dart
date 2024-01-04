@@ -23,12 +23,20 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
   final String description = '3 Files ,6 videos';
   @override
   Widget build(BuildContext context) {
-    var category = Get.arguments as String;
-
+    var category = Get.parameters['category'] as String;
+    var userId = Get.parameters['userId'] as String;
+    var orderId = Get.parameters['orderId'] as String;
+    var firebaseToken = Get.parameters['firebaseToken'] as String;
+    var trainerName = Get.parameters['trainerName'] as String;
+     
     return GetBuilder<ExercisesController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
           state.controller!.category = category;
+          state.controller!.orderId = orderId;
+          state.controller!.userId = userId;
+          state.controller!.firebaseToken = firebaseToken;
+          state.controller!.trainerName = trainerName;
         });
       },
       builder: (controller) => BusyIndicator(
@@ -38,7 +46,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
               child: Column(
             children: [
               TopBar(
-                text: category,
+                text: category.capitalize,
               ),
               Flexible(
                 flex: 1,
@@ -95,22 +103,42 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                             )),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.8,
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          child: ListView.builder(
-                            itemCount: controller.plans.length,
-                            itemBuilder: (context, index) => ExersizeCard(
-                              radiovalue: controller.plans[index].id,
-                              groupValue: controller.selectedPlan,
-                              onChanged: (value) {
-                                controller.changePlan(value);
-                              },
-                              title: controller.plans[index].name,
-                              description: 'f',
-                            ),
-                          ),
-                        ),
+                        controller.plans.isNotEmpty
+                            ? ListView.builder(
+                                physics: BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: controller.plans.length,
+                                itemBuilder: (context, index) => ExersizeCard(
+                                  radiovalue: controller.plans[index].id,
+                                  groupValue: controller.selectedPlan,
+                                  onChanged: (value) {
+                                    controller.changePlan(value);
+                                  },
+                                  title: controller.plans[index].name,
+                                  description:
+                                      controller.plans[index].description,
+                                ),
+                              )
+                            : Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
+                                width: MediaQuery.of(context).size.width * 0.9,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 18.0),
+                                  child: Text(
+                                    'There are no Existing files! Create new one .',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white
+                                          .withOpacity(0.6000000238418579),
+                                      fontSize: 14,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400,
+                                      height: 0,
+                                    ),
+                                  ),
+                                ),
+                              ),
                       ],
                     ),
                   ),
@@ -124,8 +152,14 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
               title: 'Next ',
               onPressed: controller.areFieldsFilled.value
                   ? () {
-                      Get.toNamed(AppRoutes.existingsendplan,
-                          arguments: controller.selectedPlan);
+                      Get.offNamed(AppRoutes.existingsendplan, parameters: {
+                        "planId": controller.selectedPlan,
+                        "userId": controller.userId,
+                        "orderId": controller.orderId,
+                        'firebaseToken': controller.firebaseToken,
+                        'category': controller.category,
+                        'trainerName': controller.trainerName
+                      });
                     }
                   : () {
                       UiUtilites.errorSnackbar('Fill out all fields',

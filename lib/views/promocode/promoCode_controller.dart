@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: unused_field
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class PromoCodeContoller extends GetxController {
   final _authApi = AuthApi();
   AppUser? currentUser;
   final _userService = UserService();
+  bool edit = false;
 
   @override
   void onInit() {
@@ -61,6 +63,27 @@ class PromoCodeContoller extends GetxController {
     await _promocodeService.createpromocode(
         promocode: PromoCode(
       id: promoId,
+      trainerId: currentUser!.id,
+      name: nameController.text,
+      discount: percentagecontroller.text,
+    ));
+
+    nameController.clear();
+    percentagecontroller.clear();
+
+    areFieldsFilled.value = false;
+    busyController.setBusy(false);
+    Get.back();
+    UiUtilites.successAlert(Get.context, 'Promo Code Added\nSuccessfully!');
+  }
+
+    Future updatePromocode() async {
+    busyController.setBusy(true);
+    // final promoId = DateTime.now().millisecondsSinceEpoch.toString();
+
+    await _promocodeService.createpromocode(
+        promocode: PromoCode(
+      id: id.toString(),
       trainerId: currentUser!.id,
       name: nameController.text,
       discount: percentagecontroller.text,

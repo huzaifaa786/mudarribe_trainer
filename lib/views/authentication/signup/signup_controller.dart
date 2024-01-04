@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/auth_api.dart';
@@ -175,17 +176,18 @@ class SignUpController extends GetxController {
 
   Future signUpTrainer() async {
     busyController.setBusy(true);
+
     try {
       final User user = await _authApi.signUpWithEmail(
         email: emailController.text,
         password: passwordController.text,
       );
 
-      if (user.uid.isNotEmpty) {
+      if (user.uid.isNotEmpty && areFieldsFilled.value == true) {
         CloudStorageResult imageResult = await _saveProfileImage(user.uid);
         CloudStorageResult certificateResult = await _saveCertificate(user.uid);
         CloudStorageResult passportResult = await _savePassportId(user.uid);
-
+        var token = await FirebaseMessaging.instance.getToken();
         await _userService.syncOrCreateUser(
           user: AppUser(
               id: user.uid,
@@ -202,7 +204,8 @@ class SignUpController extends GetxController {
               passportIdFileName: passportResult.imageFileName,
               passportIdUrl: passportResult.imageUrl,
               categories: selectedCategories,
-              languages: selectedLanguages),
+              languages: selectedLanguages,
+              firebaseToken: token),
         );
 
         UiUtilites.successAlert(

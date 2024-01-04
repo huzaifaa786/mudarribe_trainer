@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
-import 'package:mudarribe_trainer/values/controller.dart';
+import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -19,33 +20,24 @@ class _SaleScreenState extends State<SaleScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SaleController>(
+      initState: (state) async {
+        Future.delayed(Duration(milliseconds: 100), () {
+          state.controller!.fetchSale(FirebaseAuth.instance.currentUser!.uid);
+        });
+      },
       builder: (controller) => Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          forceMaterialTransparency: true,
+          title: TopBar(
+            text: 'My Sales',
+          ),
+        ),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                const Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 23,
-                    ),
-                    Text(
-                      "My Sales",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.left,
-                    )
-                  ],
-                ),
                 Flexible(
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height,
@@ -54,15 +46,15 @@ class _SaleScreenState extends State<SaleScreen> {
                       children: [
                         TableCalendar(
                           selectedDayPredicate: (day) =>
-                              isSameDay(day, saleController.today),
+                              isSameDay(day, controller.today),
                           firstDay: DateTime.utc(2023, 1, 1),
                           lastDay: DateTime.now(),
-                          focusedDay: saleController.today,
-                          rangeStartDay: saleController.rangeStart,
-                          rangeEndDay: saleController.rangeEnd,
+                          focusedDay: controller.today,
+                          rangeStartDay: controller.rangeStart,
+                          rangeEndDay: controller.rangeEnd,
                           rangeSelectionMode: RangeSelectionMode.enforced,
                           // onDaySelected: saleController.onDaySelected,
-                          onRangeSelected: saleController.onRangeSelected,
+                          onRangeSelected: controller.onRangeSelected,
                           headerStyle: const HeaderStyle(
                             formatButtonVisible: false,
                             titleCentered: true,
@@ -107,14 +99,15 @@ class _SaleScreenState extends State<SaleScreen> {
                             CalendarFormat.month: 'Month',
                             // CalendarFormat.week: 'Week',
                           },
-                          onPageChanged: saleController.onFormatChanged,
-                          calendarFormat: saleController.format,
+                          onPageChanged: controller.onFormatChanged,
+                          calendarFormat: controller.format,
                           onFormatChanged: (CalendarFormat format) {
                             setState(() {
                               format == CalendarFormat.week
-                                  ? saleController.format1 = 'week'
-                                  : saleController.format1 = 'month';
-                              saleController.format = format;
+                                  ? controller.format1 = 'week'
+                                  : controller.format1 = 'month';
+                              controller.format = format;
+                              controller.getsale();
                             });
                           },
                           startingDayOfWeek: StartingDayOfWeek.monday,
@@ -147,10 +140,10 @@ class _SaleScreenState extends State<SaleScreen> {
                                     color: const Color.fromARGB(255, 79, 75, 75)
                                         .withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(13)),
-                                child: const Align(
+                                child: Align(
                                     alignment: Alignment.center,
                                     child: GradientText2(
-                                      text: '0 AED',
+                                      text: '${controller.sum.toString()} AED',
                                       size: 29.0,
                                     )),
                               ),
