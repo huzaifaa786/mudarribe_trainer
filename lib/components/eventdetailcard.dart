@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 
@@ -88,13 +89,17 @@ class EventDetailsCard extends StatelessWidget {
                       padding: EdgeInsets.only(left: 8, right: 8),
                       child: Row(
                         children: [
-                          Text(
-                            address,
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 197, 191, 191),
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
+                          SizedBox(
+                            width: Get.width*0.8,
+                            child: Text(
+                              address,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 197, 191, 191),
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              ),
                             ),
                           )
                         ],

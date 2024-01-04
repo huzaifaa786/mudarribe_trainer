@@ -246,9 +246,22 @@ class _ProfileViewState extends State<ProfileView>
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                    PostCard(userimg: controller.currentUser!.profileImageUrl!,username:controller.currentUser!.name,postdescription: controller.posts[index].caption!,postimg:controller.posts[index].imageUrl! ,
-                                            )));
+                                                builder: (context) => PostCard(
+                                                      userimg: controller
+                                                          .currentUser!
+                                                          .profileImageUrl!,
+                                                      username: controller
+                                                          .currentUser!.name,
+                                                      postdescription:
+                                                          controller
+                                                              .posts[index]
+                                                              .caption!,
+                                                      postimg: controller
+                                                          .posts[index]
+                                                          .imageUrl!,
+                                                      postId: controller
+                                                          .posts[index].id,
+                                                    ))).then((value) => controller.getAppUser());
                                       },
                                       child: Image.network(
                                         controller.posts[index].imageUrl!,
