@@ -171,6 +171,6 @@ class AuthApi {
         return 0;
       }
     }
-    return 0; // Default value in case user is null
+    return 0; 
   }
 }
