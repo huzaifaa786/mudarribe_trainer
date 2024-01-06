@@ -21,7 +21,7 @@ class EditProfileContoller extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController bioController = TextEditingController();
   final _imageSelectorApi = ImageSelectorApi();
-  
+
   final _storageApi = StorageApi();
   final _authApi = AuthApi();
 
@@ -100,7 +100,7 @@ class EditProfileContoller extends GetxController {
           'profileImageUrl': imageResult.imageUrl,
           'categories': selectedCategories,
         });
-        UiUtilites.successSnackbar('Update User', 'User updated successfully');
+        UiUtilites.successSnackbar('', 'User updated successfully');
       }
     } else {
       await _userService.updateUser(
@@ -111,7 +111,7 @@ class EditProfileContoller extends GetxController {
           'categories': selectedCategories,
         },
       );
-      UiUtilites.successSnackbar('Update User', 'User updated successfully');
+      UiUtilites.successSnackbar('', 'User updated successfully');
     }
     busyController.setBusy(false);
   }
