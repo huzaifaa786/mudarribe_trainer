@@ -133,7 +133,7 @@ class ChatPageState extends State<ChatPage> {
     docRef.get().then((docSnapshot) {
       if (docSnapshot.exists) {
         // Document exists, proceed with the update
-        docRef.update({'companySeen': true}).then((_) {
+        docRef.update({'trainerSeen': true}).then((_) {
           print('Update successful');
         }).catchError((error) {
           print('Error updating document: $error');
