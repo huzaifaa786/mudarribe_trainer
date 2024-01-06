@@ -21,7 +21,7 @@ class TrainerOrder {
     planId = json['planId'];
     type = json['type'];
     userId = json['userId'];
-    // amount = json['amount'] ?? '';
+    amount = json['amount'] ?? '';
   }
 
   // Map<String, dynamic> toJson() {

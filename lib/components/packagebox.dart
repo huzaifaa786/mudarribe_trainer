@@ -29,18 +29,18 @@ class PackageCard extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               InkWell(
                 onTap: ontap,
                 child: Image.asset('assets/images/edit.png'),
               ),
-              InkWell(
-                onTap: onPressed,
-                child: SvgPicture.asset(
-                  'assets/images/delete.svg',
-                ),
-              ),
+              // InkWell(
+              //   onTap: onPressed,
+              //   child: SvgPicture.asset(
+              //     'assets/images/delete.svg',
+              //   ),
+              // ),
             ],
           ),
           SizedBox(height: 10,),

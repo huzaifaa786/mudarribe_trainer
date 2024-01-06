@@ -3,14 +3,13 @@ class TraineeProfile {
   late String userType;
   String? name;
   String? email;
-  String? imageUrl;
+  // String? imageUrl;
   String? firebaseToken;
   TraineeProfile(
       {required this.id,
       this.name,
       this.email,
       required this.userType,
-      this.imageUrl,
       this.firebaseToken});
 
   TraineeProfile.fromJson(Map<String, dynamic> json) {
@@ -18,7 +17,6 @@ class TraineeProfile {
     name = json['name'];
     email = json['email'];
     userType = json['userType'];
-    imageUrl = json['profileImageUrl'] ?? '';
     firebaseToken = json['firebaseToken'] ?? '';
   }
 
@@ -38,7 +36,6 @@ class TraineeProfile {
       userType: map['userType'],
       name: map['name'],
       email: map['email'],
-      imageUrl: map['profileImageUrl'],
       firebaseToken: map['firebaseToken'],
     );
   }

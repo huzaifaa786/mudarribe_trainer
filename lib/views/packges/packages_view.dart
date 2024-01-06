@@ -59,16 +59,16 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                                   .getTrainerPackages());
                                         },
                                         onPressed: () {
-                                          String id =
-                                              controller.packages[index].id;
+                                          // String id =
+                                          //     controller.packages[index].id;
 
-                                          UiUtilites.confirmAlert(context,
-                                              'Are you sure you want to delete this package?',
-                                              () {
-                                            controller.deletePackageById(id);
-                                          }, () {
-                                            Get.back();
-                                          }, 'Yes', 'Cancel');
+                                          // UiUtilites.confirmAlert(context,
+                                          //     'Are you sure you want to delete this package?',
+                                          //     () {
+                                          //   controller.deletePackageById(id);
+                                          // }, () {
+                                          //   Get.back();
+                                          // }, 'Yes', 'Cancel');
                                         },
                                         name: controller.packages[index].name,
                                         discription: controller

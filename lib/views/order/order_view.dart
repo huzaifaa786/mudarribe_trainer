@@ -43,6 +43,7 @@ class _OrderScreenState extends State<OrderScreen> {
                     child: FutureBuilder<List<CombinedOrderData>>(
                         future: OrderApi.fetchTrainerOrders(),
                         builder: (context, snapshot) {
+                          print(snapshot);
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return SizedBox(
@@ -53,7 +54,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             );
                           }
                           if (snapshot.hasError) {
-                            return Text('1234567890');
+                            return Text('');
                           }
                           if (!snapshot.hasData) {
                             return SizedBox(
@@ -98,14 +99,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             peerId: combinedOrderData[index]
                                                 .trainee
                                                 .id,
-                                            peerAvatar: combinedOrderData[index]
-                                                        .trainee
-                                                        .imageUrl !=
-                                                    null
-                                                ? combinedOrderData[index]
-                                                    .trainee
-                                                    .imageUrl!
-                                                : 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
+                                            peerAvatar: 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
                                             peerNickname:
                                                 combinedOrderData[index]
                                                     .trainee
@@ -116,9 +110,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     },
                                     userName:
                                         combinedOrderData[index].trainee.name,
-                                    profileImage: combinedOrderData[index]
-                                        .trainee
-                                        .imageUrl,
+                                    profileImage: 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
                                     packageName:
                                         combinedOrderData[index].order.type ==
                                                 'My_Plan'
