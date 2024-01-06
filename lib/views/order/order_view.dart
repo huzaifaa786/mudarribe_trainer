@@ -43,11 +43,23 @@ class _OrderScreenState extends State<OrderScreen> {
                     child: FutureBuilder<List<CombinedOrderData>>(
                         future: OrderApi.fetchTrainerOrders(),
                         builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return SizedBox(
+                              height: Get.height * 0.7,
+                              child: BasicLoader(
+                                background: false,
+                              ),
+                            );
+                          }
                           if (snapshot.hasError) {
-                            return Text('');
+                            return Text('1234567890');
                           }
                           if (!snapshot.hasData) {
-                            return Text('');
+                            return SizedBox(
+                                width: Get.width,
+                                height: Get.height,
+                                child: Center(child: Text('No order found!')));
                           }
                           List<CombinedOrderData> combinedOrderData =
                               snapshot.data!;
@@ -69,9 +81,11 @@ class _OrderScreenState extends State<OrderScreen> {
                                                     .trainee
                                                     .firebaseToken
                                                     .toString(),
-                                              "trainerName": combinedOrderData[index]
-                                                .trainer
-                                                .name.toString(),       
+                                            "trainerName":
+                                                combinedOrderData[index]
+                                                    .trainer
+                                                    .name
+                                                    .toString(),
                                             "orderId": combinedOrderData[index]
                                                 .order
                                                 .id

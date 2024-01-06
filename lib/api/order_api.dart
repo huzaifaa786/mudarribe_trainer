@@ -10,20 +10,19 @@ import 'package:mudarribe_trainer/models/trainee_profile.dart';
 class OrderApi {
   static Future<List<CombinedOrderData>> fetchTrainerOrders() async {
     final trainerId = FirebaseAuth.instance.currentUser!.uid;
-
     List<CombinedOrderData> combineOrders = [];
     QuerySnapshot orders = await FirebaseFirestore.instance
         .collection('orders')
         .where("trainerId", isEqualTo: trainerId)
         .get();
-
+    print(orders);
     for (var orderDoc in orders.docs) {
       if (orderDoc.exists) {
         Map<String, dynamic> orderData =
             orderDoc.data()! as Map<String, dynamic>;
 
         TrainerOrder order = TrainerOrder.fromJson(orderData);
-        
+
         DocumentSnapshot trainerSnapshot = await FirebaseFirestore.instance
             .collection('users')
             .doc(order.trainerId)
