@@ -21,6 +21,7 @@ class EditProfileContoller extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController bioController = TextEditingController();
   final _imageSelectorApi = ImageSelectorApi();
+  
   final _storageApi = StorageApi();
   final _authApi = AuthApi();
 
