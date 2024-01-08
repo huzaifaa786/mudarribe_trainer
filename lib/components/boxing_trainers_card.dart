@@ -43,7 +43,7 @@ class PostCard extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.only(bottom: 12),
+          margin: EdgeInsets.only(bottom: 12,left: 15,right: 15),
           padding: EdgeInsets.only(top: 20, bottom: 20),
           decoration: BoxDecoration(
             color: bgContainer,
@@ -145,7 +145,8 @@ class PostCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Padding(
+                  Container(
+                    constraints: BoxConstraints(maxWidth: Get.width*0.89),
                     padding: EdgeInsets.only(
                       left: 10,
                       right: 10,

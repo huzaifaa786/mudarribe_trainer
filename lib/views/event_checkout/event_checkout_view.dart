@@ -35,9 +35,14 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
               child: Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.black,
-                  leading: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: white,
+                  leading: InkWell(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: white,
+                    ),
                   ),
                   title: Text(
                     'Event Check out',

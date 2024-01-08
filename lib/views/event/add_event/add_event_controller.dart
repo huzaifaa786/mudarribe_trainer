@@ -130,6 +130,7 @@ class AddEventContoller extends GetxController {
         eventStatus: EventStatus.open,
       ));
       if (selectedOption == 1) {
+        busyController.setBusy(false);
         Get.toNamed(AppRoutes.eventcheckout, arguments: eventId)!;
         clearValues();
       } else {
