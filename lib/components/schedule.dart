@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -45,20 +46,21 @@ class Scheduleinput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:15),
+      padding: const EdgeInsets.only(top: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 4,left: 4,right: 4),
+            padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4),
             child: Text(
               text,
               style: TextStyle(
                   fontFamily: "Poppins",
-fontSize: 14,
-fontWeight: FontWeight.w400,color: white.withOpacity(0.45)),
-            ),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: white.withOpacity(0.45)),
+            ).translate(),
           ),
           SizedBox(
             height: 50,
@@ -88,7 +90,9 @@ fontWeight: FontWeight.w400,color: white.withOpacity(0.45)),
                   width: 1,
                 ),
                 focusedBorder: GradientOutlineInputBorder(
-                  gradient: LinearGradient(colors: [borderTop, borderbottom],begin: Alignment.topCenter,
+                  gradient: LinearGradient(
+                      colors: [borderTop, borderbottom],
+                      begin: Alignment.topCenter,
                       end: Alignment.bottomCenter),
                   width: 1,
                 ),

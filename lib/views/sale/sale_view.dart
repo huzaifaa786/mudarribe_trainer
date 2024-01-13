@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/views/sale/sale_controller.dart';
@@ -130,7 +131,7 @@ class _SaleScreenState extends State<SaleScreen> {
                                   style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500,
-                                      color: white)),
+                                      color: white)).translate(),
                               SizedBox(height: 30),
                               Container(
                                 width: MediaQuery.of(context).size.width,

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
     as picker;
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/event_inputfield.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/price_input__without_label.dart';
 import 'package:mudarribe_trainer/components/schedule.dart';
@@ -64,7 +66,6 @@ class _AddEventScreenState extends State<AddEventScreen> {
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -122,14 +123,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset('assets/images/heroicon.png'),
-                                      GradientText(
-                                        'Upload Event Photo',
-                                        style: const TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        colors: const [borderbottom, borderTop],
+                                      GradientText2(
+                                        text: 'Upload Event Photo',
+                                        size: 11.0,
                                       ),
                                     ],
                                   ),
@@ -144,7 +140,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 fontFamily: "Poppins",
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                              )),
+                              )).translate(),
                         ),
                         EventInputField(
                           controller: controller.eventTitleController,
@@ -232,7 +228,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         fontFamily: "Poppins",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
-                                      )),
+                                      )).translate(),
                                 ),
                                 SizedBox(
                                     width:
@@ -255,7 +251,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         fontFamily: "Poppins",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
-                                      )),
+                                      )).translate(),
                                 ),
                                 SizedBox(
                                     width: MediaQuery.of(context).size.width *
@@ -278,7 +274,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     color: white.withOpacity(0.4),
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
-                                  )),
+                                  )).translate(),
                               InkWell(
                                 onTap: () async {
                                   if (await getpermission() == true) {
@@ -329,16 +325,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                               child: Image.asset(
                                                   'assets/images/selectgooglemapicon.png'),
                                             ),
-                                            GradientText(
-                                                'Select From Google Map',
-                                                style: const TextStyle(
-                                                  fontSize: 14.0,
-                                                  fontFamily: "Poppins",
-                                                ),
-                                                colors: const [
-                                                  borderTop,
-                                                  borderbottom
-                                                ]),
+                                            GradientText2(
+                                              text:  'Select From Google Map',
+                                              size: 14.0),
                                           ],
                                         )
                                       : Padding(
@@ -368,7 +357,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         fontSize: 14,
                                         fontFamily: "Poppins",
                                         fontWeight: FontWeight.w500,
-                                      )),
+                                      )).translate(),
                                 ),
                               ),
                               Row(

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -54,7 +55,7 @@ class MainCard extends StatelessWidget {
               height: 46 / 14,
             ),
             textAlign: TextAlign.center,
-          )
+          ).translate()
         ],
       ),
     );

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -50,7 +51,7 @@ class SelectUserCard extends StatelessWidget {
                 color: Colors.white,
                 height: 52 / 20,
               ),
-            ),
+            ).translate(),
           ),
         ),
       ),

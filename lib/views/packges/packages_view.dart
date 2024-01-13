@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/packagebox.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
@@ -105,14 +106,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 12.0),
-                                    child: GradientText(
-                                      'Add New Package',
-                                      style: TextStyle(
-                                        fontFamily: "Poppins",
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                      colors: [borderTop, borderbottom],
+                                    child: GradientText2(
+                                      text: 'Add New Package',
+                                      size: 14.0,
+                                      weight: FontWeight.w600,
                                     ),
                                   ),
                                 ],

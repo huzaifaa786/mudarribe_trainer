@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/values/translation.dart';
 
-class BioInputField extends StatelessWidget {
+class BioInputField extends StatefulWidget {
   const BioInputField({
     Key? key,
     this.controller,
@@ -29,25 +30,41 @@ class BioInputField extends StatelessWidget {
   final readOnly;
 
   @override
+  State<BioInputField> createState() => _BioInputFieldState();
+}
+
+class _BioInputFieldState extends State<BioInputField> {
+  String? labelTranslation;
+  translateLabel() async {
+    labelTranslation = await translateText(widget.lable);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    translateLabel();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
         child: TextFormField(
-          
-            readOnly: readOnly,
-            obscureText: obscure,
-            controller: controller,
-            validator: validator,
+            readOnly: widget.readOnly,
+            obscureText: widget.obscure,
+            controller: widget.controller,
+            validator: widget.validator,
             maxLines: 3,
-            autovalidateMode: autovalidateMode ??
-                (validator == true.obs
+            autovalidateMode: widget.autovalidateMode ??
+                (widget.validator == true.obs
                     ? AutovalidateMode.always
                     : AutovalidateMode.onUserInteraction),
             style: TextStyle(color: Colors.white),
-            keyboardType: type,
+            keyboardType: widget.type,
             decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                  // contentPadding: EdgeInsets.only(top: 60),
+                // contentPadding: EdgeInsets.only(top: 60),
                 fillColor: Colors.white,
                 border: GradientOutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -59,9 +76,8 @@ class BioInputField extends StatelessWidget {
                 ),
                 hoverColor: Colors.grey,
                 focusColor: Colors.grey,
-                labelText: lable,
-                hintText: hint,
-                
+                labelText: labelTranslation ?? '...',
+                hintText: widget.hint,
                 labelStyle: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,

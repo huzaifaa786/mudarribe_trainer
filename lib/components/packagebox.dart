@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class PackageCard extends StatelessWidget {
@@ -124,7 +125,7 @@ class PackageCard extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                  ))
+                  )).translate()
             ],
           )
         ],

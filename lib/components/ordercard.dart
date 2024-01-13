@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_adjacent_string_concatenation
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -41,22 +43,22 @@ class OrderCard extends StatelessWidget {
                     children: [
                       profileImage != ''
                           ? ClipRRect(
-                            borderRadius: BorderRadius.circular(45),
-                            child: Image.network(
+                              borderRadius: BorderRadius.circular(45),
+                              child: Image.network(
                                 profileImage,
                                 height: 35,
                                 width: 35,
                                 fit: BoxFit.cover,
                               ),
-                          )
+                            )
                           : ClipRRect(
-                                borderRadius: BorderRadius.circular(45),
-                            child: Image.asset(
+                              borderRadius: BorderRadius.circular(45),
+                              child: Image.asset(
                                 'assets/images/person.png',
                                 height: 35,
                                 width: 35,
                               ),
-                          ),
+                            ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -74,14 +76,9 @@ class OrderCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  GradientText(
-                    'Package :',
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    colors: [borderTop, borderbottom],
+                  GradientText2(
+                    text: 'Package :',
+                    size: 12.0,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
@@ -98,14 +95,8 @@ class OrderCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  GradientText(
-                    '      Price :',
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    colors: [borderTop, borderbottom],
+                  GradientText2(
+                    text: '      Price :',
                   ),
                   Padding(
                       padding: const EdgeInsets.only(left: 8, right: 8),
@@ -117,21 +108,17 @@ class OrderCard extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                         textAlign: TextAlign.left,
-                      ))
+                      ).translate())
                 ],
               ),
               InkWell(
                 onTap: onTapSendPlan,
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: GradientText(
-                    'Send Plan',
-                    style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    colors: [borderTop, borderbottom],
+                  child: GradientText2(
+                    text: 'Send Plan',
+                    size: 16.0,
+                    weight: FontWeight.w700,
                   ),
                 ),
               )

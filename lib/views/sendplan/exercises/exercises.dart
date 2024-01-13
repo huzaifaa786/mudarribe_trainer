@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/exersize_card.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
@@ -68,14 +69,14 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             children: [
-                              const Padding(
+                              Padding(
                                 padding: EdgeInsets.only(top: 25, bottom: 25),
                                 child: Text("New Plan File",
                                     style: TextStyle(
                                       color: white,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
-                                    )),
+                                    )).translate(),
                               ),
                               InputField(
                                 controller: controller.filenameController,
@@ -97,12 +98,12 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                           padding: const EdgeInsets.only(top: 15, bottom: 20),
                           child: Image.asset('assets/images/ortext.png'),
                         ),
-                        const Text("Add to Existing File",
+                        Text("Add to Existing File",
                             style: TextStyle(
                               color: white,
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                            )),
+                            )).translate(),
                         controller.plans.isNotEmpty
                             ? ListView.builder(
                                 physics: BouncingScrollPhysics(),
@@ -136,7 +137,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                                       fontWeight: FontWeight.w400,
                                       height: 0,
                                     ),
-                                  ),
+                                  ).translate(),
                                 ),
                               ),
                       ],

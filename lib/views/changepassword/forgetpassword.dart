@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
@@ -33,7 +34,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             children: [
              
               Row(
-                children: const [
+                children:  [
                   Padding(
                     padding: EdgeInsets.only(
                         left: 5, bottom: 50, top: 40),
@@ -43,7 +44,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
                           color: White),
-                    ),
+                    ).translate(),
                   ),
                 ],
               ),
@@ -62,7 +63,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       'Enter your Email please',
                       style:
                           TextStyle(color: Color.fromARGB(255, 195, 186, 186)),
-                    ),
+                    ).translate(),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: InputField(

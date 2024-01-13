@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -53,7 +54,7 @@ class _SignupViewState extends State<SignupView> {
                               color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.w700),
-                        ),
+                        ).translate(),
                       ],
                     ),
                     SizedBox(
@@ -69,7 +70,7 @@ class _SignupViewState extends State<SignupView> {
                           CircleAvatar(
                             backgroundImage: controller.profileImage != null
                                 ? Image.file(controller.profileImage!).image
-                                : AssetImage("assets/images/logo.png"),
+                                : AssetImage("assets/images/user.png"),
                           ),
                           Positioned(
                               bottom: 23,
@@ -126,7 +127,7 @@ class _SignupViewState extends State<SignupView> {
                     ),
                     Gap(16),
                     MultiSelectDropDown(
-                      label: 'Category of train',
+                      label: 'Area of profession',
                       item: CategoryList(),
                       onchange: controller.onchange,
                       selected: controller.selectedCategories,

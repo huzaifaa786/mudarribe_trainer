@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
@@ -44,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const Text(
                   'Enter Your Registered Email & Password.',
                   style: TextStyle(color: white, fontSize: 15),
-                ),
+                ).translate(),
                 Padding(
                     padding: const EdgeInsets.only(top: 28),
                     child: Container(

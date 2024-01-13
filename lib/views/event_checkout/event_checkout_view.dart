@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/Eventcheckoutcontainer.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
@@ -51,7 +52,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                         color: white,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Poppins'),
-                  ),
+                  ).translate(),
                 ),
                 body: SafeArea(
                   child: Container(
@@ -91,7 +92,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                         ),
-                                      ),
+                                      ).translate(),
                                       GradientText2(
                                         text: 'Add Code',
                                       )
@@ -112,7 +113,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                   ),
-                                ),
+                                ).translate(),
                               ),
                             ),
                             Container(
@@ -140,7 +141,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ),
+                                        ).translate(),
                                         Text(
                                           controller.bannerCharges!.amount! +
                                               ' AED',
@@ -149,7 +150,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ),
+                                        ).translate(),
                                       ],
                                     ),
                                   ),
@@ -175,7 +176,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ),
+                                        ).translate(),
                                         Text(
                                           '00.00 AED',
                                           style: TextStyle(
@@ -183,7 +184,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ),
+                                        ).translate(),
                                       ],
                                     ),
                                   ),
@@ -209,7 +210,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ),
+                                        ).translate(),
                                         GradientText(
                                           controller.bannerCharges!.amount! +
                                               ' AED',
@@ -365,7 +366,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                             ),
-                          ),
+                          ).translate(),
                         )),
                   ),
                 ),

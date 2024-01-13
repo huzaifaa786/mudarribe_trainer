@@ -26,9 +26,6 @@ import 'package:mudarribe_trainer/views/home/home_binding.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signin/signin_view.dart';
 import 'package:mudarribe_trainer/views/authentication/signup/signup_view.dart';
-
-import 'package:mudarribe_trainer/views/chats/allChats/allchats_view.dart';
-
 import 'package:mudarribe_trainer/views/event/myevent_view.dart';
 import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_binding.dart';
@@ -39,7 +36,6 @@ import 'package:mudarribe_trainer/views/sendplan/exercises/exercises.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_view.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_view.dart';
-
 import 'package:mudarribe_trainer/views/promocode/promoCode_binding.dart';
 import 'package:mudarribe_trainer/views/promocode/promoCode_view.dart';
 import 'package:mudarribe_trainer/views/sale/sale_view.dart';
@@ -47,10 +43,7 @@ import 'package:mudarribe_trainer/views/sendplan/exercises/exercises_binding.dar
 import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_mealplan.dart';
 import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_plan_binding.dart';
 import 'package:mudarribe_trainer/views/sendplan/home_view.dart';
-
 import 'package:mudarribe_trainer/views/sendplan/sendplan_binding.dart';
-
-// import 'package:mudarribe_trainer/views/plans/sendplan/home_view.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
 import 'package:mudarribe_trainer/views/story/story_binding.dart';
@@ -84,10 +77,6 @@ class AppPages {
       name: AppRoutes.orders,
       page: () => const OrderScreen(),
       binding: OrderBinding(),
-    ),
-    GetPage(
-      name: AppRoutes.chats,
-      page: () => const Chats(),
     ),
     GetPage(
       name: AppRoutes.changepassword,

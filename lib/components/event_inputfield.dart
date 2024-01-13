@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/values/translation.dart';
 
-class EventInputField extends StatelessWidget {
+class EventInputField extends StatefulWidget {
   const EventInputField({
     Key? key,
     this.controller,
@@ -29,23 +30,39 @@ class EventInputField extends StatelessWidget {
   final readOnly;
 
   @override
+  State<EventInputField> createState() => _EventInputFieldState();
+}
+
+class _EventInputFieldState extends State<EventInputField> {
+  String? labelTranslation;
+  translateLabel() async {
+    labelTranslation = await translateText(widget.lable);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    translateLabel();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-        readOnly: readOnly,
-        obscureText: obscure,
-        controller: controller,
-        validator: validator,
-        autovalidateMode: autovalidateMode ??
-            (validator == true.obs
+        readOnly: widget.readOnly,
+        obscureText: widget.obscure,
+        controller: widget.controller,
+        validator: widget.validator,
+        autovalidateMode: widget.autovalidateMode ??
+            (widget.validator == true.obs
                 ? AutovalidateMode.always
                 : AutovalidateMode.onUserInteraction),
         style: TextStyle(color: Colors.white),
-        keyboardType: type,
+        keyboardType: widget.type,
         decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,
             // fillColor: Colors.white,
-            contentPadding:
-                EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
             border: GradientOutlineInputBorder(
               borderRadius: BorderRadius.circular(2),
               gradient: const LinearGradient(
@@ -56,8 +73,8 @@ class EventInputField extends StatelessWidget {
             ),
             hoverColor: Colors.grey,
             focusColor: Colors.grey,
-            labelText: lable,
-            hintText: hint,
+            labelText: labelTranslation ?? '...',
+            hintText: widget.hint,
             labelStyle: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w500,

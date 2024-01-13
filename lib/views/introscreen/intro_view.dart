@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/userSelectionCard.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
@@ -30,13 +31,13 @@ class _IntroScreenState extends State<IntroScreen> {
               const SizedBox(
                 height: 70,
               ),
-              const Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     'Choose to continue',
                     style: TextStyle(color: Colors.white),
-                  ),
+                  ).translate(),
                 ],
               ),
               const SizedBox(
@@ -47,12 +48,12 @@ class _IntroScreenState extends State<IntroScreen> {
                 selected: introController.selected == 'New' ? true : false,
                 ontap: introController.onNewtap,
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(top: 12, bottom: 14),
                 child: Text(
                   'OR',
                   style: TextStyle(color: Colors.white),
-                ),
+                ).translate(),
               ),
               SelectUserCard(
                 text: 'Existing Trainer',

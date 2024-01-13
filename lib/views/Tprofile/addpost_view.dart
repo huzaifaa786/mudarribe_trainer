@@ -6,6 +6,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -72,14 +73,9 @@ class _AddPostState extends State<AddPost> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset('assets/images/heroicon.png'),
-                                GradientText(
-                                  'Upload Photo',
-                                  style: const TextStyle(
-                                    fontFamily: "Poppins",
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  colors: const [borderbottom, borderTop],
+                                GradientText2(
+                                 text: 'Upload Photo',
+                                  weight: FontWeight.w400,
                                 ),
                               ],
                             ),

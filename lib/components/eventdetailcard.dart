@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 
@@ -122,7 +123,7 @@ class EventDetailsCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
-                      ),
+                      ).translate(),
                     )
                   ],
                 ),
@@ -159,7 +160,7 @@ class EventDetailsCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
-                      ),
+                      ).translate(),
                     ),
                     GradientText2(
                       text: '$attendees/$capacity',
@@ -177,7 +178,7 @@ class EventDetailsCard extends StatelessWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
-                    ),
+                    ).translate(),
                     Text(
                       '$price AED',
                       style: TextStyle(
@@ -186,7 +187,7 @@ class EventDetailsCard extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
-                    )
+                    ).translate()
                   ],
                 ),
               ],
@@ -213,7 +214,7 @@ class EventDetailsCard extends StatelessWidget {
                       Text(
                         'Closed',
                         style: TextStyle(fontSize: 16.0, color: Colors.grey),
-                      ),
+                      ).translate(),
                     ],
                   ),
           ],

@@ -3,7 +3,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/chat/full_photo_page.dart';
 import 'package:path_provider/path_provider.dart';
@@ -431,7 +433,11 @@ class ChatPageState extends State<ChatPage> {
                                           )),
                                       SizedBox(
                                         width: 200,
-                                        child: Text(get_text_between(messageChat.content, "/o/", "?"),
+                                        child: Text(
+                                            get_text_between(
+                                                messageChat.content,
+                                                "/o/",
+                                                "?"),
                                             overflow: TextOverflow.ellipsis,
                                             style:
                                                 TextStyle(color: Colors.black)),
@@ -460,7 +466,7 @@ class ChatPageState extends State<ChatPage> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16),
-                                            ),
+                                            ).translate(),
                                             Text(
                                               messageChat.content
                                                   .split("~~")[0]
@@ -478,7 +484,7 @@ class ChatPageState extends State<ChatPage> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16),
-                                            ),
+                                            ).translate(),
                                             Text(
                                               messageChat.content
                                                   .split("~~")[1]
@@ -496,7 +502,7 @@ class ChatPageState extends State<ChatPage> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16),
-                                            ),
+                                            ).translate(),
                                             Text(
                                               messageChat.content
                                                   .split("~~")[2]
@@ -728,7 +734,11 @@ class ChatPageState extends State<ChatPage> {
                                             )),
                                         SizedBox(
                                           width: 200,
-                                          child: Text(get_text_between(messageChat.content, "/o/", "?"),
+                                          child: Text(
+                                              get_text_between(
+                                                  messageChat.content,
+                                                  "/o/",
+                                                  "?"),
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
                                                   color: Colors.white)),
@@ -940,7 +950,8 @@ class ChatPageState extends State<ChatPage> {
                       controller: listScrollController,
                     );
                   } else {
-                    return Center(child: Text("No message here yet..."));
+                    return Center(
+                        child: Text("No message here yet...").translate());
                   }
                 } else {
                   return Center(
@@ -991,14 +1002,9 @@ class ChatPageState extends State<ChatPage> {
                     }
                   });
                 },
-                child: GradientText(
-                  'Personal Plan',
-                  colors: [borderTop, borderbottom],
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                child: GradientText2(
+                  text: 'Personal Plan',
+                  size: 16.0,
                 ),
               ),
               Container(
@@ -1027,7 +1033,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ),
+                ).translate(),
               ),
               Container(
                   width: double.infinity,
@@ -1055,7 +1061,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ),
+                ).translate(),
               ),
               Container(
                   width: double.infinity,
@@ -1083,7 +1089,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ),
+                ).translate(),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -1108,7 +1114,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ),
+                ).translate(),
               ),
             ],
           ),

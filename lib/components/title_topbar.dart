@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 
 class TitleTopBar extends StatelessWidget {
   const TitleTopBar({super.key, this.name, this.ontap});
@@ -30,7 +31,7 @@ class TitleTopBar extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w700,
             ),
-          ),
+          ).translate(),
         ],
       ),
     );

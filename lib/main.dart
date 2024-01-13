@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,7 +23,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(NotificationService());
- await GetStorage.init();
+  await GetStorage.init();
   Get.put<BusyController>(BusyController());
   Stripe.publishableKey =
       "pk_test_51JvIZ1Ey3DjpASZjPAzcOwqhblOq2hbchp6i56BsjapvhWcooQXqh33XwCrKiULfAe7NKFwKUhn2nqURE7VZcXXf00wMDzp4YN";
@@ -33,7 +34,7 @@ void main() async {
 
   //Load our .env file that contains our Stripe Secret key
   await dotenv.load(fileName: "assets/.env");
-    if(Platform.isAndroid) {
+  if (Platform.isAndroid) {
     AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
   }
   runApp(
@@ -53,29 +54,37 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<ChatProvider>(
-          create: (_) => ChatProvider(),
-        ),
-      ],
-      child: GetMaterialApp(
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-          scaffoldBackgroundColor: Colors.black,
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Colors.white,
+    GetStorage box = GetStorage();
+    box.read('Locale') == null ? box.write('Locale', 'en') : null;
+    String locale = box.read('Locale') == null ? 'en' : box.read('Locale');
+    return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',
+        translateFrom: box.read('Locale') == 'en' ? Locale('ur') : Locale('en'),
+        translateTo: Locale(locale),
+        automaticDetection: false, builder: () {
+      return MultiProvider(
+        providers: [
+          Provider<ChatProvider>(
+            create: (_) => ChatProvider(),
           ),
-          useMaterial3: true,
-          fontFamily: 'Montserrat',
+        ],
+        child: GetMaterialApp(
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+            scaffoldBackgroundColor: Colors.black,
+            textSelectionTheme: const TextSelectionThemeData(
+              cursorColor: Colors.white,
+            ),
+            useMaterial3: true,
+            fontFamily: 'Montserrat',
+          ),
+          debugShowCheckedModeBanner: false,
+          title: "Mudarribe",
+          initialBinding: SplashBinding(),
+          home: const SplashView(),
+          getPages: AppPages.pages,
         ),
-        debugShowCheckedModeBanner: false,
-        title: "Mudarribe",
-        initialBinding: SplashBinding(),
-        home: const SplashView(),
-        getPages: AppPages.pages,
-      ),
-    );
+      );
+    });
   }
 }

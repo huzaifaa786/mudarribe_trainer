@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -103,7 +104,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ),
+                    ).translate(),
                     Gap(40),
                   ],
                 ),
@@ -172,7 +173,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ),
+                    ).translate(),
                     Gap(10),
                     Divider(
                       height: 1,
@@ -191,19 +192,19 @@ class UiUtilites {
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
                             ),
-                          ),
+                          ).translate(),
                         ),
                         InkWell(
                           onTap: onPressOK,
-                          child: GradientText(
+                          child: Text(
                             textOk,
-                            colors: [borderTop, borderbottom],
                             style: const TextStyle(
                               fontFamily: "Montserrat",
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
+                              color: borderTop,
                             ),
-                          ),
+                          ).translate(),
                         ),
                       ],
                     ),
@@ -215,7 +216,9 @@ class UiUtilites {
           );
         });
   }
-  static confirmStoryAlert(context, title,onPressOK,onPressCancel,textOk,textCancel) {
+
+  static confirmStoryAlert(
+      context, title, onPressOK, onPressCancel, textOk, textCancel) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -273,7 +276,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ),
+                    ).translate(),
                     Gap(10),
                     Divider(
                       height: 1,
@@ -292,20 +295,19 @@ class UiUtilites {
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
                             ),
-                          ),
+                          ).translate(),
                         ),
                         InkWell(
-                          onTap: onPressOK,
-                          child: GradientText(
-                            textOk,
-                            colors: [borderTop, borderbottom],
-                            style: const TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
+                            onTap: onPressOK,
+                            child: Text(
+                              textOk,
+                              style: const TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: borderTop,
+                              ),
+                            ).translate()),
                       ],
                     ),
                     Gap(10),

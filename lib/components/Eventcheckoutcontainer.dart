@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 import 'package:mudarribe_trainer/values/color.dart';
@@ -129,7 +130,7 @@ class EventcheckoutContainer extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
-                  )),
+                  ).translate()),
             ],
           )
         ],

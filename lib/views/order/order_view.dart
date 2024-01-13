@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/api/order_api.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
@@ -60,7 +61,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             return SizedBox(
                                 width: Get.width,
                                 height: Get.height,
-                                child: Center(child: Text('No order found!')));
+                                child: Center(child: Text('No order found!').translate()));
                           }
                           List<CombinedOrderData> combinedOrderData =
                               snapshot.data!;

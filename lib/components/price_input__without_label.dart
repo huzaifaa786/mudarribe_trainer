@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
 class PriceInputWithoutLabel extends StatelessWidget {
@@ -50,7 +51,7 @@ class PriceInputWithoutLabel extends StatelessWidget {
                     fontFamily: "Poppins",
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
-              ),
+              ).translate(),
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             fillColor: Colors.white,

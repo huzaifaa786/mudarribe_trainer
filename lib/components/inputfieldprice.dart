@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -19,7 +20,7 @@ class InputFieldPrice extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-          ),
+          ).translate(),
           Container(
             width: MediaQuery.of(context).size.width * 0.6,
             padding: const EdgeInsets.only(top: 5),

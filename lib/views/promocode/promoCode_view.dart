@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/api/promocode.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -55,7 +56,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
                                       color: white),
-                                ),
+                                ).translate(),
                               ),
                             ],
                           ),

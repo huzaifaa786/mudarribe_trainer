@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
@@ -13,6 +14,7 @@ import 'package:mudarribe_trainer/components/multi_select_dropdown.dart';
 import 'package:mudarribe_trainer/values/category_list.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
+import 'package:mudarribe_trainer/views/app_translate/translate.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_controller.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 
@@ -98,7 +100,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: Text(
                               'Choose photo',
                               style: TextStyle(color: White),
-                            ),
+                            ).translate(),
                           ),
                           InputField(
                             lable: 'Name',
@@ -149,7 +151,7 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                )
+                                ).translate()
                               ],
                             ),
                           ),
@@ -184,7 +186,41 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                )
+                                ).translate()
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.to(() => TranslateScreen());
+                            },
+                            child: Row(
+                              children: [
+                                Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 2.0, right: 2.0),
+                                    child: Icon(
+                                      Icons.language_outlined,
+                                      color: borderbottom,
+                                    )),
+                                Text(
+                                  " Languages",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      foreground: Paint()
+                                        ..shader = LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomLeft,
+                                            colors: [
+                                              Color(4285693389),
+                                              Color(4284015103)
+                                            ]).createShader(
+                                            Rect.fromLTWH(0, 0, 200, 20))),
+                                ).translate()
                               ],
                             ),
                           ),
@@ -220,7 +256,7 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                )
+                                ).translate()
                               ],
                             ),
                           ),

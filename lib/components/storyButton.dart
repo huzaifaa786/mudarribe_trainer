@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class StoryButton extends StatelessWidget {
@@ -42,7 +43,7 @@ class StoryButton extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
-          ),
+          ).translate(),
         ),
       ),
     );
