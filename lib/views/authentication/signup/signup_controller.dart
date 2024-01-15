@@ -207,11 +207,10 @@ class SignUpController extends GetxController {
               languages: selectedLanguages,
               firebaseToken: token),
         );
-
-        UiUtilites.successAlert(
-            Get.context, 'You have Successfully submitted Your Application!');
         clearValues();
         Get.offNamed(AppRoutes.signin);
+        UiUtilites.successAlert(
+            Get.context, 'Application submitted successfully!');
       }
     } on AuthApiException catch (e) {
       UiUtilites.errorSnackbar('Signup Failed', e.toString());

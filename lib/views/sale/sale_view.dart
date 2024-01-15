@@ -128,10 +128,11 @@ class _SaleScreenState extends State<SaleScreen> {
                           child: Column(
                             children: [
                               Text('Total Sales',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w500,
-                                      color: white)).translate(),
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w500,
+                                          color: white))
+                                  .translate(),
                               SizedBox(height: 30),
                               Container(
                                 width: MediaQuery.of(context).size.width,
@@ -143,10 +144,27 @@ class _SaleScreenState extends State<SaleScreen> {
                                     borderRadius: BorderRadius.circular(13)),
                                 child: Align(
                                     alignment: Alignment.center,
-                                    child: GradientText2(
-                                      text: '${controller.sum.toString()} AED',
-                                      size: 29.0,
-                                    )),
+                                    child: Text(
+                                      '${controller.sum} AED',
+                                      style: new TextStyle(
+                                          fontSize: 29.0,
+                                          fontWeight: FontWeight.bold,
+                                          foreground: Paint()
+                                            ..shader = LinearGradient(
+                                              colors: <Color>[
+                                                borderTop,
+                                                borderTop,
+                                                borderTop,
+                                                borderbottom
+                                              ],
+                                            ).createShader(Rect.fromLTWH(
+                                                0.0, 0.0, 250.0, 70.0))),
+                                    ).translate()
+                                    // GradientText2(
+                                    //   text: '${controller.sum} AED',
+                                    //   size: 29.0,
+                                    // ),
+                                    ),
                               ),
                             ],
                           ),

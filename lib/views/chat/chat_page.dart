@@ -314,7 +314,7 @@ class ChatPageState extends State<ChatPage> {
                     : messageChat.type == TypeMessage.image
                         // Image
                         ? Container(
-                            child: OutlinedButton(
+                            child: TextButton(
                               child: Material(
                                 child: Image.network(
                                   messageChat.content,
@@ -514,14 +514,14 @@ class ChatPageState extends State<ChatPage> {
                                         ),
                                         GradientButton(
                                           title: messageChat.content
-                                                      .split("~~")[2]
+                                                      .split("~~")[3]
                                                       .split(":")[1] ==
                                                   'true'
                                               ? 'Paid'
                                               : 'Unpaid',
                                           onPressed: () {},
                                           selected: messageChat.content
-                                                      .split("~~")[2]
+                                                      .split("~~")[3]
                                                       .split(":")[1] ==
                                                   'true'
                                               ? true

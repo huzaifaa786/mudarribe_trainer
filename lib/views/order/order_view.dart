@@ -111,7 +111,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                     },
                                     userName:
                                         combinedOrderData[index].trainee.name,
-                                    profileImage: 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
                                     packageName:
                                         combinedOrderData[index].order.type ==
                                                 'My_Plan'

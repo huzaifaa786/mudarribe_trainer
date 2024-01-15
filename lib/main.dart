@@ -60,6 +60,7 @@ class _MyAppState extends State<MyApp> {
     return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',
         translateFrom: box.read('Locale') == 'en' ? Locale('ur') : Locale('en'),
         translateTo: Locale(locale),
+        cacheDuration: Duration(days: 7),
         automaticDetection: false, builder: () {
       return MultiProvider(
         providers: [

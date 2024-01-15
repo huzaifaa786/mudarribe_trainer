@@ -132,12 +132,14 @@ class ExercisesController extends GetxController {
               FileId: cloudStorageResult.imageFileName));
     }
     if (planId != '') {
-      var data = {
+      Get.offNamed(AppRoutes.existingsendplan, parameters: {
         "planId": planId,
         "userId": userId,
-        "orderId": planId,
-      };
-      Get.offNamed(AppRoutes.existingsendplan, parameters: data);
+        "orderId": orderId,
+        'firebaseToken': firebaseToken,
+        'category': category,
+        'trainerName': trainerName
+      });
     }
 
     UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');

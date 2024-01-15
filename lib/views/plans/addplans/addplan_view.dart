@@ -53,7 +53,7 @@ class _AddPlanState extends State<AddPlan> {
                       controller: controller.durationController,
                     ),
                     BioInputField(
-                      lable: 'Discription',
+                      lable: 'Description',
                       controller: controller.discriptionController,
                     ),
                     SizedBox(

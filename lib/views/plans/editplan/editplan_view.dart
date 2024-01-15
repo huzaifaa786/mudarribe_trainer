@@ -63,7 +63,7 @@ class _EditPlanViewState extends State<EditPlanView> {
                     ),
                     BioInputField(
                       controller: controller.discriptionController,
-                      lable: 'Discription',
+                      lable: 'Description',
                     ),
                     SizedBox(
                       height: 20,

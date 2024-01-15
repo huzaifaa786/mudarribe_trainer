@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard(
@@ -43,7 +44,7 @@ class PostCard extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.only(bottom: 12,left: 15,right: 15),
+          margin: EdgeInsets.only(bottom: 12, left: 15, right: 15),
           padding: EdgeInsets.only(top: 20, bottom: 20),
           decoration: BoxDecoration(
             color: bgContainer,
@@ -102,12 +103,18 @@ class PostCard extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () async {
-                        final DocumentReference documentRef = FirebaseFirestore
-                            .instance
-                            .collection('trainer_posts')
-                            .doc(postId);
-                        await documentRef.delete();
-                        Get.back();
+                        UiUtilites.confirmStoryAlert(context,
+                            "Are you sure that you want to delete this post ?",
+                            () async {
+                          final DocumentReference documentRef =
+                              FirebaseFirestore.instance
+                                  .collection('trainer_posts')
+                                  .doc(postId);
+                          await documentRef.delete();
+                          Get.back();
+                        }, () {
+                          Get.back();
+                        }, "Yes", "No");
                       },
                       child: Padding(
                         padding: EdgeInsets.all(13),
@@ -146,7 +153,7 @@ class PostCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    constraints: BoxConstraints(maxWidth: Get.width*0.89),
+                    constraints: BoxConstraints(maxWidth: Get.width * 0.89),
                     padding: EdgeInsets.only(
                       left: 10,
                       right: 10,

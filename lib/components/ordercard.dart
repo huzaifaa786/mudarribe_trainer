@@ -41,24 +41,14 @@ class OrderCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      profileImage != ''
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(45),
-                              child: Image.network(
-                                profileImage,
-                                height: 35,
-                                width: 35,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(45),
-                              child: Image.asset(
-                                'assets/images/person.png',
-                                height: 35,
-                                width: 35,
-                              ),
-                            ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(45),
+                        child: Image.asset(
+                          'assets/images/person.png',
+                          height: 35,
+                          width: 35,
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(

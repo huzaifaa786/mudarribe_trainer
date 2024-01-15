@@ -66,7 +66,7 @@ class SaleController extends GetxController {
 
   int sum = 0;
 
-  int getsale() {
+  getsale() {
     List<TrainerOrder> fetchSales;
     fetchSales = orders;
     sum = 0;
@@ -82,12 +82,10 @@ class SaleController extends GetxController {
       }
     }
     update();
-    return sum;
   }
 
-  int getSalesBySelectedRange(DateTime startDate, DateTime endDate) {
+  getSalesBySelectedRange(DateTime startDate, DateTime endDate) {
     List<TrainerOrder> fetchSales = orders;
-    // print(fetchSales);
     sum = 0;
     DateTime formattedStartDate = DateTime.utc(
         startDate.year, startDate.month, startDate.day, 0, 0, 0, 0);
@@ -106,8 +104,7 @@ class SaleController extends GetxController {
       }
     }
     update();
-    print(sum);
-    return sum;
+    // return sum;
   }
 
   clear() {

@@ -24,7 +24,6 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
   Widget build(BuildContext context) {
     return GetBuilder<PersonalPlanController>(
       builder: (controller) => Scaffold(
-        appBar: AppBar(),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
