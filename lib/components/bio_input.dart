@@ -76,7 +76,7 @@ class _BioInputFieldState extends State<BioInputField> {
                 ),
                 hoverColor: Colors.grey,
                 focusColor: Colors.grey,
-                labelText: labelTranslation ?? '...',
+                labelText: labelTranslation ?? '',
                 hintText: widget.hint,
                 labelStyle: TextStyle(
                     fontFamily: 'Poppins',

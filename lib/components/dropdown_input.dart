@@ -50,7 +50,7 @@ class _DropInputFieldState extends State<DropInputField> {
           onChanged: widget.onChanged,
           items: widget.items,
           decoration: InputDecoration(
-            labelText: labelTranslation ?? '...',
+            labelText: labelTranslation ?? '',
             hintText: widget.hint,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             border: GradientOutlineInputBorder(

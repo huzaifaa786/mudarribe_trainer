@@ -87,7 +87,7 @@ class _PriceInputFieldState extends State<PriceInputField> {
               ),
               hoverColor: Colors.grey,
               focusColor: Colors.grey,
-              labelText: labelTranslation ?? '...',
+              labelText: labelTranslation ?? '',
               hintText: widget.hint,
               labelStyle: TextStyle(
                   fontFamily: 'Poppins',

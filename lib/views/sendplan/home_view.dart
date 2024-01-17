@@ -99,7 +99,7 @@ class _HomePlanState extends State<HomePlan> {
                                   "category": controller.category,
                                   "userId": controller.userId,
                                   "orderId": controller.orderId,
-                                  'trainerName' : controller.trainerName,
+                                  'trainerName': controller.trainerName,
                                 });
                               }
                             }

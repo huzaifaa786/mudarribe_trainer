@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -13,50 +15,60 @@ class MainCard extends StatelessWidget {
   final image;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: ontap,
-      child: Column(
-        children: [
-          Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: borderTop.withOpacity(0.3),
-                      offset: Offset(0.11, 0.1),
-                      blurRadius: 8),
-                  BoxShadow(
-                      color: borderbottom.withOpacity(0.3),
-                      offset: Offset(-0.1, -0.11),
-                      blurRadius: 8,
-                      spreadRadius: 1)
-                ],
-                borderRadius: BorderRadius.circular(45),
-                border: GradientBoxBorder(
-                  gradient: LinearGradient(
-                      colors: [borderTop, borderTop, borderTop, borderbottom]),
-                  width: 1,
+    GetStorage box = GetStorage();
+    return Container(
+      width: 100,
+      child: GestureDetector(
+        onTap: ontap,
+        child: Column(
+          children: [
+            Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: borderTop.withOpacity(0.3),
+                        offset: Offset(0.11, 0.1),
+                        blurRadius: 8),
+                    BoxShadow(
+                        color: borderbottom.withOpacity(0.3),
+                        offset: Offset(-0.1, -0.11),
+                        blurRadius: 8,
+                        spreadRadius: 1)
+                  ],
+                  borderRadius: BorderRadius.circular(45),
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(colors: [
+                      borderTop,
+                      borderTop,
+                      borderTop,
+                      borderbottom
+                    ]),
+                    width: 1,
+                  ),
                 ),
+                child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.black),
+                    child: SvgPicture.asset(
+                      image,
+                      fit: BoxFit.scaleDown,
+                    ))),
+            Text(
+              name,
+              maxLines: 2,
+              // overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontFamily: "Montserrat",
+                fontSize: box.read('Locale') == 'en' ? 14 : 10,
+                fontWeight: FontWeight.w700,
+                height: 46 / 14,
               ),
-              child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.black),
-                  child: SvgPicture.asset(
-                    image,
-                    fit: BoxFit.scaleDown,
-                  ))),
-          Text(
-            name,
-            style: const TextStyle(
-              fontFamily: "Montserrat",
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              height: 46 / 14,
-            ),
-            textAlign: TextAlign.center,
-          ).translate()
-        ],
+              textAlign: TextAlign.center,
+            ).translate()
+          ],
+        ),
       ),
     );
   }

@@ -11,28 +11,29 @@ class TitleTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 12, bottom: 12),
-      width: MediaQuery.sizeOf(context).width,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: GestureDetector(
-              onTap: ontap,
+      // width: MediaQuery.sizeOf(context).width,
+      child: InkWell(
+        onTap: ontap,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
               child: Icon(
                 Icons.arrow_back_ios_new,
               ),
             ),
-          ),
-          Text(
-            name,
-            style: TextStyle(
-              fontFamily: "Poppins",
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-          ).translate(),
-        ],
+            Text(
+              name,
+              style: TextStyle(
+                fontFamily: "Poppins",
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+              ),
+            ).translate(),
+          ],
+        ),
       ),
     );
   }

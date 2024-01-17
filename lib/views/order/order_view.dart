@@ -61,7 +61,9 @@ class _OrderScreenState extends State<OrderScreen> {
                             return SizedBox(
                                 width: Get.width,
                                 height: Get.height,
-                                child: Center(child: Text('No order found!').translate()));
+                                child: Center(
+                                    child:
+                                        Text('No order found!').translate()));
                           }
                           List<CombinedOrderData> combinedOrderData =
                               snapshot.data!;
@@ -72,27 +74,94 @@ class _OrderScreenState extends State<OrderScreen> {
                                 itemCount: combinedOrderData.length,
                                 itemBuilder: (context, index) {
                                   return OrderCard(
-                                    onTapSendPlan: () {
-                                      Get.toNamed(AppRoutes.sendplanhome,
-                                          parameters: {
-                                            "userId": combinedOrderData[index]
-                                                .trainee
-                                                .id,
-                                            "firebaseToken":
-                                                combinedOrderData[index]
-                                                    .trainee
-                                                    .firebaseToken
-                                                    .toString(),
-                                            "trainerName":
-                                                combinedOrderData[index]
-                                                    .trainer
-                                                    .name
-                                                    .toString(),
-                                            "orderId": combinedOrderData[index]
+                                    onTapSendPlan: combinedOrderData[index]
                                                 .order
-                                                .id
-                                          });
-                                    },
+                                                .type !=
+                                            'My_Plan'
+                                        ? () {
+                                            if (combinedOrderData[index]
+                                                        .package!
+                                                        .category! ==
+                                                    'nutrition' ||
+                                                combinedOrderData[index]
+                                                        .package!
+                                                        .category! ==
+                                                    'excercise') {
+                                              Get.toNamed(AppRoutes.exercise,
+                                                  parameters: {
+                                                    'firebaseToken':
+                                                        combinedOrderData[index]
+                                                            .trainee
+                                                            .firebaseToken!,
+                                                    "category":
+                                                        combinedOrderData[index]
+                                                            .package!
+                                                            .category!,
+                                                    "userId":
+                                                        combinedOrderData[index]
+                                                            .trainee
+                                                            .id,
+                                                    "orderId":
+                                                        combinedOrderData[index]
+                                                            .order
+                                                            .id,
+                                                    'trainerName':
+                                                        combinedOrderData[index]
+                                                            .trainer
+                                                            .name
+                                                            .toString(),
+                                                  });
+                                            } else {
+                                              Get.toNamed(
+                                                  AppRoutes.sendplanhome,
+                                                  parameters: {
+                                                    "userId":
+                                                        combinedOrderData[index]
+                                                            .trainee
+                                                            .id,
+                                                    "firebaseToken":
+                                                        combinedOrderData[index]
+                                                            .trainee
+                                                            .firebaseToken
+                                                            .toString(),
+                                                    "trainerName":
+                                                        combinedOrderData[index]
+                                                            .trainer
+                                                            .name
+                                                            .toString(),
+                                                    "orderId":
+                                                        combinedOrderData[index]
+                                                            .order
+                                                            .id
+                                                  });
+                                            }
+                                          }
+                                        : () {
+                                            Get.toNamed(AppRoutes.exercise,
+                                                parameters: {
+                                                  'firebaseToken':
+                                                      combinedOrderData[index]
+                                                          .trainee
+                                                          .firebaseToken!,
+                                                  "category":
+                                                      combinedOrderData[index]
+                                                          .personalPlan!
+                                                          .category!,
+                                                  "userId":
+                                                      combinedOrderData[index]
+                                                          .trainee
+                                                          .id,
+                                                  "orderId":
+                                                      combinedOrderData[index]
+                                                          .order
+                                                          .id,
+                                                  'trainerName':
+                                                      combinedOrderData[index]
+                                                          .trainer
+                                                          .name
+                                                          .toString(),
+                                                });
+                                          },
                                     onTapMessage: () {
                                       Get.to(
                                         () => ChatPage(
@@ -100,7 +169,8 @@ class _OrderScreenState extends State<OrderScreen> {
                                             peerId: combinedOrderData[index]
                                                 .trainee
                                                 .id,
-                                            peerAvatar: 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
+                                            peerAvatar:
+                                                'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
                                             peerNickname:
                                                 combinedOrderData[index]
                                                     .trainee

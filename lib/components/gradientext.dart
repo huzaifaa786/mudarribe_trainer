@@ -32,7 +32,7 @@ class _GradientText2State extends State<GradientText2> {
   @override
   Widget build(BuildContext context) {
     return GradientText(
-      translated ?? '...',
+      translated ?? '',
       style: TextStyle(fontSize: widget.size, fontWeight: FontWeight.w500),
       colors: const [Color(0xff727dcd), Color(0xff58e1ff)],
     );

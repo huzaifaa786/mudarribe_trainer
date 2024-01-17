@@ -73,7 +73,7 @@ class _EventInputFieldState extends State<EventInputField> {
             ),
             hoverColor: Colors.grey,
             focusColor: Colors.grey,
-            labelText: labelTranslation ?? '...',
+            labelText: labelTranslation ?? '',
             hintText: widget.hint,
             labelStyle: TextStyle(
                 fontFamily: 'Poppins',

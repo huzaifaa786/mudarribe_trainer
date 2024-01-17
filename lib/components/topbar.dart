@@ -15,26 +15,27 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15, left: 10, bottom: 10),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: SvgPicture.asset(
+      child: InkWell(
+        onTap: () {
+          Get.back();
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
               'assets/images/nevigate.svg',
             ),
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          Text(text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              )).translate()
-        ],
+            const SizedBox(
+              width: 15,
+            ),
+            Text(text,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                )).translate()
+          ],
+        ),
       ),
     );
   }

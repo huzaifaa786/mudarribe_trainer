@@ -101,7 +101,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
           ),
           hoverColor: Colors.grey,
           focusColor: Colors.grey,
-          labelText: labelTranslation ?? '...',
+          labelText: labelTranslation ?? '',
           hintText: widget.hint,
           labelStyle: TextStyle(
             fontFamily: 'Poppins',
