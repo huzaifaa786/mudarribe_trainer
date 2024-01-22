@@ -60,7 +60,7 @@ class Scheduleinput extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   color: white.withOpacity(0.45)),
-            ).translate(),
+            ) ,
           ),
           SizedBox(
             height: 50,

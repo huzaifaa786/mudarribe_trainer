@@ -83,7 +83,7 @@ class _LargeButtonState extends State<LargeButton> {
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
-              ).translate(),
+              ) ,
             ),
           ),
         ),

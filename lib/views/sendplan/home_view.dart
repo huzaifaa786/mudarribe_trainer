@@ -40,9 +40,11 @@ class _HomePlanState extends State<HomePlan> {
             title: TopBar(text: 'Send Plan'),
           ),
           body: SafeArea(
-            child: Padding(
+            child: Container(
+                width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(
                       height: 29,

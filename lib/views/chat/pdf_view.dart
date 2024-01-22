@@ -27,7 +27,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Document").translate(),
+        title: Text("Document") ,
       ),
       body: Stack(
         children: <Widget>[
@@ -79,7 +79,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
                     )
                   : Container()
               : Center(
-                  child: Text(errorMessage).translate(),
+                  child: Text(errorMessage) ,
                 )
         ],
       ),

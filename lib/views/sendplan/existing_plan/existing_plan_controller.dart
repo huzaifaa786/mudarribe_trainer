@@ -56,7 +56,7 @@ class ExistingPlanController extends GetxController {
     selectedFiles = tempFile;
     update();
 
-    if (selectedFiles != []) {
+    if (selectedFiles.isNotEmpty) {
       await storeplanfiles(planId);
     }
     busyController.setBusy(false);
@@ -114,17 +114,22 @@ class ExistingPlanController extends GetxController {
       final id = DateTime.now().millisecondsSinceEpoch.toString();
       final fileExtension = extension(file.path);
       final fileName = basenameWithoutExtension(file.path);
-      CloudStorageResult cloudStorageResult =
-          await _planfileStorageApi.uploadPlanFile(
-              planFileId: id, fileToUpload: file, extentsion: fileExtension);
-      await _planfileService.createPlanFile(
-          planfile: PlanFile(
-              id: id,
-              planId: planId,
-              fileType: fileExtension == '.pdf' ? FileType.pdf : FileType.mp4,
-              fileName: fileName,
-              fileUrl: cloudStorageResult.imageUrl,
-              FileId: cloudStorageResult.imageFileName));
+      if (fileExtension == '.pdf' || fileExtension == '.mp4') {
+        CloudStorageResult cloudStorageResult =
+            await _planfileStorageApi.uploadPlanFile(
+                planFileId: id, fileToUpload: file, extentsion: fileExtension);
+        await _planfileService.createPlanFile(
+            planfile: PlanFile(
+                id: id,
+                planId: planId,
+                fileType: fileExtension == '.pdf' ? FileType.pdf : FileType.mp4,
+                fileName: fileName,
+                fileUrl: cloudStorageResult.imageUrl,
+                FileId: cloudStorageResult.imageFileName));
+      } else {
+        UiUtilites.errorSnackbar('Error uploading file image.',
+            "Send Paln file only contain .mp4 and .pdf files");
+      }
     }
     await getTrainerFiles();
   }

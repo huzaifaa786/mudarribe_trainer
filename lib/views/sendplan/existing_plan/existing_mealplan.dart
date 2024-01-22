@@ -53,6 +53,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                 backgroundColor: Colors.black,
                 body: SafeArea(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TopBar(
                       text: controller.plan!.name,

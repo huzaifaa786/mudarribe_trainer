@@ -123,7 +123,7 @@ class EventDetailsCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
-                      ).translate(),
+                      ) ,
                     )
                   ],
                 ),
@@ -160,7 +160,7 @@ class EventDetailsCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
-                      ).translate(),
+                      ) ,
                     ),
                     GradientText2(
                       text: '$attendees/$capacity',
@@ -178,7 +178,7 @@ class EventDetailsCard extends StatelessWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
-                    ).translate(),
+                    ) ,
                     Text(
                       '$price AED',
                       style: TextStyle(
@@ -187,7 +187,7 @@ class EventDetailsCard extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
-                    ).translate()
+                    ) 
                   ],
                 ),
               ],
@@ -214,7 +214,7 @@ class EventDetailsCard extends StatelessWidget {
                       Text(
                         'Closed',
                         style: TextStyle(fontSize: 16.0, color: Colors.grey),
-                      ).translate(),
+                      ) ,
                     ],
                   ),
           ],

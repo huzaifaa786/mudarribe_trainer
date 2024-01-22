@@ -26,7 +26,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
   Widget build(BuildContext context) {
     String id = Get.arguments;
     return GetBuilder<EventcheckoutController>(
-      initState: (state) async {
+      initState: (state) {
         Future.delayed(Duration(milliseconds: 100), () {
           state.controller!.getTrainerEvent(id);
         });
@@ -37,7 +37,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                 appBar: AppBar(
                   backgroundColor: Colors.black,
                   leading: InkWell(
-                    onTap: (){
+                    onTap: () {
                       Get.back();
                     },
                     child: Icon(
@@ -52,7 +52,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                         color: white,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Poppins'),
-                  ).translate(),
+                  ) ,
                 ),
                 body: SafeArea(
                   child: Container(
@@ -92,10 +92,73 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                         ),
-                                      ).translate(),
-                                      GradientText2(
-                                        text: 'Add Code',
-                                      )
+                                      ) ,
+                                      controller.total != ''
+                                          ? GradientText2(
+                                              text: controller.promoCode.text,
+                                              size: 16,
+                                              weight: FontWeight.w700,
+                                            )
+                                          : controller.isCode
+                                              ? Row(
+                                                  children: [
+                                                    Container(
+                                                        height: 35,
+                                                        width: 110,
+                                                        padding:
+                                                            EdgeInsets.all(2),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Colors
+                                                                    .grey),
+                                                        child: TextField(
+                                                          controller: controller
+                                                              .promoCode,
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                          decoration:
+                                                              InputDecoration(
+                                                                  border:
+                                                                      InputBorder
+                                                                          .none,
+                                                                  fillColor:
+                                                                      Colors
+                                                                          .grey,
+                                                                  focusColor:
+                                                                      Colors
+                                                                          .grey),
+                                                        )),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8.0),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          controller
+                                                              .applyPromoCode();
+                                                        },
+                                                        child: GradientText2(
+                                                          text: 'Apply',
+                                                          size: 16,
+                                                          weight:
+                                                              FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : InkWell(
+                                                  onTap: () {
+                                                    controller.isCode = true;
+                                                    setState(() {});
+                                                  },
+                                                  child: GradientText2(
+                                                    text: 'Add Code',
+                                                    size: 16,
+                                                    weight: FontWeight.w700,
+                                                  ),
+                                                )
                                     ],
                                   ),
                                 ),
@@ -113,7 +176,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700,
                                   ),
-                                ).translate(),
+                                ) ,
                               ),
                             ),
                             Container(
@@ -141,7 +204,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ).translate(),
+                                        ) ,
                                         Text(
                                           controller.bannerCharges!.amount! +
                                               ' AED',
@@ -150,7 +213,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ).translate(),
+                                        ) ,
                                       ],
                                     ),
                                   ),
@@ -176,15 +239,15 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ).translate(),
+                                        ) ,
                                         Text(
-                                          '00.00 AED',
+                                          '${controller.discount} AED',
                                           style: TextStyle(
                                             color: white,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ).translate(),
+                                        ) ,
                                       ],
                                     ),
                                   ),
@@ -210,16 +273,25 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ).translate(),
-                                        GradientText(
-                                          controller.bannerCharges!.amount! +
-                                              ' AED',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                          colors: [borderTop, borderbottom],
-                                        ),
+                                        ) ,
+                                        Text(
+                                          controller.total == ''
+                                              ? controller.price + ' AED'
+                                              : controller.total + ' AED',
+                                          style: new TextStyle(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.bold,
+                                              foreground: Paint()
+                                                ..shader = LinearGradient(
+                                                  colors: <Color>[
+                                                    borderTop,
+                                                    borderTop,
+                                                    borderTop,
+                                                    borderbottom
+                                                  ],
+                                                ).createShader(Rect.fromLTWH(
+                                                    0.0, 0.0, 250.0, 70.0))),
+                                        ) 
                                       ],
                                     ),
                                   ),
@@ -366,7 +438,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                             ),
-                          ).translate(),
+                          ) ,
                         )),
                   ),
                 ),

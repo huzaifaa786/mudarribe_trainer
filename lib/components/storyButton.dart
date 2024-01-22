@@ -43,7 +43,7 @@ class StoryButton extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
-          ).translate(),
+          ) ,
         ),
       ),
     );

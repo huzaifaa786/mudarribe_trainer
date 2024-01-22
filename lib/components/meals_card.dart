@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class MealsCard extends StatelessWidget {
@@ -51,13 +52,14 @@ class MealsCard extends StatelessWidget {
                                 child: snapshot.data != null
                                     ? Image.file(
                                         File(snapshot.data!),
+                                        width: 80,
+                                        height: 77,
+                                        fit: BoxFit.fill,
                                       )
                                     : Image.asset(
                                         'assets/images/containimg.png',
-                                        width:
-                                            120, // Specify the width of the image to fit the Container
-                                        height:
-                                            77, // Specify the height of the image to fit the Container
+                                        width: 80,
+                                        height: 77,
                                         fit: BoxFit.fill,
                                       ),
                               );
@@ -78,22 +80,28 @@ class MealsCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          color: white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        )),
+                    SizedBox(
+                      width: Get.width * 0.5,
+                      child: Text(title,
+                          maxLines: 2,
+                          style: const TextStyle(
+                            color: white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
-                    Text(description,
-                        style: const TextStyle(
-                          color: white,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600,
-                        ))
+                    SizedBox(
+                      width: Get.width * 0.5,
+                      child: Text(description,
+                          style: const TextStyle(
+                            color: white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    )
                   ],
                 ),
               ],

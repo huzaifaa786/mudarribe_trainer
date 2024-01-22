@@ -88,7 +88,7 @@ class SelectPlanCard extends StatelessWidget {
             fontSize: 12,
             fontWeight: FontWeight.w500,
           ),
-        ).translate()
+        ) 
       ],
     );
   }

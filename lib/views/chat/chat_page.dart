@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:gap/gap.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
@@ -466,7 +467,7 @@ class ChatPageState extends State<ChatPage> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16),
-                                            ).translate(),
+                                            ) ,
                                             Text(
                                               messageChat.content
                                                   .split("~~")[0]
@@ -484,7 +485,7 @@ class ChatPageState extends State<ChatPage> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16),
-                                            ).translate(),
+                                            ) ,
                                             Text(
                                               messageChat.content
                                                   .split("~~")[1]
@@ -502,7 +503,7 @@ class ChatPageState extends State<ChatPage> {
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16),
-                                            ).translate(),
+                                            ) ,
                                             Text(
                                               messageChat.content
                                                   .split("~~")[2]
@@ -530,7 +531,60 @@ class ChatPageState extends State<ChatPage> {
                                       ],
                                     ),
                                   )
-                                : SizedBox()
+                                : Container(
+                                    width: 250,
+                                    margin:
+                                        EdgeInsets.only(right: 10, bottom: 10),
+                                    padding: EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Rating:',
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16),
+                                            ) ,
+                                            Text(
+                                              ' ' +
+                                                  messageChat.content
+                                                      .split("~~")[0]
+                                                      .split(":")[1],
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: borderbottom,
+                                              size: 15,
+                                            )
+                                          ],
+                                        ),
+                                        Gap(12),
+                                        GradientButton(
+                                          title: messageChat.content
+                                                      .split("~~")[1]
+                                                      .split(":")[1] ==
+                                                  'true'
+                                              ? 'Rated '
+                                              : 'Not Rated Yet',
+                                          onPressed: () {},
+                                          selected: messageChat.content
+                                                      .split("~~")[1]
+                                                      .split(":")[1] ==
+                                                  'true'
+                                              ? true
+                                              : false,
+                                        ),
+                                      ],
+                                    ),
+                                  )
               ],
               mainAxisAlignment: MainAxisAlignment.end,
             ),
@@ -951,7 +1005,7 @@ class ChatPageState extends State<ChatPage> {
                     );
                   } else {
                     return Center(
-                        child: Text("No message here yet...").translate());
+                        child: Text("No message here yet...") );
                   }
                 } else {
                   return Center(
@@ -1033,7 +1087,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ).translate(),
+                ) ,
               ),
               Container(
                   width: double.infinity,
@@ -1061,7 +1115,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ).translate(),
+                ) ,
               ),
               Container(
                   width: double.infinity,
@@ -1080,7 +1134,11 @@ class ChatPageState extends State<ChatPage> {
                   minimumSize:
                       MaterialStateProperty.all(Size(double.infinity, 50)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  String content = 'rating:' + '0' + '~~isRating:' + 'false';
+                  onSendMessage(content, TypeMessage.rating);
+                  Get.back();
+                },
                 child: Text(
                   'Rate Us',
                   style: TextStyle(
@@ -1089,7 +1147,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ).translate(),
+                ) ,
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -1114,7 +1172,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ).translate(),
+                ) ,
               ),
             ],
           ),

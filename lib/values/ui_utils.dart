@@ -45,7 +45,7 @@ class UiUtilites {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          Future.delayed(Duration(seconds: 2), () {
+          Future.delayed(Duration(seconds: 3), () {
             Get.back();
           });
           return BackdropFilter(
@@ -104,7 +104,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ).translate(),
+                    ) ,
                     Gap(40),
                   ],
                 ),
@@ -173,7 +173,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ).translate(),
+                    ) ,
                     Gap(10),
                     Divider(
                       height: 1,
@@ -192,7 +192,7 @@ class UiUtilites {
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
                             ),
-                          ).translate(),
+                          ) ,
                         ),
                         InkWell(
                           onTap: onPressOK,
@@ -204,7 +204,7 @@ class UiUtilites {
                               fontWeight: FontWeight.w700,
                               color: borderTop,
                             ),
-                          ).translate(),
+                          ) ,
                         ),
                       ],
                     ),
@@ -276,7 +276,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ).translate(),
+                    ) ,
                     Gap(10),
                     Divider(
                       height: 1,
@@ -295,7 +295,7 @@ class UiUtilites {
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
                             ),
-                          ).translate(),
+                          ) ,
                         ),
                         InkWell(
                             onTap: onPressOK,
@@ -307,7 +307,7 @@ class UiUtilites {
                                 fontWeight: FontWeight.w700,
                                 color: borderTop,
                               ),
-                            ).translate()),
+                            ) ),
                       ],
                     ),
                     Gap(10),

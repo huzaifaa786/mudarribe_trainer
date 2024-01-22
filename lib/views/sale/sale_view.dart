@@ -134,7 +134,7 @@ class _SaleScreenState extends State<SaleScreen> {
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,
                                             color: white))
-                                    .translate(),
+                                     ,
                                 SizedBox(height: 30),
                                 Container(
                                   width: MediaQuery.of(context).size.width,
@@ -162,7 +162,7 @@ class _SaleScreenState extends State<SaleScreen> {
                                                 ],
                                               ).createShader(Rect.fromLTWH(
                                                   0.0, 0.0, 250.0, 70.0))),
-                                      ).translate()
+                                      ) 
                                       // GradientText2(
                                       //   text: '${controller.sum} AED',
                                       //   size: 29.0,

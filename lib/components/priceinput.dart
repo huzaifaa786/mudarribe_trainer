@@ -71,7 +71,7 @@ class _PriceInputFieldState extends State<PriceInputField> {
                       fontFamily: "Poppins",
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
-                ).translate(),
+                ) ,
               ),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               fillColor: Colors.white,

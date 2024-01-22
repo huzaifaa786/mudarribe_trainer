@@ -33,7 +33,7 @@ class TopBar extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
-                )).translate()
+                )) 
           ],
         ),
       ),

@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:file_picker/file_picker.dart';
-import 'package:mudarribe_trainer/exceptions/file_selector_api_exception.dart';
 
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
@@ -41,11 +39,6 @@ class FileSelectorApi {
     } else {
       UiUtilites.errorSnackbar(
           'File selection failed', 'Failed to select file, please try again.');
-
-      throw FileSelectorApiException(
-        title: 'File selection failed',
-        message: 'Failed to select file, please try again.',
-      );
     }
   }
 }

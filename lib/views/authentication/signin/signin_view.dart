@@ -45,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const Text(
                   'Enter Your Registered Email & Password.',
                   style: TextStyle(color: white, fontSize: 15),
-                ).translate(),
+                ) ,
                 Padding(
                     padding: const EdgeInsets.only(top: 28),
                     child: Container(

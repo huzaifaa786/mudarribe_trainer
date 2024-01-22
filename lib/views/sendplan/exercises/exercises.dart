@@ -29,7 +29,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
     var orderId = Get.parameters['orderId'] as String;
     var firebaseToken = Get.parameters['firebaseToken'] as String;
     var trainerName = Get.parameters['trainerName'] as String;
-     
+
     return GetBuilder<ExercisesController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
@@ -45,6 +45,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
           backgroundColor: Colors.black,
           body: SafeArea(
               child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TopBar(
                 text: category.capitalize,
@@ -76,7 +77,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                                       color: white,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
-                                    )).translate(),
+                                    )) ,
                               ),
                               InputField(
                                 controller: controller.filenameController,
@@ -103,7 +104,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                               color: white,
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
-                            )).translate(),
+                            )) ,
                         controller.plans.isNotEmpty
                             ? ListView.builder(
                                 physics: BouncingScrollPhysics(),
@@ -137,7 +138,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                                       fontWeight: FontWeight.w400,
                                       height: 0,
                                     ),
-                                  ).translate(),
+                                  ) ,
                                 ),
                               ),
                       ],

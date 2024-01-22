@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
@@ -57,7 +56,7 @@ class MainCard extends StatelessWidget {
                     ))),
             Text(
               name,
-              maxLines: 2,
+              maxLines: 1,
               // overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontFamily: "Montserrat",
@@ -66,7 +65,7 @@ class MainCard extends StatelessWidget {
                 height: 46 / 14,
               ),
               textAlign: TextAlign.center,
-            ).translate()
+            ) 
           ],
         ),
       ),

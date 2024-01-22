@@ -57,7 +57,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
                                 color: white),
-                          ).translate(),
+                          ) ,
                         ),
                       ],
                     ),

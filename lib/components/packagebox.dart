@@ -125,7 +125,7 @@ class PackageCard extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                  )).translate()
+                  )) 
             ],
           )
         ],

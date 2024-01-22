@@ -140,7 +140,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 fontFamily: "Poppins",
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
-                              )).translate(),
+                              )) ,
                         ),
                         EventInputField(
                           controller: controller.eventTitleController,
@@ -228,7 +228,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         fontFamily: "Poppins",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
-                                      )).translate(),
+                                      )) ,
                                 ),
                                 SizedBox(
                                     width:
@@ -251,7 +251,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         fontFamily: "Poppins",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
-                                      )).translate(),
+                                      )) ,
                                 ),
                                 SizedBox(
                                     width: MediaQuery.of(context).size.width *
@@ -274,7 +274,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     color: white.withOpacity(0.4),
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
-                                  )).translate(),
+                                  )) ,
                               InkWell(
                                 onTap: () async {
                                   if (await getpermission() == true) {
@@ -357,7 +357,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                         fontSize: 14,
                                         fontFamily: "Poppins",
                                         fontWeight: FontWeight.w500,
-                                      )).translate(),
+                                      )) ,
                                 ),
                               ),
                               Row(

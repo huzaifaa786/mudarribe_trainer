@@ -24,7 +24,6 @@ class _StoriesViewState extends State<StoriesView> {
     String id = Get.parameters['trainer_id'].toString();
     return GetBuilder<TrainerStoryContoller>(
       initState: (state) async {
-        
         Future.delayed(const Duration(milliseconds: 100), () {
           state.controller!.getTrainerStories(id);
         });
@@ -36,7 +35,9 @@ class _StoriesViewState extends State<StoriesView> {
                     automaticallyImplyLeading: false,
                     forceMaterialTransparency: true,
                     title: controller.stories.isNotEmpty
-                        ? Text('')
+                        ? TopBar(
+                            text: "",
+                          )
                         : TopBar(
                             text: "",
                           ),
@@ -163,7 +164,8 @@ class _StoriesViewState extends State<StoriesView> {
                                       ))
                                 ],
                               )
-                            : Center(child: Text('No Story Uploaded').translate())),
+                            : Center(
+                                child: Text('No Story Uploaded') )),
                   )),
             )
           : const BasicLoader(),

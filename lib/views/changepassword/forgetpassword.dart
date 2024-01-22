@@ -44,7 +44,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
                           color: White),
-                    ).translate(),
+                    ) ,
                   ),
                 ],
               ),
@@ -63,7 +63,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       'Enter your Email please',
                       style:
                           TextStyle(color: Color.fromARGB(255, 195, 186, 186)),
-                    ).translate(),
+                    ) ,
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: InputField(

@@ -18,7 +18,7 @@ class _FullPhotoPageState extends State<FullPhotoPage> {
       appBar: AppBar(
         title: const Text(
           'Full photo',
-        ).translate(),
+        ) ,
         centerTitle: true,
       ),
       body: PhotoView(

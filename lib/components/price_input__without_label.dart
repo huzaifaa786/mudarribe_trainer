@@ -51,7 +51,7 @@ class PriceInputWithoutLabel extends StatelessWidget {
                     fontFamily: "Poppins",
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
-              ).translate(),
+              ) ,
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             fillColor: Colors.white,

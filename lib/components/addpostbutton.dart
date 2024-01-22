@@ -70,7 +70,7 @@ class AddPostbutton extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
               ),
-            ).translate(),
+            ) ,
           ),
         ),
       ),

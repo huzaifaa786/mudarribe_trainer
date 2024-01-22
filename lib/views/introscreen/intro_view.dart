@@ -37,7 +37,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   Text(
                     'Choose to continue',
                     style: TextStyle(color: Colors.white),
-                  ).translate(),
+                  ) ,
                 ],
               ),
               const SizedBox(
@@ -53,7 +53,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 child: Text(
                   'OR',
                   style: TextStyle(color: Colors.white),
-                ).translate(),
+                ) ,
               ),
               SelectUserCard(
                 text: 'Existing Trainer',

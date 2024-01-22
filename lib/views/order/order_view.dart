@@ -63,7 +63,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 height: Get.height,
                                 child: Center(
                                     child:
-                                        Text('No order found!').translate()));
+                                        Text('No order found!') ));
                           }
                           List<CombinedOrderData> combinedOrderData =
                               snapshot.data!;

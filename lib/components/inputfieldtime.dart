@@ -20,7 +20,7 @@ class InputFieldTime extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
-          ).translate(),
+          ) ,
           const SizedBox(width: 10),
           Container(
             width: MediaQuery.of(context).size.width * 0.4,

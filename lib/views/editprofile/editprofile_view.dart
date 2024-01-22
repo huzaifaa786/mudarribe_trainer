@@ -100,7 +100,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: Text(
                               'Choose photo',
                               style: TextStyle(color: White),
-                            ).translate(),
+                            ) ,
                           ),
                           InputField(
                             lable: 'Name',
@@ -151,7 +151,7 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                ).translate()
+                                ) 
                               ],
                             ),
                           ),
@@ -186,7 +186,7 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                ).translate()
+                                ) 
                               ],
                             ),
                           ),
@@ -220,7 +220,7 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                ).translate()
+                                ) 
                               ],
                             ),
                           ),
@@ -256,7 +256,7 @@ class _EditProfileState extends State<EditProfile> {
                                               Color(4284015103)
                                             ]).createShader(
                                             Rect.fromLTWH(0, 0, 200, 20))),
-                                ).translate()
+                                ) 
                               ],
                             ),
                           ),

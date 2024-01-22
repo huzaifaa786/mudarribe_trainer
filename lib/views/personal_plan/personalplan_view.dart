@@ -32,9 +32,14 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.white,
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: Colors.white,
+                        ),
                       ),
                       SizedBox(
                         width: 23,

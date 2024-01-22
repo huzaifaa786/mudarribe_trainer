@@ -98,7 +98,7 @@ class OrderCard extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                         textAlign: TextAlign.left,
-                      ).translate())
+                      ) )
                 ],
               ),
               InkWell(

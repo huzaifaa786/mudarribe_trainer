@@ -56,7 +56,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
                                       color: white),
-                                ).translate(),
+                                ) ,
                               ),
                             ],
                           ),

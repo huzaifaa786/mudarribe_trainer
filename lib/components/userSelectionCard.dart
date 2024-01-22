@@ -51,7 +51,7 @@ class SelectUserCard extends StatelessWidget {
                 color: Colors.white,
                 height: 52 / 20,
               ),
-            ).translate(),
+            ) ,
           ),
         ),
       ),

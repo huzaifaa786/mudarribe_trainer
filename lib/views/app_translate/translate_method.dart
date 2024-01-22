@@ -50,7 +50,7 @@ class _TranslateMethodState extends State<TranslateMethod> {
                         widget.title,
                         style: TextStyle( color: white,
                             fontSize: 16.0, fontWeight: FontWeight.w400),
-                      ).translate(),
+                      ) ,
                       Transform.scale(
                           scale: 1.2,
                           child: Radio(

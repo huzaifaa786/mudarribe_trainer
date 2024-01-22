@@ -20,7 +20,7 @@ class MultiSelectDropDown extends StatelessWidget {
       child: DropDownMultiSelect(
         
         decoration: InputDecoration(
-          label: Text(label).translate(),
+          label: Text(label) ,
           labelStyle: TextStyle(
               fontSize: 14.0,
               fontFamily: 'Poppins',

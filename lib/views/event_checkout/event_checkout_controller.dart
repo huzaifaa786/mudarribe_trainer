@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/banner_api.dart';
+import 'package:mudarribe_trainer/api/coupon_code_api.dart';
 import 'package:mudarribe_trainer/api/event_api.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/banner_charges.dart';
+import 'package:mudarribe_trainer/models/coupon_code.dart';
 import 'package:mudarribe_trainer/models/trainer_event.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/event_service.dart';
@@ -20,6 +23,7 @@ class EventcheckoutController extends GetxController {
 
   final _eventService = EventService();
   final _paymentService = PaymentService();
+  final _couponCodeApi = CouponCodeApi();
 
   TrainerEvent? event;
   BannerCharges? bannerCharges;
@@ -28,6 +32,12 @@ class EventcheckoutController extends GetxController {
   AppUser? currentUser;
   final _eventApi = EventApi();
   final _bannerApi = BannerApi();
+
+  TextEditingController promoCode = TextEditingController();
+  int discount = 0;
+  bool isCode = false;
+  String price = '';
+  String total = '';
 
   PaymentMethod? site;
   toggleplan(PaymentMethod value) {
@@ -52,8 +62,9 @@ class EventcheckoutController extends GetxController {
       busyController.setBusy(true);
       await _eventApi.updateEventPaymentStatus(event!.id);
       busyController.setBusy(false);
+      Get.back();
+      Get.back();
       UiUtilites.successAlert(Get.context, 'Done');
-      Get.offNamed(AppRoutes.myevent);
     }
   }
 
@@ -68,6 +79,7 @@ class EventcheckoutController extends GetxController {
   Future getBannerCharges() async {
     bannerCharges = await _bannerApi.getBannerCharges();
     print(bannerCharges!.amount);
+    price = bannerCharges!.amount!;
     update();
   }
 
@@ -78,5 +90,23 @@ class EventcheckoutController extends GetxController {
     event = await _eventService.getTrainerEvent(eventId: id);
     update();
     busyController.setBusy(false);
+  }
+
+  void applyPromoCode() async {
+    if (promoCode.text.isEmpty) {
+      UiUtilites.errorSnackbar('Empty Promo Code', 'Please enter code first');
+      return;
+    }
+    CouponCode? couponCode = await _couponCodeApi.getCouponCode(promoCode.text);
+    if (couponCode != null) {
+      discount =
+          (int.parse(price) * int.parse(couponCode.percentage) / 100).toInt();
+      total = (int.parse(price) - discount).toString();
+      isCode = !isCode;
+      update();
+    } else {
+      UiUtilites.errorSnackbar(
+          'Invalid Promo Code', 'Please enter correct code');
+    }
   }
 }
