@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/translation.dart';
 
-class DropInputField extends StatefulWidget {
+class DropInputField extends StatelessWidget {
   const DropInputField({
     Key? key,
     this.controller,
@@ -23,35 +23,18 @@ class DropInputField extends StatefulWidget {
   final label;
 
   @override
-  State<DropInputField> createState() => _DropInputFieldState();
-}
-
-class _DropInputFieldState extends State<DropInputField> {
-  String? labelTranslation;
-  translateLabel() async {
-    labelTranslation = await translateText(widget.label);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    translateLabel();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
       child: Container(
         decoration: const BoxDecoration(color: Colors.black),
         child: DropdownButtonFormField<String>(
-          value: widget.value,
-          onChanged: widget.onChanged,
-          items: widget.items,
+          value: value,
+          onChanged: onChanged,
+          items: items,
           decoration: InputDecoration(
-            labelText: labelTranslation ?? '',
-            hintText: widget.hint,
+            labelText: label,
+            hintText: hint,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             border: GradientOutlineInputBorder(
               borderRadius: BorderRadius.circular(5),

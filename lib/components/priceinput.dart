@@ -2,11 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:mudarribe_trainer/values/translation.dart';
 
-class PriceInputField extends StatefulWidget {
+class PriceInputField extends StatelessWidget {
   const PriceInputField({
     Key? key,
     this.controller,
@@ -31,33 +29,16 @@ class PriceInputField extends StatefulWidget {
   final readOnly;
 
   @override
-  State<PriceInputField> createState() => _PriceInputFieldState();
-}
-
-class _PriceInputFieldState extends State<PriceInputField> {
-  String? labelTranslation;
-  translateLabel() async {
-    labelTranslation = await translateText(widget.lable);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    translateLabel();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: TextFormField(
-          readOnly: widget.readOnly,
-          obscureText: widget.obscure,
-          controller: widget.controller,
-          validator: widget.validator,
-          autovalidateMode: widget.autovalidateMode ??
-              (widget.validator == true.obs
+          readOnly: readOnly,
+          obscureText: obscure,
+          controller: controller,
+          validator: validator,
+          autovalidateMode: autovalidateMode ??
+              (validator == true.obs
                   ? AutovalidateMode.always
                   : AutovalidateMode.onUserInteraction),
           style: TextStyle(color: Colors.white),
@@ -87,8 +68,8 @@ class _PriceInputFieldState extends State<PriceInputField> {
               ),
               hoverColor: Colors.grey,
               focusColor: Colors.grey,
-              labelText: labelTranslation ?? '',
-              hintText: widget.hint,
+              labelText: lable,
+              hintText: hint,
               labelStyle: TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w500,
