@@ -98,15 +98,15 @@ class _SignupViewState extends State<SignupView> {
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: GradientText2(
-                        text: 'Choose photo',
+                        text: 'Choose photo'.tr,
                       ),
                     ),
                     InputField(
-                      lable: 'Name',
+                      lable: 'Name'.tr,
                       controller: controller.nameController,
                     ),
                     InputField(
-                      lable: 'Email',
+                      lable: 'Email'.tr,
                       controller: controller.emailController,
                     ),
                     PasswordInputField(
@@ -116,39 +116,39 @@ class _SignupViewState extends State<SignupView> {
                       controller: controller.passwordController,
                     ),
                     PasswordInputField(
-                      lable: 'Confirm Password',
+                      lable: 'Confirm Password'.tr,
                       obscure: controller.obscureTextCPassword,
                       toggle: controller.toggleCPassword,
                       controller: controller.confirmPasswordController,
                     ),
                     BioInputField(
-                      lable: 'Bio',
+                      lable: 'Bio'.tr,
                       controller: controller.bioController,
                     ),
                     Gap(16),
                     MultiSelectDropDown(
-                      label: 'Area of profession',
+                      label: 'Area of profession'.tr,
                       item: CategoryList(),
                       onchange: controller.onchange,
                       selected: controller.selectedCategories,
                     ),
                     Gap(16),
                     MultiSelectDropDown(
-                      label: 'Spoken Languages',
+                      label: 'Spoken Languages'.tr,
                       item: Languages(),
                       onchange: controller.onlangchange,
                       selected: controller.selectedLanguages,
                     ),
                     Gap(8),
                     Card1(
-                      text: 'Upload Your Certificate',
+                      text: 'Upload Your Certificate'.tr,
                       ontap: () {
                         controller.selectCertificate();
                       },
                       file: controller.certificate,
                     ),
                     Card1(
-                      text: 'Upload Your ID or Passport',
+                      text: 'Upload Your ID or Passport'.tr,
                       ontap: () {
                         controller.selectPassportId();
                       },
@@ -160,7 +160,7 @@ class _SignupViewState extends State<SignupView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GradientText2(
-                            text: 'Gender ?',
+                            text: 'Gender ?'.tr,
                           )
                         ],
                       ),
@@ -168,17 +168,17 @@ class _SignupViewState extends State<SignupView> {
                     Row(
                       children: [
                         GenderCard(
-                          text: 'Male',
+                          text: 'Male'.tr,
                           image: "assets/images/male.svg",
                           selected:
-                              signupController.gender == 'male' ? true : false,
+                              signupController.gender == 'male'.tr ? true : false,
                           ontap: signupController.onmaletap,
                         ),
                         GenderCard(
-                          text: 'Female',
+                          text: 'Female'.tr,
                           image: "assets/images/female.svg",
                           ontap: signupController.onfemaletap,
-                          selected: signupController.gender == 'female'
+                          selected: signupController.gender == 'female'.tr
                               ? true
                               : false,
                         ),
@@ -188,14 +188,14 @@ class _SignupViewState extends State<SignupView> {
                       height: 20,
                     ),
                     GradientButton(
-                      title: 'Submit',
+                      title: 'Submit'.tr,
                       onPressed: controller.areFieldsFilled.value
                           ? () {
                               controller.signUpTrainer();
                             }
                           : () {
-                              UiUtilites.errorSnackbar('Fill out all fields',
-                                  'Please fill all above fields');
+                              UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                  'Please fill all above fields'.tr);
                             },
                       selected: controller.areFieldsFilled.value,
                     ),

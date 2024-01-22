@@ -78,7 +78,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
             automaticallyImplyLeading: false,
             forceMaterialTransparency: true,
             title: TitleTopBar(
-              name: 'Add Events',
+              name: 'Add Events'.tr,
               ontap: () {
                 Get.back();
               },
@@ -124,7 +124,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     children: [
                                       Image.asset('assets/images/heroicon.png'),
                                       GradientText2(
-                                        text: 'Upload Event Photo',
+                                        text: 'Upload Event Photo'.tr,
                                         size: 11.0,
                                       ),
                                     ],
@@ -134,7 +134,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 20, bottom: 4, left: 4, right: 4),
-                          child: Text("Event Title",
+                          child: Text("Event Title".tr,
                               style: TextStyle(
                                 color: white.withOpacity(0.45),
                                 fontFamily: "Poppins",
@@ -146,7 +146,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           controller: controller.eventTitleController,
                         ),
                         Scheduleinput(
-                          text: 'Date',
+                          text: 'Date'.tr,
                           controller: controller.dateController,
                           width: 1.0,
                           onpressed: () {
@@ -169,7 +169,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Scheduleinput(
-                              text: 'From',
+                              text: 'From'.tr,
                               controller: controller.startTimeController,
                               onpressed: () {
                                 picker.DatePicker.showTime12hPicker(context,
@@ -193,7 +193,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               fontSize: 18.0,
                             ),
                             Scheduleinput(
-                              text: 'To',
+                              text: 'To'.tr,
                               controller: controller.endTimeController,
                               onpressed: () {
                                 picker.DatePicker.showTime12hPicker(context,
@@ -222,7 +222,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, bottom: 4, left: 4, right: 4),
-                                  child: Text("Price",
+                                  child: Text("Price".tr,
                                       style: TextStyle(
                                         color: white.withOpacity(0.45),
                                         fontFamily: "Poppins",
@@ -245,7 +245,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, bottom: 4, left: 4, right: 4),
-                                  child: Text("Capacity",
+                                  child: Text("Capacity".tr,
                                       style: TextStyle(
                                         color: white.withOpacity(0.45),
                                         fontFamily: "Poppins",
@@ -269,7 +269,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Location",
+                              Text("Location".tr,
                                   style: TextStyle(
                                     color: white.withOpacity(0.4),
                                     fontSize: 14,
@@ -348,8 +348,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                               Center(
                                 child: Container(
                                   margin: const EdgeInsets.only(top: 40),
-                                  child: const Text(
-                                      "Would you like your event to be in\nthe Banner?",
+                                  child:  Text(
+                                      "Would you like your event to be in\nthe Banner?".tr,
                                       textAlign: TextAlign.center,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -366,7 +366,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                 children: [
                                   Expanded(
                                     child: ListTile(
-                                      title: GradientText('Yes',
+                                      title: GradientText('Yes'.tr,
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               fontFamily: "Poppins"),
@@ -392,7 +392,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                           20), // Add some space between the two options
                                   Expanded(
                                     child: ListTile(
-                                      title: GradientText('No',
+                                      title: GradientText('No'.tr,
                                           style: TextStyle(
                                               fontSize: 14.0,
                                               fontFamily: "Poppins"),
@@ -421,7 +421,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                         ),
                         controller.selectedOption == 2
                             ? GradientButton(
-                                title: 'Share Event',
+                                title: 'Share Event'.tr,
                                 selected: controller.areFieldsFilled.value,
                                 onPressed: () {
                                   controller.areFieldsFilled.value == true
@@ -429,7 +429,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                       : null;
                                 })
                             : GradientButton(
-                                title: 'Checkout',
+                                title: 'Checkout'.tr,
                                 selected: controller.areFieldsFilled.value,
                                 onPressed: () {
                                   controller.areFieldsFilled.value == true

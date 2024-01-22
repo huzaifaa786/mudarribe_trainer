@@ -49,21 +49,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               MainCard(
-                                name: "View Profile",
+                                name: "View Profile".tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.profile);
                                 },
                                 image: 'assets/images/person.svg',
                               ),
                               MainCard(
-                                name: 'Chats',
+                                name: 'Chats'.tr,
                                 ontap: () {
                                   Get.to(() => ChatListScreen());
                                 },
                                 image: 'assets/images/chats.svg',
                               ),
                               MainCard(
-                                name: 'Orders',
+                                name: 'Orders'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.orders);
                                 },
@@ -76,14 +76,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               MainCard(
-                                name: 'Packages',
+                                name: 'Packages'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.packagesScreen);
                                 },
                                 image: 'assets/images/packages.svg',
                               ),
                               MainCard(
-                                name: 'Edit Profile',
+                                name: 'Edit Profile'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.editprofile)!
                                       .then((value) => controller.getAppUser());
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 image: 'assets/images/person_setting.svg',
                               ),
                               MainCard(
-                                name: 'My Events',
+                                name: 'My Events'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.myevent);
                                 },
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               MainCard(
-                                name: 'My Sales',
+                                name: 'My Sales'.tr,
                                 ontap: () {
                                   Get.toNamed(AppRoutes.sale);
                                 },

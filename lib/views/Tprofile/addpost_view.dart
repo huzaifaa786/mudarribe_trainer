@@ -30,7 +30,7 @@ class _AddPostState extends State<AddPost> {
               forceMaterialTransparency: true,
               automaticallyImplyLeading: false,
               title: TitleTopBar(
-                name: 'New Post',
+                name: 'New Post'.tr,
                 ontap: () {
                   Get.back();
                 },
@@ -74,7 +74,7 @@ class _AddPostState extends State<AddPost> {
                               children: [
                                 Image.asset('assets/images/heroicon.png'),
                                 GradientText2(
-                                 text: 'Upload Photo',
+                                 text: 'Upload Photo'.tr,
                                   weight: FontWeight.w400,
                                 ),
                               ],
@@ -85,7 +85,7 @@ class _AddPostState extends State<AddPost> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: BioInputField(
-                            lable: 'Write a caption',
+                            lable: 'Write a caption'.tr,
                             controller: controller.captionController,
                           ),
                         ),
@@ -93,14 +93,14 @@ class _AddPostState extends State<AddPost> {
                           height: 20,
                         ),
                         GradientButton(
-                            title: 'Post',
+                            title: 'Post'.tr,
                             onPressed: controller.areFieldsFilled.value
                                 ? () {
                                     controller.createPost();
                                   }
                                 : () {
-                                    UiUtilites.errorSnackbar('Fill out all fields',
-                                        'Please fill all above fields');
+                                    UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                        'Please fill all above fields'.tr);
                                   },
                             selected: controller.areFieldsFilled.value)
                       ],

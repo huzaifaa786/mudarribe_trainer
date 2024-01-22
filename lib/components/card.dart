@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -41,7 +42,7 @@ class Card1 extends StatelessWidget {
               height: 16,
             ),
             file == null
-                ? IconButtons(title: 'Upload', onPressed: ontap)
+                ? IconButtons(title: 'Upload'.tr, onPressed: ontap)
                 : Row(
                     children: [
                       SvgPicture.asset('assets/images/doc.svg'),

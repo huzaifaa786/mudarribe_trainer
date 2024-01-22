@@ -21,7 +21,7 @@ class TodayMealsScreen extends StatefulWidget {
 
 class _TodayMealsScreenState extends State<TodayMealsScreen> {
   String title = '02';
-  String description = 'Full Body Energy';
+  String description = 'Full Body Energy'.tr;
   String imgpath1 = 'assets/images/containimg.jpeg';
 
   @override
@@ -68,7 +68,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                           child: Column(
                             children: [
                               IconButtons(
-                                  title: 'Upload New Files',
+                                  title: 'Upload New Files'.tr,
                                   onPressed: () {
                                     controller.selectmultipleFiles();
                                   }),
@@ -109,27 +109,27 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                                           .fileUrl),
                                               onDeleteTap: () {
                                                 UiUtilites.confirmAlert(context,
-                                                    'Are you sure you want to delete this File?',
+                                                    'Are you sure you want to delete this File?'.tr,
                                                     () {
                                                   controller.deleteFile(
                                                       controller
                                                           .planfiles[index]);
                                                 }, () {
                                                   Get.back();
-                                                }, 'Yes', 'Cancel');
+                                                }, 'Yes'.tr, 'Cancel'.tr);
                                               },
                                             )
                                           : PdfCard(
                                               onDeleteTap: () {
                                                 UiUtilites.confirmAlert(context,
-                                                    'Are you sure you want to delete this File?',
+                                                    'Are you sure you want to delete this File?'.tr,
                                                     () {
                                                   controller.deleteFile(
                                                       controller
                                                           .planfiles[index]);
                                                 }, () {
                                                   Get.back();
-                                                }, 'Yes', 'Cancel');
+                                                }, 'Yes'.tr, 'Cancel'.tr);
                                               },
                                               onPressed: () {
                                                 String remotePDFpath;
@@ -174,7 +174,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                           onPressed: () {
                             controller.sendPlan();
                           },
-                          title: 'Send Plan',
+                          title: 'Send Plan'.tr,
                         ),
                       ),
                     ),

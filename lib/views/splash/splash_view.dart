@@ -1,5 +1,6 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/values/controller.dart';
 
 
@@ -43,9 +44,9 @@ class _SplashViewState extends State<SplashView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/splashLogo.png',height: 210,width: 210,),
-            const SizedBox(height: 14),
-            const Text(
-              "Find Your Personal Trainer",
+             SizedBox(height: 14),
+             Text(
+              "Find Your Personal Trainer".tr,
               style: TextStyle(
                 fontFamily: "Poppins",
                 fontSize: 13,

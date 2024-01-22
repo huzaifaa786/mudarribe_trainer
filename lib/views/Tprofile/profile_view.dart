@@ -286,7 +286,7 @@ class _ProfileViewState extends State<ProfileView>
                                 child: Column(
                                   children: [
                                     AddPostbutton(
-                                      title: 'Add Post',
+                                      title: 'Add Post'.tr,
                                       onPressed: () {
                                         Get.toNamed(AppRoutes.addpost)!.then(
                                             (value) =>
@@ -299,7 +299,7 @@ class _ProfileViewState extends State<ProfileView>
                                       height: 10,
                                     ),
                                     AddPostbutton(
-                                      title: 'Add Story',
+                                      title: 'Add Story'.tr,
                                       onPressed: () async {
                                         if (await getpermission() == true)
                                           Navigator.push(
@@ -313,7 +313,7 @@ class _ProfileViewState extends State<ProfileView>
                                                                 EdgeInsets.all(
                                                                     4),
                                                             child: StoryButton(
-                                                              title: "Upload",
+                                                              title: "Upload".tr,
                                                               selected: true,
                                                             ),
                                                           ),

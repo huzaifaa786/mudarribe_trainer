@@ -97,23 +97,23 @@ class _EditProfileState extends State<EditProfile> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Choose photo',
+                              'Choose photo'.tr,
                               style: TextStyle(color: White),
                             ) ,
                           ),
                           InputField(
-                            lable: 'Name',
+                            lable: 'Name'.tr,
                             controller: controller.nameController,
                           ),
                           BioInputField(
-                            lable: 'Bio',
+                            lable: 'Bio'.tr,
                             controller: controller.bioController,
                           ),
                           SizedBox(
                             height: 15,
                           ),
                           MultiSelectDropDown(
-                            label: 'Category of train',
+                            label: 'Category of train'.tr,
                             item: CategoryList(),
                             onchange: controller.onchange,
                             selected: controller.selectedCategories,
@@ -137,7 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                                 Text(
-                                  " Promo Code",
+                                  " Promo Code".tr,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
@@ -172,7 +172,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                                 Text(
-                                  " Change Password",
+                                  " Change Password".tr,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
@@ -206,7 +206,7 @@ class _EditProfileState extends State<EditProfile> {
                                       color: borderbottom,
                                     )),
                                 Text(
-                                  " Languages",
+                                  " Languages".tr,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
@@ -242,7 +242,7 @@ class _EditProfileState extends State<EditProfile> {
                                   ),
                                 ),
                                 Text(
-                                  " Log out",
+                                  " Log out".tr,
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
@@ -263,15 +263,15 @@ class _EditProfileState extends State<EditProfile> {
                             height: 24,
                           ),
                           GradientButton(
-                            title: 'Save Changes',
+                            title: 'Save Changes'.tr,
                             onPressed: controller.areFieldsFilled.value
                                 ? () {
                                     controller.updateTrainer();
                                   }
                                 : () {
                                     UiUtilites.errorSnackbar(
-                                        'Fill out all fields',
-                                        'Please fill all above fields');
+                                        'Fill out all fields'.tr,
+                                        'Please fill all above fields'.tr);
                                   },
                             selected: controller.areFieldsFilled.value,
                           )

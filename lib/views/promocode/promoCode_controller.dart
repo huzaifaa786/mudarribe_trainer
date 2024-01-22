@@ -74,7 +74,7 @@ class PromoCodeContoller extends GetxController {
     areFieldsFilled.value = false;
     busyController.setBusy(false);
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Promo Code Added\nSuccessfully!');
+    UiUtilites.successAlert(Get.context, 'Promo Code Added\nSuccessfully!'.tr);
   }
 
     Future updatePromocode() async {
@@ -95,6 +95,6 @@ class PromoCodeContoller extends GetxController {
     areFieldsFilled.value = false;
     busyController.setBusy(false);
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Promo Code Added\nSuccessfully!');
+    UiUtilites.successAlert(Get.context, 'Promo Code Added\nSuccessfully!'.tr);
   }
 }

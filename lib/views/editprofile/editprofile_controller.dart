@@ -101,7 +101,7 @@ class EditProfileContoller extends GetxController {
           'profileImageUrl': imageResult.imageUrl,
           'categories': selectedCategories,
         });
-        UiUtilites.successSnackbar('', 'User updated successfully');
+        UiUtilites.successSnackbar('', 'User updated successfully'.tr);
       }
     } else {
       await _userService.updateUser(
@@ -112,7 +112,7 @@ class EditProfileContoller extends GetxController {
           'categories': selectedCategories,
         },
       );
-      UiUtilites.successSnackbar('', 'User updated successfully');
+      UiUtilites.successSnackbar('', 'User updated successfully'.tr);
     }
     busyController.setBusy(false);
   }
@@ -131,7 +131,7 @@ class EditProfileContoller extends GetxController {
       //     cacheDuration: Duration(), translateTo: Locale('en'));
       Get.offAllNamed(AppRoutes.signin);
     } on AuthApiException catch (e) {
-      UiUtilites.errorSnackbar('Logout Failed', e.toString());
+      UiUtilites.errorSnackbar('Logout Failed'.tr, e.toString());
     }
   }
 }

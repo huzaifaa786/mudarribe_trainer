@@ -172,7 +172,7 @@ class ChatPageState extends State<ChatPage> {
         .pickImage(source: ImageSource.gallery)
         .catchError((err) {
       // Fluttertoast.showToast(msg: err.toString());
-      UiUtilites.errorSnackbar('Error', err.toString());
+      UiUtilites.errorSnackbar('Error'.tr, err.toString());
       return null;
     });
     if (pickedFile != null) {
@@ -462,7 +462,7 @@ class ChatPageState extends State<ChatPage> {
                                         Row(
                                           children: [
                                             Text(
-                                              'Plan Title: ',
+                                              'Plan Title: '.tr,
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -480,7 +480,7 @@ class ChatPageState extends State<ChatPage> {
                                         Row(
                                           children: [
                                             Text(
-                                              'Amount: ',
+                                              'Amount: '.tr,
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -498,7 +498,7 @@ class ChatPageState extends State<ChatPage> {
                                         Row(
                                           children: [
                                             Text(
-                                              'Plan Category: ',
+                                              'Plan Category: '.tr,
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -518,8 +518,8 @@ class ChatPageState extends State<ChatPage> {
                                                       .split("~~")[3]
                                                       .split(":")[1] ==
                                                   'true'
-                                              ? 'Paid'
-                                              : 'Unpaid',
+                                              ? 'Paid'.tr
+                                              : 'Unpaid'.tr,
                                           onPressed: () {},
                                           selected: messageChat.content
                                                       .split("~~")[3]
@@ -545,7 +545,7 @@ class ChatPageState extends State<ChatPage> {
                                         Row(
                                           children: [
                                             Text(
-                                              'Rating:',
+                                              'Rating:'.tr,
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -572,8 +572,8 @@ class ChatPageState extends State<ChatPage> {
                                                       .split("~~")[1]
                                                       .split(":")[1] ==
                                                   'true'
-                                              ? 'Rated '
-                                              : 'Not Rated Yet',
+                                              ? 'Rated '.tr
+                                              : 'Not Rated Yet'.tr,
                                           onPressed: () {},
                                           selected: messageChat.content
                                                       .split("~~")[1]
@@ -942,7 +942,7 @@ class ChatPageState extends State<ChatPage> {
                 style: TextStyle(color: Colors.white, fontSize: 15),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
-                  hintText: 'Type Here...',
+                  hintText: 'Type Here...'.tr,
                   hintStyle: TextStyle(color: Colors.grey[300]),
                 ),
                 focusNode: focusNode,
@@ -1005,7 +1005,7 @@ class ChatPageState extends State<ChatPage> {
                     );
                   } else {
                     return Center(
-                        child: Text("No message here yet...") );
+                        child: Text("No message here yet...".tr) );
                   }
                 } else {
                   return Center(
@@ -1057,7 +1057,7 @@ class ChatPageState extends State<ChatPage> {
                   });
                 },
                 child: GradientText2(
-                  text: 'Personal Plan',
+                  text: 'Personal Plan'.tr,
                   size: 16.0,
                 ),
               ),
@@ -1080,7 +1080,7 @@ class ChatPageState extends State<ChatPage> {
                 ),
                 onPressed: getImage,
                 child: Text(
-                  'Photos',
+                  'Photos'.tr,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 14,
@@ -1108,7 +1108,7 @@ class ChatPageState extends State<ChatPage> {
                 ),
                 onPressed: getPdf,
                 child: Text(
-                  'Document',
+                  'Document'.tr,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 14,
@@ -1140,7 +1140,7 @@ class ChatPageState extends State<ChatPage> {
                   Get.back();
                 },
                 child: Text(
-                  'Rate Us',
+                  'Rate Us'.tr,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 14,
@@ -1165,7 +1165,7 @@ class ChatPageState extends State<ChatPage> {
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  'Cancel',
+                  'Cancel'.tr,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 14,

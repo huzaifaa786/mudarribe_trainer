@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:photo_view/photo_view.dart';
 
@@ -16,8 +17,8 @@ class _FullPhotoPageState extends State<FullPhotoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Full photo',
+        title:  Text(
+          'Full photo'.tr,
         ) ,
         centerTitle: true,
       ),

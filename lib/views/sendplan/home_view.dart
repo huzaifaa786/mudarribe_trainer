@@ -37,7 +37,7 @@ class _HomePlanState extends State<HomePlan> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             forceMaterialTransparency: true,
-            title: TopBar(text: 'Send Plan'),
+            title: TopBar(text: 'Send Plan'.tr),
           ),
           body: SafeArea(
             child: Container(
@@ -56,10 +56,10 @@ class _HomePlanState extends State<HomePlan> {
                         color: Color.fromARGB(255, 37, 37, 37),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      child: const Align(
+                      child:  Align(
                           alignment: Alignment.center,
                           child: GradientText2(
-                            text: 'Choose Plan ',
+                            text: 'Choose Plan '.tr,
                             size: 20.0,
                           )),
                     ),
@@ -73,7 +73,7 @@ class _HomePlanState extends State<HomePlan> {
                           selected:
                               controller.category == 'nutrition' ? true : false,
                           ontap: controller.onnutritiontap,
-                          text: 'Nutrition Plan',
+                          text: 'Nutrition Plan'.tr,
                         ),
                         const SizedBox(
                           height: 50,
@@ -83,7 +83,7 @@ class _HomePlanState extends State<HomePlan> {
                           ontap: controller.onexcercisetap,
                           selected:
                               controller.category == 'excercise' ? true : false,
-                          text: 'Exercises Plan',
+                          text: 'Exercises Plan'.tr,
                         ),
                       ],
                     ),
@@ -91,7 +91,7 @@ class _HomePlanState extends State<HomePlan> {
                       height: 60,
                     ),
                     GradientButton(
-                      title: 'Save Changes',
+                      title: 'Save Changes'.tr,
                       onPressed: controller.areFieldsFilled.value
                           ? () {
                               if (controller.category == 'nutrition' ||
@@ -106,8 +106,8 @@ class _HomePlanState extends State<HomePlan> {
                               }
                             }
                           : () {
-                              UiUtilites.errorSnackbar('Fill out all fields',
-                                  'Please fill all above fields');
+                              UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                  'Please fill all above fields'.tr);
                             },
                       selected: controller.areFieldsFilled.value,
                     )

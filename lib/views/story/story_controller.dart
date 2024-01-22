@@ -65,6 +65,6 @@ class TrainerStoryContoller extends GetxController {
     print(stories.length);
     print(firebaseStories.length);
     // await getTrainerStories(trainer!.value.id);
-    UiUtilites.successAlert(Get.context, "Story deleted successfully");
+    UiUtilites.successAlert(Get.context, "Story deleted successfully".tr);
   }
 }

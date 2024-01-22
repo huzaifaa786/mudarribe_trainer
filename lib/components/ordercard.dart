@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_adjacent_string_concatenation
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -67,7 +68,7 @@ class OrderCard extends StatelessWidget {
               Row(
                 children: [
                   GradientText2(
-                    text: 'Package :',
+                    text: 'Package :'.tr,
                     size: 12.0,
                   ),
                   Container(
@@ -86,7 +87,7 @@ class OrderCard extends StatelessWidget {
               Row(
                 children: [
                   GradientText2(
-                    text: '      Price :',
+                    text: '      Price :'.tr,
                   ),
                   Padding(
                       padding: const EdgeInsets.only(left: 8, right: 8),
@@ -106,7 +107,7 @@ class OrderCard extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: GradientText2(
-                    text: 'Send Plan',
+                    text: 'Send Plan'.tr,
                     size: 16.0,
                     weight: FontWeight.w700,
                   ),

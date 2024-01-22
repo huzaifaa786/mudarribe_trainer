@@ -74,12 +74,12 @@ class ExistingPlanController extends GetxController {
     });
     await notificationCreated(orderId, userId);
     notificationService.postNotification(
-        title: '$trainerName sent you a $category Plan',
-        body: 'Open app and check it out.',
+        title: '$trainerName sent you a $category Plan'.tr,
+        body: 'Open app and check it out.'.tr,
         receiverToken: firebaseToken);
     busyController.setBusy(false);
     Get.offNamed(AppRoutes.orders);
-    UiUtilites.successAlert(Get.context, 'Plan Sent Successfully');
+    UiUtilites.successAlert(Get.context, 'Plan Sent Successfully'.tr);
   }
 
   notificationCreated(String orderId, String userId) async {
@@ -94,8 +94,8 @@ class ExistingPlanController extends GetxController {
         'userId': userId,
         'trainerId': FirebaseAuth.instance.currentUser!.uid,
         'content': category == 'excercise'
-            ? 'You have received new exercises plan'
-            : 'You have received new Nutrition plan',
+            ? 'You have received new exercises plan'.tr
+            : 'You have received new Nutrition plan'.tr,
         'orderId': orderId,
         'seen': false,
         "planId": planId,
@@ -127,8 +127,8 @@ class ExistingPlanController extends GetxController {
                 fileUrl: cloudStorageResult.imageUrl,
                 FileId: cloudStorageResult.imageFileName));
       } else {
-        UiUtilites.errorSnackbar('Error uploading file image.',
-            "Send Paln file only contain .mp4 and .pdf files");
+        UiUtilites.errorSnackbar('Error uploading file image.'.tr,
+            "Send Paln file only contain .mp4 and .pdf files".tr);
       }
     }
     await getTrainerFiles();
@@ -154,7 +154,7 @@ class ExistingPlanController extends GetxController {
       await getTrainerFiles();
 
       Get.back();
-      UiUtilites.successAlert(Get.context, 'File Deleted Successfully');
+      UiUtilites.successAlert(Get.context, 'File Deleted Successfully'.tr);
     }
   }
 

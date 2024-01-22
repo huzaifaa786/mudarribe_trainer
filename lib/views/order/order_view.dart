@@ -31,7 +31,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   automaticallyImplyLeading: false,
                   forceMaterialTransparency: true,
                   title: TitleTopBar(
-                    name: 'Orders',
+                    name: 'Orders'.tr,
                     ontap: () {
                       Get.back();
                     },
@@ -63,7 +63,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 height: Get.height,
                                 child: Center(
                                     child:
-                                        Text('No order found!') ));
+                                        Text('No order found!'.tr) ));
                           }
                           List<CombinedOrderData> combinedOrderData =
                               snapshot.data!;

@@ -38,7 +38,7 @@ class _EditPlanViewState extends State<EditPlanView> {
             forceMaterialTransparency: true,
             automaticallyImplyLeading: false,
             title: TitleTopBar(
-                name: 'Edit Package',
+                name: 'Edit Package'.tr,
                 ontap: () {
                   Get.back();
                 }),
@@ -50,26 +50,26 @@ class _EditPlanViewState extends State<EditPlanView> {
                 child: Column(
                   children: [
                     InputField(
-                      lable: 'Plan Title',
+                      lable: 'Plan Title'.tr,
                       controller: controller.packagenameController,
                     ),
                     PriceInputField(
                       controller: controller.priceController,
-                      lable: 'Price',
+                      lable: 'Price'.tr,
                     ),
                     InputField(
                       controller: controller.durationController,
-                      lable: 'Duration',
+                      lable: 'Duration'.tr,
                     ),
                     BioInputField(
                       controller: controller.discriptionController,
-                      lable: 'Description',
+                      lable: 'Description'.tr,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     GradientText2(
-                      text: 'Select plan category ',
+                      text: 'Select plan category '.tr,
                       size: 18.0,
                     ),
                     Row(
@@ -80,14 +80,14 @@ class _EditPlanViewState extends State<EditPlanView> {
                           ontap: controller.onexcercisetap,
                           selected:
                               controller.category == 'excercise' ? true : false,
-                          text: 'Exercises',
+                          text: 'Exercises'.tr,
                         ),
                         PlanCategoryCard(
                           image: "assets/images/nutrition.svg",
                           selected:
                               controller.category == 'nutrition' ? true : false,
                           ontap: controller.onnutritiontap,
-                          text: 'Nutrition',
+                          text: 'Nutrition'.tr,
                         ),
                       ],
                     ),
@@ -101,7 +101,7 @@ class _EditPlanViewState extends State<EditPlanView> {
                           ? true
                           : false,
                       ontap: controller.onbothtap,
-                      text: ' Exercises & Nutrition',
+                      text: ' Exercises & Nutrition'.tr,
                     ),
                     SizedBox(
                       height: 25,
@@ -114,14 +114,14 @@ class _EditPlanViewState extends State<EditPlanView> {
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
             child: GradientButton(
-              title: 'Submit ',
+              title: 'Submit '.tr,
               onPressed: controller.areFieldsFilled.value
                   ? () {
                       controller.updatePackage();
                     }
                   : () {
-                      UiUtilites.errorSnackbar('Fill out all fields',
-                          'Please fill all above fields');
+                      UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                          'Please fill all above fields'.tr);
                     },
               selected: controller.areFieldsFilled.value,
             ),
