@@ -49,7 +49,7 @@ class _SignupViewState extends State<SignupView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Fill Your Information',
+                          'Fill Your Information'.tr,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,

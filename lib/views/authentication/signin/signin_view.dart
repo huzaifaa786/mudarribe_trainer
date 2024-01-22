@@ -26,15 +26,17 @@ class _SignInScreenState extends State<SignInScreen> {
       builder: (controller) => BusyIndicator(
         child: Scaffold(
           appBar: AppBar(
-          automaticallyImplyLeading: false,
-          forceMaterialTransparency: true,
-          title: TopBar(text: "",),),
+            automaticallyImplyLeading: false,
+            forceMaterialTransparency: true,
+            title: TopBar(
+              text: "",
+            ),
+          ),
           body: SafeArea(
               child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-             
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Image.asset('assets/images/logo.png'),
@@ -42,10 +44,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 14,
                 ),
-                const Text(
-                  'Enter Your Registered Email & Password.',
+                 Text(
+                  'Enter Your Registered Email & Password.'.tr,
                   style: TextStyle(color: white, fontSize: 15),
-                ) ,
+                ),
                 Padding(
                     padding: const EdgeInsets.only(top: 28),
                     child: Container(
@@ -61,14 +63,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InputField(
-                              lable: 'Email',
+                              lable: 'Email'.tr,
                               controller: controller.emailController,
                             ),
                             const SizedBox(
                               height: 20,
                             ),
                             PasswordInputField(
-                              lable: 'Password',
+                              lable: 'Password'.tr,
                               obscure: controller.obscureTextPassword,
                               toggle: controller.toggle,
                               controller: controller.passwordController,
@@ -83,8 +85,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                     onTap: () {
                                       Get.toNamed(AppRoutes.forgetpassword);
                                     },
-                                    child: const GradientText2(
-                                      text: 'Forget Password?',
+                                    child:  GradientText2(
+                                      text: 'Forget Password?'.tr,
                                     )),
                               ],
                             )
@@ -96,14 +98,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 50,
                 ),
                 GradientButton(
-                  title: 'Submit',
+                  title: 'Submit'.tr,
                   onPressed: controller.areFieldsFilled.value
                       ? () {
                           controller.signInTrainer();
                         }
                       : () {
-                          UiUtilites.errorSnackbar('Fill out all fields',
-                              'Please fill all above fields');
+                          UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                              'Please fill all above fields'.tr);
                         },
                   selected: controller.areFieldsFilled.value,
                 )
