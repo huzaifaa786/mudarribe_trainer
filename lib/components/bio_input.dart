@@ -3,9 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:mudarribe_trainer/values/translation.dart';
 
-class BioInputField extends StatefulWidget {
+class BioInputField extends StatelessWidget {
   const BioInputField({
     Key? key,
     this.controller,
@@ -30,38 +29,21 @@ class BioInputField extends StatefulWidget {
   final readOnly;
 
   @override
-  State<BioInputField> createState() => _BioInputFieldState();
-}
-
-class _BioInputFieldState extends State<BioInputField> {
-  String? labelTranslation;
-  translateLabel() async {
-    labelTranslation = await translateText(widget.lable);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    translateLabel();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
         child: TextFormField(
-            readOnly: widget.readOnly,
-            obscureText: widget.obscure,
-            controller: widget.controller,
-            validator: widget.validator,
+            readOnly: readOnly,
+            obscureText: obscure,
+            controller: controller,
+            validator: validator,
             maxLines: 3,
-            autovalidateMode: widget.autovalidateMode ??
-                (widget.validator == true.obs
+            autovalidateMode: autovalidateMode ??
+                (validator == true.obs
                     ? AutovalidateMode.always
                     : AutovalidateMode.onUserInteraction),
             style: TextStyle(color: Colors.white),
-            keyboardType: widget.type,
+            keyboardType: type,
             decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 // contentPadding: EdgeInsets.only(top: 60),
@@ -76,8 +58,8 @@ class _BioInputFieldState extends State<BioInputField> {
                 ),
                 hoverColor: Colors.grey,
                 focusColor: Colors.grey,
-                labelText: labelTranslation ?? '',
-                hintText: widget.hint,
+                labelText: lable,
+                hintText: hint,
                 labelStyle: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,

@@ -54,7 +54,7 @@ class _SignupViewState extends State<SignupView> {
                               color: Colors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.w700),
-                        ) ,
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -194,7 +194,6 @@ class _SignupViewState extends State<SignupView> {
                               controller.signUpTrainer();
                             }
                           : () {
-        
                               UiUtilites.errorSnackbar('Fill out all fields',
                                   'Please fill all above fields');
                             },
