@@ -82,7 +82,7 @@ class ProfileController extends GetxController {
 
       storyImage = null;
 
-      UiUtilites.successAlert(Get.context, 'Story Created');
+      UiUtilites.successAlert(Get.context, 'Story Created'.tr);
 
       busyController.setBusy(false);
     }

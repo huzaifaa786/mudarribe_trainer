@@ -101,6 +101,6 @@ class EditPlanController extends GetxController {
     });
     busyController.setBusy(false);
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Package Edit\nSuccessfully !');
+    UiUtilites.successAlert(Get.context, 'Package Edit\nSuccessfully !'.tr);
   }
 }

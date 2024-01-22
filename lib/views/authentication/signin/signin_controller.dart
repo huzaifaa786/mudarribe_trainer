@@ -69,11 +69,11 @@ class SignInController extends GetxController {
           Get.offNamed(AppRoutes.homeScreen);
         } else {
           UiUtilites.errorSnackbar(
-              'Pending Approval', 'Trainer not approved yet from admin');
+              'Pending Approval'.tr, 'Trainer not approved yet from admin'.tr);
         }
       }
     } on AuthApiException catch (e) {
-      UiUtilites.errorSnackbar('Signin Failed', e.toString());
+      UiUtilites.errorSnackbar('Signin Failed'.tr, e.toString());
     }
     busyController.setBusy(false);
   }

@@ -72,7 +72,7 @@ class ExercisesController extends GetxController {
 
   Future selectmultipleFiles() async {
     if (filenameController.text.isEmpty) {
-      UiUtilites.errorSnackbar('Empty Field', 'Please Enter name first');
+      UiUtilites.errorSnackbar('Empty Field'.tr, 'Please Enter name first'.tr);
       return;
     }
     final tempFile = await _fileSelectorApi.selectMultipleFiles();
@@ -142,7 +142,7 @@ class ExercisesController extends GetxController {
       });
     }
 
-    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
+    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !'.tr);
   }
 
   Future getTrainerPlan() async {

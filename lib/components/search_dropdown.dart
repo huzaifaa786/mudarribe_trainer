@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -116,7 +117,7 @@ class DropdownField extends StatelessWidget {
             padding: EdgeInsets.only(left: 4, right: 4),
             color: Colors.black,
             child: GradientText(
-              'Category Of Train',
+              'Category Of Train'.tr,
               style: TextStyle(
                   fontSize: 12.0,
                   fontFamily: 'Poppins',

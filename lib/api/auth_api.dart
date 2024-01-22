@@ -2,6 +2,7 @@
 
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/exceptions/auth_api_exception.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -59,7 +60,7 @@ class AuthApi {
         return user;
       } else {
         throw AuthApiException(
-          title: 'Server Error',
+          title: 'Server Error'.tr,
           message: 'Failed to Login, please try again later.',
         );
       }

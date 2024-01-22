@@ -32,7 +32,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                     forceMaterialTransparency: true,
                     automaticallyImplyLeading: false,
                     title: TitleTopBar(
-                      name: 'Packages',
+                      name: 'Packages'.tr,
                       ontap: () {
                         Get.back();
                       },
@@ -107,7 +107,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 12.0),
                                     child: GradientText2(
-                                      text: 'Add New Package',
+                                      text: 'Add New Package'.tr,
                                       size: 14.0,
                                       weight: FontWeight.w600,
                                     ),

@@ -55,7 +55,7 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                     automaticallyImplyLeading: false,
                     forceMaterialTransparency: true,
                     title: TitleTopBar(
-                      name: 'My Events',
+                      name: 'My Events'.tr,
                       ontap: () {
                         Get.back();
                       },
@@ -103,7 +103,7 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 12),
                           child: GradientText2(
-                            text: 'Add New Event',
+                            text: 'Add New Event'.tr,
                           ),
                         )
                       ],
@@ -180,13 +180,13 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                                       return EventDetailsCard(
                                           onPressClose: () {
                                             UiUtilites.confirmAlert(context,
-                                                'Are you sure you want to close this event?',
+                                                'Are you sure you want to close this event?'.tr,
                                                 () {
                                               controller.closeEvent(
                                                   controller.events[index]);
                                             }, () {
                                               Get.back();
-                                            }, 'Yes', 'Cancel');
+                                            }, 'Yes'.tr, 'Cancel'.tr);
                                           },
                                           attendees: length,
                                           title: controller.events[index].title,
@@ -194,13 +194,13 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                                               controller.events[index].imageUrl,
                                           onPressDelete: () {
                                             UiUtilites.confirmAlert(context,
-                                                'Are you sure you want to delete this event?',
+                                                'Are you sure you want to delete this event?'.tr,
                                                 () {
                                               controller.deleteEvent(
                                                   controller.events[index]);
                                             }, () {
                                               Get.back();
-                                            }, 'Yes', 'Cancel');
+                                            }, 'Yes'.tr, 'Cancel'.tr);
                                           },
                                           isClose: controller.events[index]
                                                       .eventStatus ==

@@ -32,7 +32,7 @@ class _SaleScreenState extends State<SaleScreen> {
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
           title: TopBar(
-            text: 'My Sales',
+            text: 'My Sales'.tr,
           ),
         ),
         body: BusyIndicator(
@@ -129,7 +129,7 @@ class _SaleScreenState extends State<SaleScreen> {
                             padding: const EdgeInsets.only(bottom: 50),
                             child: Column(
                               children: [
-                                Text('Total Sales',
+                                Text('Total Sales'.tr,
                                         style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,

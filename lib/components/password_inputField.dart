@@ -6,7 +6,7 @@ import 'package:gradient_borders/gradient_borders.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mudarribe_trainer/values/translation.dart';
 
-class PasswordInputField extends StatefulWidget {
+class PasswordInputField extends StatelessWidget {
   const PasswordInputField({
     Key? key,
     this.controller,
@@ -32,44 +32,27 @@ class PasswordInputField extends StatefulWidget {
   final maxlines;
   final readOnly;
 
-  @override
-  State<PasswordInputField> createState() => _PasswordInputFieldState();
-}
-
-class _PasswordInputFieldState extends State<PasswordInputField> {
-  String? labelTranslation;
-  translateLabel() async {
-    labelTranslation = await translateText(widget.lable);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    translateLabel();
-    super.initState();
-  }
-
-  @override
+@override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
       child: TextFormField(
-        readOnly: widget.readOnly,
-        obscureText: widget.obscure,
-        controller: widget.controller,
-        validator: widget.validator,
-        autovalidateMode: widget.autovalidateMode ??
-            (widget.validator == true.obs
+        readOnly: readOnly,
+        obscureText: obscure,
+        controller: controller,
+        validator: validator,
+        autovalidateMode: autovalidateMode ??
+            (validator == true.obs
                 ? AutovalidateMode.always
                 : AutovalidateMode.onUserInteraction),
         style: const TextStyle(color: Colors.white),
-        keyboardType: widget.type,
+        keyboardType: type,
         decoration: InputDecoration(
           suffixIcon: InkWell(
               onTap: () {
-                widget.toggle();
+                toggle();
               },
-              child: widget.obscure
+              child: obscure
                   ? SvgPicture.asset(
                       'assets/images/eye_1.svg',
                       height: 24,
@@ -101,8 +84,8 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
           ),
           hoverColor: Colors.grey,
           focusColor: Colors.grey,
-          labelText: labelTranslation ?? '',
-          hintText: widget.hint,
+          labelText: lable,
+          hintText: hint,
           labelStyle: TextStyle(
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,

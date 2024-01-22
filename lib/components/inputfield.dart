@@ -34,18 +34,6 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  String? labelTranslation;
-  translateLabel() async {
-    labelTranslation = await translateText(widget.lable);
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    translateLabel();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -76,7 +64,7 @@ class _InputFieldState extends State<InputField> {
                 ),
                 hoverColor: Colors.grey,
                 focusColor: Colors.grey,
-                labelText: labelTranslation ?? '',
+                labelText: widget.lable,
                 hintText: widget.hint,
                 labelStyle: TextStyle(
                     fontFamily: 'Poppins',

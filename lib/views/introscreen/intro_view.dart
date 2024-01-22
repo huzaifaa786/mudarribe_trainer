@@ -35,7 +35,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Choose to continue',
+                    'Choose to continue'.tr,
                     style: TextStyle(color: Colors.white),
                   ) ,
                 ],
@@ -44,19 +44,19 @@ class _IntroScreenState extends State<IntroScreen> {
                 height: 40,
               ),
               SelectUserCard(
-                text: 'New Trainer',
+                text: 'New Trainer'.tr,
                 selected: introController.selected == 'New' ? true : false,
                 ontap: introController.onNewtap,
               ),
                Padding(
                 padding: EdgeInsets.only(top: 12, bottom: 14),
                 child: Text(
-                  'OR',
+                  'OR'.tr,
                   style: TextStyle(color: Colors.white),
                 ) ,
               ),
               SelectUserCard(
-                text: 'Existing Trainer',
+                text: 'Existing Trainer'.tr,
                 selected: introController.selected == 'Existing' ? true : false,
                 ontap: introController.onExistingtap,
               ),
@@ -64,7 +64,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 height: 80,
               ),
               GradientButton(
-                title: 'Next',
+                title: 'Next'.tr,
                 onPressed: () {
                   if (introController.selected == 'New') {
                     Get.toNamed(AppRoutes.signup);

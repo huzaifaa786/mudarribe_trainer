@@ -62,20 +62,20 @@ class ChangepasswordController extends GetxController {
   Future changePassword() async {
     busyController.setBusy(true);
     if (newpassword.text != confirmPassword.text) {
-      UiUtilites.successSnackbar('Password are not similar', 'Password');
+      UiUtilites.successSnackbar('Password are not similar'.tr, 'Password'.tr);
     } else {
       final response =
           await _authApi.verifyOldPassword(oldpassword.text, newpassword.text);
 
       if (response == 0) {
       } else if (response == 2) {
-        UiUtilites.errorSnackbar('Provide correct old password', 'Password');
+        UiUtilites.errorSnackbar('Provide correct old password'.tr, 'Password'.tr);
       } else if (response == 3) {
         oldpassword.clear();
         newpassword.clear();
         confirmPassword.clear();
 
-        UiUtilites.successSnackbar('Password has been updated', 'Password');
+        UiUtilites.successSnackbar('Password has been updated'.tr, 'Password'.tr);
       }
     }
     busyController.setBusy(false);

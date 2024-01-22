@@ -136,7 +136,7 @@ class AddEventContoller extends GetxController {
       } else {
         clearValues();
 
-        UiUtilites.successAlert(Get.context, 'Event Shared Successfully');
+        UiUtilites.successAlert(Get.context, 'Event Shared Successfully'.tr);
         busyController.setBusy(false);
       }
     }

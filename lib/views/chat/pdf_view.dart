@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 
 class PDFScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Document") ,
+        title: Text("Document".tr) ,
       ),
       body: Stack(
         children: <Widget>[

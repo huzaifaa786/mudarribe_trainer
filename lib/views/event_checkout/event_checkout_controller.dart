@@ -64,7 +64,7 @@ class EventcheckoutController extends GetxController {
       busyController.setBusy(false);
       Get.back();
       Get.back();
-      UiUtilites.successAlert(Get.context, 'Done');
+      UiUtilites.successAlert(Get.context, 'Done'.tr);
     }
   }
 
@@ -94,7 +94,7 @@ class EventcheckoutController extends GetxController {
 
   void applyPromoCode() async {
     if (promoCode.text.isEmpty) {
-      UiUtilites.errorSnackbar('Empty Promo Code', 'Please enter code first');
+      UiUtilites.errorSnackbar('Empty Promo Code', 'Please enter code first'.tr);
       return;
     }
     CouponCode? couponCode = await _couponCodeApi.getCouponCode(promoCode.text);
@@ -106,7 +106,7 @@ class EventcheckoutController extends GetxController {
       update();
     } else {
       UiUtilites.errorSnackbar(
-          'Invalid Promo Code', 'Please enter correct code');
+          'Invalid Promo Code'.tr, 'Please enter correct code'.tr);
     }
   }
 }

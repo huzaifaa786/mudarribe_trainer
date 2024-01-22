@@ -51,7 +51,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 padding: const EdgeInsets.only(
                                     top: 40, bottom: 50, left: 25, right: 15),
                                 child: Text(
-                                  'My Promo code',
+                                  'My Promo code'.tr,
                                   style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
@@ -76,14 +76,14 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   InputField(
-                                    lable: 'Promo name',
+                                    lable: 'Promo name'.tr,
                                     controller: controller.nameController,
                                   ),
                                   SizedBox(
                                     height: 18,
                                   ),
                                   InputField(
-                                    lable: 'Discount percentage',
+                                    lable: 'Discount percentage'.tr,
                                     controller: controller.percentagecontroller,
                                     type: TextInputType.number,
                                   ),
@@ -125,9 +125,9 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 child: ListTile(
                                   tileColor: bgContainer,
                                   title: Text(
-                                      'Promo Code: ${promoCode.promoCodeName}'),
+                                      'Promo Code : ${promoCode.promoCodeName}'.tr),
                                   subtitle: Text(
-                                      'Description: ${promoCode.promoCodeDiscount}'),
+                                      'Description: ${promoCode.promoCodeDiscount}'.tr),
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -148,7 +148,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                                 (DocumentSnapshot doc) {
                                               doc.reference.delete();
                                               UiUtilites.successSnackbar(
-                                                  'Promo Code deleted successfully!',
+                                                  'Promo Code deleted successfully!'.tr,
                                                   '');
                                             });
                                           });
@@ -188,7 +188,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                 bottomNavigationBar: Padding(
                   padding: const EdgeInsets.all(20),
                   child: GradientButton(
-                    title: !controller.edit ? 'Save Changes' : 'Edit Changes',
+                    title: !controller.edit ? 'Save Changes'.tr : 'Edit Changes'.tr,
                     onPressed: controller.areFieldsFilled.value
                         ? () {
                             !controller.edit
@@ -196,8 +196,8 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 : controller.updatePromocode();
                           }
                         : () {
-                            UiUtilites.errorSnackbar('Fill out all fields',
-                                'Please fill all above fields');
+                            UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                'Please fill all above fields'.tr);
                           },
                     selected: controller.areFieldsFilled.value,
                   ),

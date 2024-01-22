@@ -112,6 +112,6 @@ class AddPlanController extends GetxController {
     areFieldsFilled.value = false;
     busyController.setBusy(false);
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !');
+    UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !'.tr);
   }
 }

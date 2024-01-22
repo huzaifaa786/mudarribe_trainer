@@ -51,6 +51,6 @@ class PackageController extends GetxController {
     getTrainerPackages();
     Get.back();
     UiUtilites.successAlert(
-        Get.context, 'Package deleted successfully');
+        Get.context, 'Package deleted successfully'.tr);
   }
 }

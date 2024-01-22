@@ -52,7 +52,7 @@ class SignUpController extends GetxController {
   RxBool areFieldsFilled = false.obs;
 
   onfemaletap() {
-    gender = 'female';
+    gender = 'female'.tr;
     checkFields();
     update();
     return gender;
@@ -71,7 +71,7 @@ class SignUpController extends GetxController {
   }
 
   onmaletap() {
-    gender = 'male';
+    gender = 'male'.tr;
     checkFields();
     update();
     return gender;
@@ -192,7 +192,7 @@ class SignUpController extends GetxController {
           user: AppUser(
               id: user.uid,
               name: nameController.text,
-              userType: 'trainer',
+              userType: 'trainer'.tr,
               email: user.email,
               bio: bioController.text,
               gender: gender,
@@ -210,10 +210,10 @@ class SignUpController extends GetxController {
         clearValues();
         Get.offNamed(AppRoutes.signin);
         UiUtilites.successAlert(
-            Get.context, 'Application submitted successfully!');
+            Get.context, 'Application submitted successfully!'.tr);
       }
     } on AuthApiException catch (e) {
-      UiUtilites.errorSnackbar('Signup Failed', e.toString());
+      UiUtilites.errorSnackbar('Signup Failed'.tr, e.toString());
     }
     busyController.setBusy(false);
   }

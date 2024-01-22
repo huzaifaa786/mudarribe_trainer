@@ -39,7 +39,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     padding: EdgeInsets.only(
                         left: 5, bottom: 50, top: 40),
                     child: Text(
-                      'Forget Password.',
+                      'Forget Password.'.tr,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -60,14 +60,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children:  [
                     Text(
-                      'Enter your Email please',
+                      'Enter your Email please'.tr,
                       style:
                           TextStyle(color: Color.fromARGB(255, 195, 186, 186)),
                     ) ,
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: InputField(
-                        lable: 'Email',
+                        lable: 'Email'.tr,
                         controller: forgotPasswordContoller.emailController,
                       ),
                     ),
@@ -78,14 +78,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 height: 70,
               ),
               GradientButton(
-                title: 'Send Code',
+                title: 'Send Code'.tr,
                 onPressed: controller.areFieldsFilled.value
                     ? () {
                         controller.forgotPassword();
                       }
                     : () {
-                        UiUtilites.errorSnackbar('Fill Email Field',
-                            'Please fill above email field');
+                        UiUtilites.errorSnackbar('Fill Email Field'.tr,
+                            'Please fill above email field'.tr);
                       },
                 selected: controller.areFieldsFilled.value,
               ),

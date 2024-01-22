@@ -85,7 +85,7 @@ class AddPostController extends GetxController {
 
       busyController.setBusy(false);
       UiUtilites.successSnackbar(
-          'Post has been created successfully', 'Post Created');
+          'Post has been created successfully'.tr, 'Post Created'.tr);
     }
   }
 }

@@ -52,7 +52,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         Padding(
                           padding: const EdgeInsets.only(top: 40, bottom: 50),
                           child: Text(
-                            'Change Password.',
+                            'Change Password.'.tr,
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w600,
@@ -74,7 +74,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                     PasswordInputField(
-                      lable: 'Password',
+                      lable: 'Password'.tr,
                       controller: controller.oldpassword,
                       obscure: controller.obscureTextOldPassword,
                       toggle: controller.toggle2,
@@ -83,7 +83,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                       height: 18,
                     ),
                     PasswordInputField(
-                      lable: 'New Password',
+                      lable: 'New Password'.tr,
                       controller: controller.newpassword,
                       obscure: controller.obscureTextPassword,
                       toggle: controller.toggle,
@@ -93,7 +93,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     ),
                     PasswordInputField(
                       controller: controller.confirmPassword,
-                      lable: 'Confirm New Password',
+                      lable: 'Confirm New Password'.tr,
                       obscure: controller.obscureTextCPassword,
                       toggle: controller.toggle1,
                     ),])),
@@ -104,14 +104,14 @@ class _ChangePasswordState extends State<ChangePassword> {
                       height: 96,
                     ),
                     GradientButton(
-                      title: 'Submit',
+                      title: 'Submit'.tr,
                       onPressed: controller.areFieldsFilled.value
                           ? () {
                               controller.changePassword();
                             }
                           : () {
-                              UiUtilites.errorSnackbar('Fill out all fields',
-                                  'Please fill all above fields');
+                              UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                  'Please fill all above fields'.tr);
                             },
                       selected: controller.areFieldsFilled.value,
                     ),

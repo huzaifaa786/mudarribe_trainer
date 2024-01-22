@@ -153,7 +153,7 @@ class EventDetailsCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 8),
                       child: Text(
-                        'Total People amount:',
+                        'Total People amount:'.tr,
                         style: TextStyle(
                           color: const Color.fromARGB(255, 217, 216, 216),
                           fontFamily: 'Montserrat',
@@ -201,7 +201,7 @@ class EventDetailsCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: GradientText2(
-                            text: 'Close Event',
+                            text: 'Close Event'.tr,
                             size: 16.0,
                           ),
                         ),
@@ -212,7 +212,7 @@ class EventDetailsCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        'Closed',
+                        'Closed'.tr,
                         style: TextStyle(fontSize: 16.0, color: Colors.grey),
                       ) ,
                     ],

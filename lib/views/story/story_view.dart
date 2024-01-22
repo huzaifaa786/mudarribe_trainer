@@ -149,13 +149,13 @@ class _StoriesViewState extends State<StoriesView> {
                                         onTap: () {
                                           controller.storyController.pause();
                                           UiUtilites.confirmStoryAlert(context,
-                                              "Are you sure to delete story",
+                                              "Are you sure to delete story".tr,
                                               () {
                                             controller.deletStory();
                                           }, () {
                                             Get.back();
                                             controller.storyController.play();
-                                          }, "Delete", "Cancel");
+                                          }, "Delete".tr, "Cancel".tr);
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -165,7 +165,7 @@ class _StoriesViewState extends State<StoriesView> {
                                 ],
                               )
                             : Center(
-                                child: Text('No Story Uploaded') )),
+                                child: Text('No Story Uploaded'.tr) )),
                   )),
             )
           : const BasicLoader(),

@@ -46,7 +46,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                     ),
                   ),
                   title: Text(
-                    'Event Check out',
+                    'Event Check out'.tr,
                     style: TextStyle(
                         fontSize: 20,
                         color: white,
@@ -86,7 +86,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Promo Code',
+                                        'Promo Code'.tr,
                                         style: TextStyle(
                                           color: white,
                                           fontSize: 14,
@@ -139,7 +139,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                                               .applyPromoCode();
                                                         },
                                                         child: GradientText2(
-                                                          text: 'Apply',
+                                                          text: 'Apply'.tr,
                                                           size: 16,
                                                           weight:
                                                               FontWeight.w700,
@@ -154,7 +154,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                                     setState(() {});
                                                   },
                                                   child: GradientText2(
-                                                    text: 'Add Code',
+                                                    text: 'Add Code'.tr,
                                                     size: 16,
                                                     weight: FontWeight.w700,
                                                   ),
@@ -170,7 +170,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  'Summary',
+                                  'Summary'.tr,
                                   style: TextStyle(
                                     color: white,
                                     fontSize: 16,
@@ -198,7 +198,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Price ',
+                                          'Price '.tr,
                                           style: TextStyle(
                                             color: white,
                                             fontSize: 14,
@@ -207,7 +207,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                         ) ,
                                         Text(
                                           controller.bannerCharges!.amount! +
-                                              ' AED',
+                                              ' AED'.tr,
                                           style: TextStyle(
                                             color: white,
                                             fontSize: 14,
@@ -233,7 +233,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Offer ',
+                                          'Offer '.tr,
                                           style: TextStyle(
                                             color: white,
                                             fontSize: 14,
@@ -267,7 +267,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Total',
+                                          'Total'.tr,
                                           style: TextStyle(
                                             color: white,
                                             fontSize: 14,
@@ -431,7 +431,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                     : [Color(0xFF58E0FF), Color(0xFF727DCD)],
                               )),
                           child: Text(
-                            'Check Out',
+                            'Check Out'.tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,

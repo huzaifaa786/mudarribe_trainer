@@ -45,7 +45,7 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                         width: 23,
                       ),
                       Text(
-                        'Customizing  Plan',
+                        'Customizing  Plan'.tr,
                         style: TextStyle(
                             color: White,
                             fontSize: 25,
@@ -58,17 +58,17 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                   ),
                   InputField(
                     controller: controller.plantitleController,
-                    lable: 'Plan Title',
+                    lable: 'Plan Title'.tr,
                   ),
                   PriceInputField(
                     controller: controller.priceController,
-                    lable: 'Price',
+                    lable: 'Price'.tr,
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   GradientText2(
-                    text: 'Select plan category ',
+                    text: 'Select plan category '.tr,
                     size: 18.0,
                   ),
                   Row(
@@ -78,7 +78,7 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                         selected:
                             controller.category == 'nutrition' ? true : false,
                         ontap: controller.onnutritiontap,
-                        text: 'Nutrition Plan',
+                        text: 'Nutrition Plan'.tr,
                       ),
                       SizedBox(
                         width: 20,
@@ -88,7 +88,7 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                         ontap: controller.onexcercisetap,
                         selected:
                             controller.category == 'excercise' ? true : false,
-                        text: 'Exercises Plan',
+                        text: 'Exercises Plan'.tr,
                       ),
                     ],
                   ),
@@ -102,13 +102,13 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                         ? true
                         : false,
                     ontap: controller.onbothtap,
-                    text: ' Exercises & Nutrition \n Plan',
+                    text: ' Exercises & Nutrition \n Plan'.tr,
                   ),
                   SizedBox(
                     height: 25,
                   ),
                   GradientButton(
-                    title: 'Submit ',
+                    title: 'Submit '.tr,
                     onPressed: controller.areFieldsFilled.value
                         ? () {
                             controller.addplan().then((value) {
@@ -116,8 +116,8 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                             });
                           }
                         : () {
-                            UiUtilites.errorSnackbar('Fill out all fields',
-                                'Please fill all above fields');
+                            UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                'Please fill all above fields'.tr);
                           },
                     selected: controller.areFieldsFilled.value,
                   ),

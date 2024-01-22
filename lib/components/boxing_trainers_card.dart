@@ -104,7 +104,7 @@ class PostCard extends StatelessWidget {
                     InkWell(
                       onTap: () async {
                         UiUtilites.confirmStoryAlert(context,
-                            "Are you sure that you want to delete this post ?",
+                            "Are you sure that you want to delete this post ?".tr,
                             () async {
                           final DocumentReference documentRef =
                               FirebaseFirestore.instance

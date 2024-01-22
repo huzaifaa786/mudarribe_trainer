@@ -53,13 +53,13 @@ class MyEventController extends GetxController {
     _eventStorageApi.deleteEventImage(event.id, event.imageFileName!);
     getTrainerEvents();
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Event Deleted Successfully');
+    UiUtilites.successAlert(Get.context, 'Event Deleted Successfully'.tr);
   }
 
   Future closeEvent(TrainerEvent event) async {
     await _eventApi.closeEvent(event.id);
     getTrainerEvents();
     Get.back();
-    UiUtilites.successAlert(Get.context, 'Event Closed Successfully');
+    UiUtilites.successAlert(Get.context, 'Event Closed Successfully'.tr);
   }
 }

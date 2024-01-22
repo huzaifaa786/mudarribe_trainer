@@ -20,7 +20,7 @@ class ExercisesScreen extends StatefulWidget {
 }
 
 class _ExercisesScreenState extends State<ExercisesScreen> {
-  final String title = 'Mornning Workouts';
+  final String title = 'Mornning Workouts'.tr;
   final String description = '3 Files ,6 videos';
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.only(top: 25, bottom: 25),
-                                child: Text("New Plan File",
+                                child: Text("New Plan File".tr,
                                     style: TextStyle(
                                       color: white,
                                       fontSize: 16,
@@ -81,13 +81,13 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                               ),
                               InputField(
                                 controller: controller.filenameController,
-                                lable: 'File Name',
+                                lable: 'File Name'.tr,
                               ),
                               Padding(
                                 padding:
                                     const EdgeInsets.only(top: 25, bottom: 25),
                                 child: IconButtons(
-                                    title: 'Upload Plan Files',
+                                    title: 'Upload Plan Files'.tr,
                                     onPressed: () {
                                       controller.selectmultipleFiles();
                                     }),
@@ -99,7 +99,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                           padding: const EdgeInsets.only(top: 15, bottom: 20),
                           child: Image.asset('assets/images/ortext.png'),
                         ),
-                        Text("Add to Existing File",
+                        Text("Add to Existing File".tr,
                             style: TextStyle(
                               color: white,
                               fontSize: 16,
@@ -128,7 +128,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 18.0),
                                   child: Text(
-                                    'There are no Existing files! Create new one .',
+                                    'There are no Existing files! Create new one .'.tr,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.white
@@ -151,7 +151,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
             child: GradientButton(
-              title: 'Next ',
+              title: 'Next '.tr,
               onPressed: controller.areFieldsFilled.value
                   ? () {
                       Get.offNamed(AppRoutes.existingsendplan, parameters: {
@@ -164,8 +164,8 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                       });
                     }
                   : () {
-                      UiUtilites.errorSnackbar('Fill out all fields',
-                          'Please fill all above fields');
+                      UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                          'Please fill all above fields'.tr);
                     },
               selected: controller.areFieldsFilled.value,
             ),

@@ -25,7 +25,7 @@ class ChatListScreen extends StatelessWidget {
                 ontap: () {
                   Get.back();
                 },
-                name: 'Chats',
+                name: 'Chats'.tr,
               ),
               Flexible(
                 child: FirestorePagination(
