@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'dart:ui' as ui;
-import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
-import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/app_translate/translate_method.dart';
 
 class TranslateScreen extends StatefulWidget {
@@ -58,13 +56,11 @@ class _TranslateScreenState extends State<TranslateScreen> {
                 value: translateMethod.English,
                 onchaged: () async {
                   await toggleplan(translateMethod.English);
-                  // Get.updateLocale(const Locale('en', 'US'));
+                  Get.updateLocale(const Locale('en', 'US'));
                   GetStorage box = GetStorage();
-                  await box.write('Locale', 'en');
-                  GoogleTranslatorController.init(
-                      'AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8', Locale('ur'),
-                      cacheDuration: Duration(), translateTo: Locale('en'));
-                  Get.offAllNamed(AppRoutes.homeScreen);
+                  await box.write('locale', 'en');
+                  box.read('locale');
+                  setState(() {});
                 },
               ),
               TranslateMethod(
@@ -73,13 +69,11 @@ class _TranslateScreenState extends State<TranslateScreen> {
                 value: translateMethod.Arabic,
                 onchaged: () async {
                   await toggleplan(translateMethod.Arabic);
-                  // Get.updateLocale(const Locale('ar', 'AE'));
+                  Get.updateLocale(const Locale('ar', 'AE'));
                   GetStorage box = GetStorage();
-                  await box.write('Locale', 'ar');
-                  GoogleTranslatorController.init(
-                      'AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8', Locale('en'),
-                      cacheDuration: Duration(), translateTo: Locale('ar'));
-                  Get.offAllNamed(AppRoutes.homeScreen);
+                  await box.write('locale', 'ar');
+                  box.read('locale');
+                  setState(() {});
                 },
               ),
             ],

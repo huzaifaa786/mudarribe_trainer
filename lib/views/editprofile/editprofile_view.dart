@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
