@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
           fontFamily: 'Montserrat',
         ),
         debugShowCheckedModeBanner: false,
-        title: "Mudarribe",
+        title: "Mudarribe".tr,
         initialBinding: SplashBinding(),
         home: const SplashView(),
         getPages: AppPages.pages,

@@ -26,88 +26,91 @@ class _AddPostState extends State<AddPost> {
   Widget build(BuildContext context) {
     return GetBuilder<AddPostController>(
       builder: (controller) => controller.currentUser != null ? BusyIndicator(
-        child: Scaffold( appBar: AppBar(
-              forceMaterialTransparency: true,
-              automaticallyImplyLeading: false,
-              title: TitleTopBar(
-                name: 'New Post'.tr,
-                ontap: () {
-                  Get.back();
-                },
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Scaffold( appBar: AppBar(
+                forceMaterialTransparency: true,
+                automaticallyImplyLeading: false,
+                title: TitleTopBar(
+                  name: 'New Post'.tr,
+                  ontap: () {
+                    Get.back();
+                  },
+                ),
               ),
-            ),
-                body: SafeArea(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                      children: [
-                        
-                        SizedBox(
-                          height: 27,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            controller.selectPostImage();
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            height: 390,
-                            decoration: BoxDecoration(),
-                            child: controller.postImage != null
-                                ? Image.file(
-                                    controller.postImage!,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Container(
-                                  decoration: BoxDecoration(border: GradientBoxBorder(
+                  body: SafeArea(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                        children: [
                           
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                      colors: [borderTop,borderbottom]),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(6)),
-                                  child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset('assets/images/heroicon.png'),
-                                GradientText2(
-                                 text: 'Upload Photo'.tr,
-                                  weight: FontWeight.w400,
-                                ),
-                              ],
+                          SizedBox(
+                            height: 27,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              controller.selectPostImage();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: 390,
+                              decoration: BoxDecoration(),
+                              child: controller.postImage != null
+                                  ? Image.file(
+                                      controller.postImage!,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container(
+                                    decoration: BoxDecoration(border: GradientBoxBorder(
+                            
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                        colors: [borderTop,borderbottom]),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6)),
+                                    child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/images/heroicon.png'),
+                                  GradientText2(
+                                   text: 'Upload Photo'.tr,
+                                    weight: FontWeight.w400,
+                                  ),
+                                ],
+                              ),
+                                  ),
                             ),
-                                ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: BioInputField(
-                            lable: 'Write a caption'.tr,
-                            controller: controller.captionController,
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: BioInputField(
+                              lable: 'Write a Caption'.tr,
+                              controller: controller.captionController,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        GradientButton(
-                            title: 'Post'.tr,
-                            onPressed: controller.areFieldsFilled.value
-                                ? () {
-                                    controller.createPost();
-                                  }
-                                : () {
-                                    UiUtilites.errorSnackbar('Fill out all fields'.tr,
-                                        'Please fill all above fields'.tr);
-                                  },
-                            selected: controller.areFieldsFilled.value)
-                      ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          GradientButton(
+                              title: 'Post'.tr,
+                              onPressed: controller.areFieldsFilled.value
+                                  ? () {
+                                      controller.createPost();
+                                    }
+                                  : () {
+                                      UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                          'Please fill all above fields'.tr);
+                                    },
+                              selected: controller.areFieldsFilled.value)
+                        ],
+                                        ),
                                       ),
-                                    ),
-                    )),
-              ),
+                      )),
+                ),
+        ),
       ):BasicLoader(),
           
     );

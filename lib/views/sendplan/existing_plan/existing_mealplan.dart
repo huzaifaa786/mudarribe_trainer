@@ -49,140 +49,143 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
       },
       builder: (controller) => controller.plan != null
           ? BusyIndicator(
-              child: Scaffold(
-                backgroundColor: Colors.black,
-                body: SafeArea(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TopBar(
-                      text: controller.plan!.name,
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.9,
-                        padding:
-                            const EdgeInsets.only(right: 15, left: 15, top: 45),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              IconButtons(
-                                  title: 'Upload New Files'.tr,
-                                  onPressed: () {
-                                    controller.selectmultipleFiles();
-                                  }),
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.8,
-                                width: MediaQuery.of(context).size.width * 0.9,
-                                child: ListView.builder(
-                                    itemCount: controller.planfiles.length,
-                                    itemBuilder: (context, index) {
-                                      return controller
-                                                  .planfiles[index].fileType ==
-                                              FileType.mp4
-                                          ? MealsCard(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        VideoPlay(
-                                                            path: controller
-                                                                .planfiles[
-                                                                    index]
-                                                                .fileUrl),
-                                                  ),
-                                                );
-                                              },
-                                              title: controller
-                                                  .planfiles[index].fileName
-                                                  .toString(),
-                                              description: '',
-                                              imgpath1: controller
-                                                  .planfiles[index].fileUrl,
-                                              futureFunc: controller
-                                                  .genrateVideoThumbnail(
-                                                      controller
-                                                          .planfiles[index]
-                                                          .fileUrl),
-                                              onDeleteTap: () {
-                                                UiUtilites.confirmAlert(context,
-                                                    'Are you sure you want to delete this File?'.tr,
-                                                    () {
-                                                  controller.deleteFile(
-                                                      controller
-                                                          .planfiles[index]);
-                                                }, () {
-                                                  Get.back();
-                                                }, 'Yes'.tr, 'Cancel'.tr);
-                                              },
-                                            )
-                                          : PdfCard(
-                                              onDeleteTap: () {
-                                                UiUtilites.confirmAlert(context,
-                                                    'Are you sure you want to delete this File?'.tr,
-                                                    () {
-                                                  controller.deleteFile(
-                                                      controller
-                                                          .planfiles[index]);
-                                                }, () {
-                                                  Get.back();
-                                                }, 'Yes'.tr, 'Cancel'.tr);
-                                              },
-                                              onPressed: () {
-                                                String remotePDFpath;
-                                                controller
-                                                    .createFileOfPdfUrl(
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Scaffold(
+                  backgroundColor: Colors.black,
+                  body: SafeArea(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TopBar(
+                        text: controller.plan!.name,
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.9,
+                          padding:
+                              const EdgeInsets.only(right: 15, left: 15, top: 45),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                IconButtons(
+                                    title: 'Upload New Files'.tr,
+                                    onPressed: () {
+                                      controller.selectmultipleFiles();
+                                    }),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.8,
+                                  width: MediaQuery.of(context).size.width * 0.9,
+                                  child: ListView.builder(
+                                      itemCount: controller.planfiles.length,
+                                      itemBuilder: (context, index) {
+                                        return controller
+                                                    .planfiles[index].fileType ==
+                                                FileType.mp4
+                                            ? MealsCard(
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          VideoPlay(
+                                                              path: controller
+                                                                  .planfiles[
+                                                                      index]
+                                                                  .fileUrl),
+                                                    ),
+                                                  );
+                                                },
+                                                title: controller
+                                                    .planfiles[index].fileName
+                                                    .toString(),
+                                                description: '',
+                                                imgpath1: controller
+                                                    .planfiles[index].fileUrl,
+                                                futureFunc: controller
+                                                    .genrateVideoThumbnail(
                                                         controller
                                                             .planfiles[index]
-                                                            .fileUrl)
-                                                    .then((f) {
-                                                  setState(() {
-                                                    remotePDFpath = f.path;
-
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            PDFScreen(
-                                                                path:
-                                                                    remotePDFpath),
-                                                      ),
-                                                    );
+                                                            .fileUrl),
+                                                onDeleteTap: () {
+                                                  UiUtilites.confirmAlert(context,
+                                                      'Are you sure you want to delete this File?'.tr,
+                                                      () {
+                                                    controller.deleteFile(
+                                                        controller
+                                                            .planfiles[index]);
+                                                  }, () {
+                                                    Get.back();
+                                                  }, 'Yes'.tr, 'Cancel'.tr);
+                                                },
+                                              )
+                                            : PdfCard(
+                                                onDeleteTap: () {
+                                                  UiUtilites.confirmAlert(context,
+                                                      'Are you sure you want to delete this File?'.tr,
+                                                      () {
+                                                    controller.deleteFile(
+                                                        controller
+                                                            .planfiles[index]);
+                                                  }, () {
+                                                    Get.back();
+                                                  }, 'Yes'.tr, 'Cancel'.tr);
+                                                },
+                                                onPressed: () {
+                                                  String remotePDFpath;
+                                                  controller
+                                                      .createFileOfPdfUrl(
+                                                          controller
+                                                              .planfiles[index]
+                                                              .fileUrl)
+                                                      .then((f) {
+                                                    setState(() {
+                                                      remotePDFpath = f.path;
+              
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              PDFScreen(
+                                                                  path:
+                                                                      remotePDFpath),
+                                                        ),
+                                                      );
+                                                    });
                                                   });
-                                                });
-                                              },
-                                              title: controller
-                                                  .planfiles[index].fileName,
-                                              description: '',
-                                            );
-                                    }),
-                              ),
-                              const SizedBox(height: 20)
-                            ],
+                                                },
+                                                title: controller
+                                                    .planfiles[index].fileName,
+                                                description: '',
+                                              );
+                                      }),
+                                ),
+                                const SizedBox(height: 20)
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: IconButtons(
-                          onPressed: () {
-                            controller.sendPlan();
-                          },
-                          title: 'Send Plan'.tr,
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: IconButtons(
+                            onPressed: () {
+                              controller.sendPlan();
+                            },
+                            title: 'Send Plan'.tr,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  )),
+                ),
               ),
             )
           : BasicLoader(),

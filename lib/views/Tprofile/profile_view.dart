@@ -64,283 +64,302 @@ class _ProfileViewState extends State<ProfileView>
     return GetBuilder<ProfileController>(
       builder: (controller) => controller.currentUser != null
           ? BusyIndicator(
-              child: Scaffold(
-                appBar: AppBar(
-                  forceMaterialTransparency: true,
-                  automaticallyImplyLeading: false,
-                  title: TitleTopBar(
-                    name: '',
-                    ontap: () {
-                      Get.back();
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Scaffold(
+                  appBar: AppBar(
+                    forceMaterialTransparency: true,
+                    automaticallyImplyLeading: false,
+                    title: TitleTopBar(
+                      name: '',
+                      ontap: () {
+                        Get.back();
+                      },
+                    ),
+                  ),
+                  bottomNavigationBar: Container(
+                    height: 50,
+                    color: bgContainer,
+                  ),
+                  floatingActionButton: GestureDetector(
+                    onTap: () {
+                      toggleSmallButtonsVisibility();
+                      // AddPostbutton(
+                      //   title: 'add post',
+                      //   onPressed: () {},
+                      //   selected: profileController.selected == '' ? false : true,
+                      // );
                     },
-                  ),
-                ),
-                bottomNavigationBar: Container(
-                  height: 50,
-                  color: bgContainer,
-                ),
-                floatingActionButton: GestureDetector(
-                  onTap: () {
-                    toggleSmallButtonsVisibility();
-                    // AddPostbutton(
-                    //   title: 'add post',
-                    //   onPressed: () {},
-                    //   selected: profileController.selected == '' ? false : true,
-                    // );
-                  },
-                  child: Container(
-                    width: 70,
-                    height: 70,
-                    decoration: ShapeDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment(-0.96, 0.29),
-                        end: Alignment(0.96, -0.29),
-                        colors: [
-                          Color(0xFF58E0FF),
-                          Color(0xFF727DCD),
-                          Color(0xFFCE01D2)
-                        ],
+                    child: Container(
+                      width: 70,
+                      height: 70,
+                      decoration: ShapeDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment(-0.96, 0.29),
+                          end: Alignment(0.96, -0.29),
+                          colors: [
+                            Color(0xFF58E0FF),
+                            Color(0xFF727DCD),
+                            Color(0xFFCE01D2)
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 3, color: bgContainer),
+                          borderRadius: BorderRadius.circular(45),
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 3, color: bgContainer),
-                        borderRadius: BorderRadius.circular(45),
+                      child: Icon(
+                        Icons.add,
+                        color: White,
                       ),
                     ),
-                    child: Icon(
-                      Icons.add,
-                      color: White,
-                    ),
                   ),
-                ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerDocked,
-                body: SafeArea(
-                  child: Stack(
-                      // padding: const EdgeInsets.only(left: 15, right: 15),
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.transparent.withOpacity(0.0),
-                              borderRadius: BorderRadius.circular(20)),
-                          // padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, right: 15, top: 15),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        height: 92,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: const GradientBoxBorder(
-                                            gradient: LinearGradient(colors: [
-                                              Color(0xffc000c3),
-                                              borderTop,
-                                              borderTop,
-                                              borderbottom,
-                                              Color(0xff00f8e9),
-                                              borderbottom
-                                            ]),
-                                            width: 1,
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
+                  body: SafeArea(
+                    child: Stack(
+                        // padding: const EdgeInsets.only(left: 15, right: 15),
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.transparent.withOpacity(0.0),
+                                borderRadius: BorderRadius.circular(20)),
+                            // padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 15, top: 15),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                          height: 92,
+                                          width: 90,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: const GradientBoxBorder(
+                                              gradient: LinearGradient(colors: [
+                                                Color(0xffc000c3),
+                                                borderTop,
+                                                borderTop,
+                                                borderbottom,
+                                                Color(0xff00f8e9),
+                                                borderbottom
+                                              ]),
+                                              width: 1,
+                                            ),
                                           ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                            child: Image.network(
-                                                controller.currentUser!
-                                                    .profileImageUrl!,
-                                                width: 100,
-                                                height: 100,
-                                                fit: BoxFit.cover),
-                                          ),
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 12),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                controller.currentUser!.name!,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(4.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(40),
+                                              child: Image.network(
+                                                  controller.currentUser!
+                                                      .profileImageUrl!,
+                                                  width: 100,
+                                                  height: 100,
+                                                  fit: BoxFit.cover),
+                                            ),
+                                          )),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 12),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  controller.currentUser!.name!,
+                                                  style: TextStyle(
+                                                      color: White,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 7),
+                                                  child: Image.asset(
+                                                    'assets/images/verified_tick.png',
+                                                    width: 20,
+                                                    height: 20,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.6,
+                                              padding: const EdgeInsets.only(
+                                                  top: 2, bottom: 8),
+                                              child: Text(
+                                                controller
+                                                    .currentUser!.categories!
+                                                    .join('& '),
+                                                style: TextStyle(
+                                                    color: profilesubheading,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.6,
+                                              child: Text(
+                                                controller.currentUser!.bio!,
                                                 style: TextStyle(
                                                     color: White,
-                                                    fontSize: 18,
+                                                    fontSize: 11,
                                                     fontWeight:
-                                                        FontWeight.w600),
+                                                        FontWeight.w400),
+                                                maxLines: 2,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 7),
-                                                child: Image.asset(
-                                                  'assets/images/verified_tick.png',
-                                                  width: 20,
-                                                  height: 20,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.6,
-                                            padding: const EdgeInsets.only(
-                                                top: 2, bottom: 8),
-                                            child: Text(
-                                              controller
-                                                  .currentUser!.categories!
-                                                  .join('& '),
-                                              style: TextStyle(
-                                                  color: profilesubheading,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.6,
-                                            child: Text(
-                                              controller.currentUser!.bio!,
-                                              style: TextStyle(
-                                                  color: White,
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w400),
-                                              maxLines: 2,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, right: 15, bottom: 10, top: 35),
-                                child: Divider(
-                                  thickness: 1,
-                                  color: dividercolor,
-                                ),
-                              ),
-                              Flexible(
-                                child: GridView.builder(
-                                  shrinkWrap: true,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  itemCount: controller.posts.length,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => PostCard(
-                                                      userimg: controller
-                                                          .currentUser!
-                                                          .profileImageUrl!,
-                                                      username: controller
-                                                          .currentUser!.name,
-                                                      postdescription:
-                                                          controller
-                                                              .posts[index]
-                                                              .caption!,
-                                                      postimg: controller
-                                                          .posts[index]
-                                                          .imageUrl!,
-                                                      postId: controller
-                                                          .posts[index].id,
-                                                    ))).then((value) => controller.getAppUser());
-                                      },
-                                      child: Image.network(
-                                        controller.posts[index].imageUrl!,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    );
-                                  },
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 50,
-                          left: 110,
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Visibility(
-                              visible: _smallButtonsVisible,
-                              child: Container(
-                                margin: EdgeInsets.only(bottom: 10),
-                                child: Column(
-                                  children: [
-                                    AddPostbutton(
-                                      title: 'Add Post'.tr,
-                                      onPressed: () {
-                                        Get.toNamed(AppRoutes.addpost)!.then(
-                                            (value) =>
-                                                controller.getTrainerPosts());
-                                      },
-                                      selected: false,
-                                      buttonWidth: 0.4,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 15, bottom: 10, top: 35),
+                                  child: Divider(
+                                    thickness: 1,
+                                    color: dividercolor,
+                                  ),
+                                ),
+                                Flexible(
+                                  child: GridView.builder(
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
                                     ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    AddPostbutton(
-                                      title: 'Add Story'.tr,
-                                      onPressed: () async {
-                                        if (await getpermission() == true)
+                                    itemCount: controller.posts.length,
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      StoriesEditor(
-                                                          onDoneButtonStyle:
-                                                              Container(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    4),
-                                                            child: StoryButton(
-                                                              title: "Upload".tr,
-                                                              selected: true,
-                                                            ),
-                                                          ),
-                                                          middleBottomWidget:
-                                                              Image.asset(
-                                                                  'assets/images/logo.png'),
-                                                          editorBackgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          giphyKey:
-                                                              'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                                          onDone: (uri) {
+                                                      PostCard(
+                                                        userimg: controller
+                                                            .currentUser!
+                                                            .profileImageUrl!,
+                                                        username: controller
+                                                            .currentUser!.name,
+                                                        postdescription:
                                                             controller
-                                                                .addStory(uri);
-                                                          })));
-                                      },
-                                      selected: false,
-                                      type: 'story',
-                                      buttonWidth: 0.4,
-                                    ),
-                                  ],
+                                                                .posts[index]
+                                                                .caption!,
+                                                        postimg: controller
+                                                            .posts[index]
+                                                            .imageUrl!,
+                                                        postId: controller
+                                                            .posts[index].id,
+                                                      ))).then((value) =>
+                                              controller.getAppUser());
+                                        },
+                                        child: Image.network(
+                                          controller.posts[index].imageUrl!,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 50,
+                            left: 110,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Visibility(
+                                visible: _smallButtonsVisible,
+                                child: Container(
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  child: Column(
+                                    children: [
+                                      AddPostbutton(
+                                        title: 'Add Post'.tr,
+                                        onPressed: () {
+                                          Get.toNamed(AppRoutes.addpost)!.then(
+                                              (value) =>
+                                                  controller.getTrainerPosts());
+                                        },
+                                        selected: false,
+                                        buttonWidth: 0.4,
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      AddPostbutton(
+                                        title: 'Add Story'.tr,
+                                        onPressed: () async {
+                                          if (await getpermission() == true)
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder:
+                                                        (context) =>
+                                                            Directionality(
+                                                              textDirection:
+                                                                  TextDirection
+                                                                      .ltr,
+                                                              child:
+                                                                  StoriesEditor(
+                                                                      onDoneButtonStyle:
+                                                                          Container(
+                                                                        padding:
+                                                                            EdgeInsets.all(4),
+                                                                        child:
+                                                                            StoryButton(
+                                                                          title:
+                                                                              "Upload".tr,
+                                                                          selected:
+                                                                              true,
+                                                                        ),
+                                                                      ),
+                                                                      middleBottomWidget: Image
+                                                                          .asset(
+                                                                              'assets/images/logo.png'),
+                                                                      editorBackgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      giphyKey:
+                                                                          'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
+                                                                      onDone:
+                                                                          (uri) {
+                                                                        controller
+                                                                            .addStory(uri);
+                                                                      }),
+                                                            )));
+                                        },
+                                        selected: false,
+                                        type: 'story',
+                                        buttonWidth: 0.4,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                      ]),
+                          )
+                        ]),
+                  ),
                 ),
               ),
             )

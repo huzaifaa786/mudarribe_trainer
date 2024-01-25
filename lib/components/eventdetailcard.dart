@@ -171,7 +171,7 @@ class EventDetailsCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Price:',
+                      'Price :'.tr,
                       style: TextStyle(
                         color: const Color.fromARGB(255, 196, 195, 195),
                         fontFamily: 'Montserrat',
@@ -180,7 +180,7 @@ class EventDetailsCard extends StatelessWidget {
                       ),
                     ) ,
                     Text(
-                      '$price AED',
+                      '$price '+' AED'.tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Montserrat',
@@ -201,7 +201,7 @@ class EventDetailsCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: GradientText2(
-                            text: 'Close Event'.tr,
+                            text: 'Close event'.tr,
                             size: 16.0,
                           ),
                         ),

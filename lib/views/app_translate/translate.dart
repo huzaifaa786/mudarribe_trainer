@@ -28,8 +28,8 @@ class _TranslateScreenState extends State<TranslateScreen> {
   void initState() {
     // print(Get.locale);
     GetStorage box = GetStorage();
-    box.read('Locale'.tr) == 'ar'.tr;
-    _site = box.read('Locale'.tr) != 'ar'.tr
+    box.read('locale') == 'ar';
+    _site = box.read('locale') != 'ar'
         ? translateMethod.English
         : translateMethod.Arabic;
     super.initState();
@@ -60,7 +60,9 @@ class _TranslateScreenState extends State<TranslateScreen> {
                   GetStorage box = GetStorage();
                   await box.write('locale', 'en');
                   box.read('locale');
-                  setState(() {});
+                  setState(() {
+                    print('object22222222');
+                  });
                 },
               ),
               TranslateMethod(
@@ -73,7 +75,9 @@ class _TranslateScreenState extends State<TranslateScreen> {
                   GetStorage box = GetStorage();
                   await box.write('locale', 'ar');
                   box.read('locale');
-                  setState(() {});
+                  setState(() {
+                    print(box.read('locale'));
+                  });
                 },
               ),
             ],

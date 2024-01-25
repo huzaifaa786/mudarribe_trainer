@@ -28,94 +28,97 @@ class _ChangePasswordState extends State<ChangePassword> {
     return GetBuilder<ChangepasswordController>(
       builder: (controller) => BusyIndicator(
         child: Scaffold(
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40, bottom: 50),
-                          child: Text(
-                            'Change Password.'.tr,
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: white),
-                          ) ,
-                        ),
-                      ],
-                    ),
-                     Container(
-                      // height: 300,
-                      padding: EdgeInsets.only(
-                          left: 15, right: 15, top:40, bottom: 25),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 21, 21, 21),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                    PasswordInputField(
-                      lable: 'Password'.tr,
-                      controller: controller.oldpassword,
-                      obscure: controller.obscureTextOldPassword,
-                      toggle: controller.toggle2,
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    PasswordInputField(
-                      lable: 'New Password'.tr,
-                      controller: controller.newpassword,
-                      obscure: controller.obscureTextPassword,
-                      toggle: controller.toggle,
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    PasswordInputField(
-                      controller: controller.confirmPassword,
-                      lable: 'Confirm New Password'.tr,
-                      obscure: controller.obscureTextCPassword,
-                      toggle: controller.toggle1,
-                    ),])),
-                    SizedBox(
-                      height: 59,
-                    ),
-                    SizedBox(
-                      height: 96,
-                    ),
-                    GradientButton(
-                      title: 'Submit'.tr,
-                      onPressed: controller.areFieldsFilled.value
-                          ? () {
-                              controller.changePassword();
-                            }
-                          : () {
-                              UiUtilites.errorSnackbar('Fill out all fields'.tr,
-                                  'Please fill all above fields'.tr);
-                            },
-                      selected: controller.areFieldsFilled.value,
-                    ),
-                  ],
+          body: Directionality(
+            textDirection: TextDirection.ltr,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40, bottom: 50),
+                            child: Text(
+                              'Change Password'.tr,
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  color: white),
+                            ) ,
+                          ),
+                        ],
+                      ),
+                       Container(
+                        // height: 300,
+                        padding: EdgeInsets.only(
+                            left: 15, right: 15, top:40, bottom: 25),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 21, 21, 21),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                      PasswordInputField(
+                        lable: 'Password'.tr,
+                        controller: controller.oldpassword,
+                        obscure: controller.obscureTextOldPassword,
+                        toggle: controller.toggle2,
+                      ),
+                      SizedBox(
+                        height: 18,
+                      ),
+                      PasswordInputField(
+                        lable: 'New Password'.tr,
+                        controller: controller.newpassword,
+                        obscure: controller.obscureTextPassword,
+                        toggle: controller.toggle,
+                      ),
+                      SizedBox(
+                        height: 18,
+                      ),
+                      PasswordInputField(
+                        controller: controller.confirmPassword,
+                        lable: 'Confirm New Password'.tr,
+                        obscure: controller.obscureTextCPassword,
+                        toggle: controller.toggle1,
+                      ),])),
+                      SizedBox(
+                        height: 59,
+                      ),
+                      SizedBox(
+                        height: 96,
+                      ),
+                      GradientButton(
+                        title: 'Submit'.tr,
+                        onPressed: controller.areFieldsFilled.value
+                            ? () {
+                                controller.changePassword();
+                              }
+                            : () {
+                                UiUtilites.errorSnackbar('Fill out all fields'.tr,
+                                    'Please fill all above fields'.tr);
+                              },
+                        selected: controller.areFieldsFilled.value,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

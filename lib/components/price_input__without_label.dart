@@ -46,7 +46,7 @@ class PriceInputWithoutLabel extends StatelessWidget {
             suffixIcon: Padding(
               padding: const EdgeInsets.only(top: 14, right: 10),
               child: Text(
-                '|   AED',
+                '|   AED'.tr,
                 style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 16,

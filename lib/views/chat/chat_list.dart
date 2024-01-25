@@ -14,51 +14,54 @@ class ChatListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TitleTopBar(
-                ontap: () {
-                  Get.back();
-                },
-                name: 'Chats'.tr,
-              ),
-              Flexible(
-                child: FirestorePagination(
-                  limit: 6,
-                  isLive: true,
-                  viewType: ViewType.list,
-                  bottomLoader: BasicLoader(),
-                  query: FirebaseFirestore.instance
-                      .collection('messages')
-                      .where('trainerId',
-                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                      .orderBy('timestamp', descending: true),
-                  itemBuilder: (context, documentSnapshot, index) {
-                    final userData =
-                        documentSnapshot.data() as Map<String, dynamic>;
-                    return FutureBuilder<List<Map<String, dynamic>>>(
-                      future: fetchUserData(userData),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Center(
-                              child: Text('Error: ${snapshot.error}'));
-                        } else if (!snapshot.hasData) {
-                          return SizedBox();
-                        } else {
-                          final userWithData = snapshot.data!.first;
-                          return CustomChatListItem(userData: userWithData);
-                        }
-                      },
-                    );
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TitleTopBar(
+                  ontap: () {
+                    Get.back();
                   },
+                  name: 'Chats'.tr,
                 ),
-              ),
-            ],
+                Flexible(
+                  child: FirestorePagination(
+                    limit: 6,
+                    isLive: true,
+                    viewType: ViewType.list,
+                    bottomLoader: BasicLoader(),
+                    query: FirebaseFirestore.instance
+                        .collection('messages')
+                        .where('trainerId',
+                            isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                        .orderBy('timestamp', descending: true),
+                    itemBuilder: (context, documentSnapshot, index) {
+                      final userData =
+                          documentSnapshot.data() as Map<String, dynamic>;
+                      return FutureBuilder<List<Map<String, dynamic>>>(
+                        future: fetchUserData(userData),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Center(
+                                child: Text('Error: ${snapshot.error}'));
+                          } else if (!snapshot.hasData) {
+                            return SizedBox();
+                          } else {
+                            final userWithData = snapshot.data!.first;
+                            return CustomChatListItem(userData: userWithData);
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

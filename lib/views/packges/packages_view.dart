@@ -27,99 +27,102 @@ class _PackagesScreenState extends State<PackagesScreen> {
     return GetBuilder<PackageController>(
       builder: (controller) => controller.currentUser != null
           ? BusyIndicator(
-              child: Scaffold(
-                  appBar: AppBar(
-                    forceMaterialTransparency: true,
-                    automaticallyImplyLeading: false,
-                    title: TitleTopBar(
-                      name: 'Packages'.tr,
-                      ontap: () {
-                        Get.back();
-                      },
-                    ),
-                  ),
-                  body: SafeArea(
-                    child: Container(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Column(
-                        children: [
-                          Flexible(
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.88,
-                              padding: EdgeInsets.only(left: 12, right: 12),
-                              child: ListView.builder(
-                                  itemCount: controller.packages.length,
-                                  itemBuilder: (context, index) => PackageCard(
-                                        image:
-                                            controller.packages[index].category,
-                                        ontap: () {
-                                          Get.toNamed(AppRoutes.editplan,
-                                                  arguments: controller
-                                                      .packages[index].id)!
-                                              .then((value) => controller
-                                                  .getTrainerPackages());
-                                        },
-                                        onPressed: () {
-                                          // String id =
-                                          //     controller.packages[index].id;
-
-                                          // UiUtilites.confirmAlert(context,
-                                          //     'Are you sure you want to delete this package?',
-                                          //     () {
-                                          //   controller.deletePackageById(id);
-                                          // }, () {
-                                          //   Get.back();
-                                          // }, 'Yes', 'Cancel');
-                                        },
-                                        name: controller.packages[index].name,
-                                        discription: controller
-                                            .packages[index].discription,
-                                        price: controller.packages[index].price,
-                                      )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30, bottom: 30),
-                            child: GestureDetector(
-                              onTap: () {
-                                Get.toNamed(AppRoutes.addplan)!.then((value) {
-                                  controller.getAppUser();
-                                });
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(90),
-                                      border: const GradientBoxBorder(
-                                        gradient: LinearGradient(
-                                            colors: [borderTop, borderbottom]),
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.all(25),
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 30,
-                                      color: borderbottom,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 12.0),
-                                    child: GradientText2(
-                                      text: 'Add New Package'.tr,
-                                      size: 14.0,
-                                      weight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Scaffold(
+                    appBar: AppBar(
+                      forceMaterialTransparency: true,
+                      automaticallyImplyLeading: false,
+                      title: TitleTopBar(
+                        name: 'Packages'.tr,
+                        ontap: () {
+                          Get.back();
+                        },
                       ),
                     ),
-                  )),
+                    body: SafeArea(
+                      child: Container(
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        child: Column(
+                          children: [
+                            Flexible(
+                              child: Container(
+                                height: MediaQuery.of(context).size.height * 0.88,
+                                padding: EdgeInsets.only(left: 12, right: 12),
+                                child: ListView.builder(
+                                    itemCount: controller.packages.length,
+                                    itemBuilder: (context, index) => PackageCard(
+                                          image:
+                                              controller.packages[index].category,
+                                          ontap: () {
+                                            Get.toNamed(AppRoutes.editplan,
+                                                    arguments: controller
+                                                        .packages[index].id)!
+                                                .then((value) => controller
+                                                    .getTrainerPackages());
+                                          },
+                                          onPressed: () {
+                                            // String id =
+                                            //     controller.packages[index].id;
+              
+                                            // UiUtilites.confirmAlert(context,
+                                            //     'Are you sure you want to delete this package?',
+                                            //     () {
+                                            //   controller.deletePackageById(id);
+                                            // }, () {
+                                            //   Get.back();
+                                            // }, 'Yes', 'Cancel');
+                                          },
+                                          name: controller.packages[index].name,
+                                          discription: controller
+                                              .packages[index].discription,
+                                          price: controller.packages[index].price,
+                                        )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30, bottom: 30),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(AppRoutes.addplan)!.then((value) {
+                                    controller.getAppUser();
+                                  });
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(90),
+                                        border: const GradientBoxBorder(
+                                          gradient: LinearGradient(
+                                              colors: [borderTop, borderbottom]),
+                                          width: 1.5,
+                                        ),
+                                      ),
+                                      padding: EdgeInsets.all(25),
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 30,
+                                        color: borderbottom,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 12.0),
+                                      child: GradientText2(
+                                        text: 'Add New Package'.tr,
+                                        size: 14.0,
+                                        weight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+              ),
             )
           : BasicLoader(),
     );

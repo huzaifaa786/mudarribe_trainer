@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:get/get.dart';
 
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
@@ -13,7 +14,7 @@ class FileSelectorApi {
       return File(pickedFile.paths.first!);
     } else {
       UiUtilites.errorSnackbar(
-          'File selection failed', 'Failed to select file, please try again.');
+          'File selection failed'.tr, 'Failed to select file, please try again.'.tr);
       // throw FileSelectorApiException(
       //   title: 'File selection failed',
       //   message: 'Failed to select file, please try again.',

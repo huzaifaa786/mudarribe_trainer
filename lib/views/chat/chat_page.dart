@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
 import 'package:gap/gap.dart';
 import 'package:google_translator/google_translator.dart';
@@ -291,318 +292,325 @@ class ChatPageState extends State<ChatPage> {
       MessageChat messageChat = MessageChat.fromDocument(document);
       if (messageChat.idFrom == currentUserId) {
         // Right (my message)
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Row(
-              children: <Widget>[
-                messageChat.type == TypeMessage.text
-                    // Text
-                    ? Container(
-                        child: Text(
-                          messageChat.content,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                        constraints: BoxConstraints(
-                          maxWidth: 200,
-                        ),
-                        decoration: BoxDecoration(
-                            color: white,
-                            borderRadius: BorderRadius.circular(8)),
-                        margin: EdgeInsets.only(bottom: 10, right: 10),
-                      )
-                    : messageChat.type == TypeMessage.image
-                        // Image
-                        ? Container(
-                            child: TextButton(
-                              child: Material(
-                                child: Image.network(
-                                  messageChat.content,
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[300],
+        return Directionality(
+          textDirection: ui.TextDirection.ltr,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                children: <Widget>[
+                  messageChat.type == TypeMessage.text
+                      // Text
+                      ? Container(
+                          child: Text(
+                            messageChat.content,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                          constraints: BoxConstraints(
+                            maxWidth: 200,
+                          ),
+                          decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(8)),
+                          margin: EdgeInsets.only(bottom: 10, right: 10),
+                        )
+                      : messageChat.type == TypeMessage.image
+                          // Image
+                          ? Container(
+                              child: TextButton(
+                                child: Material(
+                                  child: Image.network(
+                                    messageChat.content,
+                                    loadingBuilder: (BuildContext context,
+                                        Widget child,
+                                        ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[300],
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(8),
+                                          ),
+                                        ),
+                                        width: 200,
+                                        height: 200,
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            // color: mainColor,
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    errorBuilder:
+                                        (context, object, stackTrace) {
+                                      return Material(
+                                        child: Image.asset(
+                                          'images/img_not_available.jpeg',
+                                          width: 200,
+                                          height: 200,
+                                          fit: BoxFit.cover,
+                                        ),
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(8),
                                         ),
-                                      ),
-                                      width: 200,
-                                      height: 200,
-                                      child: Center(
-                                        child: CircularProgressIndicator(
-                                          // color: mainColor,
-                                          value: loadingProgress
-                                                      .expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  loadingProgress
-                                                      .expectedTotalBytes!
-                                              : null,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  errorBuilder: (context, object, stackTrace) {
-                                    return Material(
-                                      child: Image.asset(
-                                        'images/img_not_available.jpeg',
-                                        width: 200,
-                                        height: 200,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(8),
-                                      ),
-                                      clipBehavior: Clip.hardEdge,
-                                    );
-                                  },
-                                  width: 200,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                clipBehavior: Clip.hardEdge,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => FullPhotoPage(
-                                      url: messageChat.content,
-                                    ),
-                                  ),
-                                );
-                              },
-                              style: ButtonStyle(
-                                  padding:
-                                      MaterialStateProperty.all<EdgeInsets>(
-                                          EdgeInsets.all(0))),
-                            ),
-                            margin: EdgeInsets.only(bottom: 10, right: 10),
-                          )
-                        : messageChat.type == TypeMessage.document
-                            ? InkWell(
-                                onTap: () {
-                                  String remotePDFpath;
-                                  createFileOfPdfUrl(messageChat.content)
-                                      .then((f) {
-                                    setState(() {
-                                      remotePDFpath = f.path;
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              PDFScreen(path: remotePDFpath),
-                                        ),
+                                        clipBehavior: Clip.hardEdge,
                                       );
-                                    });
-                                  });
-                                },
-                                child: Container(
-                                  width: 250,
-                                  height: 60,
-                                  margin:
-                                      EdgeInsets.only(right: 10, bottom: 10),
-                                  decoration: BoxDecoration(
-                                      color: white,
-                                      borderRadius: BorderRadius.circular(8)),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                          padding: EdgeInsets.all(8),
-                                          margin: EdgeInsets.only(
-                                              right: 4, left: 4),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(45),
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [borderTop, borderbottom],
-                                              stops: [0.0, 1.0],
-                                            ),
-                                          ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/document.svg',
-                                            fit: BoxFit.scaleDown,
-                                          )),
-                                      SizedBox(
-                                        width: 200,
-                                        child: Text(
-                                            get_text_between(
-                                                messageChat.content,
-                                                "/o/",
-                                                "?"),
-                                            overflow: TextOverflow.ellipsis,
-                                            style:
-                                                TextStyle(color: Colors.black)),
-                                      ),
-                                    ],
+                                    },
+                                    width: 200,
+                                    height: 200,
+                                    fit: BoxFit.cover,
                                   ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                  clipBehavior: Clip.hardEdge,
                                 ),
-                              )
-                            : messageChat.type == TypeMessage.myplan
-                                ? Container(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FullPhotoPage(
+                                        url: messageChat.content,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                    padding:
+                                        MaterialStateProperty.all<EdgeInsets>(
+                                            EdgeInsets.all(0))),
+                              ),
+                              margin: EdgeInsets.only(bottom: 10, right: 10),
+                            )
+                          : messageChat.type == TypeMessage.document
+                              ? InkWell(
+                                  onTap: () {
+                                    String remotePDFpath;
+                                    createFileOfPdfUrl(messageChat.content)
+                                        .then((f) {
+                                      setState(() {
+                                        remotePDFpath = f.path;
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PDFScreen(path: remotePDFpath),
+                                          ),
+                                        );
+                                      });
+                                    });
+                                  },
+                                  child: Container(
                                     width: 250,
+                                    height: 60,
                                     margin:
                                         EdgeInsets.only(right: 10, bottom: 10),
-                                    padding: EdgeInsets.all(12),
                                     decoration: BoxDecoration(
                                         color: white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Column(
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: Row(
                                       children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Plan Title: '.tr,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16),
-                                            ) ,
-                                            Text(
-                                              messageChat.content
-                                                  .split("~~")[0]
-                                                  .split(":")[1],
-                                              style: TextStyle(
-                                                  color: Colors.black),
+                                        Container(
+                                            padding: EdgeInsets.all(8),
+                                            margin: EdgeInsets.only(
+                                                right: 4, left: 4),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(45),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  borderTop,
+                                                  borderbottom
+                                                ],
+                                                stops: [0.0, 1.0],
+                                              ),
                                             ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Amount: '.tr,
+                                            child: SvgPicture.asset(
+                                              'assets/images/document.svg',
+                                              fit: BoxFit.scaleDown,
+                                            )),
+                                        SizedBox(
+                                          width: 200,
+                                          child: Text(
+                                              get_text_between(
+                                                  messageChat.content,
+                                                  "/o/",
+                                                  "?"),
+                                              overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16),
-                                            ) ,
-                                            Text(
-                                              messageChat.content
-                                                  .split("~~")[1]
-                                                  .split(":")[1],
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Plan Category: '.tr,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16),
-                                            ) ,
-                                            Text(
-                                              messageChat.content
-                                                  .split("~~")[2]
-                                                  .split(":")[1],
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            ),
-                                          ],
-                                        ),
-                                        GradientButton(
-                                          title: messageChat.content
-                                                      .split("~~")[3]
-                                                      .split(":")[1] ==
-                                                  'true'
-                                              ? 'Paid'.tr
-                                              : 'Unpaid'.tr,
-                                          onPressed: () {},
-                                          selected: messageChat.content
-                                                      .split("~~")[3]
-                                                      .split(":")[1] ==
-                                                  'true'
-                                              ? true
-                                              : false,
+                                                  color: Colors.black)),
                                         ),
                                       ],
                                     ),
-                                  )
-                                : Container(
-                                    width: 250,
-                                    margin:
-                                        EdgeInsets.only(right: 10, bottom: 10),
-                                    padding: EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Rating:'.tr,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16),
-                                            ) ,
-                                            Text(
-                                              ' ' +
-                                                  messageChat.content
-                                                      .split("~~")[0]
-                                                      .split(":")[1],
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            ),
-                                            Icon(
-                                              Icons.star,
-                                              color: borderbottom,
-                                              size: 15,
-                                            )
-                                          ],
-                                        ),
-                                        Gap(12),
-                                        GradientButton(
-                                          title: messageChat.content
-                                                      .split("~~")[1]
-                                                      .split(":")[1] ==
-                                                  'true'
-                                              ? 'Rated '.tr
-                                              : 'Not Rated Yet'.tr,
-                                          onPressed: () {},
-                                          selected: messageChat.content
-                                                      .split("~~")[1]
-                                                      .split(":")[1] ==
-                                                  'true'
-                                              ? true
-                                              : false,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-              ],
-              mainAxisAlignment: MainAxisAlignment.end,
-            ),
-            isLastMessageRight(index)
-                ? Container(
-                    child: Text(
-                      DateFormat('dd MMM kk:mm').format(
-                          DateTime.fromMillisecondsSinceEpoch(
-                              int.parse(messageChat.timestamp))),
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontStyle: FontStyle.italic),
-                    ),
-                    margin: EdgeInsets.only(right: 20, bottom: 10),
-                  )
-                : SizedBox.shrink()
-          ],
+                                  ),
+                                )
+                              : messageChat.type == TypeMessage.myplan
+                                  ? Container(
+                                      width: 250,
+                                      margin: EdgeInsets.only(
+                                          right: 10, bottom: 10),
+                                      padding: EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                          color: white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Plan Title: '.tr,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                              Text(
+                                                messageChat.content
+                                                    .split("~~")[0]
+                                                    .split(":")[1],
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Amount: '.tr,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                              Text(
+                                                messageChat.content
+                                                    .split("~~")[1]
+                                                    .split(":")[1],
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Plan Category: '.tr,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                              Text(
+                                                messageChat.content
+                                                    .split("~~")[2]
+                                                    .split(":")[1],
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
+                                          GradientButton(
+                                            title: messageChat.content
+                                                        .split("~~")[3]
+                                                        .split(":")[1] ==
+                                                    'true'
+                                                ? 'Paid'.tr
+                                                : 'Unpaid'.tr,
+                                            onPressed: () {},
+                                            selected: messageChat.content
+                                                        .split("~~")[3]
+                                                        .split(":")[1] ==
+                                                    'true'
+                                                ? true
+                                                : false,
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Container(
+                                      width: 250,
+                                      margin: EdgeInsets.only(
+                                          right: 10, bottom: 10),
+                                      padding: EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                          color: white,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Rating:'.tr,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                              Text(
+                                                ' ' +
+                                                    messageChat.content
+                                                        .split("~~")[0]
+                                                        .split(":")[1],
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: borderbottom,
+                                                size: 15,
+                                              )
+                                            ],
+                                          ),
+                                          Gap(12),
+                                          GradientButton(
+                                            title: messageChat.content
+                                                        .split("~~")[1]
+                                                        .split(":")[1] ==
+                                                    'true'
+                                                ? 'Rated '.tr
+                                                : 'Not Rated Yet'.tr,
+                                            onPressed: () {},
+                                            selected: messageChat.content
+                                                        .split("~~")[1]
+                                                        .split(":")[1] ==
+                                                    'true'
+                                                ? true
+                                                : false,
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                ],
+                mainAxisAlignment: MainAxisAlignment.end,
+              ),
+              isLastMessageRight(index)
+                  ? Container(
+                      child: Text(
+                        DateFormat('dd MMM kk:mm').format(
+                            DateTime.fromMillisecondsSinceEpoch(
+                                int.parse(messageChat.timestamp))),
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                            fontStyle: FontStyle.italic),
+                      ),
+                      margin: EdgeInsets.only(right: 20, bottom: 10),
+                    )
+                  : SizedBox.shrink()
+            ],
+          ),
         );
       } else {
         // Left (peer message)
@@ -866,43 +874,46 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(Icons.arrow_back_ios_new),
-        ),
-
-        title: Text(
-          widget.arguments.peerNickname,
-          style: TextStyle(
-              color: white,
-              fontFamily: "Poppins",
-              fontSize: 16,
-              fontWeight: FontWeight.w500),
-        ),
-        // centerTitle: true,
-      ),
-      body: SafeArea(
-        child: WillPopScope(
-          child: Stack(
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  // List of messages
-                  buildListMessage(),
-                  // Input content
-                  buildInput()
-                ],
-              ),
-
-              // Loading
-              buildLoading()
-            ],
+    return Directionality(
+      textDirection: ui.TextDirection.ltr,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(Icons.arrow_back_ios_new),
           ),
-          onWillPop: onBackPress,
+    
+          title: Text(
+            widget.arguments.peerNickname,
+            style: TextStyle(
+                color: white,
+                fontFamily: "Poppins",
+                fontSize: 16,
+                fontWeight: FontWeight.w500),
+          ),
+          // centerTitle: true,
+        ),
+        body: SafeArea(
+          child: WillPopScope(
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    // List of messages
+                    buildListMessage(),
+                    // Input content
+                    buildInput()
+                  ],
+                ),
+    
+                // Loading
+                buildLoading()
+              ],
+            ),
+            onWillPop: onBackPress,
+          ),
         ),
       ),
     );
@@ -1004,8 +1015,7 @@ class ChatPageState extends State<ChatPage> {
                       controller: listScrollController,
                     );
                   } else {
-                    return Center(
-                        child: Text("No message here yet...".tr) );
+                    return Center(child: Text("No message here yet...".tr));
                   }
                 } else {
                   return Center(
@@ -1087,7 +1097,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ) ,
+                ),
               ),
               Container(
                   width: double.infinity,
@@ -1115,7 +1125,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ) ,
+                ),
               ),
               Container(
                   width: double.infinity,
@@ -1147,7 +1157,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ) ,
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -1172,7 +1182,7 @@ class ChatPageState extends State<ChatPage> {
                     fontWeight: FontWeight.w500,
                     color: Color(0xff0f0a06),
                   ),
-                ) ,
+                ),
               ),
             ],
           ),
