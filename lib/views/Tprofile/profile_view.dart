@@ -321,6 +321,9 @@ class _ProfileViewState extends State<ProfileView>
                                                                       .ltr,
                                                               child:
                                                                   StoriesEditor(
+                                                                    // onBackPress:Future<false>(){
+
+                                                                    // },
                                                                       onDoneButtonStyle:
                                                                           Container(
                                                                         padding:

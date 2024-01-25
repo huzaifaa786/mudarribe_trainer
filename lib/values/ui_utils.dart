@@ -287,25 +287,31 @@ class UiUtilites {
                       children: [
                         InkWell(
                           onTap: onPressCancel,
-                          child: Text(
-                            textCancel,
-                            style: const TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                          child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text(
+                              textCancel,
+                              style: const TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
                             ),
                           ) ,
                         ),
                         InkWell(
                             onTap: onPressOK,
-                            child: Text(
-                              textOk,
-                              style: const TextStyle(
-                                fontFamily: "Montserrat",
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: borderTop,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                textOk,
+                                style: const TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: borderTop,
+                                ),
                               ),
                             ) ),
                       ],

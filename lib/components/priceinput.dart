@@ -45,14 +45,14 @@ class PriceInputField extends StatelessWidget {
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
               suffixIcon: Padding(
-                padding: const EdgeInsets.only(top: 14, right: 10),
+                padding: const EdgeInsets.only(top: 14, left: 10,right: 10),
                 child: Text(
-                  '|   AED',
+                  '|  ' + ' AED'.tr,
                   style: TextStyle(
                       fontFamily: "Poppins",
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
-                ) ,
+                ),
               ),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               fillColor: Colors.white,

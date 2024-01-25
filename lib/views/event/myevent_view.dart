@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:mudarribe_trainer/api/event_api.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
@@ -47,6 +48,7 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return GetBuilder<MyEventController>(
         builder: (controller) => controller.currentUser != null
             ? BusyIndicator(
@@ -114,118 +116,128 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                     floatingActionButtonLocation:
                         FloatingActionButtonLocation.centerDocked,
                     body: SingleChildScrollView(
-                      child: SafeArea(
-                          child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                ClipOval(
-                                  child: Container(
-                                    width: 70,
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: const GradientBoxBorder(
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            Color.fromARGB(255, 184, 66, 186),
-                                            Color.fromARGB(255, 111, 127, 247),
-                                          ],
+                      child: Directionality(
+                        textDirection: box.read('locale') == 'ar'
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
+                        child: SafeArea(
+                            child: Padding(
+                          padding: const EdgeInsets.only(left: 15.0,right: 15),
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
+                                      width: 70,
+                                      height: 70,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: const GradientBoxBorder(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color.fromARGB(255, 184, 66, 186),
+                                              Color.fromARGB(
+                                                  255, 111, 127, 247),
+                                            ],
+                                          ),
+                                          width: 2,
                                         ),
-                                        width: 2,
-                                      ),
-                                      image: DecorationImage(
-                                        image: NetworkImage(controller
-                                            .currentUser!.profileImageUrl!),
-                                        fit: BoxFit.cover,
+                                        image: DecorationImage(
+                                          image: NetworkImage(controller
+                                              .currentUser!.profileImageUrl!),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 13),
-                                  child: Text(
-                                    controller.currentUser!.name!,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 13),
+                                    child: Text(
+                                      controller.currentUser!.name!,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: controller.events.length,
-                                physics: BouncingScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                 
-                                  return FutureBuilder(
-                                      future: EventApi.geteventAttendees(
-                                          controller.events[index].id),
-                                      builder: (context, snapshot) {
-                                        String length = '';
-                                        if (!snapshot.hasData) {
-                                          length = "0";
-                                        } else if (snapshot.hasError) {
-                                          length = "0";
-                                        } else {
-                                          length = snapshot.data!.docs.length
-                                              .toString();
-                                        }
-                
-                                        return EventDetailsCard(
-                                            onPressClose: () {
-                                              UiUtilites.confirmAlert(context,
-                                                  'Are you sure you want to close this event?'.tr,
-                                                  () {
-                                                controller.closeEvent(
-                                                    controller.events[index]);
-                                              }, () {
-                                                Get.back();
-                                              }, 'Yes'.tr, 'Cancel'.tr);
-                                            },
-                                            attendees: length,
-                                            title: controller.events[index].title,
-                                            imageUrl:
-                                                controller.events[index].imageUrl,
-                                            onPressDelete: () {
-                                              UiUtilites.confirmAlert(context,
-                                                  'Are you sure you want to delete this event?'.tr,
-                                                  () {
-                                                controller.deleteEvent(
-                                                    controller.events[index]);
-                                              }, () {
-                                                Get.back();
-                                              }, 'Yes'.tr, 'Cancel'.tr);
-                                            },
-                                            isClose: controller.events[index]
-                                                        .eventStatus ==
-                                                    EventStatus.closed
-                                                ? true
-                                                : false,
-                                            address:
-                                                controller.events[index].address,
-                                            startTime: controller
-                                                .events[index].startTime,
-                                            endTime:
-                                                controller.events[index].endTime,
-                                            date: controller.events[index].date,
-                                            price: controller.events[index].price,
-                                            capacity:
-                                                controller.events[index].capacity,
-                                            eventStatus: controller
-                                                .events[index].eventStatus);
-                                      });
-                                })
-                          ],
-                        ),
-                      )),
+                                ],
+                              ),
+                              SizedBox(height: 8),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: controller.events.length,
+                                  physics: BouncingScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return FutureBuilder(
+                                        future: EventApi.geteventAttendees(
+                                            controller.events[index].id),
+                                        builder: (context, snapshot) {
+                                          String length = '';
+                                          if (!snapshot.hasData) {
+                                            length = "0";
+                                          } else if (snapshot.hasError) {
+                                            length = "0";
+                                          } else {
+                                            length = snapshot.data!.docs.length
+                                                .toString();
+                                          }
+
+                                          return EventDetailsCard(
+                                              onPressClose: () {
+                                                UiUtilites.confirmAlert(
+                                                    context,
+                                                    'Are you sure you want to close this event?'.tr
+                                                        .tr, () {
+                                                  controller.closeEvent(
+                                                      controller.events[index]);
+                                                }, () {
+                                                  Get.back();
+                                                }, 'Yes'.tr, 'Cancel'.tr);
+                                              },
+                                              attendees: length,
+                                              title: controller
+                                                  .events[index].title,
+                                              imageUrl: controller
+                                                  .events[index].imageUrl,
+                                              onPressDelete: () {
+                                                UiUtilites.confirmAlert(
+                                                    context,
+                                                    'Are you sure you want to delete this event?'.tr
+                                                        .tr, () {
+                                                  controller.deleteEvent(
+                                                      controller.events[index]);
+                                                }, () {
+                                                  Get.back();
+                                                }, 'Yes'.tr, 'Cancel'.tr);
+                                              },
+                                              isClose: controller.events[index]
+                                                          .eventStatus ==
+                                                      EventStatus.closed
+                                                  ? true
+                                                  : false,
+                                              address: controller
+                                                  .events[index].address,
+                                              startTime: controller
+                                                  .events[index].startTime,
+                                              endTime: controller
+                                                  .events[index].endTime,
+                                              date:
+                                                  controller.events[index].date,
+                                              price: controller
+                                                  .events[index].price,
+                                              capacity: controller
+                                                  .events[index].capacity,
+                                              eventStatus: controller
+                                                  .events[index].eventStatus);
+                                        });
+                                  })
+                            ],
+                          ),
+                        )),
+                      ),
                     ),
                   ),
                 ),

@@ -33,8 +33,6 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
     var category = Get.parameters['category'] as String;
     var trainerName = Get.parameters['trainerName'] as String;
 
-
-
     return GetBuilder<ExistingPlanController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
@@ -55,7 +53,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                   backgroundColor: Colors.black,
                   body: SafeArea(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TopBar(
                         text: controller.plan!.name,
@@ -63,9 +61,9 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                       Flexible(
                         flex: 1,
                         child: Container(
-                          height: MediaQuery.of(context).size.height * 0.9,
-                          padding:
-                              const EdgeInsets.only(right: 15, left: 15, top: 45),
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          padding: const EdgeInsets.only(
+                              right: 15, left: 15, top: 45),
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -75,14 +73,16 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                       controller.selectmultipleFiles();
                                     }),
                                 Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.8,
-                                  width: MediaQuery.of(context).size.width * 0.9,
+                                  // height:
+                                  //     MediaQuery.of(context).size.height * 0.7,
+                                  // width: MediaQuery.of(context).size.width * 0.9,
                                   child: ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: BouncingScrollPhysics(),
                                       itemCount: controller.planfiles.length,
                                       itemBuilder: (context, index) {
-                                        return controller
-                                                    .planfiles[index].fileType ==
+                                        return controller.planfiles[index]
+                                                    .fileType ==
                                                 FileType.mp4
                                             ? MealsCard(
                                                 onPressed: () {
@@ -110,9 +110,10 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                                             .planfiles[index]
                                                             .fileUrl),
                                                 onDeleteTap: () {
-                                                  UiUtilites.confirmAlert(context,
-                                                      'Are you sure you want to delete this File?'.tr,
-                                                      () {
+                                                  UiUtilites.confirmAlert(
+                                                      context,
+                                                      'Are you sure you want to delete this File?'
+                                                          .tr, () {
                                                     controller.deleteFile(
                                                         controller
                                                             .planfiles[index]);
@@ -123,9 +124,10 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                               )
                                             : PdfCard(
                                                 onDeleteTap: () {
-                                                  UiUtilites.confirmAlert(context,
-                                                      'Are you sure you want to delete this File?'.tr,
-                                                      () {
+                                                  UiUtilites.confirmAlert(
+                                                      context,
+                                                      'Are you sure you want to delete this File?'
+                                                          .tr, () {
                                                     controller.deleteFile(
                                                         controller
                                                             .planfiles[index]);
@@ -143,7 +145,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
                                                       .then((f) {
                                                     setState(() {
                                                       remotePDFpath = f.path;
-              
+
                                                       Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

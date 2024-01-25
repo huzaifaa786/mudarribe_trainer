@@ -3,11 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class EventDetailsCard extends StatelessWidget {
@@ -43,6 +45,7 @@ class EventDetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage box = GetStorage();
     return Card(
       color: bgContainer,
       child: Container(
@@ -91,7 +94,7 @@ class EventDetailsCard extends StatelessWidget {
                       child: Row(
                         children: [
                           SizedBox(
-                            width: Get.width*0.8,
+                            width: Get.width * 0.75,
                             child: Text(
                               address,
                               overflow: TextOverflow.ellipsis,
@@ -109,23 +112,26 @@ class EventDetailsCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset('assets/images/timeline.svg'),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8),
-                      child: Text(
-                        'from $startTime to $endTime',
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 202, 200, 200),
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                Directionality(
+                  textDirection: box.read('locale') == 'ar'? TextDirection.rtl: TextDirection.ltr,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset('assets/images/timeline.svg'),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8),
+                        child: Text(
+                          'From'.tr + ' $startTime ' + 'to' + ' $endTime',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 202, 200, 200),
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                          ),
                         ),
-                      ) ,
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(height: 4),
                 Row(
@@ -151,7 +157,7 @@ class EventDetailsCard extends StatelessWidget {
                   children: [
                     SvgPicture.asset('assets/images/peoplesharp.svg'),
                     Padding(
-                      padding: EdgeInsets.only(left: 8),
+                      padding: EdgeInsets.only(left: 8, right: 8),
                       child: Text(
                         'Total People amount:'.tr,
                         style: TextStyle(
@@ -160,7 +166,7 @@ class EventDetailsCard extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
-                      ) ,
+                      ),
                     ),
                     GradientText2(
                       text: '$attendees/$capacity',
@@ -178,16 +184,16 @@ class EventDetailsCard extends StatelessWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
-                    ) ,
+                    ),
                     Text(
-                      '$price '+' AED'.tr,
+                      '$price ' + ' AED'.tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Montserrat',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
-                    ) 
+                    )
                   ],
                 ),
               ],
@@ -214,7 +220,7 @@ class EventDetailsCard extends StatelessWidget {
                       Text(
                         'Closed'.tr,
                         style: TextStyle(fontSize: 16.0, color: Colors.grey),
-                      ) ,
+                      ),
                     ],
                   ),
           ],
