@@ -29,143 +29,177 @@ class _StoriesViewState extends State<StoriesView> {
       },
       builder: (controller) => controller.trainer != null
           ? BusyIndicator(
-              child: Scaffold(
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    forceMaterialTransparency: true,
-                    title: controller.stories.isNotEmpty
-                        ? TopBar(
-                            text: "",
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Scaffold(
+                    appBar: AppBar(
+                      automaticallyImplyLeading: false,
+                      forceMaterialTransparency: true,
+                      title: controller.stories.isNotEmpty
+                          ? Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: TopBar(
+                                text: "",
+                              ),
                           )
-                        : TopBar(
-                            text: "",
-                          ),
-                  ),
-                  body: SafeArea(
-                    child: SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        width: Get.width,
-                        child: controller.stories.isNotEmpty
-                            ? Stack(
-                                children: [
-                                  StoryView(
-                                    controller: controller.storyController,
-                                    storyItems: controller.stories,
-                                    onComplete: () {},
-                                    onStoryShow: (StoryItem story) {
-                                      print(story.view.key.toString());
-                                      controller.currentIndex =
-                                          controller.extractTimeAgo(
-                                              story.view.key.toString());
-                                      print(controller.currentIndex);
-                                    },
-                                  ),
-                                  Positioned(
-                                    top: 20,
-                                    left: 20,
-                                    child: SizedBox(
-                                      width: Get.width,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              height: 52,
-                                              width: 50,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                border: GradientBoxBorder(
-                                                  gradient: LinearGradient(
-                                                      colors: [
-                                                        Color(4290773187),
-                                                        Color(4285693389),
-                                                        Color.fromARGB(
-                                                            255, 32, 68, 65)
-                                                      ]),
-                                                  width: 2,
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(2.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          controller
-                                                              .trainer!
-                                                              .value
-                                                              .profileImageUrl!),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              )),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, top: 13),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                          : TopBar(
+                              text: "",
+                            ),
+                    ),
+                    body: SafeArea(
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height,
+                          width: Get.width,
+                          child: controller.stories.isNotEmpty
+                              ? Stack(
+                                  children: [
+                                    StoryView(
+                                      controller: controller.storyController,
+                                      storyItems: controller.stories,
+                                      onComplete: () {},
+                                      onStoryShow: (StoryItem story) {
+                                        print(story.view.key.toString());
+                                        controller.currentIndex =
+                                            controller.extractTimeAgo(
+                                                story.view.key.toString());
+                                        print(controller.currentIndex);
+                                      },
+                                    ),
+                                    Positioned(
+                                      top: 20,
+                                      left: 20,
+                                      child: SizedBox(
+                                        width: Get.width*0.9,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      controller
-                                                          .trainer!.value.name!,
-                                                      style: const TextStyle(
-                                                          color: white,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                Container(
+                                                    height: 52,
+                                                    width: 50,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: GradientBoxBorder(
+                                                        gradient: LinearGradient(
+                                                            colors: [
+                                                              Color(4290773187),
+                                                              Color(4285693389),
+                                                              Color.fromARGB(
+                                                                  255, 32, 68, 65)
+                                                            ]),
+                                                        width: 2,
+                                                      ),
                                                     ),
-
-                                                    // Padding(
-                                                    //   padding: const EdgeInsets.only(left: 3),
-                                                    //   child: Text(
-                                                    //     controller.extractTimeAgo(
-                                                    //         controller.time.value),
-                                                    //     style: const TextStyle(
-                                                    //         color: Colors.grey,
-                                                    //         fontSize: 14,
-                                                    //         fontWeight: FontWeight.w600),
-                                                    //   ),
-                                                    // )
-                                                  ],
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              2.0),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
+                                                          image: DecorationImage(
+                                                            image: NetworkImage(
+                                                                controller
+                                                                    .trainer!
+                                                                    .value
+                                                                    .profileImageUrl!),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 5, top: 13),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            controller.trainer!
+                                                                .value.name!,
+                                                            style: const TextStyle(
+                                                                color: white,
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                          ),
+              
+                                                          // Padding(
+                                                          //   padding: const EdgeInsets.only(left: 3),
+                                                          //   child: Text(
+                                                          //     controller.extractTimeAgo(
+                                                          //         controller.time.value),
+                                                          //     style: const TextStyle(
+                                                          //         color: Colors.grey,
+                                                          //         fontSize: 14,
+                                                          //         fontWeight: FontWeight.w600),
+                                                          //   ),
+                                                          // )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        ],
+                                            InkWell(
+                                              onTap: () {
+                                                controller.storyController
+                                                    .pause();
+                                                UiUtilites.confirmStoryAlert(
+                                                    context,
+                                                    "Are you sure to delete story"
+                                                        .tr, () {
+                                                  controller.deletStory();
+                                                }, () {
+                                                  Get.back();
+                                                  controller.storyController
+                                                      .play();
+                                                }, "Delete".tr, "Cancel".tr);
+                                              },
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Icon(Icons.delete),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Positioned(
-                                      top: 20,
-                                      right: 15,
-                                      child: InkWell(
-                                        onTap: () {
-                                          controller.storyController.pause();
-                                          UiUtilites.confirmStoryAlert(context,
-                                              "Are you sure to delete story".tr,
-                                              () {
-                                            controller.deletStory();
-                                          }, () {
-                                            Get.back();
-                                            controller.storyController.play();
-                                          }, "Delete".tr, "Cancel".tr);
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Icon(Icons.delete),
-                                        ),
-                                      ))
-                                ],
-                              )
-                            : Center(
-                                child: Text('No Story Uploaded'.tr) )),
-                  )),
+                                    // Positioned(
+                                    //     top: 20,
+                                    //     right: 15,
+                                    //     child: InkWell(
+                                    //       onTap: () {
+                                    //         controller.storyController.pause();
+                                    //         UiUtilites.confirmStoryAlert(context,
+                                    //             "Are you sure to delete story".tr,
+                                    //             () {
+                                    //           controller.deletStory();
+                                    //         }, () {
+                                    //           Get.back();
+                                    //           controller.storyController.play();
+                                    //         }, "Delete".tr, "Cancel".tr);
+                                    //       },
+                                    //       child: Padding(
+                                    //         padding: const EdgeInsets.all(8.0),
+                                    //         child: Icon(Icons.delete),
+                                    //       ),
+                                    //     ))
+                                  ],
+                                )
+                              : Center(child: Text('No Story Uploaded'.tr))),
+                    )),
+              ),
             )
           : const BasicLoader(),
     );

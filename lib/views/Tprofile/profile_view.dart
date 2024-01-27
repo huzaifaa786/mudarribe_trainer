@@ -324,6 +324,9 @@ class _ProfileViewState extends State<ProfileView>
                                                                     // onBackPress:Future<false>(){
 
                                                                     // },
+                                                                    fontFamilyList: [
+                                                                      'Discar'
+                                                                    ],
                                                                       onDoneButtonStyle:
                                                                           Container(
                                                                         padding:

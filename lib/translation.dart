@@ -288,7 +288,7 @@ class LocaleString extends Translations {
           "Upload Photo": "حمل الصورة",
           "Post has been created successfully": 'تم إنشاء المنشور بنجاح',
           "No Story Uploaded": "لم يتم تحميل أي قصة",
-          "Delete": "يمسح",
+          "Delete": "حذف",
           "Are you sure to delete story": "هل أنت متأكد من حذف القصة",
           "Add Events": "أضف الأحداث",
           "Checkout": "الدفع",

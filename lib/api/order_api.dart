@@ -13,10 +13,11 @@ class OrderApi {
     List<CombinedOrderData> combineOrders = [];
     QuerySnapshot orders = await FirebaseFirestore.instance
         .collection('orders')
-        .where("trainerId", isEqualTo: trainerId)
+        .where("trainerId", isEqualTo: trainerId).orderBy('orderId',descending: true)
         .get();
     print(orders);
     for (var orderDoc in orders.docs) {
+
       if (orderDoc.exists) {
         Map<String, dynamic> orderData =
             orderDoc.data()! as Map<String, dynamic>;

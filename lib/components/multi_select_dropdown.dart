@@ -1,9 +1,12 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors, prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:multiselect/multiselect.dart';
+import 'package:provider/provider.dart';
 
 class MultiSelectDropDown extends StatelessWidget {
   const MultiSelectDropDown(
@@ -17,10 +20,10 @@ class MultiSelectDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
+      width: Get.width,
       child: DropDownMultiSelect(
-        
         decoration: InputDecoration(
-          label: Text(label) ,
+          label: Text(label),
           labelStyle: TextStyle(
               fontSize: 14.0,
               fontFamily: 'Poppins',
