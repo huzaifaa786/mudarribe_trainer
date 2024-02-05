@@ -37,11 +37,11 @@ class _StoriesViewState extends State<StoriesView> {
                       forceMaterialTransparency: true,
                       title: controller.stories.isNotEmpty
                           ? Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: TopBar(
+                              textDirection: TextDirection.ltr,
+                              child: TopBar(
                                 text: "",
                               ),
-                          )
+                            )
                           : TopBar(
                               text: "",
                             ),
@@ -69,9 +69,10 @@ class _StoriesViewState extends State<StoriesView> {
                                       top: 20,
                                       left: 20,
                                       child: SizedBox(
-                                        width: Get.width*0.9,
+                                        width: Get.width * 0.9,
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Row(
                                               crossAxisAlignment:
@@ -84,12 +85,16 @@ class _StoriesViewState extends State<StoriesView> {
                                                         const BoxDecoration(
                                                       shape: BoxShape.circle,
                                                       border: GradientBoxBorder(
-                                                        gradient: LinearGradient(
-                                                            colors: [
+                                                        gradient:
+                                                            LinearGradient(
+                                                                colors: [
                                                               Color(4290773187),
                                                               Color(4285693389),
                                                               Color.fromARGB(
-                                                                  255, 32, 68, 65)
+                                                                  255,
+                                                                  32,
+                                                                  68,
+                                                                  65)
                                                             ]),
                                                         width: 2,
                                                       ),
@@ -99,9 +104,12 @@ class _StoriesViewState extends State<StoriesView> {
                                                           const EdgeInsets.all(
                                                               2.0),
                                                       child: Container(
-                                                        decoration: BoxDecoration(
-                                                          shape: BoxShape.circle,
-                                                          image: DecorationImage(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          image:
+                                                              DecorationImage(
                                                             image: NetworkImage(
                                                                 controller
                                                                     .trainer!
@@ -113,11 +121,13 @@ class _StoriesViewState extends State<StoriesView> {
                                                       ),
                                                     )),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 5, top: 13),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 5, top: 13),
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Row(
                                                         children: [
@@ -131,7 +141,7 @@ class _StoriesViewState extends State<StoriesView> {
                                                                     FontWeight
                                                                         .w600),
                                                           ),
-              
+
                                                           // Padding(
                                                           //   padding: const EdgeInsets.only(left: 3),
                                                           //   child: Text(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/api/story_api.dart';
+import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_story.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
-import 'package:path/path.dart';
-import 'package:story_view/controller/story_controller.dart';
 import 'package:story_view/story_view.dart';
 
 class TrainerStoryContoller extends GetxController {
@@ -28,12 +27,21 @@ class TrainerStoryContoller extends GetxController {
     firebaseStories =
         await _homeApi.fetchTrainerStoryData(id).then((value) => value.obs);
     for (var story in firebaseStories) {
-      stories.add(StoryItem.inlineImage(
-          key: Key(story.id.toString()),
-          url: story.imageUrl!,
-          controller: storyController,
-          roundedBottom: false,
-          roundedTop: false));
+      stories.add(
+        story.mediaType == MediaType.image
+            ? StoryItem.inlineImage(
+                key: Key(story.id.toString()),
+                url: story.imageUrl!,
+                controller: storyController,
+                roundedBottom: false,
+                roundedTop: false,
+              )
+            : StoryItem.pageVideo(
+                key: Key(story.id.toString()),
+                story.imageUrl!,
+                controller: storyController,
+              ),
+      );
     }
 
     update();

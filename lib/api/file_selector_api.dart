@@ -13,8 +13,8 @@ class FileSelectorApi {
     if (pickedFile != null) {
       return File(pickedFile.paths.first!);
     } else {
-      UiUtilites.errorSnackbar(
-          'File selection failed'.tr, 'Failed to select file, please try again.'.tr);
+      UiUtilites.errorSnackbar('File selection failed'.tr,
+          'Failed to select file, please try again.'.tr);
       // throw FileSelectorApiException(
       //   title: 'File selection failed',
       //   message: 'Failed to select file, please try again.',
@@ -37,6 +37,23 @@ class FileSelectorApi {
           pickedFiles.files.map((file) => File(file.path!)).toList();
 
       return selectedFiles;
+    } else {
+      UiUtilites.errorSnackbar(
+          'File selection failed', 'Failed to select file, please try again.');
+    }
+  }
+
+  selectMp4Files() async {
+    final pickedFiles = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: [
+        'mp4',
+      ],
+      allowMultiple: false,
+    );
+
+    if (pickedFiles != null) {
+      return File(pickedFiles.paths.first!);
     } else {
       UiUtilites.errorSnackbar(
           'File selection failed', 'Failed to select file, please try again.');

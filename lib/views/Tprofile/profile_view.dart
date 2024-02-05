@@ -308,51 +308,234 @@ class _ProfileViewState extends State<ProfileView>
                                       ),
                                       AddPostbutton(
                                         title: 'Add Story'.tr,
-                                        onPressed: (){
-                                          
-                                        },
-                                        // onPressed: () async {
-                                        //   if (await getpermission() == true)
-                                        //     Navigator.push(
-                                        //         context,
-                                        //         MaterialPageRoute(
-                                        //             builder:
-                                        //                 (context) =>
-                                        //                     Directionality(
-                                        //                       textDirection:
-                                        //                           TextDirection
-                                        //                               .ltr,
-                                        //                       child:
-                                        //                           StoriesEditor(
-                                        //                             // onBackPress:Future<false>(){
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                            backgroundColor: Colors.transparent,
+                                            context: context,
+                                            builder: (BuildContext builder) {
+                                              return Container(
+                                                width: double.infinity,
+                                                // You can customize the appearance of your bottom sheet here
+                                                padding: EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    ElevatedButton(
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all<Color>(
+                                                                    Colors
+                                                                        .white),
+                                                        shape: MaterialStateProperty
+                                                            .all<
+                                                                RoundedRectangleBorder>(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          5),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          5))),
+                                                        ),
+                                                        minimumSize:
+                                                            MaterialStateProperty
+                                                                .all(Size(
+                                                                    double
+                                                                        .infinity,
+                                                                    50)),
+                                                      ),
+                                                      onPressed: () {
+                                                        controller
+                                                            .selectStoryImage();
+                                                      },
+                                                      child: Text(
+                                                        'Camera'.tr,
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color:
+                                                              Color(0xff0f0a06),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                        width: double.infinity,
+                                                        color: bgContainer
+                                                            .withOpacity(0.45),
+                                                        height: 0.5),
+                                                    ElevatedButton(
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all<Color>(
+                                                                    Colors
+                                                                        .white),
+                                                        shape: MaterialStateProperty
+                                                            .all<
+                                                                RoundedRectangleBorder>(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          0),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          0))),
+                                                        ),
+                                                        minimumSize:
+                                                            MaterialStateProperty
+                                                                .all(Size(
+                                                                    double
+                                                                        .infinity,
+                                                                    50)),
+                                                      ),
+                                                      onPressed: () async {
+                                                        controller
+                                                            .selectStoryMp4();
+                                                      },
+                                                      child: Text(
+                                                        'Video'.tr,
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color:
+                                                              Color(0xff0f0a06),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                        width: double.infinity,
+                                                        color: bgContainer
+                                                            .withOpacity(0.45),
+                                                        height: 0.5),
+                                                    ElevatedButton(
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all<Color>(
+                                                                    Colors
+                                                                        .white),
+                                                        shape: MaterialStateProperty
+                                                            .all<
+                                                                RoundedRectangleBorder>(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          0),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                          0))),
+                                                        ),
+                                                        minimumSize:
+                                                            MaterialStateProperty
+                                                                .all(Size(
+                                                                    double
+                                                                        .infinity,
+                                                                    50)),
+                                                      ),
+                                                      onPressed: () async {
+                                                        if (await getpermission() ==
+                                                            true)
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          Directionality(
+                                                                            textDirection:
+                                                                                TextDirection.ltr,
+                                                                            child: StoriesEditor(
+                                                                                // onBackPress:Future<false>(){
 
-                                        //                             // },
-                                        //                               onDoneButtonStyle:
-                                        //                                   Container(
-                                        //                                 padding:
-                                        //                                     EdgeInsets.all(4),
-                                        //                                 child:
-                                        //                                     StoryButton(
-                                        //                                   title:
-                                        //                                       "Upload".tr,
-                                        //                                   selected:
-                                        //                                       true,
-                                        //                                 ),
-                                        //                               ),
-                                        //                               middleBottomWidget: Image
-                                        //                                   .asset(
-                                        //                                       'assets/images/logo.png'),
-                                        //                               editorBackgroundColor:
-                                        //                                   Colors
-                                        //                                       .transparent,
-                                        //                               giphyKey:
-                                        //                                   'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                        //                               onDone:
-                                        //                                   (uri) {
-                                        //                                 controller
-                                        //                                     .addStory(uri);
-                                        //                               }),
-                                        //                     )));
+                                                                                // },
+                                                                                onDoneButtonStyle: Container(
+                                                                                  padding: EdgeInsets.all(4),
+                                                                                  child: StoryButton(
+                                                                                    title: "Upload".tr,
+                                                                                    selected: true,
+                                                                                  ),
+                                                                                ),
+                                                                                middleBottomWidget: Image.asset('assets/images/logo.png'),
+                                                                                editorBackgroundColor: Colors.transparent,
+                                                                                giphyKey: 'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
+                                                                                onDone: (uri) {
+                                                                                  controller.addStory(uri);
+                                                                                }),
+                                                                          )));
+                                                      },
+                                                      child: Text(
+                                                        'Gallery or Text'.tr,
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color:
+                                                              Color(0xff0f0a06),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(height: 20),
+                                                    ElevatedButton(
+                                                      style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all<Color>(
+                                                                    Colors
+                                                                        .white),
+                                                        shape: MaterialStateProperty
+                                                            .all<
+                                                                RoundedRectangleBorder>(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0)),
+                                                        ),
+                                                        minimumSize:
+                                                            MaterialStateProperty
+                                                                .all(Size(
+                                                                    double
+                                                                        .infinity,
+                                                                    50)),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child: Text(
+                                                        'Cancel'.tr,
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color:
+                                                              Color(0xff0f0a06),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        // onPressed: (){
+                                        //   controller.selectStoryImage();
+                                        // },
+                                        // onPressed: () async {
+
                                         // },
                                         selected: false,
                                         type: 'story',
@@ -372,4 +555,8 @@ class _ProfileViewState extends State<ProfileView>
           : BasicLoader(),
     );
   }
+
+  //   void _showBottomSheet(BuildContext context) {
+  //   ;
+  // }
 }

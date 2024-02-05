@@ -244,8 +244,16 @@ class LocaleString extends Translations {
           'Uploaded': 'Uploaded',
           'Report submit Successfully.': 'Report submit Successfully.',
           "Check Out": "Check Out",
+          'Camera': 'Camera',
+          'Gallery or Text': 'Gallery or Text',
+          'Duration must not be greater then 30 Seconds.':
+              'Duration must not be greater then 30 Seconds.',
         },
         'ar_AE': {
+          'Duration must not be greater then 30 Seconds.':
+              'يجب ألا تزيد المدة عن 30 ثانية',
+          'Gallery or Text': 'مكتبة العرض أو نص',
+          'Camera': 'آلة تصوير',
           'Report submit Successfully.': "تم إرسال التقرير بنجاح",
           'Uploaded': 'تم الرفع',
           "What’s the problem?": " ما هي المشكلة ؟",
