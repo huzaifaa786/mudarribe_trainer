@@ -47,41 +47,63 @@ class _PackagesScreenState extends State<PackagesScreen> {
                           children: [
                             Flexible(
                               child: Container(
-                                height: MediaQuery.of(context).size.height * 0.88,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.88,
                                 padding: EdgeInsets.only(left: 12, right: 12),
-                                child: ListView.builder(
-                                    itemCount: controller.packages.length,
-                                    itemBuilder: (context, index) => PackageCard(
-                                          image:
-                                              controller.packages[index].category,
-                                          ontap: () {
-                                            Get.toNamed(AppRoutes.editplan,
-                                                    arguments: controller
-                                                        .packages[index].id)!
-                                                .then((value) => controller
-                                                    .getTrainerPackages());
-                                          },
-                                          onPressed: () {
-                                            // String id =
-                                            //     controller.packages[index].id;
-              
-                                            // UiUtilites.confirmAlert(context,
-                                            //     'Are you sure you want to delete this package?',
-                                            //     () {
-                                            //   controller.deletePackageById(id);
-                                            // }, () {
-                                            //   Get.back();
-                                            // }, 'Yes', 'Cancel');
-                                          },
-                                          name: controller.packages[index].name,
-                                          discription: controller
-                                              .packages[index].discription,
-                                          price: controller.packages[index].price,
-                                        )),
+                                child: controller.packages.isNotEmpty
+                                    ? ListView.builder(
+                                        itemCount: controller.packages.length,
+                                        itemBuilder: (context, index) =>
+                                            PackageCard(
+                                              image: controller
+                                                  .packages[index].category,
+                                              ontap: () {
+                                                Get.toNamed(AppRoutes.editplan,
+                                                        arguments: controller
+                                                            .packages[index]
+                                                            .id)!
+                                                    .then((value) => controller
+                                                        .getTrainerPackages());
+                                              },
+                                              onPressed: () {
+                                                // String id =
+                                                //     controller.packages[index].id;
+
+                                                // UiUtilites.confirmAlert(context,
+                                                //     'Are you sure you want to delete this package?',
+                                                //     () {
+                                                //   controller.deletePackageById(id);
+                                                // }, () {
+                                                //   Get.back();
+                                                // }, 'Yes', 'Cancel');
+                                              },
+                                              name: controller
+                                                  .packages[index].name,
+                                              discription: controller
+                                                  .packages[index].discription,
+                                              price: controller
+                                                  .packages[index].price,
+                                            ))
+                                    : Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.88,
+                                                 width:
+                                            MediaQuery.of(context).size.width,
+                                        padding: EdgeInsets.only(
+                                            left: 12, right: 12),
+                                        child: Center(
+                                          child: Text(
+                                            "no package found yet".tr,
+                                            style: TextStyle(color: white),
+                                          ),
+                                        ),
+                                      ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 30, bottom: 30),
+                              padding:
+                                  const EdgeInsets.only(top: 30, bottom: 30),
                               child: GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.addplan)!.then((value) {
@@ -94,8 +116,10 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(90),
                                         border: const GradientBoxBorder(
-                                          gradient: LinearGradient(
-                                              colors: [borderTop, borderbottom]),
+                                          gradient: LinearGradient(colors: [
+                                            borderTop,
+                                            borderbottom
+                                          ]),
                                           width: 1.5,
                                         ),
                                       ),

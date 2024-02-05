@@ -16,6 +16,7 @@ import 'package:mudarribe_trainer/components/schedule.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:intl/intl.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/event/add_event/add_event_controller.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
@@ -157,25 +158,56 @@ class _AddEventScreenState extends State<AddEventScreen> {
                             EventInputField(
                               controller: controller.eventTitleController,
                             ),
-                            Scheduleinput(
-                              text: 'Date'.tr,
-                              controller: controller.dateController,
-                              width: 1.0,
-                              onpressed: () {
-                                picker.DatePicker.showDatePicker(context,
-                                    showTitleActions: true, onChanged: (val) {
-                                  var date = DateFormat('dd/MM/y').format(val);
-                                  controller.dateController.text = date;
-                                  controller.checkFields();
-                                }, onConfirm: (val) {
-                                  var date = DateFormat('dd/MM/y').format(val);
-                                  controller.dateController.text = date;
-                                  controller.checkFields();
-                                }, currentTime: DateTime.now());
-                              },
-                              hint:
-                                  DateFormat('dd/MM/y').format(DateTime.now()),
-                              fontSize: 18.0,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Scheduleinput(
+                                  text: 'From Date'.tr,
+                                  controller: controller.dateController,
+                                  width: 1.0,
+                                  onpressed: () {
+                                    picker.DatePicker.showDatePicker(context,
+                                        showTitleActions: true,
+                                        onChanged: (val) {
+                                      var date =
+                                          DateFormat('dd/MM/y').format(val);
+                                      controller.dateController.text = date;
+                                      controller.checkFields();
+                                    }, onConfirm: (val) {
+                                      var date =
+                                          DateFormat('dd/MM/y').format(val);
+                                      controller.dateController.text = date;
+                                      controller.checkFields();
+                                    }, currentTime: DateTime.now());
+                                  },
+                                  hint: DateFormat('dd/MM/y')
+                                      .format(DateTime.now()),
+                                  fontSize: 18.0,
+                                ),
+                                Scheduleinput(
+                                  text: 'To Date'.tr,
+                                  controller: controller.todateController,
+                                  width: 1.0,
+                                  onpressed: () {
+                                    picker.DatePicker.showDatePicker(context,
+                                        showTitleActions: true,
+                                        onChanged: (val) {
+                                      var date =
+                                          DateFormat('dd/MM/y').format(val);
+                                      controller.todateController.text = date;
+                                      controller.checkFields();
+                                    }, onConfirm: (val) {
+                                      var date =
+                                          DateFormat('dd/MM/y').format(val);
+                                      controller.todateController.text = date;
+                                      controller.checkFields();
+                                    }, currentTime: DateTime.now());
+                                  },
+                                  hint: DateFormat('dd/MM/y')
+                                      .format(DateTime.now()),
+                                  fontSize: 18.0,
+                                ),
+                              ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -473,7 +505,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     onPressed: () {
                                       controller.areFieldsFilled.value == true
                                           ? controller.addEvent()
-                                          : null;
+                                          : UiUtilites.errorSnackbar(
+                                              "Fill out all fields".tr, '');
                                     })
                                 : GradientButton(
                                     title: 'Checkout'.tr,
@@ -481,7 +514,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     onPressed: () {
                                       controller.areFieldsFilled.value == true
                                           ? controller.addEvent()
-                                          : null;
+                                          : UiUtilites.errorSnackbar(
+                                              "Fill out all fields".tr, '');
                                     }),
                             SizedBox(
                               height: 30,

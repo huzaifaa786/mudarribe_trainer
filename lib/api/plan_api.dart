@@ -17,6 +17,7 @@ class PlanApi {
 
   Future<void> createPlan(Plan plan) async {
     try {
+      print(plan.toJson());
       await _trainerpalnCollection.doc(plan.id).set(plan.toJson());
     } on PlatformException catch (e) {
       throw DatabaseApiException(
@@ -93,11 +94,13 @@ class PlanApi {
       );
     }
   }
-  Future<List<Plan>> getPlansByTrainerAndCategory(trainerId, category) async {
+  Future<List<Plan>> getPlansByTrainerAndCategory(trainerId, category, traineeId, orderId) async {
     try {
       final result = await _trainerpalnCollection
           .where('trainerId', isEqualTo: trainerId)
           .where('category', isEqualTo: category)
+          .where('traineeId', isEqualTo: traineeId)
+          .where('orderId', isEqualTo: orderId)
           .get();
       List<Plan> plans = [];
       for (var doc in result.docs) {

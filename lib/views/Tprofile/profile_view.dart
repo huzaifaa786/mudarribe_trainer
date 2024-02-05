@@ -308,52 +308,52 @@ class _ProfileViewState extends State<ProfileView>
                                       ),
                                       AddPostbutton(
                                         title: 'Add Story'.tr,
-                                        onPressed: () async {
-                                          if (await getpermission() == true)
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder:
-                                                        (context) =>
-                                                            Directionality(
-                                                              textDirection:
-                                                                  TextDirection
-                                                                      .ltr,
-                                                              child:
-                                                                  StoriesEditor(
-                                                                    // onBackPress:Future<false>(){
-
-                                                                    // },
-                                                                    fontFamilyList: [
-                                                                      'Discar'
-                                                                    ],
-                                                                      onDoneButtonStyle:
-                                                                          Container(
-                                                                        padding:
-                                                                            EdgeInsets.all(4),
-                                                                        child:
-                                                                            StoryButton(
-                                                                          title:
-                                                                              "Upload".tr,
-                                                                          selected:
-                                                                              true,
-                                                                        ),
-                                                                      ),
-                                                                      middleBottomWidget: Image
-                                                                          .asset(
-                                                                              'assets/images/logo.png'),
-                                                                      editorBackgroundColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      giphyKey:
-                                                                          'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
-                                                                      onDone:
-                                                                          (uri) {
-                                                                        controller
-                                                                            .addStory(uri);
-                                                                      }),
-                                                            )));
+                                        onPressed: (){
+                                          
                                         },
+                                        // onPressed: () async {
+                                        //   if (await getpermission() == true)
+                                        //     Navigator.push(
+                                        //         context,
+                                        //         MaterialPageRoute(
+                                        //             builder:
+                                        //                 (context) =>
+                                        //                     Directionality(
+                                        //                       textDirection:
+                                        //                           TextDirection
+                                        //                               .ltr,
+                                        //                       child:
+                                        //                           StoriesEditor(
+                                        //                             // onBackPress:Future<false>(){
+
+                                        //                             // },
+                                        //                               onDoneButtonStyle:
+                                        //                                   Container(
+                                        //                                 padding:
+                                        //                                     EdgeInsets.all(4),
+                                        //                                 child:
+                                        //                                     StoryButton(
+                                        //                                   title:
+                                        //                                       "Upload".tr,
+                                        //                                   selected:
+                                        //                                       true,
+                                        //                                 ),
+                                        //                               ),
+                                        //                               middleBottomWidget: Image
+                                        //                                   .asset(
+                                        //                                       'assets/images/logo.png'),
+                                        //                               editorBackgroundColor:
+                                        //                                   Colors
+                                        //                                       .transparent,
+                                        //                               giphyKey:
+                                        //                                   'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
+                                        //                               onDone:
+                                        //                                   (uri) {
+                                        //                                 controller
+                                        //                                     .addStory(uri);
+                                        //                               }),
+                                        //                     )));
+                                        // },
                                         selected: false,
                                         type: 'story',
                                         buttonWidth: 0.4,

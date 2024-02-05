@@ -16,19 +16,18 @@ class AppRoutes {
   static const promocode = '/promocode';
   static const todaymeals = '/existingmealpaln';
   static const sendplanhome = '/sendplanhome';
-  static const profile = '/profile'; 
-  static const promoCode ='/promoCode';
+  static const profile = '/profile';
+  static const promoCode = '/promoCode';
   static const addplan = '/addplan';
   static const myevent = '/myevent';
   static const signin = '/signin';
   static const exercise = '/exercise';
-    static const nutrition = '/nutrition';
+  static const nutrition = '/nutrition';
   static const addevent = '/addevent';
   static const addpost = '/addpost';
   static const eventcheckout = '/eventcheckout';
   static const sendplan = '/sendplan';
   static const existingsendplan = '/existingsendplan';
-    static const stories = '/stories';
-
-  
+  static const stories = '/stories';
+  static const report = '/report';
 }

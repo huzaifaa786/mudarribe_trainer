@@ -12,7 +12,9 @@ import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/plan_category_card.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
+import 'package:mudarribe_trainer/components/search_dropdown.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
+import 'package:mudarribe_trainer/values/plans.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/plans/editplan/editplan_controller.dart';
 import 'package:provider/provider.dart';
@@ -66,9 +68,54 @@ class _EditPlanViewState extends State<EditPlanView> {
                           controller: controller.priceController,
                           lable: 'Price'.tr,
                         ),
-                        InputField(
-                          controller: controller.durationController,
-                          lable: 'Duration'.tr,
+                        // InputField(
+                        //   controller: controller.durationController,
+                        //   lable: 'Duration'.tr,
+                        // ),
+
+                        Directionality(
+                          textDirection: box.read('locale') != 'ar'
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                          child: SearchDropdownField(
+                            selectedvalue: controller.fromSelectedduration,
+                            text: "Duration".tr,
+                            items: PalnList(),
+                            onChange: (value) {
+                              setState(() {
+                                controller.fromSelectedduration = value;
+                                controller.checkFields();
+                              });
+                            },
+                            searchController: controller.searchController,
+                            searchInnerWidget: Container(
+                              padding: const EdgeInsets.all(12),
+                              child: TextFormField(
+                                controller: controller.searchController,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 14,
+                                  ),
+                                  hintText: 'Search items'.tr,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            searchMatchFn: (item, searchValue) {
+                              return (item.value
+                                  .toLowerCase()
+                                  .contains(searchValue.toLowerCase()));
+                            },
+                            onMenuStateChange: (isOpen) {
+                              if (!isOpen) {
+                                controller.searchController.clear();
+                              }
+                            },
+                          ),
                         ),
                         BioInputField(
                           controller: controller.discriptionController,

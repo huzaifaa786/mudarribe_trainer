@@ -17,6 +17,12 @@ class ChatProvider {
     return uploadTask;
   }
 
+  UploadTask uploadVideo(File videoFile, String fileName) {
+    Reference reference = FirebaseStorage.instance.ref().child(fileName);
+    UploadTask uploadTask = reference.putFile(videoFile);
+    return uploadTask;
+  }
+
   Future<void> updateDataFirestore(String collectionPath, String docPath,
       Map<String, dynamic> dataNeedUpdate) {
     return FirebaseFirestore.instance
@@ -37,13 +43,14 @@ class ChatProvider {
 
   void sendMessage(String content, int type, String groupChatId,
       String currentUserId, String peerId) async {
+    String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
     await FirebaseFirestore.instance
         .collection(FirestoreConstants.pathMessageCollection)
         .doc(groupChatId)
         .set({
       'userId': peerId,
       'trainerId': currentUserId,
-      'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+      'timestamp': timestamp,
       'userSeen': false,
       'trainerSeen': true,
     });
@@ -51,12 +58,12 @@ class ChatProvider {
         .collection(FirestoreConstants.pathMessageCollection)
         .doc(groupChatId)
         .collection(groupChatId)
-        .doc(DateTime.now().millisecondsSinceEpoch.toString());
+        .doc(timestamp);
 
     MessageChat messageChat = MessageChat(
       idFrom: currentUserId,
       idTo: peerId,
-      timestamp: DateTime.now().millisecondsSinceEpoch.toString(),
+      timestamp: timestamp,
       content: content,
       type: type,
     );
@@ -76,4 +83,5 @@ class TypeMessage {
   static const document = 2;
   static const myplan = 3;
   static const rating = 4;
+  static const video = 5;
 }

@@ -4,6 +4,8 @@ class Plan {
   String? file;
   String? category;
   String? trainerId;
+  String? orderId;
+  String? traineeId;
   String? description;
 
   Plan(
@@ -12,11 +14,15 @@ class Plan {
       this.file,
       this.category,
       this.trainerId,
+      this.orderId,
+      this.traineeId,
       this.description});
 
   Plan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     trainerId = json['trainerId'];
+    traineeId = json['traineeId'];
+    orderId = json['orderId'];
     name = json['name'];
     file = json['file'];
     category = json['category'];
@@ -27,6 +33,8 @@ class Plan {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
     data['trainerId'] = trainerId;
+    data['traineeId'] = traineeId;
+    data['orderId'] = orderId;
     data['name'] = name;
     data['file'] = file;
     data['category'] = category;

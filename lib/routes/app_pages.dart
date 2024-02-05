@@ -31,6 +31,8 @@ import 'package:mudarribe_trainer/views/home/home_view.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_binding.dart';
 import 'package:mudarribe_trainer/views/introscreen/intro_view.dart';
 import 'package:mudarribe_trainer/views/order/order_view.dart';
+import 'package:mudarribe_trainer/views/report/report_problem_binding.dart';
+import 'package:mudarribe_trainer/views/report/report_problem_view.dart';
 import 'package:mudarribe_trainer/views/sale/sales_binding.dart';
 import 'package:mudarribe_trainer/views/sendplan/exercises/exercises.dart';
 import 'package:mudarribe_trainer/views/packges/packages_view.dart';
@@ -171,6 +173,11 @@ class AppPages {
       name: AppRoutes.existingsendplan,
       page: () => const TodayMealsScreen(),
       binding: ExistingPlanBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.report,
+      page: () => const ReportProblemView(),
+      binding: ReportProblemBinding(),
     ),
   ];
 }

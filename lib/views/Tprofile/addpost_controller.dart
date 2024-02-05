@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/api/post_storage_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
@@ -12,6 +13,7 @@ import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/trainer_post.dart';
 import 'package:mudarribe_trainer/services/post_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
+import 'package:mudarribe_trainer/values/cropper.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class AddPostController extends GetxController {
@@ -51,7 +53,19 @@ class AddPostController extends GetxController {
 
   Future selectPostImage() async {
     final tempImage = await _imageSelectorApi.selectImage();
-    postImage = tempImage;
+    // postImage = tempImage;
+    // checkFields();
+    cropImage(tempImage);
+    // update();
+  }
+
+  cropImage(pickedImage) async {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      aspectRatioPresets: aspectRatios,
+      uiSettings: uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+    );
+    postImage = File(croppedImage!.path);
     checkFields();
     update();
   }

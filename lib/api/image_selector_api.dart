@@ -7,7 +7,7 @@ import 'package:mudarribe_trainer/values/ui_utils.dart';
 class ImageSelectorApi {
   final picker = ImagePicker();
 
-selectImage() async {
+  selectImage() async {
     final pickedFile = await picker.pickImage(
       source: ImageSource.gallery,
     );
@@ -15,7 +15,25 @@ selectImage() async {
     if (pickedFile != null) {
       return File(pickedFile.path);
     } else {
-      UiUtilites.errorSnackbar('Image selection failed'.tr, 'Failed to select image, please try again.'.tr);
+      UiUtilites.errorSnackbar('Image selection failed'.tr,
+          'Failed to select image, please try again.'.tr);
+      // throw ImageSelectorApiException(
+      //   title: 'Image selection failed',
+      //   message: 'Failed to select image, please try again.',
+      // );
+    }
+  }
+
+  selectCameraImage() async {
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (pickedFile != null) {
+      return File(pickedFile.path);
+    } else {
+      UiUtilites.errorSnackbar('Image selection failed'.tr,
+          'Failed to select image, please try again.'.tr);
       // throw ImageSelectorApiException(
       //   title: 'Image selection failed',
       //   message: 'Failed to select image, please try again.',

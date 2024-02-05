@@ -25,6 +25,7 @@ class AddEventContoller extends GetxController {
   int selectedOption = 1;
   TextEditingController eventTitleController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  TextEditingController todateController = TextEditingController();
   TextEditingController startTimeController = TextEditingController();
   TextEditingController endTimeController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -51,6 +52,9 @@ class AddEventContoller extends GetxController {
     dateController.addListener(() {
       checkFields();
     });
+    todateController.addListener(() {
+      checkFields();
+    });
     startTimeController.addListener(() {
       checkFields();
     });
@@ -70,12 +74,15 @@ class AddEventContoller extends GetxController {
   void checkFields() {
     if (eventTitleController.text.isNotEmpty &&
         dateController.text.isNotEmpty &&
+        todateController.text.isNotEmpty &&
         startTimeController.text.isNotEmpty &&
         endTimeController.text.isNotEmpty &&
         priceController.text.isNotEmpty &&
         capacityController.text.isNotEmpty &&
-        eventImage != null &&
-        address != '') {
+        eventImage != null
+        //  &&
+        // address != ''
+        ) {
       areFieldsFilled.value = true;
       update();
     } else {
@@ -118,6 +125,7 @@ class AddEventContoller extends GetxController {
         title: eventTitleController.text,
         price: priceController.text,
         date: dateController.text,
+        todate: todateController.text,
         startTime: startTimeController.text,
         endTime: endTimeController.text,
         trainerId: currentUser!.id,
@@ -146,6 +154,7 @@ class AddEventContoller extends GetxController {
     eventTitleController.clear();
     priceController.clear();
     dateController.clear();
+    todateController.clear();
     startTimeController.clear();
     endTimeController.clear();
     capacityController.clear();

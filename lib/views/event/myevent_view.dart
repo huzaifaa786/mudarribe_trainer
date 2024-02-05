@@ -186,6 +186,8 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                                           }
 
                                           return EventDetailsCard(
+                                            todate: controller
+                                                  .events[index].todate,
                                               onPressClose: () {
                                                 UiUtilites.confirmAlert(
                                                     context,

@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
 
 class TrainerEvent {
@@ -5,6 +6,7 @@ class TrainerEvent {
 
   String? title;
   String? date;
+  String? todate;
   String? startTime;
   String? endTime;
   String? price;
@@ -22,6 +24,7 @@ class TrainerEvent {
     this.title,
     this.price,
     this.date,
+    this.todate,
     this.startTime,
     this.endTime,
     this.trainerId,
@@ -35,9 +38,15 @@ class TrainerEvent {
   });
 
   TrainerEvent.fromJson(Map<String, dynamic> json) {
+    int timestamp = int.parse(json['date'].toString());
+    DateTime date1 = DateTime.fromMillisecondsSinceEpoch(timestamp);
+
+    // Format the DateTime object to the desired format
+    String formattedDate = DateFormat('dd/MM/y').format(date1);
     id = json['id'];
     title = json['title'];
-    date = json['date'];
+    date = formattedDate;
+    todate = json['toDate'] ?? '';
     price = json['price'];
     startTime = json['startTime'];
     endTime = json['endTime'];
@@ -53,11 +62,18 @@ class TrainerEvent {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
+    // String date1 = DateTime.now().millisecondsSinceEpoch.toString();
+    DateFormat dateFormat = DateFormat('dd/MM/y');
+    DateTime dateTime = dateFormat.parse(date!);
+
+    String timestamp = dateTime.millisecondsSinceEpoch.toString();
+
     data['id'] = id;
     data['trainerId'] = trainerId;
     data['title'] = title;
     data['price'] = price;
-    data['date'] = date;
+    data['date'] = timestamp;
+    data['toDate'] = todate;
     data['startTime'] = startTime;
     data['endTime'] = endTime;
     data['capacity'] = capacity;

@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             SizedBox(height: 8),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 MainCard(
                                   name: 'My Sales'.tr,
@@ -111,6 +111,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Get.toNamed(AppRoutes.sale);
                                   },
                                   image: 'assets/images/sales.svg',
+                                ),
+                                 MainCard(
+                                  name: "Report a problem".tr,
+                                  ontap: () {
+                                    Get.toNamed(AppRoutes.report);
+                                  },
+                                  image: 'assets/images/report.svg',
                                 ),
                               ],
                             ),

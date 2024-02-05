@@ -95,13 +95,14 @@ class ExercisesController extends GetxController {
   Future addplan() async {
     busyController.setBusy(true);
     final planId = DateTime.now().millisecondsSinceEpoch.toString();
-
     await _planService.createPlan(
         plan: Plan(
             id: planId,
             trainerId: currentUser!.id,
             name: filenameController.text,
-            category: category));
+            category: category,
+            orderId: orderId,
+            traineeId: userId));
 
     filenameController.clear();
 
@@ -119,17 +120,25 @@ class ExercisesController extends GetxController {
       final id = DateTime.now().millisecondsSinceEpoch.toString();
       final fileExtension = extension(file.path);
       final fileName = basenameWithoutExtension(file.path);
-      CloudStorageResult cloudStorageResult =
-          await _planfileStorageApi.uploadPlanFile(
-              planFileId: id, fileToUpload: file, extentsion: fileExtension);
-      await _planfileService.createPlanFile(
-          planfile: PlanFile(
-              id: id,
-              planId: planId,
-              fileType: fileExtension == '.pdf' ? FileType.pdf : FileType.mp4,
-              fileName: fileName,
-              fileUrl: cloudStorageResult.imageUrl,
-              FileId: cloudStorageResult.imageFileName));
+      // CloudStorageResult cloudStorageResult =
+      //     await _planfileStorageApi.uploadPlanFile(
+      //         planFileId: id, fileToUpload: file, extentsion: fileExtension);
+      if (fileExtension == '.pdf' || fileExtension == '.mp4') {
+        CloudStorageResult cloudStorageResult =
+            await _planfileStorageApi.uploadPlanFile(
+                planFileId: id, fileToUpload: file, extentsion: fileExtension);
+        await _planfileService.createPlanFile(
+            planfile: PlanFile(
+                id: id,
+                planId: planId,
+                fileType: fileExtension == '.pdf' ? FileType.pdf : FileType.mp4,
+                fileName: fileName,
+                fileUrl: cloudStorageResult.imageUrl,
+                FileId: cloudStorageResult.imageFileName));
+      } else {
+        UiUtilites.errorSnackbar('Error uploading file image.'.tr,
+            "Send Paln file only contain .mp4 and .pdf files".tr);
+      }
     }
     if (planId != '') {
       Get.offNamed(AppRoutes.existingsendplan, parameters: {
@@ -148,7 +157,12 @@ class ExercisesController extends GetxController {
   Future getTrainerPlan() async {
     busyController.setBusy(true);
     plans = await _planService.getTrainerPlans(
-        category: category, trainerId: currentUser!.id);
+        category: category,
+        trainerId: currentUser!.id,
+        traineeId: userId,
+        orderId: orderId);
+    print('object********************');
+    print('$plans ********************');
 
     update();
     busyController.setBusy(false);

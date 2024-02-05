@@ -57,10 +57,20 @@ class _AddPostState extends State<AddPost> {
                               height: 390,
                               decoration: BoxDecoration(),
                               child: controller.postImage != null
-                                  ? Image.file(
-                                      controller.postImage!,
-                                      fit: BoxFit.cover,
-                                    )
+                                  ? Container(
+                                    decoration: BoxDecoration(border: GradientBoxBorder(
+                            
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                        colors: [borderTop,borderbottom]),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6)),
+                                    child: Image.file(
+                                        controller.postImage!
+                                      ),
+                                  )
                                   : Container(
                                     decoration: BoxDecoration(border: GradientBoxBorder(
                             

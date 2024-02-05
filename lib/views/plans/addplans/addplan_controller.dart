@@ -16,7 +16,10 @@ class AddPlanController extends GetxController {
   final BusyController busyController = Get.find();
   TextEditingController packagenameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
-  TextEditingController durationController = TextEditingController();
+  // TextEditingController durationController = TextEditingController();
+    TextEditingController searchController = TextEditingController();
+  String? fromSelectedduration;
+
   TextEditingController discriptionController = TextEditingController();
   RxBool areFieldsFilled = false.obs;
   final _packageService = PackageService();
@@ -66,9 +69,6 @@ class AddPlanController extends GetxController {
     priceController.addListener(() {
       checkFields();
     });
-    durationController.addListener(() {
-      checkFields();
-    });
     discriptionController.addListener(() {
       checkFields();
     });
@@ -79,7 +79,7 @@ class AddPlanController extends GetxController {
   void checkFields() {
     if (packagenameController.text.isNotEmpty &&
         priceController.text.isNotEmpty &&
-        durationController.text.isNotEmpty &&
+        fromSelectedduration!.isNotEmpty &&
         discriptionController.text.isNotEmpty &&
         category != '') {
       areFieldsFilled.value = true;
@@ -100,13 +100,13 @@ class AddPlanController extends GetxController {
             trainerId: currentUser!.id,
             name: packagenameController.text,
             price: priceController.text,
-            duration: durationController.text,
+            duration: fromSelectedduration,
             discription: discriptionController.text,
             category: category));
 
     packagenameController.clear();
     priceController.clear();
-    durationController.clear();
+    fromSelectedduration = null;
     discriptionController.clear();
     category = '';
     areFieldsFilled.value = false;

@@ -13,7 +13,9 @@ import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/plan_category_card.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
+import 'package:mudarribe_trainer/components/search_dropdown.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
+import 'package:mudarribe_trainer/values/plans.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/plans/addplans/addplan_controller.dart';
 
@@ -44,8 +46,9 @@ class _AddPlanState extends State<AddPlan> {
                         }),
                   ),
                   body: Directionality(
-                    textDirection:
-                      box.read('locale') == 'ar' ? TextDirection.rtl : TextDirection.ltr,
+                    textDirection: box.read('locale') == 'ar'
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
                     child: SingleChildScrollView(
                       child: SafeArea(
                         child: Padding(
@@ -60,9 +63,56 @@ class _AddPlanState extends State<AddPlan> {
                                 lable: 'Price'.tr,
                                 controller: controller.priceController,
                               ),
-                              InputField(
-                                lable: 'Duration'.tr,
-                                controller: controller.durationController,
+                              // InputField(
+                              //   lable: 'Duration'.tr,
+                              //   controller: controller.durationController,
+                              // ),
+                              Directionality(
+                                textDirection: box.read('locale') != 'ar'
+                                    ? TextDirection.ltr
+                                    : TextDirection.rtl,
+                                child: SearchDropdownField(
+                                  selectedvalue:
+                                      controller.fromSelectedduration,
+                                  text: "Duration".tr,
+                                  items: PalnList(),
+                                  onChange: (value) {
+                                    setState(() {
+                                      controller.fromSelectedduration = value;
+                                      controller.checkFields();
+                                    });
+                                  },
+                                  searchController: controller.searchController,
+                                  searchInnerWidget: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    child: TextFormField(
+                                      controller: controller.searchController,
+                                      decoration: InputDecoration(
+                                        isDense: true,
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 14,
+                                        ),
+                                        hintText: 'Search items'.tr,
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  searchMatchFn: (item, searchValue) {
+                                    return (item.value
+                                        .toLowerCase()
+                                        .contains(searchValue.toLowerCase()));
+                                  },
+                                  onMenuStateChange: (isOpen) {
+                                    if (!isOpen) {
+                                      controller.searchController.clear();
+                                    }
+                                  },
+                                ),
                               ),
                               BioInputField(
                                 lable: 'Description'.tr,
@@ -76,7 +126,8 @@ class _AddPlanState extends State<AddPlan> {
                                 size: 18.0,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   PlanCategoryCard(
                                     image: "assets/images/excercise.svg",

@@ -13,7 +13,7 @@ class PlanService {
   // }
 
   Future<List<Plan>> getTrainerPlans(
-      {required trainerId, required category}) async {
-    return await _planApi.getPlansByTrainerAndCategory(trainerId, category);
+      {required trainerId, required category, required traineeId, required orderId}) async {
+    return await _planApi.getPlansByTrainerAndCategory(trainerId, category, traineeId, orderId);
   }
 }

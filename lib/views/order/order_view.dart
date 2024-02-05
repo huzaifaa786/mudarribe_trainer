@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/api/order_api.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
@@ -13,7 +12,6 @@ import 'package:mudarribe_trainer/models/combine_order.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/chat/chat_page.dart';
 import 'package:mudarribe_trainer/views/order/order_controller.dart';
-import 'package:provider/provider.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});

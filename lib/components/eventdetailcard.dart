@@ -24,6 +24,7 @@ class EventDetailsCard extends StatelessWidget {
     required this.startTime,
     required this.endTime,
     required this.date,
+    required this.todate,
     required this.price,
     required this.capacity,
     required this.attendees,
@@ -38,6 +39,7 @@ class EventDetailsCard extends StatelessWidget {
   final startTime;
   final endTime;
   final date;
+  final todate;
   final price;
   final capacity;
   final eventStatus;
@@ -121,7 +123,7 @@ class EventDetailsCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
                         child: Text(
-                          'From'.tr + ' $startTime ' + 'to' + ' $endTime',
+                          'From'.tr + ' $startTime ' + 'to'.tr + ' $endTime',
                           style: TextStyle(
                             color: const Color.fromARGB(255, 202, 200, 200),
                             fontFamily: 'Montserrat',
@@ -140,14 +142,14 @@ class EventDetailsCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8),
                       child: Text(
-                        date,
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 218, 216, 216),
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          'From'.tr + ' $date ' + 'to'.tr + ' $todate',
+                          style: TextStyle(
+                            color: const Color.fromARGB(255, 202, 200, 200),
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                          ),
                         ),
-                      ),
                     )
                   ],
                 ),

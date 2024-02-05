@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,8 +6,8 @@ import 'package:mudarribe_trainer/exceptions/database_api_exception.dart';
 import 'package:mudarribe_trainer/models/packages.dart';
 
 class PackageApi {
-   static final _firestore = FirebaseFirestore.instance;
-   final CollectionReference _trainerPackagesCollection =
+  static final _firestore = FirebaseFirestore.instance;
+  final CollectionReference _trainerPackagesCollection =
       _firestore.collection("packages");
 
   Future<void> createPackage(Package package) async {
@@ -22,10 +20,13 @@ class PackageApi {
       );
     }
   }
-   Future<List<Package>> getTrainerPackages(trainerId) async {
+
+  Future<List<Package>> getTrainerPackages(trainerId) async {
     try {
-   
-      final result = await _trainerPackagesCollection.get();
+      final result = await _trainerPackagesCollection
+          .where('trainerId', isEqualTo: trainerId)
+          .orderBy('id', descending: true)
+          .get();
 
       final packages = result.docs
           .map(
@@ -42,10 +43,10 @@ class PackageApi {
       );
     }
   }
- Future<Package?> getPackageById(String packageId) async {
+
+  Future<Package?> getPackageById(String packageId) async {
     try {
-      final result =
-          await _trainerPackagesCollection.doc(packageId).get();
+      final result = await _trainerPackagesCollection.doc(packageId).get();
 
       if (result.exists) {
         return Package.fromJson(result.data()! as Map<String, dynamic>);
@@ -59,7 +60,8 @@ class PackageApi {
       );
     }
   }
-    Future<void> updatePackage(id, Package) async {
+
+  Future<void> updatePackage(id, Package) async {
     try {
       await _trainerPackagesCollection.doc(id).update(Package);
     } on PlatformException catch (e) {
@@ -69,11 +71,6 @@ class PackageApi {
       );
     }
   }
-
-
-
-
-  
 
   Future<void> deletePackage(id) async {
     try {
@@ -85,13 +82,4 @@ class PackageApi {
       );
     }
   }
-
-  
 }
-
-
-
-
-
-
-

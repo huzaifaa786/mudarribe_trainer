@@ -11,8 +11,10 @@ class EditPlanController extends GetxController {
 
   TextEditingController packagenameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
-  TextEditingController durationController = TextEditingController();
+  // TextEditingController durationController = TextEditingController();
   TextEditingController discriptionController = TextEditingController();
+      TextEditingController searchController = TextEditingController();
+  String? fromSelectedduration;
   RxBool areFieldsFilled = false.obs;
   final _packageService = PackageService();
 
@@ -47,9 +49,6 @@ class EditPlanController extends GetxController {
     priceController.addListener(() {
       checkFields();
     });
-    durationController.addListener(() {
-      checkFields();
-    });
     discriptionController.addListener(() {
       checkFields();
     });
@@ -60,7 +59,7 @@ class EditPlanController extends GetxController {
   void checkFields() {
     if (packagenameController.text.isNotEmpty &&
         priceController.text.isNotEmpty &&
-        durationController.text.isNotEmpty &&
+        fromSelectedduration!.isNotEmpty &&
         discriptionController.text.isNotEmpty &&
         category != '') {
       areFieldsFilled.value = true;
@@ -82,7 +81,7 @@ class EditPlanController extends GetxController {
 
     packagenameController.text = package!.name!;
     priceController.text = package!.price!;
-    durationController.text = package!.duration!;
+    fromSelectedduration = package!.duration!;
     discriptionController.text = package!.discription!;
     category = package!.category!;
 
@@ -95,7 +94,7 @@ class EditPlanController extends GetxController {
     await _packageService.updatePackage(id: package!.id, Package: {
       'name': packagenameController.text,
       'price': priceController.text,
-      'duration': durationController.text,
+      'duration': fromSelectedduration,
       'discription': discriptionController.text,
       'category': category,
     });

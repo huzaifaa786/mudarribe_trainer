@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gap/gap.dart';
 import 'package:google_translator/google_translator.dart';
@@ -10,6 +11,7 @@ import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/chat/full_photo_page.dart';
+import 'package:mudarribe_trainer/views/video/video_view.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
@@ -49,6 +51,7 @@ class ChatPageState extends State<ChatPage> {
   String groupChatId = "";
   bool isDeleted = false;
   File? pdfFile;
+  File? videoFile;
   File? imageFile;
   bool isLoading = false;
   bool isShowSticker = false;
@@ -210,8 +213,46 @@ class ChatPageState extends State<ChatPage> {
           isLoading = true;
         });
         uploadPdf(pdfFile!, fileName);
-        // Process your PDF file (e.g., uploadFile(pdfFile))
       }
+    }
+  }
+
+  Future getMp4() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['mp4'],
+    );
+
+    if (result != null) {
+      List<File> pickedFiles = result.paths.map((path) => File(path!)).toList();
+      if (pickedFiles.isNotEmpty) {
+        videoFile = pickedFiles.first;
+        String? fileName = result.files.first.name;
+        setState(() {
+          isLoading = true;
+        });
+        uploadVideo(videoFile!, fileName);
+      }
+    }
+  }
+
+  Future uploadVideo(File videoFile, String fileName) async {
+    UploadTask uploadTask = chatProvider.uploadVideo(videoFile, fileName);
+    try {
+      TaskSnapshot snapshot = await uploadTask;
+      String videoUrl = await snapshot.ref.getDownloadURL();
+      print(videoUrl);
+      setState(() {
+        isLoading = false;
+        onSendMessage(videoUrl, TypeMessage.video);
+      });
+      Get.back();
+    } on FirebaseException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      Get.back();
+      print(e);
     }
   }
 
@@ -538,60 +579,132 @@ class ChatPageState extends State<ChatPage> {
                                         ],
                                       ),
                                     )
-                                  : Container(
-                                      width: 250,
-                                      margin: EdgeInsets.only(
-                                          right: 10, bottom: 10),
-                                      padding: EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                          color: white,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Column(
-                                        children: [
-                                          Row(
+                                  : messageChat.type == TypeMessage.rating
+                                      ? Container(
+                                          width: 250,
+                                          margin: EdgeInsets.only(
+                                              right: 10, bottom: 10),
+                                          padding: EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                              color: white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Column(
                                             children: [
-                                              Text(
-                                                'Rating:'.tr,
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Rating:'.tr,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 16),
+                                                  ),
+                                                  Text(
+                                                    ' ' +
+                                                        messageChat.content
+                                                            .split("~~")[0]
+                                                            .split(":")[1],
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: borderbottom,
+                                                    size: 15,
+                                                  )
+                                                ],
                                               ),
-                                              Text(
-                                                ' ' +
-                                                    messageChat.content
-                                                        .split("~~")[0]
-                                                        .split(":")[1],
-                                                style: TextStyle(
-                                                    color: Colors.black),
+                                              Gap(12),
+                                              GradientButton(
+                                                title: messageChat.content
+                                                            .split("~~")[1]
+                                                            .split(":")[1] ==
+                                                        'true'
+                                                    ? 'Rated '.tr
+                                                    : 'Not Rated Yet'.tr,
+                                                onPressed: () {},
+                                                selected: messageChat.content
+                                                            .split("~~")[1]
+                                                            .split(":")[1] ==
+                                                        'true'
+                                                    ? true
+                                                    : false,
                                               ),
-                                              Icon(
-                                                Icons.star,
-                                                color: borderbottom,
-                                                size: 15,
-                                              )
                                             ],
                                           ),
-                                          Gap(12),
-                                          GradientButton(
-                                            title: messageChat.content
-                                                        .split("~~")[1]
-                                                        .split(":")[1] ==
-                                                    'true'
-                                                ? 'Rated '.tr
-                                                : 'Not Rated Yet'.tr,
-                                            onPressed: () {},
-                                            selected: messageChat.content
-                                                        .split("~~")[1]
-                                                        .split(":")[1] ==
-                                                    'true'
-                                                ? true
-                                                : false,
-                                          ),
-                                        ],
-                                      ),
-                                    )
+                                        )
+                                      : messageChat.type == TypeMessage.video
+                                          ? InkWell(
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        VideoPlay(
+                                                            path: messageChat
+                                                                .content),
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 250,
+                                                height: 60,
+                                                margin: EdgeInsets.only(
+                                                    left: 10, bottom: 10),
+                                                decoration: BoxDecoration(
+                                                    color: white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8)),
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                        padding:
+                                                            EdgeInsets.all(8),
+                                                        margin: EdgeInsets.only(
+                                                            right: 4, left: 4),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(45),
+                                                          gradient:
+                                                              LinearGradient(
+                                                            begin: Alignment
+                                                                .topLeft,
+                                                            end: Alignment
+                                                                .bottomRight,
+                                                            colors: [
+                                                              borderTop,
+                                                              borderbottom
+                                                            ],
+                                                            stops: [0.0, 1.0],
+                                                          ),
+                                                        ),
+                                                        child: Icon(
+                                                            CupertinoIcons
+                                                                .video_camera)),
+                                                    SizedBox(
+                                                      width: 200,
+                                                      child: Text(
+                                                          get_text_between(
+                                                              messageChat
+                                                                  .content,
+                                                              "/o/",
+                                                              "?"),
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black)),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          : SizedBox()
                 ],
                 mainAxisAlignment: MainAxisAlignment.end,
               ),
@@ -809,7 +922,64 @@ class ChatPageState extends State<ChatPage> {
                                     ),
                                   ),
                                 )
-                              : SizedBox()
+                              : messageChat.type == TypeMessage.video
+                                  ? InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => VideoPlay(
+                                                path: messageChat.content),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 250,
+                                        height: 60,
+                                        margin: EdgeInsets.only(
+                                            left: 10, bottom: 10),
+                                        decoration: BoxDecoration(
+                                            color: bgContainer,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                padding: EdgeInsets.all(8),
+                                                margin: EdgeInsets.only(
+                                                    right: 4, left: 4),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(45),
+                                                  gradient: LinearGradient(
+                                                    begin: Alignment.topLeft,
+                                                    end: Alignment.bottomRight,
+                                                    colors: [
+                                                      borderTop,
+                                                      borderbottom
+                                                    ],
+                                                    stops: [0.0, 1.0],
+                                                  ),
+                                                ),
+                                                child: Icon(CupertinoIcons
+                                                    .video_camera)),
+                                            SizedBox(
+                                              width: 200,
+                                              child: Text(
+                                                  get_text_between(
+                                                      messageChat.content,
+                                                      "/o/",
+                                                      "?"),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox()
                 ],
               ),
 
@@ -884,7 +1054,7 @@ class ChatPageState extends State<ChatPage> {
             },
             child: Icon(Icons.arrow_back_ios_new),
           ),
-    
+
           title: Text(
             widget.arguments.peerNickname,
             style: TextStyle(
@@ -907,7 +1077,7 @@ class ChatPageState extends State<ChatPage> {
                     buildInput()
                   ],
                 ),
-    
+
                 // Loading
                 buildLoading()
               ],
@@ -1116,6 +1286,34 @@ class ChatPageState extends State<ChatPage> {
                   minimumSize:
                       MaterialStateProperty.all(Size(double.infinity, 50)),
                 ),
+                onPressed: getMp4,
+                child: Text(
+                  'Video'.tr,
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff0f0a06),
+                  ),
+                ),
+              ),
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0))),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
                 onPressed: getPdf,
                 child: Text(
                   'Document'.tr,
@@ -1150,7 +1348,7 @@ class ChatPageState extends State<ChatPage> {
                   Get.back();
                 },
                 child: Text(
-                  'Rate Us'.tr,
+                  "Ask for Rating".tr,
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontSize: 14,
