@@ -38,8 +38,8 @@ class FileSelectorApi {
 
       return selectedFiles;
     } else {
-      UiUtilites.errorSnackbar(
-          'File selection failed', 'Failed to select file, please try again.');
+      UiUtilites.errorSnackbar('File selection failed'.tr,
+          'Failed to select file, please try again.'.tr);
     }
   }
 
@@ -55,8 +55,8 @@ class FileSelectorApi {
     if (pickedFiles != null) {
       return File(pickedFiles.paths.first!);
     } else {
-      UiUtilites.errorSnackbar(
-          'File selection failed', 'Failed to select file, please try again.');
+      UiUtilites.errorSnackbar('File selection failed'.tr,
+          'Failed to select file, please try again.'.tr);
     }
   }
 }

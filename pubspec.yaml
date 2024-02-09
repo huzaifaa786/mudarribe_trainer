@@ -98,6 +98,7 @@ dev_dependencies:
 dependency_overrides:
   stripe_android: "9.5.0+1"
   http: ^1.1.0
+  # image: ^4.1.6
 
 flutter_icons:
   android: true
