@@ -1,13 +1,21 @@
 CategoryList() {
   return <String>[
-    "Boxing",
     "Body Building",
-    "Lifting",
-    "Fitness",
+    "Swimming",
+    "CrossFit",
     "Yoga",
-    "Tennis",
-    "Basketball",
+    "Indoor Cycling",
+    "Fitness",
+    "Boxing",
     "Medical Fitness",
-    "Swimming"
+    "Tennis",
+    "Paddle",
+    "Calisthenics",
+    "Animal flow",
+    "Rehabilitation Coach",
+    "Running",
+    "Aerobics",
+    "Plates",
+    "Kettle bell",
   ];
 }
