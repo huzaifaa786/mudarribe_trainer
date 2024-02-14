@@ -30,7 +30,7 @@ class TopBar extends StatelessWidget {
               const SizedBox(
                 width: 15,
               ),
-              Text(text,
+              Text('$text'.tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,

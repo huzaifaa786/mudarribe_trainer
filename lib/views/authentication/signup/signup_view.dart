@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/bio_input.dart';
 import 'package:mudarribe_trainer/components/card.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
@@ -42,165 +41,206 @@ class _SignupViewState extends State<SignupView> {
           ),
           body: SafeArea(
             child: SingleChildScrollView(
-              child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Fill Your Information'.tr,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 19,
-                    ),
-                    SizedBox(
-                      height: 115,
-                      width: 115,
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        fit: StackFit.expand,
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: controller.profileImage != null
-                                ? Image.file(controller.profileImage!).image
-                                : AssetImage("assets/images/user.png"),
-                          ),
-                          Positioned(
-                              bottom: 23,
-                              right: 17,
-                              child: RawMaterialButton(
-                                onPressed: () {
-                                  controller.selectProfileImage();
-                                },
-                                elevation: 2.0,
-                                // fillColor: Color(0xFFF5F6F9),
-                                // ignore: sort_child_properties_last
-                                child: controller.profileImage != null
-                                    ? Text('')
-                                    : Icon(
-                                        Icons.camera_alt_outlined,
-                                        color: Colors.blue,
-                                        size: 39,
-                                      ),
-                                padding: EdgeInsets.all(15.0),
-                                shape: CircleBorder(),
-                              )),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12),
-                      child: GradientText2(
-                        text: 'Choose photo'.tr,
-                      ),
-                    ),
-                    InputField(
-                      lable: 'Name'.tr,
-                      controller: controller.nameController,
-                    ),
-                    InputField(
-                      lable: 'Email'.tr,
-                      controller: controller.emailController,
-                    ),
-                    PasswordInputField(
-                      lable: 'Password',
-                      obscure: controller.obscureTextPassword,
-                      toggle: controller.togglePassword,
-                      controller: controller.passwordController,
-                    ),
-                    PasswordInputField(
-                      lable: 'Confirm Password'.tr,
-                      obscure: controller.obscureTextCPassword,
-                      toggle: controller.toggleCPassword,
-                      controller: controller.confirmPasswordController,
-                    ),
-                    BioInputField(
-                      lable: 'Bio'.tr,
-                      controller: controller.bioController,
-                    ),
-                    Gap(16),
-                    MultiSelectDropDown(
-                      label: 'Area of profession'.tr,
-                      item: CategoryList(),
-                      onchange: controller.onchange,
-                      selected: controller.selectedCategories,
-                    ),
-                    Gap(16),
-                    MultiSelectDropDown(
-                      label: 'Spoken Languages'.tr,
-                      item: Languages(),
-                      onchange: controller.onlangchange,
-                      selected: controller.selectedLanguages,
-                    ),
-                    Gap(8),
-                    Card1(
-                      text: 'Upload Your Certificate'.tr,
-                      ontap: () {
-                        controller.selectCertificate();
-                      },
-                      file: controller.certificate,
-                    ),
-                    Card1(
-                      text: 'Upload Your ID or Passport'.tr,
-                      ontap: () {
-                        controller.selectPassportId();
-                      },
-                      file: controller.passportId,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12),
-                      child: Row(
+              child: Form(
+                key: controller.formKey,
+                child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(children: [
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GradientText2(
-                            text: 'Gender ?'.tr,
-                          )
+                          Text(
+                            'Fill Your Information'.tr,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700),
+                          ),
                         ],
                       ),
-                    ),
-                    Row(
-                      children: [
-                        GenderCard(
-                          text: 'Male'.tr,
-                          image: "assets/images/male.svg",
-                          selected:
-                              signupController.gender == 'male'.tr ? true : false,
-                          ontap: signupController.onmaletap,
+                      SizedBox(
+                        height: 19,
+                      ),
+                      SizedBox(
+                        height: 115,
+                        width: 115,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          fit: StackFit.expand,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage: controller.profileImage != null
+                                  ? Image.file(controller.profileImage!).image
+                                  : AssetImage("assets/images/user.png"),
+                            ),
+                            Positioned(
+                                bottom: 23,
+                                right: 17,
+                                child: RawMaterialButton(
+                                  onPressed: () {
+                                    controller.selectProfileImage();
+                                  },
+                                  elevation: 2.0,
+                                  // fillColor: Color(0xFFF5F6F9),
+                                  // ignore: sort_child_properties_last
+                                  child: controller.profileImage != null
+                                      ? Text('')
+                                      : Icon(
+                                          Icons.camera_alt_outlined,
+                                          color: Colors.blue,
+                                          size: 39,
+                                        ),
+                                  padding: EdgeInsets.all(15.0),
+                                  shape: CircleBorder(),
+                                )),
+                          ],
                         ),
-                        GenderCard(
-                          text: 'Female'.tr,
-                          image: "assets/images/female.svg",
-                          ontap: signupController.onfemaletap,
-                          selected: signupController.gender == 'female'.tr
-                              ? true
-                              : false,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: GradientText2(
+                          text: 'Choose photo'.tr,
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    GradientButton(
-                      title: 'Submit'.tr,
-                      onPressed: controller.areFieldsFilled.value
-                          ? () {
-                              controller.signUpTrainer();
-                            }
-                          : () {
-                              UiUtilites.errorSnackbar('Fill out all fields'.tr,
-                                  'Please fill all above fields'.tr);
-                            },
-                      selected: controller.areFieldsFilled.value,
-                    ),
-                    Gap(20)
-                  ])),
+                      ),
+                      InputField(
+                        lable: 'Name'.tr,
+                        controller: controller.nameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          return null;
+                        },
+                      ),
+                      InputField(
+                        lable: 'Email'.tr,
+                        controller: controller.emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          return null;
+                        },
+                      ),
+                      PasswordInputField(
+                        lable: 'Password',
+                        obscure: controller.obscureTextPassword,
+                        toggle: controller.togglePassword,
+                        controller: controller.passwordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          return null;
+                        },
+                      ),
+                      PasswordInputField(
+                        lable: 'Confirm Password'.tr,
+                        obscure: controller.obscureTextCPassword,
+                        toggle: controller.toggleCPassword,
+                        controller: controller.confirmPasswordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          return null;
+                        },
+                      ),
+                      BioInputField(
+                        lable: 'Bio'.tr,
+                        controller: controller.bioController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          return null;
+                        },
+                      ),
+                      Gap(16),
+                      MultiSelectDropDown(
+                        label: 'Area of profession'.tr,
+                        item: CategoryList(),
+                        onchange: controller.onchange,
+                        selected: controller.selectedCategories,
+                      ),
+                      Gap(16),
+                      MultiSelectDropDown(
+                        label: 'Spoken Languages'.tr,
+                        item: Languages(),
+                        onchange: controller.onlangchange,
+                        selected: controller.selectedLanguages,
+                      ),
+                      Gap(8),
+                      Card1(
+                        text: 'Upload Your Certificate'.tr,
+                        ontap: () {
+                          controller.selectCertificate();
+                        },
+                        file: controller.certificate,
+                      ),
+                      Card1(
+                        text: 'Upload Your ID or Passport'.tr,
+                        ontap: () {
+                          controller.selectPassportId();
+                        },
+                        file: controller.passportId,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GradientText2(
+                              text: 'Gender ?'.tr,
+                            )
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          GenderCard(
+                            text: 'Male'.tr,
+                            image: "assets/images/male.svg",
+                            selected:
+                                controller.gender == 'male' ? true : false,
+                            ontap: controller.onmaletap,
+                          ),
+                          GenderCard(
+                            text: 'Female'.tr,
+                            image: "assets/images/female.svg",
+                            ontap: controller.onfemaletap,
+                            selected:
+                                controller.gender == 'female' ? true : false,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GradientButton(
+                        title: 'Submit'.tr,
+                        onPressed: controller.areFieldsFilled.value
+                            ? () {
+                                if (controller.formKey.currentState!
+                                    .validate()) {
+                                  controller.signUpTrainer();
+                                }
+                              }
+                            : () {
+                                if (controller.formKey.currentState!
+                                    .validate()) {
+                                  setState(() {});
+                                }
+
+                                UiUtilites.errorSnackbar(
+                                    'Fill out all fields'.tr,
+                                    'Please fill all above fields'.tr);
+                              },
+                        selected: controller.areFieldsFilled.value,
+                      ),
+                      Gap(20)
+                    ])),
+              ),
             ),
           ),
         ),

@@ -458,6 +458,10 @@ class _ProfileViewState extends State<ProfileView>
                                                                                 // onBackPress:Future<false>(){
 
                                                                                 // },
+                                                                                discardEdit: 'Discard Edits?'.tr,
+                                                                                cancel: 'Cancel'.tr,
+                                                                                discard: 'Discard'.tr,
+                                                                                title: "If you go back now, you'll lose all the edits you've made.".tr,
                                                                                 onDoneButtonStyle: Container(
                                                                                   padding: EdgeInsets.all(4),
                                                                                   child: StoryButton(

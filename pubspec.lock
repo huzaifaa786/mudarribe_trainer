@@ -879,7 +879,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: image
       sha256: "49a0d4b0c12402853d3f227fe7c315601b238d126aa4caa5dbb2dcf99421aa4a"
@@ -1464,8 +1464,8 @@ packages:
     description:
       path: "."
       ref: "feature/dependencyUpdate"
-      resolved-ref: "7dfe83df87a6b4461ef14ab21dca43e4296c6605"
-      url: "https://github.com/AdnanKhan45/stories_editor"
+      resolved-ref: "689dc2c703dd7d85ec8af02dc70d49954495f727"
+      url: "https://github.com/huzaifaa786/stories_editor"
     source: git
     version: "0.2.2"
   story_view:

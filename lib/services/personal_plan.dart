@@ -9,5 +9,4 @@ class PersonalPlanService {
   Future<void> createpersonalPlan({required PersonalPlan personalPlan}) async {
     await _personalpalnApi.createpersonalPlan(personalPlan);
   }
-
 }

@@ -6,6 +6,7 @@ import 'package:mudarribe_trainer/components/exersize_card.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
+import 'package:mudarribe_trainer/components/textgradient.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -25,20 +26,19 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
   final String description = '3 Files ,6 videos';
   @override
   Widget build(BuildContext context) {
-    var category = Get.parameters['category'] as String;
-    var userId = Get.parameters['userId'] as String;
-    var orderId = Get.parameters['orderId'] as String;
-    var firebaseToken = Get.parameters['firebaseToken'] as String;
-    var trainerName = Get.parameters['trainerName'] as String;
+    // var category;
     GetStorage box = GetStorage();
     return GetBuilder<ExercisesController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
-          state.controller!.category = category;
-          state.controller!.orderId = orderId;
-          state.controller!.userId = userId;
-          state.controller!.firebaseToken = firebaseToken;
-          state.controller!.trainerName = trainerName;
+          // category = Get.parameters['category'] as String;
+          state.controller!.category = Get.parameters['category'] as String;
+          state.controller!.orderId = Get.parameters['orderId'] as String;
+          state.controller!.userId = Get.parameters['userId'] as String;
+          state.controller!.firebaseToken =
+              Get.parameters['firebaseToken'] as String;
+          state.controller!.trainerName =
+              Get.parameters['trainerName'] as String;
         });
       },
       builder: (controller) => BusyIndicator(
@@ -49,7 +49,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: TopBar(
-                text: category.capitalize,
+                text: '${Get.parameters['category'] as String}'.capitalize,
               ),
             ),
             body: SafeArea(
@@ -108,8 +108,15 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 15, bottom: 20),
-                            child: Image.asset('assets/images/ortext.png'),
+                            child: GradientText1(
+                              text: 'OR'.tr,
+                              size: 18.0,
+                            ),
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 15, bottom: 20),
+                          //   child: Image.asset('assets/images/ortext.png'),
+                          // ),
                           Text("Add to Existing File".tr,
                               style: TextStyle(
                                 color: white,

@@ -561,6 +561,24 @@ class ChatPageState extends State<ChatPage> {
                                               ),
                                             ],
                                           ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Plan Duration: '.tr,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 16),
+                                              ),
+                                              Text(
+                                                messageChat.content
+                                                    .split("~~")[5]
+                                                    .split(":")[1],
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ],
+                                          ),
                                           GradientButton(
                                             title: messageChat.content
                                                         .split("~~")[3]

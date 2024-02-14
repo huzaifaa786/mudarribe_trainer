@@ -47,7 +47,8 @@ class _OrderScreenState extends State<OrderScreen> {
                     child: SafeArea(
                         child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15),
+                        padding:
+                            EdgeInsets.only(left: 15, right: 15, bottom: 15),
                         child: FutureBuilder<List<CombinedOrderData>>(
                             future: OrderApi.fetchTrainerOrders(),
                             builder: (context, snapshot) {
@@ -214,6 +215,16 @@ class _OrderScreenState extends State<OrderScreen> {
                                             : combinedOrderData[index]
                                                 .package!
                                                 .name,
+                                        duration: combinedOrderData[index]
+                                                    .order
+                                                    .type ==
+                                                'My_Plan'
+                                            ? combinedOrderData[index]
+                                                .personalPlan!
+                                                .duration
+                                            : combinedOrderData[index]
+                                                .package!
+                                                .duration,
                                         price: combinedOrderData[index]
                                                     .order
                                                     .type ==

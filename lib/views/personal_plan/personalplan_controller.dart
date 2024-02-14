@@ -14,6 +14,8 @@ class PersonalPlanController extends GetxController {
 
   TextEditingController plantitleController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+  String? fromSelectedduration;
 
   RxBool areFieldsFilled = false.obs;
   final _personalplanService = PersonalPlanService();
@@ -70,6 +72,8 @@ class PersonalPlanController extends GetxController {
   void checkFields() {
     if (plantitleController.text.isNotEmpty &&
         priceController.text.isNotEmpty &&
+        fromSelectedduration!.isNotEmpty &&
+
         category != '') {
       areFieldsFilled.value = true;
       update();
@@ -91,11 +95,14 @@ class PersonalPlanController extends GetxController {
         '~~pay:' +
         'false' +
         '~~PlanId:' +
-        packageId;
+        packageId+
+        '~~PlanDuration:' +
+        fromSelectedduration.toString();
     update();
     await _personalplanService.createpersonalPlan(
         personalPlan: PersonalPlan(
             id: packageId,
+            duration: fromSelectedduration,
             trainerId: currentUser!.id,
             name: plantitleController.text,
             price: priceController.text,

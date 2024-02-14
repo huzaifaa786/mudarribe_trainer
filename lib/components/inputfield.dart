@@ -43,6 +43,7 @@ class _InputFieldState extends State<InputField> {
             obscureText: widget.obscure,
             controller: widget.controller,
             validator: widget.validator,
+            // autovalidateMode: AutovalidateMode.always,
             autovalidateMode: widget.autovalidateMode ??
                 (widget.validator == true.obs
                     ? AutovalidateMode.always
@@ -62,6 +63,27 @@ class _InputFieldState extends State<InputField> {
                       colors: [Color(4285693389), Color(4278253801)]),
                   width: 1,
                 ),
+                // focusedBorder: GradientOutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(2),
+                //   gradient: const LinearGradient(
+                //       begin: Alignment.topLeft,
+                //       end: Alignment.bottomLeft,
+                //       colors: [Color(4285693389), Color(4278253801)]),
+                //   width: 1,
+                // ),
+                // enabledBorder: GradientOutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(2),
+                //   gradient: const LinearGradient(
+                //       begin: Alignment.topLeft,
+                //       end: Alignment.bottomLeft,
+                //       colors: [Color(4285693389), Color(4278253801)]),
+                //   width: 1,
+                // ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.red), // Customize the error border color
+                ),
+                errorStyle: TextStyle(fontSize: 0),
                 hoverColor: Colors.grey,
                 focusColor: Colors.grey,
                 labelText: widget.lable,

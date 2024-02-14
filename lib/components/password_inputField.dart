@@ -82,6 +82,18 @@ class PasswordInputField extends StatelessWidget {
                 colors: [Color(0xff727dcd), Color(0xff00f8e9)]),
             width: 1,
           ),
+          // focusedBorder: GradientOutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(2),
+          //   gradient: const LinearGradient(
+          //       begin: Alignment.topLeft,
+          //       end: Alignment.bottomLeft,
+          //       colors: [Color(0xff727dcd), Color(0xff00f8e9)]),
+          //   width: 1,
+          // ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red), // Customize the error border color
+          ),
+          errorStyle: TextStyle(fontSize: 0),
           hoverColor: Colors.grey,
           focusColor: Colors.grey,
           labelText: lable,

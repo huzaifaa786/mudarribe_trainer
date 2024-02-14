@@ -84,6 +84,7 @@ class ExistingPlanController extends GetxController {
 
   notificationCreated(String orderId, String userId) async {
     try {
+      print('$category ********************');
       // LoadingHelper.show();
       String notiId = DateTime.now().millisecondsSinceEpoch.toString();
       await FirebaseFirestore.instance

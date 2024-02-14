@@ -42,8 +42,11 @@ class TrainerStoryContoller extends GetxController {
                 controller: storyController,
               ),
       );
+      update();
     }
-
+    if (stories.isEmpty) {
+      Get.back();
+    }
     update();
   }
 

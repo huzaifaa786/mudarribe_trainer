@@ -51,12 +51,11 @@ class PriceInputWithoutLabel extends StatelessWidget {
                     fontFamily: "Poppins",
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
-              ) ,
+              ),
             ),
             floatingLabelBehavior: FloatingLabelBehavior.always,
             fillColor: Colors.white,
-            contentPadding:
-                EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
             border: GradientOutlineInputBorder(
               borderRadius: BorderRadius.circular(2),
               gradient: const LinearGradient(
@@ -65,6 +64,15 @@ class PriceInputWithoutLabel extends StatelessWidget {
                   colors: [Color(4285693389), Color(4278253801)]),
               width: 1,
             ),
+            errorBorder: GradientOutlineInputBorder(
+              borderRadius: BorderRadius.circular(2),
+              gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.red, Colors.red]),
+              width: 1,
+            ),
+            errorStyle: TextStyle(fontSize: 0),
             hoverColor: Colors.grey,
             focusColor: Colors.grey,
             // labelText: lable,

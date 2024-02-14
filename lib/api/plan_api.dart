@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/exceptions/database_api_exception.dart';
 import 'package:mudarribe_trainer/models/plan.dart';
 
@@ -84,8 +85,8 @@ class PlanApi {
   //   }
   // }
 
-  Future<void> sendPlan(planId,plan) async {
-      try {
+  Future<void> sendPlan(planId, plan) async {
+    try {
       await _userPersonalPlanCollection.doc(planId).set(plan);
     } on PlatformException catch (e) {
       throw DatabaseApiException(
@@ -94,7 +95,9 @@ class PlanApi {
       );
     }
   }
-  Future<List<Plan>> getPlansByTrainerAndCategory(trainerId, category, traineeId, orderId) async {
+
+  Future<List<Plan>> getPlansByTrainerAndCategory(
+      trainerId, category, traineeId, orderId) async {
     try {
       final result = await _trainerpalnCollection
           .where('trainerId', isEqualTo: trainerId)
@@ -121,7 +124,8 @@ class PlanApi {
           fileLength = fileResult.docs.length.toString();
           videoLength = videoResult.docs.length.toString();
         }
-        planData['description'] = '$fileLength Files ,$videoLength videos';
+        planData['description'] =
+            'Files'.tr + '$fileLength ,' + 'videos'.tr + ' $videoLength ';
         plans.add(Plan.fromJson(planData));
       }
 

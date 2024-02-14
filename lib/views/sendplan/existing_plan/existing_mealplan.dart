@@ -26,22 +26,24 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var planId = Get.parameters['planId'] as String;
-    var userId = Get.parameters['userId'] as String;
-    var orderId = Get.parameters['orderId'] as String;
-    var firebaseToken = Get.parameters['firebaseToken'] as String;
-    var category = Get.parameters['category'] as String;
-    var trainerName = Get.parameters['trainerName'] as String;
-
     return GetBuilder<ExistingPlanController>(
       initState: (state) async {
         Future.delayed(const Duration(milliseconds: 100), () {
-          state.controller!.planId = planId;
-          state.controller!.userId = userId;
-          state.controller!.orderId = orderId;
-          state.controller!.firebaseToken = firebaseToken;
-          state.controller!.trainerName = trainerName;
-          state.controller!.category = category;
+          print(Get.parameters['planId'] as String);
+          print(Get.parameters['userId'] as String);
+          print(Get.parameters['orderId'] as String);
+          print(Get.parameters['firebaseToken'] as String);
+          print(Get.parameters['trainerName'] as String);
+          print(Get.parameters['category'] as String);
+
+          state.controller!.planId = Get.parameters['planId'] as String;
+          state.controller!.userId = Get.parameters['userId'] as String;
+          state.controller!.orderId = Get.parameters['orderId'] as String;
+          state.controller!.firebaseToken =
+              Get.parameters['firebaseToken'] as String;
+          state.controller!.trainerName =
+              Get.parameters['trainerName'] as String;
+          state.controller!.category = Get.parameters['category'] as String;
           state.controller!.getTrainerFiles();
         });
       },

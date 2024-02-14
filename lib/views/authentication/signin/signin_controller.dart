@@ -15,6 +15,7 @@ import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class SignInController extends GetxController {
+  final formKey = GlobalKey<FormState>();
   static SignInController instance = Get.find();
   final BusyController busyController = Get.find();
   final _authApi = AuthApi();

@@ -60,7 +60,7 @@ class Scheduleinput extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                   color: white.withOpacity(0.45)),
-            ) ,
+            ),
           ),
           SizedBox(
             height: 50,
@@ -73,7 +73,15 @@ class Scheduleinput extends StatelessWidget {
               controller: controller,
               style: TextStyle(fontSize: fontSize, color: white),
               keyboardType: type,
-              validator: validator,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  print('object');
+                  return '';
+                }
+                print('object******');
+
+                return null;
+              },
               decoration: InputDecoration(
                 filled: true,
                 fillColor:
@@ -82,20 +90,25 @@ class Scheduleinput extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(
                     left: 12.0, right: 12, top: 12, bottom: 16),
                 hintStyle: TextStyle(color: white.withOpacity(0.5)),
-                enabledBorder: GradientOutlineInputBorder(
+                border: GradientOutlineInputBorder(
                   gradient: LinearGradient(
                       colors: [borderTop, borderbottom],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter),
                   width: 1,
                 ),
-                focusedBorder: GradientOutlineInputBorder(
-                  gradient: LinearGradient(
-                      colors: [borderTop, borderbottom],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter),
-                  width: 1,
+                // focusedBorder: GradientOutlineInputBorder(
+                //   gradient: LinearGradient(
+                //       colors: [borderTop, borderbottom],
+                //       begin: Alignment.topCenter,
+                //       end: Alignment.bottomCenter),
+                //   width: 1,
+                // ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.red), // Customize the error border color
                 ),
+                errorStyle: TextStyle(fontSize: 0),
               ),
               // cursorColor: Colors.black,
               maxLines: maxlines == true ? null : 1,

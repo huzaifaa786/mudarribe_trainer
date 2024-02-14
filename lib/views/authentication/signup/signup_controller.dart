@@ -28,6 +28,7 @@ class SignUpController extends GetxController {
   final _fileSelectorApi = FileSelectorApi();
   final _authApi = AuthApi();
   final _userService = UserService();
+  final formKey = GlobalKey<FormState>();
 
   // text editing controllers
   TextEditingController nameController = TextEditingController();

@@ -2,13 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/genderSelectar.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/planselectioncard.dart';
 import 'package:mudarribe_trainer/components/priceinput.dart';
+import 'package:mudarribe_trainer/components/search_dropdown.dart';
+import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/plans.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/personal_plan/personalplan_controller.dart';
 
@@ -20,51 +24,89 @@ class PersonalPlanScreen extends StatefulWidget {
 }
 
 class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
+  GetStorage box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PersonalPlanController>(
       builder: (controller) => Directionality(
         textDirection: TextDirection.ltr,
         child: Scaffold(
+          appBar: AppBar(
+            forceMaterialTransparency: true,
+                    automaticallyImplyLeading: false,
+                    title: TitleTopBar(
+                        name: 'Customizing Plan'.tr,
+                        ontap: () {
+                          Get.back();
+                        }),
+          ),
           body: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: Colors.white,
+                    Directionality(
+                      textDirection: box.read('locale') != 'ar'
+                          ? TextDirection.ltr
+                          : TextDirection.rtl,
+                      child: InputField(
+                        controller: controller.plantitleController,
+                        lable: 'Plan Title'.tr,
+                      ),
+                    ),
+                    Directionality(
+                      textDirection: box.read('locale') != 'ar'
+                          ? TextDirection.ltr
+                          : TextDirection.rtl,
+                      child: PriceInputField(
+                        controller: controller.priceController,
+                        lable: 'Price'.tr,
+                      ),
+                    ),
+                    Directionality(
+                      textDirection: box.read('locale') != 'ar'
+                          ? TextDirection.ltr
+                          : TextDirection.rtl,
+                      child: SearchDropdownField(
+                        selectedvalue: controller.fromSelectedduration,
+                        text: "Duration".tr,
+                        items: PalnList(),
+                        onChange: (value) {
+                          setState(() {
+                            controller.fromSelectedduration = value;
+                            controller.checkFields();
+                          });
+                        },
+                        searchController: controller.searchController,
+                        searchInnerWidget: Container(
+                          padding: const EdgeInsets.all(12),
+                          child: TextFormField(
+                            controller: controller.searchController,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 14,
+                              ),
+                              hintText: 'Search items'.tr,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          width: 23,
-                        ),
-                        Text(
-                          'Customizing  Plan'.tr,
-                          style: TextStyle(
-                              color: White,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InputField(
-                      controller: controller.plantitleController,
-                      lable: 'Plan Title'.tr,
-                    ),
-                    PriceInputField(
-                      controller: controller.priceController,
-                      lable: 'Price'.tr,
+                        searchMatchFn: (item, searchValue) {
+                          return (item.value
+                              .toLowerCase()
+                              .contains(searchValue.toLowerCase()));
+                        },
+                        onMenuStateChange: (isOpen) {
+                          if (!isOpen) {
+                            controller.searchController.clear();
+                          }
+                        },
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -104,13 +146,13 @@ class _PersonalPlanScreenState extends State<PersonalPlanScreen> {
                           ? true
                           : false,
                       ontap: controller.onbothtap,
-                      text: ' Exercises & Nutrition \n Plan'.tr,
+                      text: 'Exercises & Nutrition Plan'.tr,
                     ),
                     SizedBox(
                       height: 25,
                     ),
                     GradientButton(
-                      title: 'Submit '.tr,
+                      title: 'Submit'.tr,
                       onPressed: controller.areFieldsFilled.value
                           ? () {
                               controller.addplan().then((value) {

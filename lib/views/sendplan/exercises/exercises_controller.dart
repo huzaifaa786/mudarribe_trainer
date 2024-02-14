@@ -95,6 +95,7 @@ class ExercisesController extends GetxController {
   Future addplan() async {
     busyController.setBusy(true);
     final planId = DateTime.now().millisecondsSinceEpoch.toString();
+    print('$category ))))))))))))))))))))))))))))))))))))))))');
     await _planService.createPlan(
         plan: Plan(
             id: planId,
@@ -106,7 +107,7 @@ class ExercisesController extends GetxController {
 
     filenameController.clear();
 
-    category = '';
+    // category = '';
     areFieldsFilled.value = false;
 
     await storeplanfiles(planId);
@@ -150,7 +151,7 @@ class ExercisesController extends GetxController {
         'trainerName': trainerName
       });
     }
-
+    category = '';
     UiUtilites.successAlert(Get.context, 'Package Added\nSuccessfully !'.tr);
   }
 

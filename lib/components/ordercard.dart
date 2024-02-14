@@ -15,6 +15,7 @@ class OrderCard extends StatelessWidget {
       this.onTapMessage,
       this.onTapSendPlan,
       this.packageName,
+      this.duration,
       this.price});
 
   final userName;
@@ -23,6 +24,7 @@ class OrderCard extends StatelessWidget {
   final onTapSendPlan;
   final packageName;
   final price;
+  final duration;
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +95,25 @@ class OrderCard extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 8, right: 8),
                       child: Text(
                         price + ' AED'.tr,
+                        style: const TextStyle(
+                          fontFamily: "Montserrat",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.left,
+                      ) )
+                ],
+              ),
+
+              Row(
+                children: [
+                  GradientText2(
+                    text: 'Duration'.tr + ':',
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      child: Text(
+                        '$duration'.tr,
                         style: const TextStyle(
                           fontFamily: "Montserrat",
                           fontSize: 16,

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:mudarribe_trainer/api/event_storage_api.dart';
 import 'package:mudarribe_trainer/api/image_selector_api.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
@@ -13,6 +14,7 @@ import 'package:mudarribe_trainer/models/trainer_event.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/event_service.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
+import 'package:mudarribe_trainer/values/cropper.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 
 class AddEventContoller extends GetxController {
@@ -31,6 +33,7 @@ class AddEventContoller extends GetxController {
   TextEditingController priceController = TextEditingController();
   TextEditingController capacityController = TextEditingController();
   String address = '';
+  final formKey = GlobalKey<FormState>();
 
   // listners
 
@@ -73,13 +76,13 @@ class AddEventContoller extends GetxController {
 
   void checkFields() {
     if (eventTitleController.text.isNotEmpty &&
-        dateController.text.isNotEmpty &&
-        todateController.text.isNotEmpty &&
-        startTimeController.text.isNotEmpty &&
-        endTimeController.text.isNotEmpty &&
-        priceController.text.isNotEmpty &&
-        capacityController.text.isNotEmpty &&
-        eventImage != null
+            dateController.text.isNotEmpty &&
+            todateController.text.isNotEmpty &&
+            startTimeController.text.isNotEmpty &&
+            endTimeController.text.isNotEmpty &&
+            priceController.text.isNotEmpty &&
+            capacityController.text.isNotEmpty &&
+            eventImage != null
         //  &&
         // address != ''
         ) {
@@ -101,7 +104,17 @@ class AddEventContoller extends GetxController {
 
   Future selectEventImage() async {
     final tempImage = await _imageSelectorApi.selectImage();
-    eventImage = tempImage;
+    cropImage(tempImage);
+    update();
+  }
+
+  cropImage(pickedImage) async {
+    CroppedFile? croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      aspectRatioPresets: aspectRatios,
+      uiSettings: uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
+    );
+    eventImage = File(croppedImage!.path);
     checkFields();
     update();
   }

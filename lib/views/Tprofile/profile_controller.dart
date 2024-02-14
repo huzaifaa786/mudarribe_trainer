@@ -8,6 +8,7 @@ import 'package:mudarribe_trainer/enums/enums.dart';
 import 'package:mudarribe_trainer/helpers/data_models.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
+import 'package:mudarribe_trainer/models/app_user_trans.dart';
 import 'package:mudarribe_trainer/models/trainer_post.dart';
 import 'package:mudarribe_trainer/models/trainer_story.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
@@ -41,7 +42,7 @@ class ProfileController extends GetxController {
   }
 
   final _userService = UserService();
-  AppUser? currentUser;
+  AppUserTransalted? currentUser;
 
   @override
   void onInit() {
@@ -53,7 +54,7 @@ class ProfileController extends GetxController {
   Future getAppUser() async {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      currentUser = await _userService.getAuthUser();
+      currentUser = await _userService.getAuthUser1();
       update();
       getTrainerPosts();
     }
