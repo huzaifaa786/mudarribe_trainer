@@ -13,7 +13,6 @@ CategoryList() {
     "Calisthenics",
     "Animal flow",
     "Rehabilitation Coach",
-    "Running",
     "Aerobics",
     "Plates",
     "Kettle bell",
