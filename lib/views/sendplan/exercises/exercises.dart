@@ -45,7 +45,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
         child: Directionality(
           textDirection: TextDirection.ltr,
           child: Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: Get.isDarkMode ?  Colors.black: white,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: TopBar(
@@ -72,7 +72,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                             margin: const EdgeInsets.all(8.0),
                             padding: const EdgeInsets.all(8.0),
                             decoration: BoxDecoration(
-                                color: const Color(0x872C2723),
+                                color: Get.isDarkMode? const Color(0x872C2723): Colors.grey.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
@@ -80,7 +80,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                                   padding: EdgeInsets.only(top: 25, bottom: 25),
                                   child: Text("New Plan File".tr,
                                       style: TextStyle(
-                                        color: white,
+                                        color: Get.isDarkMode ? Colors.white : maincolor,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
                                       )),
@@ -119,7 +119,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
                           // ),
                           Text("Add to Existing File".tr,
                               style: TextStyle(
-                                color: white,
+                                 color: Get.isDarkMode ? Colors.white : maincolor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
                               )),

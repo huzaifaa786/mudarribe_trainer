@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_full_hex_values_for_flutter_colors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -30,7 +31,7 @@ class SelectUserCard extends StatelessWidget {
                     width: 3,
                   )
                 : Border.all(),
-            color: Color.fromARGB(255, 22, 22, 22),
+             color:  Get.isDarkMode? bgContainer: white,
             // boxShadow: [
             //   BoxShadow(
             //     color: Color.fromARGB(255, 44, 42, 42),
@@ -44,11 +45,11 @@ class SelectUserCard extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: "Montserrat",
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-                color: Colors.white,
+                 color:  Get.isDarkMode? white: maincolor ,
                 height: 52 / 20,
               ),
             ) ,

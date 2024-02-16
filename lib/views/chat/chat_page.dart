@@ -352,7 +352,9 @@ class ChatPageState extends State<ChatPage> {
                             maxWidth: 200,
                           ),
                           decoration: BoxDecoration(
-                              color: white,
+                              color: Get.isDarkMode
+                                  ? white
+                                  : Colors.grey.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(8)),
                           margin: EdgeInsets.only(bottom: 10, right: 10),
                         )
@@ -455,7 +457,9 @@ class ChatPageState extends State<ChatPage> {
                                     margin:
                                         EdgeInsets.only(right: 10, bottom: 10),
                                     decoration: BoxDecoration(
-                                        color: white,
+                                        color: Get.isDarkMode
+                                            ? white
+                                            : Colors.grey.withOpacity(0.2),
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Row(
                                       children: [
@@ -502,7 +506,9 @@ class ChatPageState extends State<ChatPage> {
                                           right: 10, bottom: 10),
                                       padding: EdgeInsets.all(12),
                                       decoration: BoxDecoration(
-                                          color: white,
+                                          color: Get.isDarkMode
+                                              ? white
+                                              : Colors.grey.withOpacity(0.2),
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Column(
@@ -604,7 +610,10 @@ class ChatPageState extends State<ChatPage> {
                                               right: 10, bottom: 10),
                                           padding: EdgeInsets.all(12),
                                           decoration: BoxDecoration(
-                                              color: white,
+                                              color: Get.isDarkMode
+                                                  ? white
+                                                  : Colors.grey
+                                                      .withOpacity(0.2),
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                           child: Column(
@@ -672,7 +681,10 @@ class ChatPageState extends State<ChatPage> {
                                                 margin: EdgeInsets.only(
                                                     left: 10, bottom: 10),
                                                 decoration: BoxDecoration(
-                                                    color: white,
+                                                    color: Get.isDarkMode
+                                                        ? white
+                                                        : Colors.grey
+                                                            .withOpacity(0.2),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
@@ -1076,7 +1088,7 @@ class ChatPageState extends State<ChatPage> {
           title: Text(
             widget.arguments.peerNickname,
             style: TextStyle(
-                color: white,
+                color: Get.isDarkMode ? white : Colors.black,
                 fontFamily: "Poppins",
                 fontSize: 16,
                 fontWeight: FontWeight.w500),
@@ -1120,7 +1132,7 @@ class ChatPageState extends State<ChatPage> {
           // Button send image
           Material(
             child: Container(
-              color: maincolor,
+              color: Get.isDarkMode ? maincolor : Colors.white,
               child: IconButton(
                 icon: Icon(Icons.more_vert_outlined),
                 onPressed: () {
@@ -1152,35 +1164,34 @@ class ChatPageState extends State<ChatPage> {
 
           // Button send message
           Material(
-            child: InkWell(
-              onTap: () =>
-                  onSendMessage(textEditingController.text, TypeMessage.text),
-              child: Container(
-                  padding: EdgeInsets.all(8),
-                  margin: EdgeInsets.only(right: 8, left: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(45),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [borderTop, borderbottom],
-                      stops: [0.0, 1.0],
+              child: InkWell(
+                onTap: () =>
+                    onSendMessage(textEditingController.text, TypeMessage.text),
+                child: Container(
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.only(right: 8, left: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(45),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [borderTop, borderbottom],
+                        stops: [0.0, 1.0],
+                      ),
                     ),
-                  ),
-                  child: SvgPicture.asset(
-                    'assets/images/send.svg',
-                    fit: BoxFit.scaleDown,
-                  )),
-            ),
-            color: Colors.black,
-          ),
+                    child: SvgPicture.asset(
+                      'assets/images/send.svg',
+                      fit: BoxFit.scaleDown,
+                    )),
+              ),
+              color: Get.isDarkMode ? maincolor : Colors.white),
         ],
       ),
       width: double.infinity,
       height: 50,
       decoration: BoxDecoration(
           border: Border(top: BorderSide(color: Colors.grey[300]!, width: 0.5)),
-          color: maincolor),
+          color: Get.isDarkMode ? maincolor : Colors.white),
     );
   }
 

@@ -151,7 +151,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     top: 20, bottom: 4, left: 4, right: 4),
                                 child: Text("Event Title".tr,
                                     style: TextStyle(
-                                      color: white.withOpacity(0.45),
+                                      color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
                                       fontFamily: "Poppins",
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
@@ -328,7 +328,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             right: 4),
                                         child: Text("Price".tr,
                                             style: TextStyle(
-                                              color: white.withOpacity(0.45),
+                                              color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
                                               fontFamily: "Poppins",
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -367,7 +367,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             right: 4),
                                         child: Text("Capacity".tr,
                                             style: TextStyle(
-                                              color: white.withOpacity(0.45),
+                                              color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
                                               fontFamily: "Poppins",
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -403,7 +403,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                   children: [
                                     Text("Location".tr,
                                         style: TextStyle(
-                                          color: white.withOpacity(0.4),
+                                          color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                         )),
@@ -495,7 +495,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             textAlign: TextAlign.center,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                              color: white,
+                                              color:  Get.isDarkMode? white: maincolor ,
                                               fontSize: 14,
                                               fontFamily: "Poppins",
                                               fontWeight: FontWeight.w500,

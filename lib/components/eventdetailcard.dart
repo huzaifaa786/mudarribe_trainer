@@ -49,7 +49,7 @@ class EventDetailsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
     return Card(
-      color: bgContainer,
+      color: Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2),
       child: Container(
         width: MediaQuery.sizeOf(context).width,
         padding: EdgeInsets.all(12),
@@ -66,7 +66,7 @@ class EventDetailsCard extends StatelessWidget {
                       fontSize: 16,
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color:  Get.isDarkMode? white: maincolor ,
                     ),
                   ),
                   InkWell(
@@ -90,18 +90,23 @@ class EventDetailsCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset('assets/images/location.svg'),
+                    SvgPicture.asset(
+                      'assets/images/location.svg',
+                      color: Get.isDarkMode ? white : maincolor,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8),
                       child: Row(
                         children: [
                           SizedBox(
-                            width: Get.width * 0.75,
+                            width: Get.width * 0.74,
                             child: Text(
                               address,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: Color.fromARGB(255, 197, 191, 191),
+                                color: Get.isDarkMode
+                                    ? Color.fromARGB(255, 197, 191, 191)
+                                    : maincolor,
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
@@ -115,17 +120,24 @@ class EventDetailsCard extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Directionality(
-                  textDirection: box.read('locale') == 'ar'? TextDirection.rtl: TextDirection.ltr,
+                  textDirection: box.read('locale') == 'ar'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SvgPicture.asset('assets/images/timeline.svg'),
+                      SvgPicture.asset(
+                        'assets/images/timeline.svg',
+                        color: Get.isDarkMode ? Colors.white : maincolor,
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8),
                         child: Text(
                           'From'.tr + ' $startTime ' + 'to'.tr + ' $endTime',
                           style: TextStyle(
-                            color: const Color.fromARGB(255, 202, 200, 200),
+                            color: Get.isDarkMode
+                                ? Color.fromARGB(255, 197, 191, 191)
+                                : maincolor,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
@@ -138,18 +150,25 @@ class EventDetailsCard extends StatelessWidget {
                 SizedBox(height: 4),
                 Row(
                   children: [
-                    SvgPicture.asset('assets/images/calender1.svg'),
+                    SvgPicture.asset(
+                      'assets/images/calender1.svg',
+                      color: Get.isDarkMode
+                          ? Color.fromARGB(255, 197, 191, 191)
+                          : maincolor,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8),
                       child: Text(
-                          'From'.tr + ' $date ' + 'to'.tr + ' $todate',
-                          style: TextStyle(
-                            color: const Color.fromARGB(255, 202, 200, 200),
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                          ),
+                        'From'.tr + ' $date ' + 'to'.tr + ' $todate',
+                        style: TextStyle(
+                          color: Get.isDarkMode
+                              ? Color.fromARGB(255, 197, 191, 191)
+                              : maincolor,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
                         ),
+                      ),
                     )
                   ],
                 ),
@@ -157,13 +176,20 @@ class EventDetailsCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SvgPicture.asset('assets/images/peoplesharp.svg'),
+                    SvgPicture.asset(
+                      'assets/images/peoplesharp.svg',
+                      color: Get.isDarkMode
+                          ? Color.fromARGB(255, 197, 191, 191)
+                          : maincolor,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8),
                       child: Text(
                         'Total People amount:'.tr,
                         style: TextStyle(
-                          color: const Color.fromARGB(255, 217, 216, 216),
+                          color: Get.isDarkMode
+                              ? Color.fromARGB(255, 197, 191, 191)
+                              : maincolor,
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
@@ -181,7 +207,9 @@ class EventDetailsCard extends StatelessWidget {
                     Text(
                       'Price :'.tr,
                       style: TextStyle(
-                        color: const Color.fromARGB(255, 196, 195, 195),
+                        color: Get.isDarkMode
+                            ? Color.fromARGB(255, 197, 191, 191)
+                            : maincolor,
                         fontFamily: 'Montserrat',
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
@@ -190,7 +218,7 @@ class EventDetailsCard extends StatelessWidget {
                     Text(
                       '$price ' + ' AED'.tr,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Get.isDarkMode ? Colors.white : maincolor,
                         fontFamily: 'Montserrat',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

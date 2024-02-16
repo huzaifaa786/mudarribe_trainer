@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class ExersizeCard extends StatelessWidget {
@@ -22,7 +23,7 @@ class ExersizeCard extends StatelessWidget {
       margin: const EdgeInsets.all(8.0),
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-          color: const Color(0x872C2723),
+           color: Get.isDarkMode ? const Color(0x872C2723) : Colors.grey.withOpacity(0.2),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
@@ -52,8 +53,8 @@ class ExersizeCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title,
-                    style: const TextStyle(
-                      color: white,
+                    style: TextStyle(
+                      color: Get.isDarkMode ? white : Colors.black,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     )),

@@ -40,21 +40,21 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
             child: BusyIndicator(
                 child: Scaffold(
                   appBar: AppBar(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Get.isDarkMode ? Colors.black: white,
                     leading: InkWell(
                       onTap: () {
                         Get.back();
                       },
                       child: Icon(
                         Icons.arrow_back_ios_new,
-                        color: white,
+                        color:  Get.isDarkMode? white: maincolor ,
                       ),
                     ),
                     title: Text(
                       'Event Check out'.tr,
                       style: TextStyle(
                           fontSize: 20,
-                          color: white,
+                          color:  Get.isDarkMode? white: maincolor ,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Poppins'),
                     ),
@@ -83,7 +83,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                     height: 67,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                      color: bgContainer,
+                                       color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -95,7 +95,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                           Text(
                                             'Promo Code'.tr,
                                             style: TextStyle(
-                                              color: white,
+                                               color:  Get.isDarkMode? white: maincolor ,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -179,7 +179,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                     child: Text(
                                       'Summary'.tr,
                                       style: TextStyle(
-                                        color: white,
+                                         color:  Get.isDarkMode? white: maincolor ,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
                                       ),
@@ -190,7 +190,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                   height: 216,
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
-                                    color: bgContainer,
+                                    color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(
@@ -207,7 +207,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             Text(
                                               'Price'.tr,
                                               style: TextStyle(
-                                                color: white,
+                                                 color:  Get.isDarkMode? white: maincolor ,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -216,7 +216,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                               controller.bannerCharges!.amount! +
                                                   ' AED'.tr,
                                               style: TextStyle(
-                                                color: white,
+                                                 color:  Get.isDarkMode? white: maincolor ,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -229,7 +229,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             left: 5, right: 5),
                                         child: Divider(
                                           thickness: 1,
-                                          color: dividercolor,
+                                           color:  Get.isDarkMode? dividercolor: white ,
                                         ),
                                       ),
                                       Padding(
@@ -242,7 +242,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             Text(
                                               'Offer'.tr,
                                               style: TextStyle(
-                                                color: white,
+                                                color:  Get.isDarkMode? white: maincolor ,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -250,7 +250,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             Text(
                                               '${controller.discount} ' + ' AED'.tr,
                                               style: TextStyle(
-                                                color: white,
+                                                 color:  Get.isDarkMode? white: maincolor ,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -263,7 +263,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             left: 5, right: 5),
                                         child: Divider(
                                           thickness: 1,
-                                          color: dividercolor,
+                                           color:  Get.isDarkMode? dividercolor: white ,
                                         ),
                                       ),
                                       Padding(
@@ -276,7 +276,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                             Text(
                                               'Total '.tr,
                                               style: TextStyle(
-                                                color: white,
+                                                 color:  Get.isDarkMode? white: maincolor ,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),

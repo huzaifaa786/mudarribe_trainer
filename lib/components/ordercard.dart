@@ -36,7 +36,7 @@ class OrderCard extends StatelessWidget {
           padding:
               const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
           decoration: BoxDecoration(
-              color: bgContainer, borderRadius: BorderRadius.circular(10)),
+               color: Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(10)),
           child: Column(
             children: [
               Row(
@@ -64,7 +64,7 @@ class OrderCard extends StatelessWidget {
                   ),
                   InkWell(
                       onTap: onTapMessage,
-                      child: Image.asset('assets/images/chat.png')),
+                      child: Image.asset('assets/images/chat.png',color: Get.isDarkMode ? Colors.white : maincolor,)),
                 ],
               ),
               Row(

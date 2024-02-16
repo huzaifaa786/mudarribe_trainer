@@ -26,25 +26,27 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           forceMaterialTransparency: true,
-          title: TopBar(text: "",),),
+          title: TopBar(
+            text: "",
+          ),
+        ),
         body: SafeArea(
             child: Padding(
-          padding: const EdgeInsets.only(top:10,right: 15,left: 15),
+          padding: const EdgeInsets.only(top: 10, right: 15, left: 15),
           child: Column(
             children: [
-             
               Row(
-                children:  [
+                children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: 5, bottom: 50, top: 40),
+                    padding: EdgeInsets.only(left: 5, bottom: 50, top: 40),
                     child: Text(
                       'Forget Password.'.tr,
                       style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: White),
-                    ) ,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: Get.isDarkMode ? white : maincolor,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -52,18 +54,23 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 padding: const EdgeInsets.all(12.0),
                 width: MediaQuery.of(context).size.width,
                 height: 250,
-                decoration:
-                    BoxDecoration(color: Color.fromARGB(255, 21, 21, 21),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),),
+                decoration: BoxDecoration(
+                  color: Get.isDarkMode
+                      ? bgContainer
+                      : Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children:  [
+                  children: [
                     Text(
                       'Enter your Email please'.tr,
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 195, 186, 186)),
-                    ) ,
+                      style: TextStyle(
+                          color: Get.isDarkMode
+                              ? Color.fromARGB(255, 195, 186, 186)
+                              : maincolor),
+                    ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: InputField(

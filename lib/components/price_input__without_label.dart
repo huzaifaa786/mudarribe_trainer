@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 
 class PriceInputWithoutLabel extends StatelessWidget {
   const PriceInputWithoutLabel({
@@ -40,7 +40,7 @@ class PriceInputWithoutLabel extends StatelessWidget {
             (validator == true.obs
                 ? AutovalidateMode.always
                 : AutovalidateMode.onUserInteraction),
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color:  Get.isDarkMode? white: maincolor ,),
         keyboardType: type,
         decoration: InputDecoration(
             suffixIcon: Padding(

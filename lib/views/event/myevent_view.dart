@@ -80,13 +80,13 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                           Container(
                             padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
-                                color: Colors.black, shape: BoxShape.circle),
+                                color:  Get.isDarkMode? maincolor: white , shape: BoxShape.circle),
                             child: Container(
                               padding: EdgeInsets.all(6),
                               width: 70,
                               height: 70,
                               decoration: BoxDecoration(
-                                  color: Colors.black,
+                                  color:  Get.isDarkMode? maincolor: white ,
                                   borderRadius: BorderRadius.circular(40),
                                   border: GradientBoxBorder(
                                     gradient: LinearGradient(

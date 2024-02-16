@@ -42,7 +42,7 @@ class PlanCategoryCard extends StatelessWidget {
                           : Border.all(),
                       color: Get.isDarkMode
                           ? bgContainer
-                          : Colors.grey.withOpacity(0.2),
+                          : Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Center(
@@ -50,7 +50,7 @@ class PlanCategoryCard extends StatelessWidget {
                       image,
                       fit: BoxFit.scaleDown,
                       height: 30,
-                      color: white,
+                       color: Get.isDarkMode ? Colors.white : maincolor,
                       width: 35,
                     )),
                   ),

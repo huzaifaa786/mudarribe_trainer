@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class PdfCard extends StatelessWidget {
@@ -21,7 +22,8 @@ class PdfCard extends StatelessWidget {
       margin: const EdgeInsets.only(top: 15),
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-          color: const Color(0x872C2723),
+          color: Get.isDarkMode?const Color(0x872C2723): Colors.grey.withOpacity(0.2),
+          
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +55,7 @@ class PdfCard extends StatelessWidget {
                     children: [
                       Text(title,
                           style: TextStyle(
-                            color: white,
+                            color:  Get.isDarkMode? white: maincolor ,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           )),
@@ -62,7 +64,7 @@ class PdfCard extends StatelessWidget {
                       ),
                       Text(description,
                           style: TextStyle(
-                            color: white,
+                            color:  Get.isDarkMode? white: maincolor ,
                             fontSize: 10,
                             fontWeight: FontWeight.w600,
                           ))

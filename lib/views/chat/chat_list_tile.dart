@@ -29,15 +29,17 @@ class CustomChatListItem extends StatelessWidget {
       padding: EdgeInsets.only(top: 8, bottom: 2, right: 2, left: 2),
       child: Container(
         padding: EdgeInsets.only(top: 8, bottom: 8),
+        
         child: Center(
           child: ListTile(
+            // tileColor: Colors.grey.withOpacity(0.2),
             leading: SizedBox(
               height: 60,
               width: 60,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: Container(
-                  color: white,
+                  color: Get.isDarkMode ?  white : Colors.grey.withOpacity(0.2),
                   child: Icon(Icons.person),
                 ),
               ),

@@ -48,15 +48,15 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   Text(
                     'Enter Your Registered Email & Password.'.tr,
-                    style: TextStyle(color: white, fontSize: 15),
+                    style: TextStyle( color:  Get.isDarkMode? white: maincolor , fontSize: 15),
                   ),
                   Padding(
                       padding: const EdgeInsets.only(top: 28),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         height: 300,
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 21, 21, 21),
+                        decoration:  BoxDecoration(
+                           color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                         child: Padding(

@@ -73,7 +73,7 @@ class Card1 extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
-          color: bgContainer,
+           color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
       ),

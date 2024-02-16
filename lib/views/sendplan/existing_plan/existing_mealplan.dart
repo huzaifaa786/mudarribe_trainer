@@ -7,6 +7,7 @@ import 'package:mudarribe_trainer/components/meals_card.dart';
 import 'package:mudarribe_trainer/components/pdfcard.dart';
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/chat/pdf_view.dart';
 import 'package:mudarribe_trainer/views/sendplan/existing_plan/existing_plan_controller.dart';
@@ -52,7 +53,7 @@ class _TodayMealsScreenState extends State<TodayMealsScreen> {
               child: Directionality(
                 textDirection: TextDirection.ltr,
                 child: Scaffold(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Get.isDarkMode ? Colors.black: white,
                   body: SafeArea(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

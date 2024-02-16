@@ -70,7 +70,7 @@ class _SaleScreenState extends State<SaleScreen> {
                               calendarStyle: CalendarStyle(
                                 // we
                                 defaultTextStyle:
-                                    const TextStyle(color: Colors.white),
+                                     TextStyle(color:  Get.isDarkMode? white: maincolor ,),
                                 todayDecoration: BoxDecoration(
                                     color: borderTop.withOpacity(0.5),
                                     shape: BoxShape.circle),

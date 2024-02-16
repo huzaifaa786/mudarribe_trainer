@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 
 class EventInputField extends StatelessWidget {
   const EventInputField({
@@ -39,7 +40,7 @@ class EventInputField extends StatelessWidget {
             (validator == true.obs
                 ? AutovalidateMode.always
                 : AutovalidateMode.onUserInteraction),
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color:  Get.isDarkMode? white: maincolor ,),
         keyboardType: type,
         decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,

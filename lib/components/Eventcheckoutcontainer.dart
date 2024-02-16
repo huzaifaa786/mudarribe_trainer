@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
@@ -24,10 +25,11 @@ class EventcheckoutContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
+      // height: 130,
+      padding: EdgeInsets.only(bottom: 12),
       width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(
-        color: bgContainer,
+        color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -73,31 +75,33 @@ class EventcheckoutContainer extends StatelessWidget {
                               fontSize: 16,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
-                              color: Colors.white,
+                              color:  Get.isDarkMode? white: maincolor ,
                             ),
                           ),
-                          Text(
-                            userBio,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w400,
-                              color:
-                                  Colors.white.withOpacity(0.6000000238418579),
+                          Container(
+                            width: Get.width * 0.68,
+                            child: Text(
+                              userBio,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400,
+                                color:  Get.isDarkMode? white.withOpacity(0.6000000238418579): maincolor ,
+                              ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 5),
                             child: Row(
                               children: [
-                                SvgPicture.asset('assets/images/calender1.svg'),
+                                SvgPicture.asset('assets/images/calender1.svg', color:  Get.isDarkMode? white: maincolor ,),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 10, bottom: 0),
                                   child: Text(
                                     eventDate,
                                     style: TextStyle(
-                                      color: Colors.white,
+                                       color:  Get.isDarkMode? white: maincolor ,
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 12,
@@ -125,7 +129,7 @@ class EventcheckoutContainer extends StatelessWidget {
                   child: Text(
                     '$bannerPrice AED',
                     style: TextStyle(
-                      color: Colors.white,
+                       color:  Get.isDarkMode? white: maincolor ,
                       fontFamily: 'Montserrat',
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

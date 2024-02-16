@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class MealsCard extends StatelessWidget {
       margin: const EdgeInsets.only(top: 15),
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-          color: const Color(0x872C2723),
+          color: Get.isDarkMode ? const Color(0x872C2723): Colors.grey.withOpacity(0.2),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,8 +85,8 @@ class MealsCard extends StatelessWidget {
                       width: Get.width * 0.5,
                       child: Text(title,
                           maxLines: 2,
-                          style: const TextStyle(
-                            color: white,
+                          style: TextStyle(
+                            color: Get.isDarkMode?  white: maincolor ,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           )),

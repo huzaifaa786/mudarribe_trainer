@@ -5,7 +5,9 @@ import 'dart:ui' as ui;
 
 import 'package:mudarribe_trainer/components/topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/views/app_theme/theme_loading.dart';
 import 'package:mudarribe_trainer/views/app_theme/theme_method.dart';
+import 'dart:developer' as developer;
 
 class ThemeScreen extends StatefulWidget {
   const ThemeScreen({super.key, this.lang});
@@ -58,11 +60,14 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   await toggleplan(themeMethod.Light);
                   GetStorage box = GetStorage();
                   await box.write('theme', 'light');
-                  box.read('theme');
+                  await box.read('theme');
                   Get.changeThemeMode(ThemeMode.light);
-                  setState(() {});
-                  // Get.toNamed(AppRoutes.homeScreen);
+                  Get.off(() => ThemeChangeLoading());
 
+                  // reloadApp();
+                  // Get.forceAppUpdate();
+                  // setState(() {});
+                  // Get.toNamed(AppRoutes.homeScreen);
                 },
               ),
               ThemeMethod(
@@ -73,9 +78,11 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   await toggleplan(themeMethod.Dark);
                   GetStorage box = GetStorage();
                   await box.write('theme', 'dark');
-                  box.read('theme');
+                  await box.read('theme');
                   Get.changeThemeMode(ThemeMode.dark);
-                  setState(() {});
+                  Get.off(() => ThemeChangeLoading());
+                  // Get.forceAppUpdate();
+                  // setState(() {});
                   // Get.toNamed(AppRoutes.homeScreen);
                 },
               ),
@@ -84,5 +91,10 @@ class _ThemeScreenState extends State<ThemeScreen> {
         )),
       ),
     );
+  }
+
+  void reloadApp() {
+    // Trigger a hot restart to reload the entire app
+    developer.postEvent('hotRestart', {'reason': 'userRequested'});
   }
 }

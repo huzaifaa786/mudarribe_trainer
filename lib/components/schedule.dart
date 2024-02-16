@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -59,7 +60,7 @@ class Scheduleinput extends StatelessWidget {
                   fontFamily: "Poppins",
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: white.withOpacity(0.45)),
+                  color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,),
             ),
           ),
           SizedBox(
@@ -71,7 +72,7 @@ class Scheduleinput extends StatelessWidget {
               enabled: enabled,
               obscureText: obscure,
               controller: controller,
-              style: TextStyle(fontSize: fontSize, color: white),
+              style: TextStyle(fontSize: fontSize, color:  Get.isDarkMode? white: maincolor ,),
               keyboardType: type,
               validator: (value) {
                 if (value!.isEmpty) {
@@ -85,11 +86,11 @@ class Scheduleinput extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor:
-                    enabled ? Colors.black : Colors.grey.withOpacity(0.5),
+                    enabled ?  Get.isDarkMode? maincolor: white  : Colors.grey.withOpacity(0.5),
                 hintText: hint,
                 contentPadding: const EdgeInsets.only(
                     left: 12.0, right: 12, top: 12, bottom: 16),
-                hintStyle: TextStyle(color: white.withOpacity(0.5)),
+                hintStyle: TextStyle(color:  Get.isDarkMode? white.withOpacity(0.5): maincolor.withOpacity(0.5) ,),
                 border: GradientOutlineInputBorder(
                   gradient: LinearGradient(
                       colors: [borderTop, borderbottom],

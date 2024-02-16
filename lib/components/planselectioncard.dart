@@ -46,7 +46,7 @@ class SelectPlanCard extends StatelessWidget {
                         : Border.all(),
                     color: Get.isDarkMode
                         ? bgContainer
-                        : Colors.grey.withOpacity(0.2),
+                        : Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Row(
@@ -56,7 +56,7 @@ class SelectPlanCard extends StatelessWidget {
                         image1,
                         fit: BoxFit.scaleDown,
                         height: 30,
-                        color: Colors.white,
+                        color: Get.isDarkMode ? Colors.white : maincolor,
                       ),
                       Padding(
                         padding: EdgeInsets.all(8),
@@ -69,7 +69,7 @@ class SelectPlanCard extends StatelessWidget {
                       SvgPicture.asset(
                         image,
                         fit: BoxFit.scaleDown,
-                        color: Colors.white,
+                         color: Get.isDarkMode ? Colors.white : maincolor,
                         height: 30,
                       ),
                     ],

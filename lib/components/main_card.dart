@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
@@ -26,15 +28,24 @@ class MainCard extends StatelessWidget {
                 height: 80,
                 decoration: BoxDecoration(
                   boxShadow: [
-                    BoxShadow(
-                        color: borderTop.withOpacity(0.3),
-                        offset: Offset(0.11, 0.1),
-                        blurRadius: 8),
-                    BoxShadow(
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            color: borderTop.withOpacity(0.3),
+                            offset: Offset(0.11, 0.1),
+                            blurRadius: 8)
+                        : BoxShadow(
+                            color: Colors.white.withOpacity(0.2),
+                            offset: Offset(0.11, 0.1),
+                            blurRadius: 8),
+                   Get.isDarkMode
+                        ?  BoxShadow(
                         color: borderbottom.withOpacity(0.3),
                         offset: Offset(-0.1, -0.11),
                         blurRadius: 8,
-                        spreadRadius: 1)
+                        spreadRadius: 1): BoxShadow(
+                            color: Colors.white.withOpacity(0.2),
+                            offset: Offset(0.11, 0.1),
+                            blurRadius: 8)
                   ],
                   borderRadius: BorderRadius.circular(45),
                   border: GradientBoxBorder(
@@ -49,7 +60,10 @@ class MainCard extends StatelessWidget {
                 ),
                 child: Container(
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.black),
+                        shape: BoxShape.circle,
+                        color: Get.isDarkMode
+                            ? Colors.black
+                            : Colors.grey.withOpacity(0.2)),
                     child: SvgPicture.asset(
                       image,
                       fit: BoxFit.scaleDown,
@@ -65,7 +79,7 @@ class MainCard extends StatelessWidget {
                 height: 46 / 14,
               ),
               textAlign: TextAlign.center,
-            ) 
+            )
           ],
         ),
       ),

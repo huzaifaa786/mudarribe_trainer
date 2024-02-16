@@ -54,8 +54,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-      GetStorage box = GetStorage();
+    GetStorage box = GetStorage();
     box.read('theme') == null ? box.write('theme', 'dark') : null;
+    setState(() {
+      Get.isDarkMode;
+    });
     // box.read('Locale') == null ? box.write('Locale', 'en') : null;
     // String locale = box.read('Locale') == null ? 'en' : box.read('Locale');
     // return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',

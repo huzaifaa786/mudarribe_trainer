@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:get/get.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class MainUserCard extends StatelessWidget {
-  const MainUserCard({super.key, this.img, this.name, this.category,this.onUserImgTap});
+  const MainUserCard(
+      {super.key, this.img, this.name, this.category, this.onUserImgTap});
   final img;
   final name;
   final category;
@@ -14,20 +16,29 @@ class MainUserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Directionality(textDirection: TextDirection.ltr,
+        child: Directionality(
+          textDirection: TextDirection.ltr,
           child: Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
-              color: bgContainer.withOpacity(0.6),
+              color: Get.isDarkMode
+                  ? bgContainer.withOpacity(0.6)
+                  : Colors.grey.withOpacity(0.2),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50),
                 bottomRight: Radius.circular(50),
               ),
               boxShadow: [
-                BoxShadow(
+              Get.isDarkMode
+                  ?  BoxShadow(
                   color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 8,
+                  blurRadius: 10,
+                  offset: Offset(0, 3),
+                ):BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 8,
                   blurRadius: 10,
                   offset: Offset(0, 3),
@@ -76,7 +87,7 @@ class MainUserCard extends StatelessWidget {
                   children: [
                     Text(name,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Get.isDarkMode ? Colors.white : Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         )),
@@ -89,11 +100,17 @@ class MainUserCard extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Text(category,
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.45),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400))
+                Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12),
+                  child: Text(category,
+                  textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Get.isDarkMode
+                              ? Colors.white.withOpacity(0.45)
+                              : Colors.black.withOpacity(0.45),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400)),
+                )
               ],
             ),
           ),

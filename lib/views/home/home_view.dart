@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Directionality(
                 textDirection: TextDirection.ltr,
                 child: Scaffold(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Get.isDarkMode ? Colors.black: Colors.white,
                   body: Column(
                     children: [
                       MainUserCard(
