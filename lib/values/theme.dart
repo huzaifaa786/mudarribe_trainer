@@ -70,9 +70,9 @@ class CustomTheme {
         color: white,
         fontSize: 23, //20
       ),
-      iconTheme: IconThemeData(color: darkThemeColor),
+      iconTheme: IconThemeData(color: white),
       elevation: 0,
-      actionsIconTheme: IconThemeData(color: darkThemeColor),
+      actionsIconTheme: IconThemeData(color: white),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: black,
         statusBarIconBrightness: Brightness.light,

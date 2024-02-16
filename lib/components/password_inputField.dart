@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/translation.dart';
 
 class PasswordInputField extends StatelessWidget {
@@ -32,7 +33,7 @@ class PasswordInputField extends StatelessWidget {
   final maxlines;
   final readOnly;
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 15, left: 0, right: 0),
@@ -45,7 +46,9 @@ class PasswordInputField extends StatelessWidget {
             (validator == true.obs
                 ? AutovalidateMode.always
                 : AutovalidateMode.onUserInteraction),
-        style: const TextStyle(color: Colors.white),
+        style: TextStyle(
+          color: Get.isDarkMode ? Colors.white : Colors.black,
+        ),
         keyboardType: type,
         decoration: InputDecoration(
           suffixIcon: InkWell(
@@ -57,6 +60,7 @@ class PasswordInputField extends StatelessWidget {
                       'assets/images/eye_1.svg',
                       height: 24,
                       fit: BoxFit.scaleDown,
+                      color: Get.isDarkMode ?white: Colors.black,
                     )
                   : SvgPicture.asset(
                       'assets/images/eye.svg',
@@ -91,7 +95,8 @@ class PasswordInputField extends StatelessWidget {
           //   width: 1,
           // ),
           errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red), // Customize the error border color
+            borderSide: BorderSide(
+                color: Colors.red), // Customize the error border color
           ),
           errorStyle: TextStyle(fontSize: 0),
           hoverColor: Colors.grey,

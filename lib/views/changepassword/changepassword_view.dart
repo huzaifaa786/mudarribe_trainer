@@ -48,7 +48,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                             },
                             child: Icon(
                               Icons.arrow_back_ios_new,
-                              color: Colors.white,
+                              color:
+                                  Get.isDarkMode ? Colors.white : Colors.black,
                             ),
                           ),
                         ],
@@ -80,9 +81,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   child: Text(
                                     'Change Password'.tr,
                                     style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600,
-                                        color: white),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                      color: Get.isDarkMode
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -93,7 +97,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                                     left: 15, right: 15, top: 40, bottom: 25),
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 21, 21, 21),
+                                    color: Get.isDarkMode
+                                        ? Color.fromARGB(255, 15, 15, 15)
+                                        : Colors.grey.withOpacity(0.2),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10))),
                                 child: Column(

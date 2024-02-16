@@ -108,7 +108,10 @@ class _EditProfileState extends State<EditProfile> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   'Choose photo'.tr,
-                                  style: TextStyle(color: White),
+                                  style: TextStyle(
+                                      color: Get.isDarkMode
+                                          ? Colors.white
+                                          : Colors.black),
                                 ),
                               ),
                               InputField(

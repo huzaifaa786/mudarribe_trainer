@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'dart:ui' as ui;
 
 import 'package:mudarribe_trainer/components/topbar.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/views/app_theme/theme_method.dart';
 
 class ThemeScreen extends StatefulWidget {
@@ -30,9 +31,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
     // print(Get.locale);
     GetStorage box = GetStorage();
     box.read('theme') == 'light';
-    _site = box.read('theme') != 'dark'
-        ? themeMethod.Light
-        : themeMethod.Dark;
+    _site = box.read('theme') != 'dark' ? themeMethod.Light : themeMethod.Dark;
     super.initState();
   }
 
@@ -62,6 +61,8 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   box.read('theme');
                   Get.changeThemeMode(ThemeMode.light);
                   setState(() {});
+                  // Get.toNamed(AppRoutes.homeScreen);
+
                 },
               ),
               ThemeMethod(
@@ -73,8 +74,9 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   GetStorage box = GetStorage();
                   await box.write('theme', 'dark');
                   box.read('theme');
-                   Get.changeThemeMode(ThemeMode.dark);
+                  Get.changeThemeMode(ThemeMode.dark);
                   setState(() {});
+                  // Get.toNamed(AppRoutes.homeScreen);
                 },
               ),
             ],

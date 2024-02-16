@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -43,7 +44,9 @@ class SelectPlanCard extends StatelessWidget {
                             width: 3,
                           )
                         : Border.all(),
-                    color: bgContainer,
+                    color: Get.isDarkMode
+                        ? bgContainer
+                        : Colors.grey.withOpacity(0.2),
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                   child: Row(
@@ -61,7 +64,6 @@ class SelectPlanCard extends StatelessWidget {
                           Icons.add,
                           color: borderbottom,
                           size: 14,
-                          
                         ),
                       ),
                       SvgPicture.asset(
@@ -88,7 +90,7 @@ class SelectPlanCard extends StatelessWidget {
             fontSize: 12,
             fontWeight: FontWeight.w500,
           ),
-        ) 
+        )
       ],
     );
   }

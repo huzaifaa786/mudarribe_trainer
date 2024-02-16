@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
@@ -34,7 +35,7 @@ class _TranslateMethodState extends State<TranslateMethod> {
       child: Container(
         // margin: EdgeInsets.only(left: 34),
         padding: EdgeInsets.only(top: 7, bottom: 7),
-        width: MediaQuery.of(context).size.width*0.88,
+        width: MediaQuery.of(context).size.width * 0.88,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -48,9 +49,11 @@ class _TranslateMethodState extends State<TranslateMethod> {
                     children: [
                       Text(
                         widget.title,
-                        style: TextStyle( color: white,
-                            fontSize: 16.0, fontWeight: FontWeight.w400),
-                      ) ,
+                        style: TextStyle(
+                            color: Get.isDarkMode ? Colors.white : Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w400),
+                      ),
                       Transform.scale(
                           scale: 1.2,
                           child: Radio(

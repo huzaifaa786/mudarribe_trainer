@@ -55,9 +55,12 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   child: Text(
                                     'My Promo code'.tr,
                                     style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600,
-                                        color: white),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w600,
+                                      // color: Get.isDarkMode
+                                      //     ? Colors.white
+                                      //     : Colors.black,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -70,7 +73,9 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                     left: 15, right: 15, top: 40, bottom: 70),
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 15, 15, 15),
+                                    color: Get.isDarkMode
+                                        ? Color.fromARGB(255, 15, 15, 15)
+                                        : Colors.grey.withOpacity(0.2),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Column(
                                   mainAxisAlignment:
@@ -86,7 +91,8 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                     ),
                                     InputField(
                                       lable: 'Discount percentage'.tr,
-                                      controller: controller.percentagecontroller,
+                                      controller:
+                                          controller.percentagecontroller,
                                       type: TextInputType.number,
                                     ),
                                   ],
@@ -128,9 +134,8 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                     tileColor: bgContainer,
                                     title: Text('Promo Code'.tr +
                                         ' : ${promoCode.promoCodeName}'),
-                                    subtitle: Text(
-                                        'Description'.tr + ': ${promoCode.promoCodeDiscount}'
-                                            .tr),
+                                    subtitle: Text('Description'.tr +
+                                        ': ${promoCode.promoCodeDiscount}'.tr),
                                     trailing: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -159,14 +164,16 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                           },
                                         ),
                                         IconButton(
-                                          icon:
-                                              Icon(Icons.edit, color: borderTop),
+                                          icon: Icon(Icons.edit,
+                                              color: borderTop),
                                           onPressed: () {
                                             controller.nameController.text =
                                                 promoCode.promoCodeName;
-                                            controller.percentagecontroller.text =
+                                            controller
+                                                    .percentagecontroller.text =
                                                 promoCode.promoCodeDiscount;
-                                            controller.id = promoCode.promoCodeId;
+                                            controller.id =
+                                                promoCode.promoCodeId;
                                             controller.edit = true;
                                           },
                                         ),

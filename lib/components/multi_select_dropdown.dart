@@ -6,12 +6,13 @@ import 'package:gradient_borders/gradient_borders.dart';
 import 'package:multiselect/multiselect.dart';
 
 class MultiSelectDropDown extends StatelessWidget {
-  const MultiSelectDropDown(
-      {super.key,
-      this.label,
-      this.item,
-      this.onchange,
-      this.selected,});
+  const MultiSelectDropDown({
+    super.key,
+    this.label,
+    this.item,
+    this.onchange,
+    this.selected,
+  });
   final label;
   final item;
   // final String Function(dynamic)? validator;
@@ -25,54 +26,54 @@ class MultiSelectDropDown extends StatelessWidget {
       child: DropDownMultiSelect(
         // validator: validator,
         decoration: InputDecoration(
-            label: Text(label),
-            labelStyle: TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
-                foreground: Paint()
-                  ..shader = LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomLeft,
-                          colors: const [Color(4285693389), Color(4284015103)])
-                      .createShader(Rect.fromLTWH(0, 0, 200, 15))),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            border: GradientOutlineInputBorder(
-              borderRadius: BorderRadius.circular(2),
-              gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomLeft,
-                  colors: [Color(4285693389), Color(4278253801)]),
-              width: 1,
-            ),
-            enabledBorder: GradientOutlineInputBorder(
-              borderRadius: BorderRadius.circular(2),
-              gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomLeft,
-                  colors: [Color(4285693389), Color(4278253801)]),
-              width: 1,
-            ),
-            focusedBorder: GradientOutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomLeft,
-                  colors: [Color(4285693389), Color(4278253801)]),
-              width: 1,
-            ),
-            // errorBorder: GradientOutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(2),
-            //   gradient: const LinearGradient(
-            //       begin: Alignment.topLeft,
-            //       end: Alignment.bottomLeft,
-            //       colors: [Colors.red, Colors.red]),
-            //   width: 1,
-            // ),
-            // errorStyle: TextStyle(fontSize: 0)
-            // errorMaxLines: ,
-            ),
-        selected_values_style: TextStyle(color: Colors.white),
+          label: Text(label),
+          labelStyle: TextStyle(
+              fontSize: 14.0,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+              foreground: Paint()
+                ..shader = LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomLeft,
+                        colors: const [Color(4285693389), Color(4284015103)])
+                    .createShader(Rect.fromLTWH(0, 0, 200, 15))),
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          border: GradientOutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomLeft,
+                colors: [Color(4285693389), Color(4278253801)]),
+            width: 1,
+          ),
+          enabledBorder: GradientOutlineInputBorder(
+            borderRadius: BorderRadius.circular(2),
+            gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomLeft,
+                colors: [Color(4285693389), Color(4278253801)]),
+            width: 1,
+          ),
+          focusedBorder: GradientOutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomLeft,
+                colors: [Color(4285693389), Color(4278253801)]),
+            width: 1,
+          ),
+          // errorBorder: GradientOutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(2),
+          //   gradient: const LinearGradient(
+          //       begin: Alignment.topLeft,
+          //       end: Alignment.bottomLeft,
+          //       colors: [Colors.red, Colors.red]),
+          //   width: 1,
+          // ),
+          // errorStyle: TextStyle(fontSize: 0)
+          // errorMaxLines: ,
+        ),
+        selected_values_style: TextStyle(color:Get.isDarkMode?Colors.white:Colors.black),
         onChanged: onchange!,
         options: item,
         selectedValues: selected,

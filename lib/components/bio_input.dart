@@ -42,12 +42,13 @@ class BioInputField extends StatelessWidget {
                 (validator == true.obs
                     ? AutovalidateMode.always
                     : AutovalidateMode.onUserInteraction),
-            style: TextStyle(color: Colors.white),
+            style:
+                TextStyle(color: Get.isDarkMode ? Colors.white : Colors.black),
             keyboardType: type,
             decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.always,
                 // contentPadding: EdgeInsets.only(top: 60),
-                fillColor: Colors.white,
+                fillColor: Get.isDarkMode ? Colors.white : Colors.black,
                 border: GradientOutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
                   gradient: const LinearGradient(

@@ -49,7 +49,8 @@ class PostCard extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 12, left: 15, right: 15),
             padding: EdgeInsets.only(top: 20, bottom: 20),
             decoration: BoxDecoration(
-              color: bgContainer,
+              color:
+                  Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -94,7 +95,9 @@ class PostCard extends StatelessWidget {
                             child: Text(
                               username,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
                                 fontSize: 14,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w500,
@@ -152,7 +155,9 @@ class PostCard extends StatelessWidget {
                       ),
                     ),
                     decoration: BoxDecoration(
-                      color: bgContainer,
+                      color: Get.isDarkMode
+                          ? bgContainer
+                          : Colors.grey.withOpacity(0.2),
                     ),
                   ),
                 ),
@@ -171,7 +176,9 @@ class PostCard extends StatelessWidget {
                             TextSpan(
                               text: username,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
                                 fontSize: 14,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w500,
@@ -181,7 +188,9 @@ class PostCard extends StatelessWidget {
                             TextSpan(
                               text: postdescription,
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.6),
+                                color: Get.isDarkMode
+                                    ? Colors.white.withOpacity(0.6)
+                                    : Colors.black.withOpacity(0.6),
                                 fontSize: 12,
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w500,

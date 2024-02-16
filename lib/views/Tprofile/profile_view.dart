@@ -79,7 +79,9 @@ class _ProfileViewState extends State<ProfileView>
                   ),
                   bottomNavigationBar: Container(
                     height: 50,
-                    color: bgContainer,
+                    color: Get.isDarkMode
+                        ? bgContainer
+                        : Colors.grey.withOpacity(0.2),
                   ),
                   floatingActionButton: GestureDetector(
                     onTap: () {
@@ -104,7 +106,12 @@ class _ProfileViewState extends State<ProfileView>
                           ],
                         ),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 3, color: bgContainer),
+                          side: BorderSide(
+                            width: 3,
+                            color: Get.isDarkMode
+                                ? bgContainer
+                                : Colors.grey.withOpacity(0.6),
+                          ),
                           borderRadius: BorderRadius.circular(45),
                         ),
                       ),
@@ -174,7 +181,9 @@ class _ProfileViewState extends State<ProfileView>
                                                 Text(
                                                   controller.currentUser!.name!,
                                                   style: TextStyle(
-                                                      color: White,
+                                                      color: Get.isDarkMode
+                                                          ? Colors.white
+                                                          : Colors.black,
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w600),
@@ -203,7 +212,9 @@ class _ProfileViewState extends State<ProfileView>
                                                     .currentUser!.categories!
                                                     .join('& '),
                                                 style: TextStyle(
-                                                    color: profilesubheading,
+                                                    color: Get.isDarkMode
+                                                        ? profilesubheading
+                                                        : Colors.black,
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -217,7 +228,9 @@ class _ProfileViewState extends State<ProfileView>
                                               child: Text(
                                                 controller.currentUser!.bio!,
                                                 style: TextStyle(
-                                                    color: White,
+                                                    color: Get.isDarkMode
+                                                        ? Colors.white
+                                                        : Colors.black,
                                                     fontSize: 11,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -235,7 +248,9 @@ class _ProfileViewState extends State<ProfileView>
                                       left: 15, right: 15, bottom: 10, top: 35),
                                   child: Divider(
                                     thickness: 1,
-                                    color: dividercolor,
+                                    color: Get.isDarkMode
+                                        ? dividercolor
+                                        : Colors.black,
                                   ),
                                 ),
                                 Flexible(

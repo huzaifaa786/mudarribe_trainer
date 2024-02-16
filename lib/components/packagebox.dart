@@ -29,7 +29,8 @@ class PackageCard extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         padding: const EdgeInsets.all(15.0),
         decoration: BoxDecoration(
-            color: bgContainer, borderRadius: BorderRadius.circular(10)),
+            color: Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
             Row(
@@ -47,11 +48,13 @@ class PackageCard extends StatelessWidget {
                 // ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               width: MediaQuery.of(context).size.width * 1,
               child: Padding(
-                padding: const EdgeInsets.only(left:35.0),
+                padding: const EdgeInsets.only(left: 35.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +93,9 @@ class PackageCard extends StatelessWidget {
                         children: [
                           Text(name.toString(),
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700,
                               )),
@@ -101,7 +106,9 @@ class PackageCard extends StatelessWidget {
                               child: Text(discription.toString(),
                                   maxLines: 2,
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: Get.isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                   )),
@@ -119,16 +126,16 @@ class PackageCard extends StatelessWidget {
               children: [
                 Text(price.toString(),
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Get.isDarkMode ? Colors.white : Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                     )),
                 Text(" AED".tr,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Get.isDarkMode ? Colors.white : Colors.black,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                    )) 
+                    ))
               ],
             )
           ],

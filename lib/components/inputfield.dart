@@ -48,7 +48,8 @@ class _InputFieldState extends State<InputField> {
                 (widget.validator == true.obs
                     ? AutovalidateMode.always
                     : AutovalidateMode.onUserInteraction),
-            style: TextStyle(color: Colors.white),
+            style:
+                TextStyle(color: Get.isDarkMode ? Colors.white : Colors.black),
             keyboardType: widget.type,
             decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.always,
