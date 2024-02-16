@@ -7,6 +7,7 @@ import 'package:mudarribe_trainer/helpers/loading_helper.dart';
 import 'package:mudarribe_trainer/translation.dart';
 import 'package:mudarribe_trainer/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mudarribe_trainer/values/theme.dart';
 import 'package:mudarribe_trainer/views/splash/splash_binding.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:mudarribe_trainer/views/splash/splash_view.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    GetStorage box = GetStorage();
+      GetStorage box = GetStorage();
+    box.read('theme') == null ? box.write('theme', 'dark') : null;
     // box.read('Locale') == null ? box.write('Locale', 'en') : null;
     // String locale = box.read('Locale') == null ? 'en' : box.read('Locale');
     // return GoogleTranslatorInit('AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8',
@@ -75,16 +77,10 @@ class _MyAppState extends State<MyApp> {
         fallbackLocale: box.read('locale') != 'ar'
             ? Locale('en', 'US')
             : Locale('ar', 'AE'),
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-          scaffoldBackgroundColor: Colors.black,
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Colors.white,
-          ),
-          useMaterial3: true,
-          fontFamily: 'Montserrat',
-        ),
+        theme: CustomTheme.lightTheme,
+        darkTheme: CustomTheme.darkTheme,
+        themeMode:
+            box.read('theme') == 'light' ? ThemeMode.light : ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         title: "Mudarribe".tr,
         initialBinding: SplashBinding(),

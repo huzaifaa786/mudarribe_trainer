@@ -14,6 +14,7 @@ import 'package:mudarribe_trainer/components/multi_select_dropdown.dart';
 import 'package:mudarribe_trainer/values/category_list.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
+import 'package:mudarribe_trainer/views/app_theme/theme.dart';
 import 'package:mudarribe_trainer/views/app_translate/translate.dart';
 import 'package:mudarribe_trainer/views/editprofile/editprofile_controller.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
@@ -184,6 +185,40 @@ class _EditProfileState extends State<EditProfile> {
                                     ),
                                     Text(
                                       "Change Password".tr,
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          foreground: Paint()
+                                            ..shader = LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomLeft,
+                                                colors: [
+                                                  Color(4285693389),
+                                                  Color(4284015103)
+                                                ]).createShader(
+                                                Rect.fromLTWH(0, 0, 200, 20))),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(() => ThemeScreen());
+                                },
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 2.0, right: 2.0),
+                                        child: Icon(
+                                          Icons.language_outlined,
+                                          color: borderbottom,
+                                        )),
+                                    Text(
+                                      "Theme".tr,
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,
