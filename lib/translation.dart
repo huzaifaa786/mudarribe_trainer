@@ -267,9 +267,14 @@ class LocaleString extends Translations {
           'Aerobics': 'Aerobics',
           'Plates': 'Plates',
           'Kettle bell': 'Kettle bell',
+          'Dark': 'Dark',
+          'Theme': 'Theme',
+          'Light': 'Light'
         },
         'ar_AE': {
-          'Customizing  Plan':'',
+          'Dark': 'غامق',
+          'Light': 'فاتح',
+          'Theme': 'نمط',
           'OR': 'أو',
           "Files": " الملفات",
           "videos": " الفيديوهات",

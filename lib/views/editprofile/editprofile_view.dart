@@ -214,12 +214,14 @@ class _EditProfileState extends State<EditProfile> {
                                 child: Row(
                                   children: [
                                     Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 2.0, right: 2.0),
-                                        child: Icon(
-                                          Icons.language_outlined,
-                                          color: borderbottom,
-                                        )),
+                                      padding: const EdgeInsets.only(
+                                          right: 6.0, left: 6),
+                                      child: SvgPicture.asset(
+                                        'assets/images/theme.svg',
+                                        width: 24,
+                                        height: 24,
+                                      ),
+                                    ),
                                     Text(
                                       "Theme".tr,
                                       style: TextStyle(
