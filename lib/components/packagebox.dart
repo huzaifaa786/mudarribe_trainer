@@ -29,7 +29,7 @@ class PackageCard extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         padding: const EdgeInsets.all(15.0),
         decoration: BoxDecoration(
-            color: Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2),
+            color: Get.isDarkMode ? bgContainer : lightbgColor,
             borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [

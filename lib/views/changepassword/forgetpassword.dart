@@ -55,9 +55,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 width: MediaQuery.of(context).size.width,
                 height: 250,
                 decoration: BoxDecoration(
-                  color: Get.isDarkMode
-                      ? bgContainer
-                      : Colors.grey.withOpacity(0.2),
+                  color: Get.isDarkMode ? bgContainer : lightbgColor,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: Column(

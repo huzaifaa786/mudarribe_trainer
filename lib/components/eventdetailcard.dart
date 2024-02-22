@@ -48,144 +48,96 @@ class EventDetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    return Card(
-      color: Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2),
-      child: Container(
-        width: MediaQuery.sizeOf(context).width,
-        padding: EdgeInsets.all(12),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 2.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      
+      decoration: BoxDecoration(
+        color: Get.isDarkMode ? bgContainer : lightbgColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      width: MediaQuery.sizeOf(context).width,
+      padding: EdgeInsets.all(12),
+      margin: EdgeInsets.only(top: 12),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 2.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    color: Get.isDarkMode ? white : maincolor,
+                  ),
+                ),
+                InkWell(
+                  onTap: onPressDelete,
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: SvgPicture.asset(
+                      'assets/images/delete.svg',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 200,
+            width: MediaQuery.sizeOf(context).width,
+            child: Image.network(imageUrl),
+          ),
+          Column(
+            children: [
+              Row(
                 children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w600,
-                      color:  Get.isDarkMode? white: maincolor ,
-                    ),
+                  SvgPicture.asset(
+                    'assets/images/location.svg',
+                    color: Get.isDarkMode ? white : maincolor,
                   ),
-                  InkWell(
-                    onTap: onPressDelete,
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: SvgPicture.asset(
-                        'assets/images/delete.svg',
-                      ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: Get.width * 0.74,
+                          child: Text(
+                            address,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Get.isDarkMode
+                                  ? Color.fromARGB(255, 197, 191, 191)
+                                  : maincolor,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
+                  )
                 ],
               ),
-            ),
-            Container(
-              height: 200,
-              width: MediaQuery.sizeOf(context).width,
-              child: Image.network(imageUrl),
-            ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/location.svg',
-                      color: Get.isDarkMode ? white : maincolor,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8, right: 8),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: Get.width * 0.74,
-                            child: Text(
-                              address,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Get.isDarkMode
-                                    ? Color.fromARGB(255, 197, 191, 191)
-                                    : maincolor,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 4),
-                Directionality(
-                  textDirection: box.read('locale') == 'ar'
-                      ? TextDirection.rtl
-                      : TextDirection.ltr,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/images/timeline.svg',
-                        color: Get.isDarkMode ? Colors.white : maincolor,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: Text(
-                          'From'.tr + ' $startTime ' + 'to'.tr + ' $endTime',
-                          style: TextStyle(
-                            color: Get.isDarkMode
-                                ? Color.fromARGB(255, 197, 191, 191)
-                                : maincolor,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/images/calender1.svg',
-                      color: Get.isDarkMode
-                          ? Color.fromARGB(255, 197, 191, 191)
-                          : maincolor,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8, right: 8),
-                      child: Text(
-                        'From'.tr + ' $date ' + 'to'.tr + ' $todate',
-                        style: TextStyle(
-                          color: Get.isDarkMode
-                              ? Color.fromARGB(255, 197, 191, 191)
-                              : maincolor,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 4),
-                Row(
+              SizedBox(height: 4),
+              Directionality(
+                textDirection: box.read('locale') == 'ar'
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SvgPicture.asset(
-                      'assets/images/peoplesharp.svg',
-                      color: Get.isDarkMode
-                          ? Color.fromARGB(255, 197, 191, 191)
-                          : maincolor,
+                      'assets/images/timeline.svg',
+                      color: Get.isDarkMode ? Colors.white : maincolor,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 8, right: 8),
+                      padding: const EdgeInsets.only(left: 8.0, right: 8),
                       child: Text(
-                        'Total People amount:'.tr,
+                        'From'.tr + ' $startTime ' + 'to'.tr + ' $endTime',
                         style: TextStyle(
                           color: Get.isDarkMode
                               ? Color.fromARGB(255, 197, 191, 191)
@@ -195,66 +147,117 @@ class EventDetailsCard extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
-                    ),
-                    GradientText2(
-                      text: '$attendees/$capacity',
                     )
                   ],
                 ),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    Text(
-                      'Price :'.tr,
+              ),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/calender1.svg',
+                    color: Get.isDarkMode
+                        ? Color.fromARGB(255, 197, 191, 191)
+                        : maincolor,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    child: Text(
+                      'From'.tr + ' $date ' + 'to'.tr + ' $todate',
                       style: TextStyle(
                         color: Get.isDarkMode
                             ? Color.fromARGB(255, 197, 191, 191)
                             : maincolor,
                         fontFamily: 'Montserrat',
-                        fontSize: 12,
                         fontWeight: FontWeight.w400,
+                        fontSize: 12,
                       ),
                     ),
-                    Text(
-                      '$price ' + ' AED'.tr,
+                  )
+                ],
+              ),
+              SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/peoplesharp.svg',
+                    color: Get.isDarkMode
+                        ? Color.fromARGB(255, 197, 191, 191)
+                        : maincolor,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    child: Text(
+                      'Total People amount:'.tr,
                       style: TextStyle(
-                        color: Get.isDarkMode ? Colors.white : maincolor,
+                        color: Get.isDarkMode
+                            ? Color.fromARGB(255, 197, 191, 191)
+                            : maincolor,
                         fontFamily: 'Montserrat',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
                       ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            isClose == false
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      InkWell(
-                        onTap: onPressClose,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: GradientText2(
-                            text: 'Close event'.tr,
-                            size: 16.0,
-                          ),
+                    ),
+                  ),
+                  GradientText2(
+                    text: '$attendees/$capacity',
+                  )
+                ],
+              ),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  Text(
+                    'Price :'.tr,
+                    style: TextStyle(
+                      color: Get.isDarkMode
+                          ? Color.fromARGB(255, 197, 191, 191)
+                          : maincolor,
+                      fontFamily: 'Montserrat',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    '$price ' + ' AED'.tr,
+                    style: TextStyle(
+                      color: Get.isDarkMode ? Colors.white : maincolor,
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          isClose == false
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: onPressClose,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: GradientText2(
+                          text: 'Close event'.tr,
+                          size: 16.0,
                         ),
                       ),
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Closed'.tr,
-                        style: TextStyle(fontSize: 16.0, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-          ],
-        ),
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Closed'.tr,
+                      style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                    ),
+                  ],
+                ),
+        ],
       ),
     );
   }

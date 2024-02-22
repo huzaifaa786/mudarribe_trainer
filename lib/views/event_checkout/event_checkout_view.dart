@@ -83,7 +83,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                     height: 67,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
-                                       color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
+                                       color:  Get.isDarkMode? bgContainer: lightbgColor ,
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -190,7 +190,7 @@ class _EventcheckoutViewState extends State<EventcheckoutView> {
                                   height: 216,
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
-                                    color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
+                                    color:  Get.isDarkMode? bgContainer: lightbgColor ,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(

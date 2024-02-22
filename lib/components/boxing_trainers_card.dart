@@ -50,7 +50,7 @@ class PostCard extends StatelessWidget {
             padding: EdgeInsets.only(top: 20, bottom: 20),
             decoration: BoxDecoration(
               color:
-                  Get.isDarkMode ? bgContainer : Colors.grey.withOpacity(0.2),
+                  Get.isDarkMode ? bgContainer : lightbgColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -157,7 +157,7 @@ class PostCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Get.isDarkMode
                           ? bgContainer
-                          : Colors.grey.withOpacity(0.2),
+                          : lightbgColor,
                     ),
                   ),
                 ),

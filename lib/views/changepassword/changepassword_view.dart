@@ -99,7 +99,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 decoration: BoxDecoration(
                                     color: Get.isDarkMode
                                         ? Color.fromARGB(255, 15, 15, 15)
-                                        : Colors.grey.withOpacity(0.2),
+                                        : lightbgColor,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10))),
                                 child: Column(

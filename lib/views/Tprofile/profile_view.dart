@@ -81,7 +81,7 @@ class _ProfileViewState extends State<ProfileView>
                     height: 50,
                     color: Get.isDarkMode
                         ? bgContainer
-                        : Colors.grey.withOpacity(0.2),
+                        : lightbgColor,
                   ),
                   floatingActionButton: GestureDetector(
                     onTap: () {
@@ -110,7 +110,7 @@ class _ProfileViewState extends State<ProfileView>
                             width: 3,
                             color: Get.isDarkMode
                                 ? bgContainer
-                                : Colors.grey.withOpacity(0.6),
+                                : lightbgColor,
                           ),
                           borderRadius: BorderRadius.circular(45),
                         ),

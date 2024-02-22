@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/components/icon_button.dart';
+import 'package:mudarribe_trainer/components/textgradient.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class Card1 extends StatelessWidget {
@@ -25,18 +27,10 @@ class Card1 extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              text,
-              style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  foreground: Paint()
-                    ..shader = LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomLeft,
-                            colors: [Color(4285693389), Color(4284015103)])
-                        .createShader(Rect.fromLTWH(0, 0, 200, 20))),
+            GradientText2(
+              size: 14.0,
+              text: text,
+              weight: FontWeight.w400,
             ),
             SizedBox(
               height: 16,
@@ -73,7 +67,7 @@ class Card1 extends StatelessWidget {
           ],
         ),
         decoration: BoxDecoration(
-           color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
+           color:  Get.isDarkMode? bgContainer: lightbgColor ,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
       ),

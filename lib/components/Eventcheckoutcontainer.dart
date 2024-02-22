@@ -29,7 +29,7 @@ class EventcheckoutContainer extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 12),
       width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(
-        color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
+        color:  Get.isDarkMode? bgContainer: lightbgColor ,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

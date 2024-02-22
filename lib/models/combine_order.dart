@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/order.dart';
 import 'package:mudarribe_trainer/models/packages.dart';
@@ -10,6 +11,7 @@ class CombinedOrderData {
   final TrainerOrder order;
   final Package? package;
   final PersonalPlan? personalPlan;
+  final DocumentSnapshot lastdoc;
 
   CombinedOrderData({
     required this.trainer,
@@ -17,5 +19,6 @@ class CombinedOrderData {
     required this.order,
     this.package,
     this.personalPlan,
+    required this.lastdoc
   });
 }

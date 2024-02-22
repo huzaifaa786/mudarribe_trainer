@@ -57,10 +57,10 @@ class AddPostbutton extends StatelessWidget {
                   : [
                       Get.isDarkMode
                           ? const Color.fromARGB(255, 26, 25, 25)
-                          : Colors.grey.withOpacity(0.2),
+                          : lightbgColor,
                       Get.isDarkMode
                           ? const Color.fromARGB(255, 26, 25, 25)
-                          : Colors.grey.withOpacity(0.2),
+                          : lightbgColor,
                     ],
               begin: Alignment.topLeft,
               end: Alignment.topRight,

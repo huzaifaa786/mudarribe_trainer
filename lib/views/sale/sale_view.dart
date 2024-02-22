@@ -143,9 +143,9 @@ class _SaleScreenState extends State<SaleScreen> {
                                     padding: const EdgeInsets.only(
                                         top: 20, bottom: 20),
                                     decoration: BoxDecoration(
-                                        color:
+                                        color:Get.isDarkMode ?
                                             const Color.fromARGB(255, 79, 75, 75)
-                                                .withOpacity(0.2),
+                                                .withOpacity(0.2) : lightbgColor,
                                         borderRadius: BorderRadius.circular(13)),
                                     child: Align(
                                         alignment: Alignment.center,

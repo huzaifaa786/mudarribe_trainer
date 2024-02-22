@@ -102,6 +102,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                               ),
                             ),
                             Padding(
+                              
                               padding:
                                   const EdgeInsets.only(top: 30, bottom: 30),
                               child: GestureDetector(

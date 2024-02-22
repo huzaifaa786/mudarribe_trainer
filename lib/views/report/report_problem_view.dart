@@ -46,7 +46,7 @@ class _ReportProblemViewState extends State<ReportProblemView> {
                             },
                             child: Icon(
                               Icons.arrow_back_ios_new,
-                               color:  Get.isDarkMode? white: maincolor ,
+                              color: Get.isDarkMode ? white : maincolor,
                             ),
                           ),
                         ],
@@ -59,21 +59,22 @@ class _ReportProblemViewState extends State<ReportProblemView> {
                           child: Text(
                             'What’s the problem?'.tr,
                             style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                 color:  Get.isDarkMode? white: maincolor ,),
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: Get.isDarkMode ? white : maincolor,
+                            ),
                           ),
                         ),
                       ],
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
+                      // height: MediaQuery.of(context).size.height * 0.4,
                       padding: EdgeInsets.only(
-                          left: 15, right: 15, top: 40, bottom: 25),
+                          left: 15, right: 15, top: 40, bottom: 40),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           // color: bgContainer,
-                           color:  Get.isDarkMode? bgContainer: Colors.grey.withOpacity(0.2) ,
+                          color: Get.isDarkMode ? bgContainer : lightbgColor,
                           borderRadius: BorderRadius.circular(10)),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +96,8 @@ class _ReportProblemViewState extends State<ReportProblemView> {
                                     border: Border.all(color: borderbottom),
                                   ),
                                   child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [

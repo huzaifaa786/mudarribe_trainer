@@ -5,10 +5,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class UiUtilites {
   static errorSnackbar(String title, String message) {
@@ -60,27 +58,51 @@ class UiUtilites {
               content: Container(
                 width: 300.0,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.01),
+                  color: Get.isDarkMode
+                      ? const Color.fromARGB(255, 46, 45, 45)
+                      : lightbgColor,
                   boxShadow: [
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(12, 15),
-                        color: Colors.black),
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(12, -15),
-                        color: Colors.black),
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(-12, 15),
-                        color: Colors.black),
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(-12, -15),
-                        color: Colors.black)
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(12, 15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor),
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(12, -15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor),
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(-12, 15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor),
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(-12, -15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor)
                   ],
                   border: GradientBoxBorder(
-                    gradient: LinearGradient(colors: [borderTop, borderbottom]),
+                    gradient: Get.isDarkMode
+                        ? LinearGradient(colors: [bgContainer, bgContainer])
+                        : LinearGradient(colors: [lightbgColor, lightbgColor]),
                     width: 1,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -96,15 +118,15 @@ class UiUtilites {
                     Gap(10),
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: "Montserrat",
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ) ,
+                    ),
                     Gap(40),
                   ],
                 ),
@@ -131,28 +153,51 @@ class UiUtilites {
               content: Container(
                 width: MediaQuery.of(context).size.width * 0.05,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 46, 45, 45),
+                  color: Get.isDarkMode
+                      ? const Color.fromARGB(255, 46, 45, 45)
+                      : lightbgColor,
                   boxShadow: [
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(12, 15),
-                        color: Colors.black),
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(12, -15),
-                        color: Colors.black),
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(-12, 15),
-                        color: Colors.black),
-                    BoxShadow(
-                        blurRadius: 20,
-                        offset: Offset(-12, -15),
-                        color: Colors.black)
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(12, 15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor),
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(12, -15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor),
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(-12, 15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor),
+                    Get.isDarkMode
+                        ? BoxShadow(
+                            blurRadius: 20,
+                            offset: Offset(-12, -15),
+                            color: Colors.black)
+                        : BoxShadow(
+                            blurRadius: 0,
+                            offset: Offset(0, 0),
+                            color: lightbgColor)
                   ],
                   border: GradientBoxBorder(
-                    gradient:
-                        LinearGradient(colors: [bgContainer, bgContainer]),
+                    gradient: Get.isDarkMode
+                        ? LinearGradient(colors: [bgContainer, bgContainer])
+                        : LinearGradient(colors: [lightbgColor, lightbgColor]),
                     width: 1,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -165,15 +210,15 @@ class UiUtilites {
                     Gap(30),
                     Text(
                       title,
-                      style: const TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                        // height: 52 / 12,
-                      ),
+                      style: TextStyle(
+                          fontFamily: "Montserrat",
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Get.isDarkMode ? white : Colors.black
+                          // height: 52 / 12,
+                          ),
                       textAlign: TextAlign.center,
-                    ) ,
+                    ),
                     Gap(10),
                     Divider(
                       height: 1,
@@ -186,13 +231,12 @@ class UiUtilites {
                           onTap: onPressCancel,
                           child: Text(
                             textCancel,
-                            style: const TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
-                          ) ,
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Get.isDarkMode ? white : Colors.black),
+                          ),
                         ),
                         InkWell(
                           onTap: onPressOK,
@@ -204,7 +248,7 @@ class UiUtilites {
                               fontWeight: FontWeight.w700,
                               color: borderTop,
                             ),
-                          ) ,
+                          ),
                         ),
                       ],
                     ),
@@ -276,7 +320,7 @@ class UiUtilites {
                         // height: 52 / 12,
                       ),
                       textAlign: TextAlign.center,
-                    ) ,
+                    ),
                     Gap(10),
                     Divider(
                       height: 1,
@@ -298,7 +342,7 @@ class UiUtilites {
                                 color: Colors.white,
                               ),
                             ),
-                          ) ,
+                          ),
                         ),
                         InkWell(
                             onTap: onPressOK,
@@ -313,7 +357,7 @@ class UiUtilites {
                                   color: borderTop,
                                 ),
                               ),
-                            ) ),
+                            )),
                       ],
                     ),
                     Gap(10),

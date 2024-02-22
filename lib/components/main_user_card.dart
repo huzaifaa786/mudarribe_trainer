@@ -24,7 +24,7 @@ class MainUserCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: Get.isDarkMode
                   ? bgContainer.withOpacity(0.6)
-                  : Colors.grey.withOpacity(0.2),
+                  : Color(4294375158),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50),
@@ -38,7 +38,7 @@ class MainUserCard extends StatelessWidget {
                   blurRadius: 10,
                   offset: Offset(0, 3),
                 ):BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: Colors.black.withOpacity(0.0),
                   spreadRadius: 8,
                   blurRadius: 10,
                   offset: Offset(0, 3),

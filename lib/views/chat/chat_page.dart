@@ -354,7 +354,7 @@ class ChatPageState extends State<ChatPage> {
                           decoration: BoxDecoration(
                               color: Get.isDarkMode
                                   ? white
-                                  : Colors.grey.withOpacity(0.2),
+                                  : lightbgColor,
                               borderRadius: BorderRadius.circular(8)),
                           margin: EdgeInsets.only(bottom: 10, right: 10),
                         )
@@ -459,7 +459,7 @@ class ChatPageState extends State<ChatPage> {
                                     decoration: BoxDecoration(
                                         color: Get.isDarkMode
                                             ? white
-                                            : Colors.grey.withOpacity(0.2),
+                                            : lightbgColor,
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Row(
                                       children: [
@@ -508,7 +508,7 @@ class ChatPageState extends State<ChatPage> {
                                       decoration: BoxDecoration(
                                           color: Get.isDarkMode
                                               ? white
-                                              : Colors.grey.withOpacity(0.2),
+                                              : lightbgColor,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Column(
@@ -612,8 +612,7 @@ class ChatPageState extends State<ChatPage> {
                                           decoration: BoxDecoration(
                                               color: Get.isDarkMode
                                                   ? white
-                                                  : Colors.grey
-                                                      .withOpacity(0.2),
+                                                  : lightbgColor,
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                           child: Column(
