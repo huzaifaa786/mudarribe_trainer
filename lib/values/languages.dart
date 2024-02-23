@@ -8,6 +8,7 @@ Languages() {
     "Spanish",
     "German",
     "Italian",
-    "Urdu"
+    "Urdu",
+    "Filipino",
   ];
 }

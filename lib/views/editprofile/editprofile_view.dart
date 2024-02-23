@@ -279,7 +279,18 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  controller.logout();
+                                  UiUtilites.confirmAlert(
+                                    context,
+                                    "Are you sure you want to logout?".tr,
+                                    () {
+                                      controller.logout();
+                                    },
+                                    () {
+                                      Get.back();
+                                    },
+                                    "Log Out".tr,
+                                    "Cancel".tr,
+                                  );
                                 },
                                 child: Row(
                                   children: [
@@ -293,7 +304,7 @@ class _EditProfileState extends State<EditProfile> {
                                       ),
                                     ),
                                     Text(
-                                      "Log out".tr,
+                                      "Log Out".tr,
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,

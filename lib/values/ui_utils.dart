@@ -5,7 +5,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:mudarribe_trainer/components/gradientext.dart';
+import 'package:mudarribe_trainer/components/textgradient.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class UiUtilites {
@@ -138,6 +141,7 @@ class UiUtilites {
 
   static confirmAlert(
       context, title, onPressOK, onPressCancel, textOk, textCancel) {
+    GetStorage box = GetStorage();
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -208,16 +212,21 @@ class UiUtilites {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Gap(30),
-                    Text(
-                      title,
-                      style: TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Get.isDarkMode ? white : Colors.black
-                          // height: 52 / 12,
-                          ),
-                      textAlign: TextAlign.center,
+                    Directionality(
+                      textDirection: box.read('locale') == 'ar'
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Get.isDarkMode ? white : Colors.black
+                            // height: 52 / 12,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Gap(10),
                     Divider(
@@ -240,14 +249,9 @@ class UiUtilites {
                         ),
                         InkWell(
                           onTap: onPressOK,
-                          child: Text(
-                            textOk,
-                            style: const TextStyle(
-                              fontFamily: "Montserrat",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: borderTop,
-                            ),
+                          child: GradientText2(
+                            text: textOk,
+                            size: 16.0,weight: FontWeight.w700,
                           ),
                         ),
                       ],

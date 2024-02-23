@@ -1149,7 +1149,7 @@ class ChatPageState extends State<ChatPage> {
                 onSubmitted: (value) {
                   onSendMessage(textEditingController.text, TypeMessage.text);
                 },
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(color: Get.isDarkMode ? Colors.white : Colors.black, fontSize: 15),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
                   hintText: 'Type Here...'.tr,

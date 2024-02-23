@@ -131,7 +131,9 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 20, right: 20, bottom: 12),
                                   child: ListTile(
-                                    tileColor: bgContainer,
+                                    tileColor:  Get.isDarkMode
+                                        ? bgContainer
+                                        : lightbgColor,
                                     title: Text('Promo Code'.tr +
                                         ' : ${promoCode.promoCodeName}'),
                                     subtitle: Text('Description'.tr +
