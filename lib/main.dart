@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
-    box.read('theme') == null ? box.write('theme', 'dark') : null;
+    box.read('theme') == null ? box.write('theme', 'light') : null;
     setState(() {
       Get.isDarkMode;
     });
