@@ -46,7 +46,7 @@ class UiUtilites {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          Future.delayed(Duration(seconds: 3), () {
+          Future.delayed(Duration(milliseconds: 1500), () {
             Get.back();
           });
           return BackdropFilter(

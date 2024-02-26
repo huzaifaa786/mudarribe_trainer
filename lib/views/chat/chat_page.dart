@@ -10,6 +10,7 @@ import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/color_button.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/services/notification_service.dart';
 import 'package:mudarribe_trainer/views/chat/full_photo_page.dart';
 import 'package:mudarribe_trainer/views/video/video_view.dart';
 import 'package:path_provider/path_provider.dart';
@@ -60,6 +61,7 @@ class ChatPageState extends State<ChatPage> {
   final TextEditingController textEditingController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
   final FocusNode focusNode = FocusNode();
+  final notificationService = NotificationService();
 
   late final ChatProvider chatProvider = context.read<ChatProvider>();
 
@@ -300,10 +302,10 @@ class ChatPageState extends State<ChatPage> {
 
   void onSendMessage(String content, int type) {
     if (content.trim().isNotEmpty) {
-      // notificationService.postNotification(
-      //     title: 'Messages',
-      //     body: 'New Message Received',
-      //     receiverToken: userToken);
+      notificationService.postNotification(
+          title: 'Messages',
+          body: 'New Message Received',
+          receiverToken: userToken);
       textEditingController.clear();
       chatProvider.sendMessage(
           content, type, groupChatId, currentUserId, widget.arguments.peerId);

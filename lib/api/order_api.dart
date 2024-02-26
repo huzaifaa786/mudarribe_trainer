@@ -107,7 +107,7 @@ class OrderApi {
       ordersQuery = ordersQuery.startAfterDocument(lastDocument);
     }
 
-    QuerySnapshot orders = await ordersQuery.limit(4).get();
+    QuerySnapshot orders = await ordersQuery.limit(5).get();
 
     var futures = orders.docs.map((orderDoc) async {
       if (orderDoc.exists) {
