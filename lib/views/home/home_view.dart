@@ -30,101 +30,103 @@ class _HomeScreenState extends State<HomeScreen> {
                 textDirection: TextDirection.ltr,
                 child: Scaffold(
                   backgroundColor: Get.isDarkMode ? Colors.black: Colors.white,
-                  body: Column(
-                    children: [
-                      MainUserCard(
-                        name: controller.currentUser!.name,
-                        img: controller.currentUser!.profileImageUrl!,
-                        category: controller.currentUser!.categories!.join('& '),
-                        onUserImgTap: () {
-              
-                          Get.toNamed(AppRoutes.stories, parameters: {
-                            "trainer_id": controller.currentUser!.id
-                          });
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 60.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                MainCard(
-                                  name: "View Profile".tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.profile);
-                                  },
-                                  image: 'assets/images/person.svg',
-                                ),
-                                MainCard(
-                                  name: 'Chats'.tr,
-                                  ontap: () {
-                                    Get.to(() => ChatListScreen());
-                                  },
-                                  image: 'assets/images/chats.svg',
-                                ),
-                                MainCard(
-                                  name: 'Orders'.tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.orders);
-                                  },
-                                  image: 'assets/images/orders.svg',
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                MainCard(
-                                  name: 'Packages'.tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.packagesScreen);
-                                  },
-                                  image: 'assets/images/packages.svg',
-                                ),
-                                MainCard(
-                                  name: 'Edit Profile'.tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.editprofile)!
-                                        .then((value) => controller.getAppUser());
-                                  },
-                                  image: 'assets/images/person_setting.svg',
-                                ),
-                                MainCard(
-                                  name: 'My Events'.tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.myevent);
-                                  },
-                                  image: 'assets/images/events.svg',
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                MainCard(
-                                  name: 'My Sales'.tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.sale);
-                                  },
-                                  image: 'assets/images/sales.svg',
-                                ),
-                                 MainCard(
-                                  name: "Report a problem".tr,
-                                  ontap: () {
-                                    Get.toNamed(AppRoutes.report);
-                                  },
-                                  image: 'assets/images/report.svg',
-                                ),
-                              ],
-                            ),
-                          ],
+                  body: SafeArea(
+                    child: Column(
+                      children: [
+                        MainUserCard(
+                          name: controller.currentUser!.name,
+                          img: controller.currentUser!.profileImageUrl!,
+                          category: controller.currentUser!.categories!.join('& '),
+                          onUserImgTap: () {
+                                
+                            Get.toNamed(AppRoutes.stories, parameters: {
+                              "trainer_id": controller.currentUser!.id
+                            });
+                          },
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 60.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  MainCard(
+                                    name: "View Profile".tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.profile);
+                                    },
+                                    image: 'assets/images/person.svg',
+                                  ),
+                                  MainCard(
+                                    name: 'Chats'.tr,
+                                    ontap: () {
+                                      Get.to(() => ChatListScreen());
+                                    },
+                                    image: 'assets/images/chats.svg',
+                                  ),
+                                  MainCard(
+                                    name: 'Orders'.tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.orders);
+                                    },
+                                    image: 'assets/images/orders.svg',
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  MainCard(
+                                    name: 'Packages'.tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.packagesScreen);
+                                    },
+                                    image: 'assets/images/packages.svg',
+                                  ),
+                                  MainCard(
+                                    name: 'Edit Profile'.tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.editprofile)!
+                                          .then((value) => controller.getAppUser());
+                                    },
+                                    image: 'assets/images/person_setting.svg',
+                                  ),
+                                  MainCard(
+                                    name: 'My Events'.tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.myevent);
+                                    },
+                                    image: 'assets/images/events.svg',
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  MainCard(
+                                    name: 'My Sales'.tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.sale);
+                                    },
+                                    image: 'assets/images/sales.svg',
+                                  ),
+                                   MainCard(
+                                    name: "Report a problem".tr,
+                                    ontap: () {
+                                      Get.toNamed(AppRoutes.report);
+                                    },
+                                    image: 'assets/images/report.svg',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
