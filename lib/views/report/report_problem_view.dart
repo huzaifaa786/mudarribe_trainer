@@ -9,6 +9,7 @@ import 'package:mudarribe_trainer/components/inputfield.dart';
 import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/textgradient.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/views/report/report_problem_contoller.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -145,10 +146,12 @@ class _ReportProblemViewState extends State<ReportProblemView> {
                     GradientButton(
                       title: 'Report'.tr,
                       selected: controller.areFieldsFilled.value,
-                      onPressed: () {
+                      onPressed:controller.areFieldsFilled.value ?  () {
                         controller.areFieldsFilled.value == true;
                         controller.reportfun();
                         // : null;
+                      }: (){
+                        UiUtilites.errorSnackbar('Error'.tr, 'Fill out all fields'.tr);
                       },
                     ),
                   ],

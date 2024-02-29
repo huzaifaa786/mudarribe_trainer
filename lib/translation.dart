@@ -249,7 +249,7 @@ class LocaleString extends Translations {
           "Problem Text": "Problem Text",
           "Report": "Report",
           'Uploaded': 'Uploaded',
-          'Report submit Successfully.': 'Report submit Successfully.',
+          'Report submit Successfully.': 'Report is submitted successfully',
           "Check Out": "Check Out",
           'Camera': 'Camera',
           'Gallery or Text': 'Gallery or Text',

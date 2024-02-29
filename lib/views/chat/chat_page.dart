@@ -61,6 +61,7 @@ class ChatPageState extends State<ChatPage> {
   final ScrollController listScrollController = ScrollController();
   final FocusNode focusNode = FocusNode();
   final notificationService = NotificationService();
+
   late final ChatProvider chatProvider = context.read<ChatProvider>();
 
   @override
