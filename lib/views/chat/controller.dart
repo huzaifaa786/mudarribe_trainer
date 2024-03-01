@@ -66,6 +66,7 @@ class ChatProvider {
       timestamp: timestamp,
       content: content,
       type: type,
+      seen: false
     );
 
     FirebaseFirestore.instance.runTransaction((transaction) async {

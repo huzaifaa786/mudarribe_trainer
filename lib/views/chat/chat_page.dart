@@ -61,6 +61,8 @@ class ChatPageState extends State<ChatPage> {
   final ScrollController listScrollController = ScrollController();
   final FocusNode focusNode = FocusNode();
   final notificationService = NotificationService();
+  StreamSubscription<DocumentSnapshot>? chatSubscription;
+  StreamSubscription<QuerySnapshot>? messageSubscription;
 
   late final ChatProvider chatProvider = context.read<ChatProvider>();
 
@@ -116,6 +118,14 @@ class ChatPageState extends State<ChatPage> {
     }
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    chatSubscription?.cancel();
+    messageSubscription?.cancel();
+    super.dispose();
+  }
+
   void readLocal() {
     if (FirebaseAuth.instance.currentUser!.uid.isNotEmpty == true) {
       currentUserId = FirebaseAuth.instance.currentUser!.uid;
@@ -128,17 +138,12 @@ class ChatPageState extends State<ChatPage> {
     } else {
       groupChatId = '$peerId-$currentUserId';
     }
-    // FirebaseFirestore.instance
-    //     .collection(FirestoreConstants.pathMessageCollection)
-    //     .doc(groupChatId)
-    //     .update({
-    //   'companySeen': true,
-    // });
     final docRef = FirebaseFirestore.instance
         .collection(FirestoreConstants.pathMessageCollection)
         .doc(groupChatId);
 
-    docRef.get().then((docSnapshot) {
+    // Listen for changes in the document
+    chatSubscription=docRef.snapshots().listen((docSnapshot) {
       if (docSnapshot.exists) {
         // Document exists, proceed with the update
         docRef.update({'trainerSeen': true}).then((_) {
@@ -150,24 +155,26 @@ class ChatPageState extends State<ChatPage> {
         // Document does not exist, handle accordingly
         print('Document does not exist');
       }
-    }).catchError((error) {
-      print('Error fetching document: $error');
     });
-    // chatProvider.updateDataFirestore(
-    //   FirestoreConstants.Pa,
-    //   currentUserId,
-    //   {FirestoreConstants.chattingWith: peerId},
-    // );
 
-    final docRef1 =
-        FirebaseFirestore.instance.collection('companies').doc(currentUserId);
-    docRef1.get().then((docSnapshot) {
-      if (docSnapshot.exists) {
-        isDeleted = docSnapshot.data()!['delete'];
-        setState(() {});
-      }
-    }).catchError((error) {
-      print('Error fetching document: $error');
+    final collectionRef = FirebaseFirestore.instance
+        .collection(FirestoreConstants.pathMessageCollection)
+        .doc(groupChatId)
+        .collection(groupChatId);
+
+    // Listen for changes in the messages collection
+    final query = collectionRef.where('idFrom', isNotEqualTo: currentUserId);
+
+    // Update the seen status for each message
+    messageSubscription=query.snapshots().listen((querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        // Update the seen field for each document
+        doc.reference.update({'seen': true}).then((_) {
+          print('Update successful');
+        }).catchError((error) {
+          print('Error updating document: $error');
+        });
+      });
     });
   }
 
@@ -341,6 +348,17 @@ class ChatPageState extends State<ChatPage> {
             children: [
               Row(
                 children: <Widget>[
+                  messageChat.seen
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Icon(Icons.done_all,
+                              color: Get.isDarkMode ? white : Colors.black),
+                        ) // Message seen
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Icon(Icons.done,
+                              color: Get.isDarkMode ? white : Colors.black),
+                        ),
                   messageChat.type == TypeMessage.text
                       // Text
                       ? Container(
@@ -353,9 +371,7 @@ class ChatPageState extends State<ChatPage> {
                             maxWidth: 200,
                           ),
                           decoration: BoxDecoration(
-                              color: Get.isDarkMode
-                                  ? white
-                                  : lightbgColor,
+                              color: Get.isDarkMode ? white : lightbgColor,
                               borderRadius: BorderRadius.circular(8)),
                           margin: EdgeInsets.only(bottom: 10, right: 10),
                         )
@@ -1130,18 +1146,26 @@ class ChatPageState extends State<ChatPage> {
       child: Row(
         children: <Widget>[
           // Button send image
-          Material(
+          GestureDetector(
+            onTap: () {
+              _showSimpleBottomSheet(context);
+            },
             child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 9.0),
+              width: 30.0,
               color: Get.isDarkMode ? maincolor : Colors.white,
-              child: IconButton(
-                icon: Icon(Icons.more_vert_outlined),
-                onPressed: () {
-                  _showBottomSheet(context);
-                },
-                color: borderbottom,
-              ),
+              child: Icon(Icons.attach_file, color: borderbottom),
             ),
-            color: Colors.white,
+          ),
+          GestureDetector(
+            onTap: () {
+              _showBottomSheet(context);
+            },
+            child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                width: 40.0,
+                color: Get.isDarkMode ? maincolor : Colors.white,
+                child: Icon(Icons.more_vert_outlined, color: borderbottom)),
           ),
           // Edit text
           Flexible(
@@ -1150,7 +1174,9 @@ class ChatPageState extends State<ChatPage> {
                 onSubmitted: (value) {
                   onSendMessage(textEditingController.text, TypeMessage.text);
                 },
-                style: TextStyle(color: Get.isDarkMode ? Colors.white : Colors.black, fontSize: 15),
+                style: TextStyle(
+                    color: Get.isDarkMode ? Colors.white : Colors.black,
+                    fontSize: 15),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
                   hintText: 'Type Here...'.tr,
@@ -1386,6 +1412,139 @@ class ChatPageState extends State<ChatPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'Cancel'.tr,
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff0f0a06),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showSimpleBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext builder) {
+        return Container(
+          width: double.infinity,
+          // You can customize the appearance of your bottom sheet here
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(0))),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
+                onPressed: getImage,
+                child: Text(
+                  'Photos'.tr,
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff0f0a06),
+                  ),
+                ),
+              ),
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0))),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
+                onPressed: getMp4,
+                child: Text(
+                  'Video'.tr,
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff0f0a06),
+                  ),
+                ),
+              ),
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0))),
+                  ),
+                  minimumSize:
+                      MaterialStateProperty.all(Size(double.infinity, 50)),
+                ),
+                onPressed: getPdf,
+                child: Text(
+                  'Document'.tr,
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff0f0a06),
+                  ),
+                ),
+              ),
+              Container(
+                  width: double.infinity,
+                  color: bgContainer.withOpacity(0.45),
+                  height: 0.5),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
