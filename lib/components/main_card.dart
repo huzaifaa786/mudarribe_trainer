@@ -8,10 +8,12 @@ import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class MainCard extends StatelessWidget {
-  const MainCard({super.key, this.name, this.ontap, this.image});
+  const MainCard({super.key, this.name, this.ontap, this.image, this.dynamicColor = false, this.bgColor = white});
   final ontap;
   final name;
   final image;
+  final dynamicColor;
+  final bgColor;
   @override
   Widget build(BuildContext context) {
     GetStorage box = GetStorage();
@@ -61,7 +63,7 @@ class MainCard extends StatelessWidget {
                 child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Get.isDarkMode ? Colors.black : lightbgColor),
+                        color: dynamicColor ? bgColor : Get.isDarkMode ? Colors.black : lightbgColor),
                     child: SvgPicture.asset(
                       image,
                       fit: BoxFit.scaleDown,

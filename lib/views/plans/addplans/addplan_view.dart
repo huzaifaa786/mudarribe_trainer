@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
@@ -63,6 +64,7 @@ class _AddPlanState extends State<AddPlan> {
                                 lable: 'Price'.tr,
                                 controller: controller.priceController,
                               ),
+                              SizedBox(height: 20),
                               // InputField(
                               //   lable: 'Duration'.tr,
                               //   controller: controller.durationController,
@@ -121,6 +123,68 @@ class _AddPlanState extends State<AddPlan> {
                               SizedBox(
                                 height: 20,
                               ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                    GradientText2(
+                                    text: 'Select plan images'.tr,
+                                    size: 18.0,
+                                  ),
+                                
+                                  SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          controller.getImage(1);
+                                        },
+                                        child: Container(
+                                          width: 120,
+                                          height: 120,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.grey[200],
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: controller.image1 != null
+                                                ? Image.file(controller.image1!,
+                                                    fit: BoxFit.cover)
+                                                : Icon(Icons.add),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      GestureDetector(
+                                        onTap: () {
+                                          controller.getImage(2);
+                                        },
+                                        child: Container(
+                                          width: 120,
+                                          height: 120,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: Colors.grey[200],
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: controller.image2 != null
+                                                ? Image.file(controller.image2!,
+                                                    fit: BoxFit.cover)
+                                                : Icon(Icons.add),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Gap(30),
                               GradientText2(
                                 text: 'Select plan category '.tr,
                                 size: 18.0,

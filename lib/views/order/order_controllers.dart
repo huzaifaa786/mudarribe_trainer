@@ -54,12 +54,14 @@ class OrderController extends GetxController {
   static OrderController instance = Get.find();
   final BusyController busyController = Get.find();
   List<CombinedOrderData> orders = [];
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   DocumentSnapshot? lastDocument;
   final scrollControllers = ScrollController();
 
   @override
   void onInit() {
     fetchOrders();
+    markOrdersAsSeen();
     scrollControllers.addListener(scrollListener);
     super.onInit();
   }
@@ -75,6 +77,26 @@ class OrderController extends GetxController {
         fetchMoreOrders(lastDocument);
         lastDocument = null;
       }
+    }
+  }
+
+    void markOrdersAsSeen() async {
+    try {
+      // Update all orders to mark them as seen
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
+          .collection('orders')
+          .where('trainerId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .where('seen', isEqualTo: false)
+          .get();
+
+      List<DocumentSnapshot<Map<String, dynamic>>> documents =
+          querySnapshot.docs;
+
+      for (DocumentSnapshot<Map<String, dynamic>> document in documents) {
+        await document.reference.update({'seen': true});
+      }
+    } catch (e) {
+      print('Error marking orders as seen: $e');
     }
   }
 

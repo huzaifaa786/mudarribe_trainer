@@ -222,6 +222,31 @@ class StorageApi {
     }
   }
 
+    Future<CloudStorageResult> uploadPackageImage({
+    required File imageToUpload,
+  }) async {
+    final imageFileName = "SI.${DateTime.now().millisecondsSinceEpoch}";
+
+    final storage.Reference storageReference = storage.FirebaseStorage.instance
+        .ref()
+        .child("packageImages/$imageFileName");
+
+    try {
+      final result = await _uploadImage(
+        storageReference,
+        imageToUpload,
+        imageFileName,
+      );
+
+      return result;
+    } on PlatformException catch (e) {
+      throw StorageApiException(
+        title: 'Failed to upload image',
+        message: e.message,
+      );
+    }
+  }
+
   Future<CloudStorageResult> updateServiceImages({
     required String serviceId,
     required String imageNumber,

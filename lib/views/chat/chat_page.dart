@@ -61,6 +61,7 @@ class ChatPageState extends State<ChatPage> {
   final ScrollController listScrollController = ScrollController();
   final FocusNode focusNode = FocusNode();
   final notificationService = NotificationService();
+  
   StreamSubscription<DocumentSnapshot>? chatSubscription;
   StreamSubscription<QuerySnapshot>? messageSubscription;
 
@@ -120,7 +121,7 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+
     chatSubscription?.cancel();
     messageSubscription?.cancel();
     super.dispose();
@@ -143,7 +144,7 @@ class ChatPageState extends State<ChatPage> {
         .doc(groupChatId);
 
     // Listen for changes in the document
-    chatSubscription=docRef.snapshots().listen((docSnapshot) {
+    chatSubscription= docRef.snapshots().listen((docSnapshot) {
       if (docSnapshot.exists) {
         // Document exists, proceed with the update
         docRef.update({'trainerSeen': true}).then((_) {
@@ -166,7 +167,7 @@ class ChatPageState extends State<ChatPage> {
     final query = collectionRef.where('idFrom', isNotEqualTo: currentUserId);
 
     // Update the seen status for each message
-    messageSubscription=query.snapshots().listen((querySnapshot) {
+    messageSubscription = query.snapshots().listen((querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         // Update the seen field for each document
         doc.reference.update({'seen': true}).then((_) {

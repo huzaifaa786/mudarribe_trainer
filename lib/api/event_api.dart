@@ -1,7 +1,13 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:mudarribe_trainer/exceptions/database_api_exception.dart';
+import 'package:mudarribe_trainer/models/app_user.dart';
+import 'package:mudarribe_trainer/models/event_data_combined.dart';
+import 'package:mudarribe_trainer/models/event_order.dart';
+import 'package:mudarribe_trainer/models/trainee_profile.dart';
 import 'package:mudarribe_trainer/models/trainer_event.dart';
 
 class EventApi {
@@ -112,5 +118,70 @@ class EventApi {
         message: e.message,
       );
     }
+  }
+
+  static Future<List<CombinedEventData>>
+      fetchCombinedTrainerNotifications() async {
+    final trainerId = FirebaseAuth.instance.currentUser!.uid;
+
+    List<CombinedEventData> combinedData = [];
+
+    QuerySnapshot attendee_docs = await FirebaseFirestore.instance
+        .collection('event_attendees')
+        .where("trainerId", isEqualTo: trainerId)
+        .orderBy('id', descending: true)
+        .get();
+
+    List<String> userIds =
+        attendee_docs.docs.map((doc) => doc['userId'] as String).toList();
+
+    Map<String, TraineeProfile> usersMap = {};
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .where(FieldPath.documentId, whereIn: userIds)
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        usersMap[doc.id] =
+            TraineeProfile.fromJson(doc.data() as Map<String, dynamic>);
+      });
+    });
+    
+    List<String> eventIds =
+        attendee_docs.docs.map((doc) => doc['eventId'] as String).toList();
+
+        
+    Map<String, TrainerEvent> eventsMap = {};
+
+    await FirebaseFirestore.instance
+        .collection('trainer_events')
+        .where(FieldPath.documentId, whereIn: eventIds)
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        eventsMap[doc.id] =
+            TrainerEvent.fromJson(doc.data() as Map<String, dynamic>);
+      });
+    });
+
+    combinedData = attendee_docs.docs.map((attendeeDoc) {
+      final attendeeData = attendeeDoc.data() as Map<String, dynamic>;
+      final event_order = EventOrder.fromJson(attendeeData);
+
+      final userId = attendeeDoc['userId'];
+      final trainee = usersMap[userId]!;
+
+      final eventId = attendeeDoc['eventId'];
+      final event = eventsMap[eventId]!;
+
+      return CombinedEventData(
+        trainee: trainee,
+        event: event,
+        event_order: event_order
+      );
+    }).toList();
+
+    return combinedData;
   }
 }

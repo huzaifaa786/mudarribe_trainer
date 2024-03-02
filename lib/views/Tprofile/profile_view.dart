@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:mudarribe_trainer/components/addpostbutton.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
@@ -26,6 +27,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView>
     with TickerProviderStateMixin {
+      GetStorage box = GetStorage();
   bool _smallButtonsVisible = false;
 
   void toggleSmallButtonsVisibility() {
@@ -200,26 +202,58 @@ class _ProfileViewState extends State<ProfileView>
                                                 )
                                               ],
                                             ),
-                                            Container(
+                                           Container(
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
                                                   0.6,
                                               padding: const EdgeInsets.only(
                                                   top: 2, bottom: 8),
-                                              child: Text(
-                                                controller
+                                              child: Wrap(
+                                                spacing:
+                                                    10, // Adjust the spacing between categories
+                                                children: controller
                                                     .currentUser!.categories!
-                                                    .join('& '),
-                                                style: TextStyle(
-                                                    color: Get.isDarkMode
-                                                        ? profilesubheading
-                                                        : Colors.black,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w400),
+                                                    .map((category) {
+                                                  return Directionality(
+                                                    textDirection: box.read('locale') ==
+                                                                'ar'
+                                                            ? TextDirection.rtl
+                                                            : TextDirection.ltr,
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .circle, // You can change this to any desired icon
+                                                          color: Get.isDarkMode
+                                                              ? Colors.white
+                                                              : Colors.black,
+                                                          size: 10,
+                                                        ),
+                                                        SizedBox(
+                                                            width:
+                                                                5), // Adjust the spacing between icon and text
+                                                        Text(
+                                                          category,
+                                                          style: TextStyle(
+                                                            color: Get.isDarkMode
+                                                                ? Colors.white
+                                                                : Colors.black,
+                                                            fontSize:
+                                                                12, // Increased text size
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                }).toList(),
                                               ),
                                             ),
+
                                             SizedBox(
                                               width: MediaQuery.of(context)
                                                       .size

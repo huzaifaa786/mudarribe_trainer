@@ -2,27 +2,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class OrderCard extends StatelessWidget {
-  const OrderCard(
+class EventCard extends StatelessWidget {
+  const EventCard(
       {super.key,
       this.userName,
       this.profileImage,
       this.onTapMessage,
-      this.onTapSendPlan,
-      this.packageName,
+      this.eventName,
       this.duration,
       this.price});
 
   final userName;
   final profileImage;
   final onTapMessage;
-  final onTapSendPlan;
-  final packageName;
+  final eventName;
   final price;
   final duration;
 
@@ -75,14 +71,14 @@ class OrderCard extends StatelessWidget {
               Row(
                 children: [
                   GradientText2(
-                    text: 'Package'.tr + ':',
+                    text: 'Event name'.tr + ':',
                     size: 12.0,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: Text(
-                      packageName,
+                      eventName,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -97,7 +93,7 @@ class OrderCard extends StatelessWidget {
                     text: 'Price'.tr + ':',
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      padding: const EdgeInsets.all(6.0),
                       child: Text(
                         price + ' AED'.tr,
                         style: const TextStyle(
@@ -112,10 +108,10 @@ class OrderCard extends StatelessWidget {
               Row(
                 children: [
                   GradientText2(
-                    text: 'Duration'.tr + ':',
+                    text: 'Date'.tr + ':',
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
+                      padding: const EdgeInsets.all(6.0),
                       child: Text(
                         '$duration'.tr,
                         style: const TextStyle(
@@ -127,19 +123,6 @@ class OrderCard extends StatelessWidget {
                       ))
                 ],
               ),
-              InkWell(
-                onTap: onTapSendPlan,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GradientText2(
-                      text: 'Send Plan'.tr,
-                      size: 16.0,
-                      weight: FontWeight.w700,
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),

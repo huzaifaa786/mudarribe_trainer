@@ -20,7 +20,7 @@ class _GradientText2State extends State<GradientText2> {
     return GradientText(
       widget.text,
       style: TextStyle(fontSize: widget.size, fontWeight: FontWeight.w500),
-      colors: const [Color(0xff727dcd), Color(0xff58e1ff)],
+      colors: const [Color.fromARGB(255, 78, 90, 181), Color.fromARGB(255, 54, 168, 193)],
     );
 
     // return Text(text,

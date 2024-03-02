@@ -8,6 +8,7 @@ import 'package:mudarribe_trainer/components/main_card.dart';
 import 'package:mudarribe_trainer/components/main_user_card.dart';
 import 'package:mudarribe_trainer/models/trainer_story.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
+import 'package:mudarribe_trainer/values/color.dart';
 import 'package:mudarribe_trainer/views/chat/chat_list.dart';
 
 import 'package:mudarribe_trainer/views/home/home_controller.dart';
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         MainUserCard(
                           name: controller.currentUser!.name,
                           img: controller.currentUser!.profileImageUrl!,
-                          category: controller.currentUser!.categories!.join('& '),
+                          categories: controller.currentUser!.categories,
                           onUserImgTap: () {
                                 
                             Get.toNamed(AppRoutes.stories, parameters: {
@@ -64,12 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Get.to(() => ChatListScreen());
                                     },
                                     image: 'assets/images/chats.svg',
+                                    dynamicColor: controller.chatLength > 0,
+                                    bgColor: Get.isDarkMode ? lightbgColor : Colors.black 
                                   ),
                                   MainCard(
                                     name: 'Orders'.tr,
                                     ontap: () {
                                       Get.toNamed(AppRoutes.orders);
                                     },
+                                    dynamicColor: controller.orderCount > 0,
+                                    bgColor: Get.isDarkMode
+                                        ? lightbgColor
+                                        : Colors.black,
                                     image: 'assets/images/orders.svg',
                                   ),
                                 ],
