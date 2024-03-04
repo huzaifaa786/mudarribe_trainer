@@ -83,7 +83,7 @@ class ProfileController extends GetxController {
         update();
         addVideoStory();
       } else {
-        busyController.setBusy(true);
+        busyController.setBusy(false);
         update();
         UiUtilites.errorSnackbar(
             'Error'.tr, 'Duration must not be greater then 30 Seconds.'.tr);
