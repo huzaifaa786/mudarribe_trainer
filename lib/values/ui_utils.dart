@@ -16,7 +16,7 @@ class UiUtilites {
     Get.snackbar(
       title,
       message,
-      colorText: white,
+      colorText: Get.isDarkMode ? white : Colors.black,
       backgroundGradient: const LinearGradient(
         colors: [Colors.red, Colors.redAccent],
         begin: Alignment.topCenter,
@@ -36,7 +36,7 @@ class UiUtilites {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ),
-      colorText: white,
+      colorText: Get.isDarkMode ? white : Colors.black,
       duration: const Duration(seconds: 2),
       snackPosition: SnackPosition.BOTTOM,
     );
@@ -251,7 +251,8 @@ class UiUtilites {
                           onTap: onPressOK,
                           child: GradientText2(
                             text: textOk,
-                            size: 16.0,weight: FontWeight.w700,
+                            size: 16.0,
+                            weight: FontWeight.w700,
                           ),
                         ),
                       ],

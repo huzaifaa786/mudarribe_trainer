@@ -13,6 +13,7 @@ import 'package:mudarribe_trainer/models/trainer_post.dart';
 import 'package:mudarribe_trainer/models/trainer_story.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/post_service.dart';
+import 'package:mudarribe_trainer/services/story_services.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:video_player/video_player.dart';
@@ -61,6 +62,7 @@ class ProfileController extends GetxController {
   }
 
   Future selectStoryImage() async {
+    Get.back();
     final tempImage = await _imageSelectorApi.selectCameraImage();
     if (tempImage != null) {
       storyImage = tempImage;
@@ -73,22 +75,9 @@ class ProfileController extends GetxController {
     Get.back();
     final tempImage = await _fileSelectorApi.selectMp4Files();
     if (tempImage != null) {
-      busyController.setBusy(true);
       storyImage = tempImage;
       update();
-
-      bool isValidDuration = await validateVideoDuration(storyImage!.path);
-      if (isValidDuration) {
-        busyController.setBusy(false);
-        update();
-        addVideoStory();
-      } else {
-        busyController.setBusy(false);
-        update();
-        UiUtilites.errorSnackbar(
-            'Error'.tr, 'Duration must not be greater then 30 Seconds.'.tr);
-      }
-      print('$isValidDuration *************************');
+      addVideoStory();
     }
     update();
   }
@@ -115,76 +104,29 @@ class ProfileController extends GetxController {
   }
 
   Future addStory(String url) async {
-    busyController.setBusy(true);
     Get.offNamed(AppRoutes.profile);
     storyImage = File(url);
-    final storyId = DateTime.now().millisecondsSinceEpoch.toString();
-
-    CloudStorageResult imageResult = await _saveStoryImage(storyId);
-    if (imageResult.imageUrl != '') {
-      await _postService.createStory(
-          story: TrainerStory(
-              id: storyId,
-              trainerId: currentUser!.id,
-              imageFileName: imageResult.imageFileName,
-              imageUrl: imageResult.imageUrl,
-              mediaType: MediaType.image,
-              postedTime: DateTime.now().millisecondsSinceEpoch.toString()));
-
-      storyImage = null;
-
-      UiUtilites.successAlert(Get.context, 'Story Created'.tr);
-
-      busyController.setBusy(false);
-    }
+    update();
+    await StoryUploadFunctions.addStory(
+        _postService, _userService, busyController, storyImage, currentUser!);
+    storyImage = null;
+    update();
   }
 
+  //! Camera Image Story Upload Function
   Future addCameraStory() async {
-    busyController.setBusy(true);
-    Get.offNamed(AppRoutes.profile);
-    final storyId = DateTime.now().millisecondsSinceEpoch.toString();
-
-    CloudStorageResult imageResult = await _saveStoryImage(storyId);
-    if (imageResult.imageUrl != '') {
-      await _postService.createStory(
-          story: TrainerStory(
-              id: storyId,
-              trainerId: currentUser!.id,
-              imageFileName: imageResult.imageFileName,
-              imageUrl: imageResult.imageUrl,
-              mediaType: MediaType.image,
-              postedTime: DateTime.now().millisecondsSinceEpoch.toString()));
-
-      storyImage = null;
-
-      UiUtilites.successAlert(Get.context, 'Story Created'.tr);
-
-      busyController.setBusy(false);
-    }
+    await StoryUploadFunctions.addCameraStory(
+        _postService, busyController, storyImage, currentUser!);
+    storyImage = null;
+    update();
   }
 
+  //! Video Story Upload Function
   Future addVideoStory() async {
-    busyController.setBusy(true);
-    Get.offNamed(AppRoutes.profile);
-    final storyId = DateTime.now().millisecondsSinceEpoch.toString();
-
-    CloudStorageResult imageResult = await _saveStoryImage(storyId);
-    if (imageResult.imageUrl != '') {
-      await _postService.createStory(
-          story: TrainerStory(
-              id: storyId,
-              trainerId: currentUser!.id,
-              imageFileName: imageResult.imageFileName,
-              imageUrl: imageResult.imageUrl,
-              mediaType: MediaType.video,
-              postedTime: DateTime.now().millisecondsSinceEpoch.toString()));
-
-      storyImage = null;
-
-      UiUtilites.successAlert(Get.context, 'Story Created'.tr);
-
-      busyController.setBusy(false);
-    }
+    await StoryUploadFunctions.addVideoStory(
+        _postService, busyController, storyImage, currentUser!);
+    storyImage = null;
+    update();
   }
 
   Future getTrainerPosts() async {

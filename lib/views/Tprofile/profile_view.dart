@@ -14,6 +14,7 @@ import 'package:mudarribe_trainer/components/storyButton.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/permissions.dart';
 import 'package:mudarribe_trainer/views/Tprofile/profile_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:stories_editor/stories_editor.dart';
@@ -27,7 +28,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView>
     with TickerProviderStateMixin {
-      GetStorage box = GetStorage();
+  GetStorage box = GetStorage();
   bool _smallButtonsVisible = false;
 
   void toggleSmallButtonsVisibility() {
@@ -36,24 +37,7 @@ class _ProfileViewState extends State<ProfileView>
     });
   }
 
-  Future<bool> getpermission() async {
-    bool serviceEnabled = false;
 
-    Permission mediaLocation = await Permission.accessMediaLocation;
-    Permission permission = await Permission.manageExternalStorage;
-    Permission storagepermission = await Permission.storage;
-    Permission cameraPermission = await Permission.camera;
-    Permission mediaPermission = await Permission.mediaLibrary;
-    if (permission.status.isGranted == false &&
-        storagepermission.status.isGranted == false &&
-        cameraPermission.status.isGranted == false &&
-        mediaPermission.status.isGranted == false &&
-        mediaLocation.status.isGranted == false) {
-      return serviceEnabled;
-    } else {
-      return serviceEnabled = true;
-    }
-  }
 
   @override
   void initState() {
@@ -81,9 +65,7 @@ class _ProfileViewState extends State<ProfileView>
                   ),
                   bottomNavigationBar: Container(
                     height: 50,
-                    color: Get.isDarkMode
-                        ? bgContainer
-                        : lightbgColor,
+                    color: Get.isDarkMode ? bgContainer : lightbgColor,
                   ),
                   floatingActionButton: GestureDetector(
                     onTap: () {
@@ -110,9 +92,7 @@ class _ProfileViewState extends State<ProfileView>
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
                             width: 3,
-                            color: Get.isDarkMode
-                                ? bgContainer
-                                : lightbgColor,
+                            color: Get.isDarkMode ? bgContainer : lightbgColor,
                           ),
                           borderRadius: BorderRadius.circular(45),
                         ),
@@ -202,7 +182,7 @@ class _ProfileViewState extends State<ProfileView>
                                                 )
                                               ],
                                             ),
-                                           Container(
+                                            Container(
                                               width: MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -216,7 +196,8 @@ class _ProfileViewState extends State<ProfileView>
                                                     .currentUser!.categories!
                                                     .map((category) {
                                                   return Directionality(
-                                                    textDirection: box.read('locale') ==
+                                                    textDirection:
+                                                        box.read('locale') ==
                                                                 'ar'
                                                             ? TextDirection.rtl
                                                             : TextDirection.ltr,
@@ -238,7 +219,8 @@ class _ProfileViewState extends State<ProfileView>
                                                         Text(
                                                           category,
                                                           style: TextStyle(
-                                                            color: Get.isDarkMode
+                                                            color: Get
+                                                                    .isDarkMode
                                                                 ? Colors.white
                                                                 : Colors.black,
                                                             fontSize:
@@ -253,7 +235,6 @@ class _ProfileViewState extends State<ProfileView>
                                                 }).toList(),
                                               ),
                                             ),
-
                                             SizedBox(
                                               width: MediaQuery.of(context)
                                                       .size
@@ -345,6 +326,8 @@ class _ProfileViewState extends State<ProfileView>
                                       AddPostbutton(
                                         title: 'Add Post'.tr,
                                         onPressed: () {
+                                          _smallButtonsVisible = false;
+                                          setState(() {});
                                           Get.toNamed(AppRoutes.addpost)!.then(
                                               (value) =>
                                                   controller.getTrainerPosts());
@@ -358,6 +341,8 @@ class _ProfileViewState extends State<ProfileView>
                                       AddPostbutton(
                                         title: 'Add Story'.tr,
                                         onPressed: () {
+                                          _smallButtonsVisible = false;
+                                          setState(() {});
                                           showModalBottomSheet(
                                             backgroundColor: Colors.transparent,
                                             context: context,
@@ -399,6 +384,9 @@ class _ProfileViewState extends State<ProfileView>
                                                                     50)),
                                                       ),
                                                       onPressed: () {
+                                                        _smallButtonsVisible =
+                                                            false;
+                                                        setState(() {});
                                                         controller
                                                             .selectStoryImage();
                                                       },
@@ -446,6 +434,9 @@ class _ProfileViewState extends State<ProfileView>
                                                                     50)),
                                                       ),
                                                       onPressed: () async {
+                                                        _smallButtonsVisible =
+                                                            false;
+                                                        setState(() {});
                                                         controller
                                                             .selectStoryMp4();
                                                       },
@@ -522,6 +513,8 @@ class _ProfileViewState extends State<ProfileView>
                                                                                 editorBackgroundColor: Colors.transparent,
                                                                                 giphyKey: 'Hgi0RY0dhM2Bz9uSH1M95f9cRYhzpOZE',
                                                                                 onDone: (uri) {
+                                                                                  _smallButtonsVisible = false;
+                                                                                  setState(() {});
                                                                                   controller.addStory(uri);
                                                                                 }),
                                                                           )));
