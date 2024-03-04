@@ -86,7 +86,7 @@ class ChatPageState extends State<ChatPage> {
 
       if (snapshot.exists) {
         setState(() {
-          userToken = snapshot['token'];
+          userToken = snapshot['firebaseToken'];
           print('userToken*******************');
           print(userToken);
         });
@@ -1155,7 +1155,7 @@ class ChatPageState extends State<ChatPage> {
               padding: const EdgeInsets.symmetric(horizontal: 9.0),
               width: 30.0,
               color: Get.isDarkMode ? maincolor : Colors.white,
-              child: Icon(Icons.attach_file, color: borderbottom),
+              child: Icon(Icons.attach_file, color: borderTop),
             ),
           ),
           GestureDetector(
@@ -1166,7 +1166,7 @@ class ChatPageState extends State<ChatPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 width: 40.0,
                 color: Get.isDarkMode ? maincolor : Colors.white,
-                child: Icon(Icons.more_vert_outlined, color: borderbottom)),
+                child: Icon(Icons.more_vert_outlined, color: borderTop)),
           ),
           // Edit text
           Flexible(

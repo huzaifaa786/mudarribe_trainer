@@ -37,8 +37,6 @@ class _ProfileViewState extends State<ProfileView>
     });
   }
 
-
-
   @override
   void initState() {
     getpermission();
@@ -121,36 +119,47 @@ class _ProfileViewState extends State<ProfileView>
                                       left: 15, right: 15, top: 15),
                                   child: Row(
                                     children: [
-                                      Container(
-                                          height: 92,
-                                          width: 90,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: const GradientBoxBorder(
-                                              gradient: LinearGradient(colors: [
-                                                Color(0xffc000c3),
-                                                borderTop,
-                                                borderTop,
-                                                borderbottom,
-                                                Color(0xff00f8e9),
-                                                borderbottom
-                                              ]),
-                                              width: 1,
+                                      InkWell(
+                                        onTap: () {
+                                          Get.toNamed(AppRoutes.stories,
+                                              parameters: {
+                                                "trainer_id":
+                                                    controller.currentUser!.id
+                                              });
+                                        },
+                                        child: Container(
+                                            height: 92,
+                                            width: 90,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: const GradientBoxBorder(
+                                                gradient:
+                                                    LinearGradient(colors: [
+                                                  Color(0xffc000c3),
+                                                  borderTop,
+                                                  borderTop,
+                                                  borderbottom,
+                                                  Color(0xff00f8e9),
+                                                  borderbottom
+                                                ]),
+                                                width: 1,
+                                              ),
                                             ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(40),
-                                              child: Image.network(
-                                                  controller.currentUser!
-                                                      .profileImageUrl!,
-                                                  width: 100,
-                                                  height: 100,
-                                                  fit: BoxFit.cover),
-                                            ),
-                                          )),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(4.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(40),
+                                                child: Image.network(
+                                                    controller.currentUser!
+                                                        .profileImageUrl!,
+                                                    width: 100,
+                                                    height: 100,
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            )),
+                                      ),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(left: 12),
