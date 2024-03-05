@@ -61,7 +61,7 @@ class ChatPageState extends State<ChatPage> {
   final ScrollController listScrollController = ScrollController();
   final FocusNode focusNode = FocusNode();
   final notificationService = NotificationService();
-  
+
   StreamSubscription<DocumentSnapshot>? chatSubscription;
   StreamSubscription<QuerySnapshot>? messageSubscription;
 
@@ -121,7 +121,6 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   void dispose() {
-
     chatSubscription?.cancel();
     messageSubscription?.cancel();
     super.dispose();
@@ -144,7 +143,7 @@ class ChatPageState extends State<ChatPage> {
         .doc(groupChatId);
 
     // Listen for changes in the document
-    chatSubscription= docRef.snapshots().listen((docSnapshot) {
+    chatSubscription = docRef.snapshots().listen((docSnapshot) {
       if (docSnapshot.exists) {
         // Document exists, proceed with the update
         docRef.update({'trainerSeen': true}).then((_) {
@@ -191,10 +190,13 @@ class ChatPageState extends State<ChatPage> {
     if (pickedFile != null) {
       imageFile = File(pickedFile.path);
       if (imageFile != null) {
-        setState(() {
-          isLoading = true;
-        });
-        uploadFile();
+        bool userConfirmed = await showConfirmationDialog(Get.context!);
+        if (userConfirmed) {
+          setState(() {
+            isLoading = true;
+          });
+          uploadFile();
+        }
       }
     }
   }
@@ -218,10 +220,13 @@ class ChatPageState extends State<ChatPage> {
       if (pickedFiles.isNotEmpty) {
         pdfFile = pickedFiles.first;
         String? fileName = result.files.first.name;
-        setState(() {
-          isLoading = true;
-        });
-        uploadPdf(pdfFile!, fileName);
+        bool userConfirmed = await showConfirmationDialog(Get.context!);
+        if (userConfirmed) {
+          setState(() {
+            isLoading = true;
+          });
+          uploadPdf(pdfFile!, fileName);
+        }
       }
     }
   }
@@ -237,10 +242,13 @@ class ChatPageState extends State<ChatPage> {
       if (pickedFiles.isNotEmpty) {
         videoFile = pickedFiles.first;
         String? fileName = result.files.first.name;
-        setState(() {
-          isLoading = true;
-        });
-        uploadVideo(videoFile!, fileName);
+        bool userConfirmed = await showConfirmationDialog(Get.context!);
+        if (userConfirmed) {
+          setState(() {
+            isLoading = true;
+          });
+          uploadVideo(videoFile!, fileName);
+        }
       }
     }
   }

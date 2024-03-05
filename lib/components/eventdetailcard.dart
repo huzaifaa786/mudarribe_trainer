@@ -73,15 +73,15 @@ class EventDetailsCard extends StatelessWidget {
                     color: Get.isDarkMode ? white : maincolor,
                   ),
                 ),
-                InkWell(
-                  onTap: onPressDelete,
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: SvgPicture.asset(
-                      'assets/images/delete.svg',
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: onPressDelete,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(3.0),
+                //     child: SvgPicture.asset(
+                //       'assets/images/delete.svg',
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -11,7 +11,12 @@ class FileSelectorApi {
         allowedExtensions: ['pdf'],
         allowMultiple: false);
     if (pickedFile != null) {
-      return File(pickedFile.paths.first!);
+      bool userConfirmed = await showConfirmationDialog(Get.context!);
+
+      if (userConfirmed) {
+        return File(pickedFile.paths.first!);
+      }
+      // return File(pickedFile.paths.first!);
     } else {
       UiUtilites.errorSnackbar('File selection failed'.tr,
           'Failed to select file, please try again.'.tr);
@@ -35,8 +40,10 @@ class FileSelectorApi {
     if (pickedFiles != null && pickedFiles.files.isNotEmpty) {
       List<File> selectedFiles =
           pickedFiles.files.map((file) => File(file.path!)).toList();
-
-      return selectedFiles;
+      bool userConfirmed = await showConfirmationDialog(Get.context!);
+      if (userConfirmed) {
+        return selectedFiles;
+      }
     } else {
       UiUtilites.errorSnackbar('File selection failed'.tr,
           'Failed to select file, please try again.'.tr);
@@ -53,7 +60,10 @@ class FileSelectorApi {
     );
 
     if (pickedFiles != null) {
-      return File(pickedFiles.paths.first!);
+      bool userConfirmed = await showConfirmationDialog(Get.context!);
+      if (userConfirmed) {
+        return File(pickedFiles.paths.first!);
+      }
     } else {
       UiUtilites.errorSnackbar('File selection failed'.tr,
           'Failed to select file, please try again.'.tr);

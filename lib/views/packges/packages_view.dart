@@ -40,6 +40,58 @@ class _PackagesScreenState extends State<PackagesScreen> {
                         },
                       ),
                     ),
+                    bottomNavigationBar: SizedBox(
+                      height: 75,
+                      width: double.infinity,
+                    ),
+                    floatingActionButtonLocation:
+                        FloatingActionButtonLocation.centerDocked,
+                    floatingActionButton: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.addplan)!.then((value) {
+                          controller.getAppUser();
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                color: Get.isDarkMode ? maincolor : white,
+                                shape: BoxShape.circle),
+                            child: Container(
+                              padding: EdgeInsets.all(6),
+                              width: 70,
+                              height: 70,
+                              decoration: BoxDecoration(
+                                  color: Get.isDarkMode ? maincolor : white,
+                                  borderRadius: BorderRadius.circular(40),
+                                  border: GradientBoxBorder(
+                                    gradient: LinearGradient(
+                                        colors: [borderTop, borderbottom],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomLeft),
+                                    width: 4,
+                                  )),
+                              child: Icon(
+                                Icons.add,
+                                color: borderbottom,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: GradientText2(
+                              text: 'Add New Package'.tr,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                     body: SafeArea(
                       child: Container(
                         padding: EdgeInsets.only(left: 15, right: 15),
@@ -88,7 +140,7 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                         height:
                                             MediaQuery.of(context).size.height *
                                                 0.88,
-                                                 width:
+                                        width:
                                             MediaQuery.of(context).size.width,
                                         padding: EdgeInsets.only(
                                             left: 12, right: 12),
@@ -101,48 +153,48 @@ class _PackagesScreenState extends State<PackagesScreen> {
                                       ),
                               ),
                             ),
-                            Padding(
-                              
-                              padding:
-                                  const EdgeInsets.only(top: 30, bottom: 30),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(AppRoutes.addplan)!.then((value) {
-                                    controller.getAppUser();
-                                  });
-                                },
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(90),
-                                        border: const GradientBoxBorder(
-                                          gradient: LinearGradient(colors: [
-                                            borderTop,
-                                            borderbottom
-                                          ]),
-                                          width: 1.5,
-                                        ),
-                                      ),
-                                      padding: EdgeInsets.all(25),
-                                      child: Icon(
-                                        Icons.add,
-                                        size: 30,
-                                        color: borderbottom,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 12.0),
-                                      child: GradientText2(
-                                        text: 'Add New Package'.tr,
-                                        size: 14.0,
-                                        weight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // Padding(
+
+                            //   padding:
+                            //       const EdgeInsets.only(top: 30, bottom: 30),
+                            //   child: GestureDetector(
+                            //     onTap: () {
+                            //       Get.toNamed(AppRoutes.addplan)!.then((value) {
+                            //         controller.getAppUser();
+                            //       });
+                            //     },
+                            //     child: Column(
+                            //       children: [
+                            //         Container(
+                            //           decoration: BoxDecoration(
+                            //             borderRadius: BorderRadius.circular(90),
+                            //             border: const GradientBoxBorder(
+                            //               gradient: LinearGradient(colors: [
+                            //                 borderTop,
+                            //                 borderbottom
+                            //               ]),
+                            //               width: 1.5,
+                            //             ),
+                            //           ),
+                            //           padding: EdgeInsets.all(25),
+                            //           child: Icon(
+                            //             Icons.add,
+                            //             size: 30,
+                            //             color: borderbottom,
+                            //           ),
+                            //         ),
+                            //         Padding(
+                            //           padding: const EdgeInsets.only(top: 12.0),
+                            //           child: GradientText2(
+                            //             text: 'Add New Package'.tr,
+                            //             size: 14.0,
+                            //             weight: FontWeight.w600,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

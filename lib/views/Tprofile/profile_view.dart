@@ -37,8 +37,6 @@ class _ProfileViewState extends State<ProfileView>
     });
   }
 
-
-
   @override
   void initState() {
     getpermission();
@@ -111,14 +109,34 @@ class _ProfileViewState extends State<ProfileView>
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: Colors.transparent.withOpacity(0.0),
-                                borderRadius: BorderRadius.circular(20)),
+                                color: Get.isDarkMode
+                                    ? bgContainer
+                                    : bgContainer.withOpacity(0.1),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20))),
                             // padding: const EdgeInsets.all(12.0),
                             child: Column(
                               children: [
-                                Padding(
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color(4292214271),
+                                        Color(4288538110),
+                                        Color(4289505535),
+                                        Color(4289494015),
+                                        Color(4289494015),
+                                        Color(4289491966),
+                                        Color(4289491966),
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+                                  ),
                                   padding: const EdgeInsets.only(
-                                      left: 15, right: 15, top: 15),
+                                      left: 15, right: 15, top: 15,bottom: 25),
                                   child: Row(
                                     children: [
                                       Container(
@@ -163,23 +181,21 @@ class _ProfileViewState extends State<ProfileView>
                                                 Text(
                                                   controller.currentUser!.name!,
                                                   style: TextStyle(
-                                                      color: Get.isDarkMode
-                                                          ? Colors.white
-                                                          : Colors.black,
+                                                      color:  Colors.white,
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 7),
-                                                  child: Image.asset(
-                                                    'assets/images/verified_tick.png',
-                                                    width: 20,
-                                                    height: 20,
-                                                  ),
-                                                )
+                                                // Padding(
+                                                //   padding:
+                                                //       const EdgeInsets.only(
+                                                //           left: 7),
+                                                //   child: Image.asset(
+                                                //     'assets/images/verified_tick.png',
+                                                //     width: 20,
+                                                //     height: 20,
+                                                //   ),
+                                                // )
                                               ],
                                             ),
                                             Container(
@@ -208,9 +224,7 @@ class _ProfileViewState extends State<ProfileView>
                                                         Icon(
                                                           Icons
                                                               .circle, // You can change this to any desired icon
-                                                          color: Get.isDarkMode
-                                                              ? Colors.white
-                                                              : Colors.black,
+                                                          color:  Colors.white,
                                                           size: 10,
                                                         ),
                                                         SizedBox(
@@ -219,10 +233,7 @@ class _ProfileViewState extends State<ProfileView>
                                                         Text(
                                                           category,
                                                           style: TextStyle(
-                                                            color: Get
-                                                                    .isDarkMode
-                                                                ? Colors.white
-                                                                : Colors.black,
+                                                            color: white,
                                                             fontSize:
                                                                 12, // Increased text size
                                                             fontWeight:
@@ -243,9 +254,7 @@ class _ProfileViewState extends State<ProfileView>
                                               child: Text(
                                                 controller.currentUser!.bio!,
                                                 style: TextStyle(
-                                                    color: Get.isDarkMode
-                                                        ? Colors.white
-                                                        : Colors.black,
+                                                    color: white,
                                                     fontSize: 11,
                                                     fontWeight:
                                                         FontWeight.w400),
@@ -260,7 +269,7 @@ class _ProfileViewState extends State<ProfileView>
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 15, right: 15, bottom: 10, top: 35),
+                                      left: 15, right: 15, bottom: 10, top: 10),
                                   child: Divider(
                                     thickness: 1,
                                     color: Get.isDarkMode

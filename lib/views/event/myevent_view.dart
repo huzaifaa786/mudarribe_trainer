@@ -205,15 +205,15 @@ class _MyEventState extends State<MyEvent> with TickerProviderStateMixin {
                                               imageUrl: controller
                                                   .events[index].imageUrl,
                                               onPressDelete: () {
-                                                UiUtilites.confirmAlert(
-                                                    context,
-                                                    'Are you sure you want to delete this event?'.tr
-                                                        .tr, () {
-                                                  controller.deleteEvent(
-                                                      controller.events[index]);
-                                                }, () {
-                                                  Get.back();
-                                                }, 'Yes'.tr, 'Cancel'.tr);
+                                                // UiUtilites.confirmAlert(
+                                                //     context,
+                                                //     'Are you sure you want to delete this event?'.tr
+                                                //         .tr, () {
+                                                //   controller.deleteEvent(
+                                                //       controller.events[index]);
+                                                // }, () {
+                                                //   Get.back();
+                                                // }, 'Yes'.tr, 'Cancel'.tr);
                                               },
                                               isClose: controller.events[index]
                                                           .eventStatus ==
