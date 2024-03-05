@@ -85,126 +85,195 @@ class _OrderScreenState extends State<OrderScreen> {
                             child: TabBarView(
                               children: [
                                 SingleChildScrollView(
-                                   controller: controller.scrollControllers,
+                                  controller: controller.scrollControllers,
                                   child: Column(
                                     children: [
                                       Container(
-                                            padding: EdgeInsets.only(left: 15, right: 15),
+                                        padding: EdgeInsets.only(
+                                            left: 15, right: 15),
                                         child: ListView.builder(
                                           shrinkWrap: true,
                                           physics: BouncingScrollPhysics(),
                                           itemCount: controller.orders.length,
                                           itemBuilder: (context, index) {
                                             return OrderCard(
+                                              profileImage: controller
+                                                          .orders[index].trainee.imageUrl,
                                               onTapSendPlan: controller
-                                                          .orders[index].order.type !=
+                                                          .orders[index]
+                                                          .order
+                                                          .type !=
                                                       'My_Plan'
                                                   ? () {
-                                                      if (controller.orders[index].package!
-                                                                  .category! ==
-                                                              'nutrition' ||
-                                                          controller.orders[index].package!
-                                                                  .category! ==
-                                                              'excercise') {
-                                                        Get.toNamed(AppRoutes.exercise,
-                                                            parameters: {
-                                                              'firebaseToken': controller
-                                                                  .orders[index]
-                                                                  .trainee
-                                                                  .firebaseToken!,
-                                                              "category": controller
+                                                      if (controller
                                                                   .orders[index]
                                                                   .package!
-                                                                  .category!,
-                                                              "userId": controller
-                                                                  .orders[index].trainee.id,
-                                                              "orderId": controller
-                                                                  .orders[index].order.id,
-                                                              'trainerName': controller
+                                                                  .category! ==
+                                                              'nutrition' ||
+                                                          controller
                                                                   .orders[index]
-                                                                  .trainer
-                                                                  .name
-                                                                  .toString(),
+                                                                  .package!
+                                                                  .category! ==
+                                                              'excercise') {
+                                                        Get.toNamed(
+                                                            AppRoutes.exercise,
+                                                            parameters: {
+                                                              'firebaseToken':
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .trainee
+                                                                      .firebaseToken!,
+                                                              "category":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .package!
+                                                                      .category!,
+                                                              "userId":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .trainee
+                                                                      .id,
+                                                              "orderId":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .order
+                                                                      .id,
+                                                              'trainerName':
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .trainer
+                                                                      .name
+                                                                      .toString(),
                                                             });
                                                       } else {
-                                                        Get.toNamed(AppRoutes.sendplanhome,
+                                                        Get.toNamed(
+                                                            AppRoutes
+                                                                .sendplanhome,
                                                             parameters: {
-                                                              "userId": controller
-                                                                  .orders[index].trainee.id,
-                                                              "firebaseToken": controller
-                                                                  .orders[index]
-                                                                  .trainee
-                                                                  .firebaseToken
-                                                                  .toString(),
-                                                              "trainerName": controller
-                                                                  .orders[index]
-                                                                  .trainer
-                                                                  .name
-                                                                  .toString(),
-                                                              "orderId": controller
-                                                                  .orders[index].order.id
+                                                              "userId":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .trainee
+                                                                      .id,
+                                                              "firebaseToken":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .trainee
+                                                                      .firebaseToken
+                                                                      .toString(),
+                                                              "trainerName":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .trainer
+                                                                      .name
+                                                                      .toString(),
+                                                              "orderId":
+                                                                  controller
+                                                                      .orders[
+                                                                          index]
+                                                                      .order
+                                                                      .id
                                                             });
                                                       }
                                                     }
                                                   : () {
-                                                      Get.toNamed(AppRoutes.exercise,
+                                                      Get.toNamed(
+                                                          AppRoutes.exercise,
                                                           parameters: {
-                                                            'firebaseToken': controller
-                                                                .orders[index]
-                                                                .trainee
-                                                                .firebaseToken!,
+                                                            'firebaseToken':
+                                                                controller
+                                                                    .orders[
+                                                                        index]
+                                                                    .trainee
+                                                                    .firebaseToken!,
                                                             "category": controller
                                                                 .orders[index]
                                                                 .personalPlan!
                                                                 .category!,
                                                             "userId": controller
-                                                                .orders[index].trainee.id,
-                                                            "orderId": controller
-                                                                .orders[index].order.id,
-                                                            'trainerName': controller
-                                                                .orders[index].trainer.name
-                                                                .toString(),
+                                                                .orders[index]
+                                                                .trainee
+                                                                .id,
+                                                            "orderId":
+                                                                controller
+                                                                    .orders[
+                                                                        index]
+                                                                    .order
+                                                                    .id,
+                                                            'trainerName':
+                                                                controller
+                                                                    .orders[
+                                                                        index]
+                                                                    .trainer
+                                                                    .name
+                                                                    .toString(),
                                                           });
                                                     },
                                               onTapMessage: () {
                                                 Get.to(
                                                   () => ChatPage(
-                                                    arguments: ChatPageArguments(
+                                                    arguments:
+                                                        ChatPageArguments(
                                                       peerId: controller
-                                                          .orders[index].trainee.id,
-                                                      peerAvatar:
-                                                          'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
+                                                          .orders[index]
+                                                          .trainee
+                                                          .id,
+                                                      peerAvatar: controller
+                                                                  .orders[index]
+                                                                  .trainee
+                                                                  .imageUrl !=
+                                                              ''
+                                                          ? controller
+                                                              .orders[index]
+                                                              .trainee
+                                                              .imageUrl!
+                                                          : 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
                                                       peerNickname: controller
-                                                          .orders[index].trainee.name!,
+                                                          .orders[index]
+                                                          .trainee
+                                                          .name!,
                                                     ),
                                                   ),
                                                 );
                                               },
-                                              userName:
-                                                  controller.orders[index].trainee.name,
+                                              userName: controller
+                                                  .orders[index].trainee.name,
                                               packageName: controller
-                                                          .orders[index].order.type ==
+                                                          .orders[index]
+                                                          .order
+                                                          .type ==
                                                       'My_Plan'
-                                                  ? controller
-                                                      .orders[index].personalPlan!.name
-                                                  : controller.orders[index].package!.name,
-                                              duration:
-                                                  controller.orders[index].order.type ==
-                                                          'My_Plan'
-                                                      ? controller.orders[index]
-                                                          .personalPlan!.duration
-                                                      : controller
-                                                          .orders[index].package!.duration,
-                                              price: controller.orders[index].order.type ==
+                                                  ? controller.orders[index]
+                                                      .personalPlan!.name
+                                                  : controller.orders[index]
+                                                      .package!.name,
+                                              duration: controller.orders[index]
+                                                          .order.type ==
                                                       'My_Plan'
-                                                  ? controller
-                                                      .orders[index].personalPlan!.price
-                                                  : controller.orders[index].package!.price,
+                                                  ? controller.orders[index]
+                                                      .personalPlan!.duration
+                                                  : controller.orders[index]
+                                                      .package!.duration,
+                                              price: controller.orders[index]
+                                                          .order.type ==
+                                                      'My_Plan'
+                                                  ? controller.orders[index]
+                                                      .personalPlan!.price
+                                                  : controller.orders[index]
+                                                      .package!.price,
                                             );
                                           },
                                         ),
                                       ),
-                                       controller.isMoreItemFetching == true
+                                      controller.isMoreItemFetching == true
                                           ? SizedBox(
                                               height: 50,
                                               child: CupertinoActivityIndicator(
@@ -217,7 +286,8 @@ class _OrderScreenState extends State<OrderScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 10, right: 10),
                                   child: FutureBuilder<List<CombinedEventData>>(
-                                    future: EventApi.fetchCombinedTrainerNotifications(),
+                                    future: EventApi
+                                        .fetchCombinedTrainerNotifications(),
                                     builder: (context, snapshot) {
                                       if (snapshot.connectionState ==
                                           ConnectionState.waiting) {
@@ -232,8 +302,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       } else if (!snapshot.hasData ||
                                           snapshot.data!.isEmpty) {
                                         return Center(
-                                          child:
-                                              Text('No events sold.'.tr),
+                                          child: Text('No events sold.'.tr),
                                         );
                                       } else {
                                         return ListView.builder(
@@ -244,25 +313,36 @@ class _OrderScreenState extends State<OrderScreen> {
                                             var combineEvent =
                                                 snapshot.data![index];
                                             return EventCard(
+                                              profileImage:
+                                                  combineEvent.trainee.imageUrl,
                                               onTapMessage: () {
                                                 Get.to(
                                                   () => ChatPage(
                                                     arguments:
                                                         ChatPageArguments(
-                                                      peerId: combineEvent.trainee
-                                                          .id,
-                                                      peerAvatar:
-                                                          'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
-                                                      peerNickname: combineEvent.trainee
-                                                          .name!,
+                                                      peerId: combineEvent
+                                                          .trainee.id,
+                                                      peerAvatar: combineEvent
+                                                                  .trainee
+                                                                  .imageUrl !=
+                                                              ''
+                                                          ? combineEvent
+                                                              .trainee.imageUrl!
+                                                          : 'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg',
+                                                      peerNickname: combineEvent
+                                                          .trainee.name!,
                                                     ),
                                                   ),
                                                 );
                                               },
-                                              userName: combineEvent.trainee.name ,
-                                              eventName: combineEvent.event.title,
+                                              userName:
+                                                  combineEvent.trainee.name,
+                                              eventName:
+                                                  combineEvent.event.title,
                                               duration: combineEvent.event.date,
-                                              price: combineEvent.event_order.amount.toString(),
+                                              price: combineEvent
+                                                  .event_order.amount
+                                                  .toString(),
                                             );
                                           },
                                         );
@@ -273,7 +353,6 @@ class _OrderScreenState extends State<OrderScreen> {
                               ],
                             ),
                           ),
-                       
                         ],
                       ),
                     ),
@@ -286,5 +365,4 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 }
 
-class FirebaseFirestore {
-}
+class FirebaseFirestore {}

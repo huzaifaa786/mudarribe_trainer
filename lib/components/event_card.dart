@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_adjacent_string_concatenation
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
@@ -41,15 +42,27 @@ class EventCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(45),
-                        child: Image.asset(
-                          'assets/images/person.png',
-                          height: 35,
-                          width: 35,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      profileImage == ''
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(45),
+                              child: Image.asset(
+                                'assets/images/person.png',
+                                height: 35,
+                                width: 35,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: 18,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(18),
+                                child: Image.network(
+                                  profileImage,
+                                  height: 36,
+                                  width: 36,
+                                ),
+                              ),
+                            ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
@@ -62,8 +75,8 @@ class EventCard extends StatelessWidget {
                   ),
                   InkWell(
                       onTap: onTapMessage,
-                      child: Image.asset(
-                        'assets/images/chat.png',
+                      child: SvgPicture.asset(
+                        'assets/images/chat.svg',
                         color: Get.isDarkMode ? Colors.white : maincolor,
                       )),
                 ],

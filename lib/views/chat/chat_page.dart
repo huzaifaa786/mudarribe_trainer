@@ -789,38 +789,44 @@ class ChatPageState extends State<ChatPage> {
                 children: <Widget>[
                   isLastMessageLeft(index)
                       ? Material(
-                          // child: Image.network(
-                          //   widget.arguments.peerAvatar,
-                          //   loadingBuilder: (BuildContext context, Widget child,
-                          //       ImageChunkEvent? loadingProgress) {
-                          //     if (loadingProgress == null) return child;
-                          //     return Center(
-                          //       child: CircularProgressIndicator(
-                          //         color: Colors.grey[300],
-                          //         value: loadingProgress.expectedTotalBytes !=
-                          //                 null
-                          //             ? loadingProgress.cumulativeBytesLoaded /
-                          //                 loadingProgress.expectedTotalBytes!
-                          //             : null,
-                          //       ),
-                          //     );
-                          //   },
-                          //   errorBuilder: (context, object, stackTrace) {
-                          //     return Icon(
-                          //       Icons.account_circle,
-                          //       size: 35,
-                          //       color: Colors.grey[300],
-                          //     );
-                          //   },
-                          //   width: 35,
-                          //   height: 35,
-                          //   fit: BoxFit.cover,
-                          // ),
-                          child: Icon(
-                            Icons.account_circle,
-                            size: 35,
-                            color: Colors.grey[300],
-                          ),
+                          child: widget.arguments.peerAvatar !=
+                                  'https://dcblog.b-cdn.net/wp-content/uploads/2021/02/Full-form-of-URL-1.jpg'
+                              ? Image.network(
+                                  widget.arguments.peerAvatar,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.grey[300],
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                loadingProgress
+                                                    .expectedTotalBytes!
+                                            : null,
+                                      ),
+                                    );
+                                  },
+                                  errorBuilder: (context, object, stackTrace) {
+                                    return Icon(
+                                      Icons.account_circle,
+                                      size: 35,
+                                      color: Colors.grey[300],
+                                    );
+                                  },
+                                  width: 35,
+                                  height: 35,
+                                  fit: BoxFit.cover,
+                                )
+                              : Icon(
+                                  Icons.account_circle,
+                                  size: 35,
+                                  color: Colors.grey[300],
+                                ),
                           borderRadius: BorderRadius.all(
                             Radius.circular(18),
                           ),
