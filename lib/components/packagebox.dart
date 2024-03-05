@@ -38,7 +38,7 @@ class PackageCard extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: ontap,
-                  child: Image.asset('assets/images/edit.png'),
+                  child: SvgPicture.asset('assets/images/edit.svg'),
                 ),
                 // InkWell(
                 //   onTap: onPressed,
