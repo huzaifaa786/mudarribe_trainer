@@ -2,13 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:mudarribe_trainer/values/color.dart';
 
 class MainCard extends StatelessWidget {
-  const MainCard({super.key, this.name, this.ontap, this.image, this.dynamicColor = false, this.bgColor = white});
+  const MainCard(
+      {super.key,
+      this.name,
+      this.ontap,
+      this.image,
+      this.dynamicColor = false,
+      this.bgColor = white});
   final ontap;
   final name;
   final image;
@@ -63,23 +70,29 @@ class MainCard extends StatelessWidget {
                 child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: dynamicColor ? bgColor : Get.isDarkMode ? Colors.black : lightbgColor),
+                        color: dynamicColor
+                            ? bgColor
+                            : Get.isDarkMode
+                                ? Colors.black
+                                : lightbgColor),
                     child: SvgPicture.asset(
                       image,
                       fit: BoxFit.scaleDown,
                     ))),
+            Gap(9),
             Text(
               name,
-              maxLines: 1,
+              maxLines: 2,
               // overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontFamily: "Montserrat",
                 fontSize: box.read('Locale') == 'en' ? 14 : 10,
                 fontWeight: FontWeight.w700,
-                height: 46 / 14,
+                // height: 46 / 14,
               ),
               textAlign: TextAlign.center,
-            )
+            ),
+            Gap(9),
           ],
         ),
       ),

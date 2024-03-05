@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:mudarribe_trainer/routes/app_routes.dart';
 
 class MainUserCard extends StatefulWidget {
    const MainUserCard(
@@ -83,12 +85,17 @@ class _MainUserCardState extends State<MainUserCard> {
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                widget.name,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+              InkWell(
+                onTap: () {
+                  Get.toNamed(AppRoutes.profile);
+                },
+                child: Text(
+                  widget.name,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               SizedBox(height: 10),

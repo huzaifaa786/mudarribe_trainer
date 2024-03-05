@@ -18,7 +18,7 @@
         android:label="Mudarribe Trainer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:enableOnBackInvokedCallback="true">
+        android:enableOnBackInvokedCallback="false">
          <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyBOr3bXgN2bj9eECzSudyj_rgIFjyXkdn8"/>
         <activity
