@@ -18,6 +18,8 @@ class ReportProblemController extends GetxController {
   final _reportStorageApi = ReportStorageApi();
   final _reportService = ReportService();
   TextEditingController report = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  int? i = 0;
 
   Future reportuploadimage() async {
     final tempImage = await _imageSelectorApi.selectImage();

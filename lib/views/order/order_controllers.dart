@@ -39,16 +39,11 @@
 // ignore_for_file: unused_field
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mudarribe_trainer/api/auth_api.dart';
 import 'package:mudarribe_trainer/api/order_api.dart';
 import 'package:mudarribe_trainer/helpers/loading_helper.dart';
-import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/combine_order.dart';
-
-import 'package:mudarribe_trainer/services/user_service.dart';
 
 class OrderController extends GetxController {
   static OrderController instance = Get.find();
@@ -61,7 +56,7 @@ class OrderController extends GetxController {
   @override
   void onInit() {
     fetchOrders();
-    markOrdersAsSeen();
+    // markOrdersAsSeen();
     scrollControllers.addListener(scrollListener);
     super.onInit();
   }
@@ -80,21 +75,20 @@ class OrderController extends GetxController {
     }
   }
 
-    void markOrdersAsSeen() async {
+  void markOrdersAsSeen(id) async {
     try {
       // Update all orders to mark them as seen
-      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
-          .collection('orders')
-          .where('trainerId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-          .where('seen', isEqualTo: false)
-          .get();
+      await _firestore.collection('orders').doc(id).update({'seen': true});
+      // .where('order', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+      // .where('seen', isEqualTo: false)
+      // .get();
 
-      List<DocumentSnapshot<Map<String, dynamic>>> documents =
-          querySnapshot.docs;
+      // List<DocumentSnapshot<Map<String, dynamic>>> documents =
+      //     querySnapshot.docs;
 
-      for (DocumentSnapshot<Map<String, dynamic>> document in documents) {
-        await document.reference.update({'seen': true});
-      }
+      // for (DocumentSnapshot<Map<String, dynamic>> document in documents) {
+      //   await document.reference.update({'seen': true});
+      // }
     } catch (e) {
       print('Error marking orders as seen: $e');
     }

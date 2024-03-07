@@ -89,7 +89,8 @@ dependencies:
     git:
       url: https://github.com/huzaifaa786/google_translator
   translator: ^0.1.7
-  # whatsapp_story_editor: ^0.0.6
+  custom_refresh_indicator: ^3.0.0
+
 
 dev_dependencies:
   flutter_test:

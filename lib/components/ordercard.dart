@@ -1,17 +1,23 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_adjacent_string_concatenation
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
 import 'package:mudarribe_trainer/components/gradientext.dart';
 import 'package:mudarribe_trainer/values/color.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard(
       {super.key,
       this.userName,
+      this.fromDate,
+      this.toDate,
+      this.expire,
+      this.seen,
+      this.sent,
       this.profileImage,
       this.onTapMessage,
       this.onTapSendPlan,
@@ -22,10 +28,15 @@ class OrderCard extends StatelessWidget {
   final userName;
   final profileImage;
   final onTapMessage;
+  final fromDate;
+  final toDate;
+  final expire;
   final onTapSendPlan;
   final packageName;
   final price;
   final duration;
+  final seen;
+  final sent;
 
   @override
   Widget build(BuildContext context) {
@@ -46,34 +57,47 @@ class OrderCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      profileImage == ''?
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(45),
-                        child: Image.asset(
-                          'assets/images/person.png',
-                          height: 35,
-                          width: 35,
-                          color: Colors.grey,
-                        ),
-                      ):CircleAvatar(
-                        radius: 18,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(45),
-                          child: Image.network(
-                            profileImage,
-                            height: 36,
-                            width: 36,
-                          ),
-                        ),
-                      ),
-                      Padding(
+                      profileImage == ''
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(45),
+                              child: Image.asset(
+                                'assets/images/person.png',
+                                height: 35,
+                                width: 35,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: 18,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(45),
+                                child: Image.network(
+                                  profileImage,
+                                  height: 36,
+                                  width: 36,
+                                ),
+                              ),
+                            ),
+                      Container(
+                        constraints: BoxConstraints(maxWidth: Get.width * 0.5),
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           userName,
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w700),
                         ),
-                      )
+                      ),
+                      seen == false
+                          ? Container(
+                              padding: EdgeInsets.only(left: 6, right: 6),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: Colors.red)),
+                              child: Text('New',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12)))
+                          : SizedBox()
                     ],
                   ),
                   InkWell(
@@ -104,21 +128,27 @@ class OrderCard extends StatelessWidget {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GradientText2(
-                    text: 'Price'.tr + ':',
+                  Row(
+                    children: [
+                      GradientText2(
+                        text: 'Price'.tr + ':',
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: Text(
+                            price + ' AED'.tr,
+                            style: const TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.left,
+                          ))
+                    ],
                   ),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8),
-                      child: Text(
-                        price + ' AED'.tr,
-                        style: const TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.left,
-                      ))
+                  sent == true ? Text('✅') : Container(),
                 ],
               ),
               Row(
@@ -139,18 +169,44 @@ class OrderCard extends StatelessWidget {
                       ))
                 ],
               ),
-              InkWell(
-                onTap: onTapSendPlan,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GradientText2(
-                      text: 'Send Plan'.tr,
-                      size: 16.0,
-                      weight: FontWeight.w700,
-                    ),
-                  ],
-                ),
+              Gap(4),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      GradientText2(
+                        text: 'Expiry date'.tr + ':',
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 8),
+                          child: Text(
+                            '$fromDate ' + 'to'.tr + ' $toDate',
+                            style: const TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.left,
+                          ))
+                    ],
+                  ),
+                  expire == true
+                      ? InkWell(
+                          onTap: onTapSendPlan,
+                          child: GradientText2(
+                            text: 'Send Plan'.tr,
+                            size: 16.0,
+                            weight: FontWeight.w700,
+                          ),
+                        )
+                      : GradientText2(
+                          text: 'Ended'.tr,
+                          size: 16.0,
+                          weight: FontWeight.w700,
+                        ),
+                ],
               )
             ],
           ),

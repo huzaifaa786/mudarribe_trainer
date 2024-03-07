@@ -95,7 +95,6 @@ class ExercisesController extends GetxController {
   Future addplan() async {
     busyController.setBusy(true);
     final planId = DateTime.now().millisecondsSinceEpoch.toString();
-    print('$category ))))))))))))))))))))))))))))))))))))))))');
     await _planService.createPlan(
         plan: Plan(
             id: planId,

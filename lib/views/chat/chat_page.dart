@@ -361,12 +361,12 @@ class ChatPageState extends State<ChatPage> {
                       ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Icon(Icons.done_all,
-                              color: Get.isDarkMode ? white : Colors.black),
+                              color:borderTop,size: 16,),
                         ) // Message seen
                       : Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Icon(Icons.done,
-                              color: Get.isDarkMode ? white : Colors.black),
+                              color: Get.isDarkMode ? white : Colors.black,size: 16,),
                         ),
                   messageChat.type == TypeMessage.text
                       // Text

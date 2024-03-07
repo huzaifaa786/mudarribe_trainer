@@ -8,12 +8,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mudarribe_trainer/api/event_api.dart';
 import 'package:mudarribe_trainer/components/basic_loader.dart';
 import 'package:mudarribe_trainer/components/event_card.dart';
-import 'package:mudarribe_trainer/components/loading_indicator.dart';
 import 'package:mudarribe_trainer/components/ordercard.dart';
 import 'package:mudarribe_trainer/components/title_topbar.dart';
 import 'package:mudarribe_trainer/models/event_data_combined.dart';
 import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/values/color.dart';
+import 'package:mudarribe_trainer/values/time.dart';
 import 'package:mudarribe_trainer/views/chat/chat_page.dart';
 import 'package:mudarribe_trainer/views/event/myevent_controller.dart';
 import 'package:mudarribe_trainer/views/order/order_controllers.dart';
@@ -97,14 +97,53 @@ class _OrderScreenState extends State<OrderScreen> {
                                           itemCount: controller.orders.length,
                                           itemBuilder: (context, index) {
                                             return OrderCard(
+                                              sent:
+                                                  controller.orders[index].sent,
+                                              expire: hideAndShowButtonOnTime(
+                                                  controller
+                                                      .orders[index].order.id,
+                                                  controller.orders[index].order
+                                                              .type !=
+                                                          'My_Plan'
+                                                      ? controller.orders[index]
+                                                          .package!.duration!
+                                                      : controller
+                                                          .orders[index]
+                                                          .personalPlan!
+                                                          .duration!),
+                                              fromDate: timeConverstion(
+                                                  controller
+                                                      .orders[index].order.id),
+                                              toDate: calculateNewDate(
+                                                  controller
+                                                      .orders[index].order.id,
+                                                  controller.orders[index].order
+                                                              .type !=
+                                                          'My_Plan'
+                                                      ? controller.orders[index]
+                                                          .package!.duration!
+                                                      : controller
+                                                          .orders[index]
+                                                          .personalPlan!
+                                                          .duration!),
+                                              seen: controller
+                                                  .orders[index].order.seen,
                                               profileImage: controller
-                                                          .orders[index].trainee.imageUrl,
+                                                  .orders[index]
+                                                  .trainee
+                                                  .imageUrl,
                                               onTapSendPlan: controller
                                                           .orders[index]
                                                           .order
                                                           .type !=
                                                       'My_Plan'
                                                   ? () {
+                                                      controller
+                                                          .markOrdersAsSeen(
+                                                              controller
+                                                                  .orders[index]
+                                                                  .order
+                                                                  .id);
                                                       if (controller
                                                                   .orders[index]
                                                                   .package!
@@ -116,8 +155,9 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   .category! ==
                                                               'excercise') {
                                                         Get.toNamed(
-                                                            AppRoutes.exercise,
-                                                            parameters: {
+                                                                AppRoutes
+                                                                    .exercise,
+                                                                parameters: {
                                                               'firebaseToken':
                                                                   controller
                                                                       .orders[
@@ -149,12 +189,21 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                       .trainer
                                                                       .name
                                                                       .toString(),
-                                                            });
+                                                            })!
+                                                            .then((value) {
+                                                          controller
+                                                                  .lastDocument =
+                                                              null;
+                                                          controller.orders =
+                                                              [];
+                                                          controller
+                                                              .fetchOrders();
+                                                        });
                                                       } else {
                                                         Get.toNamed(
-                                                            AppRoutes
-                                                                .sendplanhome,
-                                                            parameters: {
+                                                                AppRoutes
+                                                                    .sendplanhome,
+                                                                parameters: {
                                                               "userId":
                                                                   controller
                                                                       .orders[
@@ -181,13 +230,32 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                           index]
                                                                       .order
                                                                       .id
-                                                            });
+                                                            })!
+                                                            .then((value) {
+                                                          controller
+                                                                  .lastDocument =
+                                                              null;
+                                                          controller.orders =
+                                                              [];
+                                                          controller
+                                                                  .lastDocument =
+                                                              null;
+                                                          controller
+                                                              .fetchOrders();
+                                                        });
                                                       }
                                                     }
                                                   : () {
+                                                      controller
+                                                          .markOrdersAsSeen(
+                                                              controller
+                                                                  .orders[index]
+                                                                  .order
+                                                                  .id);
                                                       Get.toNamed(
-                                                          AppRoutes.exercise,
-                                                          parameters: {
+                                                              AppRoutes
+                                                                  .exercise,
+                                                              parameters: {
                                                             'firebaseToken':
                                                                 controller
                                                                     .orders[
@@ -215,7 +283,15 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                     .trainer
                                                                     .name
                                                                     .toString(),
-                                                          });
+                                                          })!
+                                                          .then((value) {
+                                                        controller
+                                                                .lastDocument =
+                                                            null;
+                                                        controller.orders = [];
+                                                        controller
+                                                            .fetchOrders();
+                                                      });
                                                     },
                                               onTapMessage: () {
                                                 Get.to(
@@ -245,7 +321,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                 );
                                               },
                                               userName: controller
-                                                  .orders[index].trainee.name,
+                                                  .orders[index].order.id,
                                               packageName: controller
                                                           .orders[index]
                                                           .order

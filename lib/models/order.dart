@@ -5,6 +5,7 @@ class TrainerOrder {
   String? userId;
   String? type;
   int? amount;
+  bool? seen;
 
   TrainerOrder({
     required this.id,
@@ -13,6 +14,7 @@ class TrainerOrder {
     this.type,
     this.userId,
     this.amount,
+    required this.seen,
   });
 
   TrainerOrder.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class TrainerOrder {
     type = json['type'];
     userId = json['userId'];
     amount = json['amount'] ?? '';
+    seen = json['seen'] ?? false;
   }
 
   // Map<String, dynamic> toJson() {

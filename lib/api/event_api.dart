@@ -142,6 +142,7 @@ class EventApi {
         .where(FieldPath.documentId, whereIn: userIds)
         .get()
         .then((querySnapshot) {
+          print(querySnapshot);
       querySnapshot.docs.forEach((doc) {
         usersMap[doc.id] =
             TraineeProfile.fromJson(doc.data() as Map<String, dynamic>);

@@ -276,9 +276,17 @@ class LocaleString extends Translations {
           'Kettle bell': 'Kettle bell',
           'Dark': 'Dark',
           'Theme': 'Theme',
-          'Light': 'Light'
+          'Light': 'Light',
+          'What’s the suggestion?': 'What’s the suggestion?',
+          'Suggestion Text': 'Suggestion Text',
+          'Suggestion': 'Suggestion',
+                 'Expiry date': 'Expiry date',
         },
         'ar_AE': {
+          'Expiry date': 'تاريخ الإنتهاء',
+          'Suggestion': 'إقتراح',
+          'Suggestion Text': 'نص الإقتراح',
+          'What’s the suggestion?': 'ما هو الإقتراح',
           'Dark': 'غامق',
           'Light': 'فاتح',
           'Theme': 'نمط',

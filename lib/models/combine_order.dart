@@ -12,6 +12,7 @@ class CombinedOrderData {
   final Package? package;
   final PersonalPlan? personalPlan;
   final DocumentSnapshot lastdoc;
+  final bool sent;
 
   CombinedOrderData({
     required this.trainer,
@@ -19,6 +20,7 @@ class CombinedOrderData {
     required this.order,
     this.package,
     this.personalPlan,
-    required this.lastdoc
+    required this.lastdoc,
+    required this.sent
   });
 }
