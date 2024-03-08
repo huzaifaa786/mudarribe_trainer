@@ -108,10 +108,11 @@ class _ProfileViewState extends State<ProfileView>
                         // padding: const EdgeInsets.only(left: 15, right: 15),
                         children: [
                           Container(
+                            // margin: EdgeInsets.only(left: 8,right: 8),
                             decoration: BoxDecoration(
                                 color: Get.isDarkMode
                                     ? bgContainer
-                                    : bgContainer.withOpacity(0.1),
+                                    : white.withOpacity(0.2),
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20),
                                     topRight: Radius.circular(20))),

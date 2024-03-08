@@ -14,7 +14,6 @@ class BannerApi {
           .limit(1)
           .get()
           .then((value) => value.docs[0]);
-      print(docSnapshot.data());
 
       return BannerCharges.fromJson(docSnapshot.data() as Map<String, dynamic>);
     } on PlatformException catch (e) {

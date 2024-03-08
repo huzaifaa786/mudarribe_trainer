@@ -67,7 +67,6 @@ class OrderController extends GetxController {
     double scrollThreshold = maxScroll * 0.8;
 
     if (currentScroll >= scrollThreshold) {
-      print(lastDocument);
       if (lastDocument != null) {
         fetchMoreOrders(lastDocument);
         lastDocument = null;
@@ -79,16 +78,6 @@ class OrderController extends GetxController {
     try {
       // Update all orders to mark them as seen
       await _firestore.collection('orders').doc(id).update({'seen': true});
-      // .where('order', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-      // .where('seen', isEqualTo: false)
-      // .get();
-
-      // List<DocumentSnapshot<Map<String, dynamic>>> documents =
-      //     querySnapshot.docs;
-
-      // for (DocumentSnapshot<Map<String, dynamic>> document in documents) {
-      //   await document.reference.update({'seen': true});
-      // }
     } catch (e) {
       print('Error marking orders as seen: $e');
     }
@@ -103,13 +92,11 @@ class OrderController extends GetxController {
     orders = await OrderApi.fetchTrainerOrders(lastDocument: lastDocument);
     if (orders.isNotEmpty) {
       lastDocument = orders.last.lastdoc;
-      print(lastDocument);
       isMoreItemFetching = true;
     }
     if (orders.isEmpty) {
       isMoreItemFetching = false;
     }
-    print(orders);
     busyIndicator = false;
     update();
   }

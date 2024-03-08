@@ -19,7 +19,7 @@ class PersonalPlan {
     trainerId = json[trainerId];
     name = json['name'];
     price = json['price'];
-    duration = json['duration'];
+    duration = json['duration'] ?? 'One Month';
     category = json['category'];
   }
 

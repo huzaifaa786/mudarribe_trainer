@@ -13,6 +13,7 @@ class OrderCard extends StatelessWidget {
   const OrderCard(
       {super.key,
       this.userName,
+      this.id,
       this.fromDate,
       this.toDate,
       this.expire,
@@ -26,6 +27,7 @@ class OrderCard extends StatelessWidget {
       this.price});
 
   final userName;
+  final id;
   final profileImage;
   final onTapMessage;
   final fromDate;
@@ -68,24 +70,45 @@ class OrderCard extends StatelessWidget {
                               ),
                             )
                           : CircleAvatar(
+                            backgroundColor: bgcontainer1,
                               radius: 18,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(45),
-                                child: Image.network(
-                                  profileImage,
-                                  height: 36,
-                                  width: 36,
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(45),
+                                  child: Image.network(
+                                    profileImage,
+                                    height: 36,
+                                    width: 36,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
-                      Container(
-                        constraints: BoxConstraints(maxWidth: Get.width * 0.5),
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          userName,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w700),
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            constraints: BoxConstraints(maxWidth: Get.width * 0.5),
+                            padding: const EdgeInsets.only(left: 10,right: 10),
+                            child: Text(
+                              id,
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          Container(
+                            constraints: BoxConstraints(maxWidth: Get.width * 0.5),
+                            padding: const EdgeInsets.only(left: 10,right: 10),
+                            child: Text(
+                              userName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ],
                       ),
                       seen == false
                           ? Container(

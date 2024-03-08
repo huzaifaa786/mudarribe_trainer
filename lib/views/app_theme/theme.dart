@@ -30,7 +30,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
 
   @override
   void initState() {
-    // print(Get.locale);
     GetStorage box = GetStorage();
     box.read('theme') == 'light';
     _site = box.read('theme') != 'dark' ? themeMethod.Light : themeMethod.Dark;

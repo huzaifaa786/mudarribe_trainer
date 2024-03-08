@@ -19,10 +19,17 @@ class ImageSelectorApi {
     } else {
       UiUtilites.errorSnackbar('Image selection failed'.tr,
           'Failed to select image, please try again.'.tr);
-      // throw ImageSelectorApiException(
-      //   title: 'Image selection failed',
-      //   message: 'Failed to select image, please try again.',
-      // );
+    }
+  }
+
+  selectImageForCropper() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+        return File(pickedFile.path);
+    } else {
+      UiUtilites.errorSnackbar('Image selection failed'.tr,
+          'Failed to select image, please try again.'.tr);
     }
   }
 

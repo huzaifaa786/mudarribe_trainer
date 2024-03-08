@@ -54,12 +54,16 @@ class EventCard extends StatelessWidget {
                             )
                           : CircleAvatar(
                               radius: 18,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(18),
-                                child: Image.network(
-                                  profileImage,
-                                  height: 36,
-                                  width: 36,
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(18),
+                                  child: Image.network(
+                                    profileImage,
+                                    height: 36,
+                                    width: 36,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),

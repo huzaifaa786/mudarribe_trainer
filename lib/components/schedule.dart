@@ -76,11 +76,8 @@ class Scheduleinput extends StatelessWidget {
               keyboardType: type,
               validator: (value) {
                 if (value!.isEmpty) {
-                  print('object');
                   return '';
                 }
-                print('object******');
-
                 return null;
               },
               decoration: InputDecoration(

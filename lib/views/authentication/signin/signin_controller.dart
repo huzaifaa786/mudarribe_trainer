@@ -67,7 +67,7 @@ class SignInController extends GetxController {
           obscureTextPassword = true;
           var token = await FirebaseMessaging.instance.getToken();
           await updateUser(id: user.uid, user: {"firebaseToken": token});
-          Get.offNamed(AppRoutes.homeScreen);
+          Get.offAllNamed(AppRoutes.homeScreen);
         } else {
           UiUtilites.errorSnackbar(
               'Pending Approval'.tr, 'Trainer not approved yet from admin'.tr);

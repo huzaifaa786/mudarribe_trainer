@@ -112,12 +112,10 @@ class PostCard extends StatelessWidget {
                               context,
                               "Are you sure that you want to delete this post ?"
                                   .tr, () async {
-                            print('object $postId');
                             DocumentReference documentRef =
                                 await FirebaseFirestore.instance
                                     .collection('trainer_posts')
                                     .doc(postId);
-                            print('$documentRef');
                             Get.back();
                             await documentRef.delete();
                             Get.back();

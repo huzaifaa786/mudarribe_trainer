@@ -18,7 +18,6 @@ class PlanApi {
 
   Future<void> createPlan(Plan plan) async {
     try {
-      print(plan.toJson());
       await _trainerpalnCollection.doc(plan.id).set(plan.toJson());
     } on PlatformException catch (e) {
       throw DatabaseApiException(
@@ -103,32 +102,32 @@ class PlanApi {
           .where('trainerId', isEqualTo: trainerId)
           .where('category', isEqualTo: category)
           .where('traineeId', isEqualTo: traineeId)
-          .where('orderId', isEqualTo: orderId)
+          // .where('orderId', isEqualTo: orderId)
           .get();
+
       List<Plan> plans = [];
+
       for (var doc in result.docs) {
-        String fileLength = '0';
-        String videoLength = '0';
         final planData = doc.data() as Map<String, dynamic>;
 
-        final fileResult = await _trainerFilesCollection
+        final pdfResult = await _trainerFilesCollection
             .where('planId', isEqualTo: doc.id)
             .where('fileType', isEqualTo: 'pdf')
             .get();
 
-        final videoResult = await _trainerFilesCollection
+        final mp4Result = await _trainerFilesCollection
             .where('planId', isEqualTo: doc.id)
             .where('fileType', isEqualTo: 'mp4')
             .get();
-        if (fileResult.docs.isNotEmpty || videoResult.docs.isNotEmpty) {
-          fileLength = fileResult.docs.length.toString();
-          videoLength = videoResult.docs.length.toString();
-        }
+
+        String fileLength = pdfResult.docs.length.toString();
+        String videoLength = mp4Result.docs.length.toString();
+
         planData['description'] =
             'Files'.tr + '$fileLength ,' + 'videos'.tr + ' $videoLength ';
         plans.add(Plan.fromJson(planData));
       }
-
+      plans.sort((a, b) => b.id.compareTo(a.id));
       return plans;
     } on PlatformException catch (e) {
       throw DatabaseApiException(

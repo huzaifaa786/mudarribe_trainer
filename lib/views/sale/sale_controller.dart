@@ -57,8 +57,6 @@ class SaleController extends GetxController {
       List<TrainerOrder> fetchSale = querySnapshot.docs.map((doc) {
         return TrainerOrder.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
-      print('List<TrainerOrder>');
-      print(fetchSale);
       QuerySnapshot querySnapshot1 = await FirebaseFirestore.instance
           .collection('event_attendees')
           .where('trainerId', isEqualTo: id)
@@ -67,8 +65,6 @@ class SaleController extends GetxController {
       List<EventOrder> fetchSale1 = querySnapshot1.docs.map((doc) {
         return EventOrder.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
-      print('List<ErainerOrder>');
-      print(fetchSale1);
       orders = <TrainerOrder>[].obs;
       eventorders = <EventOrder>[].obs;
       orders = fetchSale;

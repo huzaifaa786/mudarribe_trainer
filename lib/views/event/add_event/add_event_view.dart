@@ -151,7 +151,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                     top: 20, bottom: 4, left: 4, right: 4),
                                 child: Text("Event Title".tr,
                                     style: TextStyle(
-                                      color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
+                                      color: Get.isDarkMode
+                                          ? white.withOpacity(0.45)
+                                          : maincolor,
                                       fontFamily: "Poppins",
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
@@ -328,7 +330,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             right: 4),
                                         child: Text("Price".tr,
                                             style: TextStyle(
-                                              color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
+                                              color: Get.isDarkMode
+                                                  ? white.withOpacity(0.45)
+                                                  : maincolor,
                                               fontFamily: "Poppins",
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -345,10 +349,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                                 controller.priceController,
                                             validator: (value) {
                                               if (value!.isEmpty) {
-                                                print('object');
                                                 return '';
                                               }
-                                              print('object******');
 
                                               return null;
                                             },
@@ -367,7 +369,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             right: 4),
                                         child: Text("Capacity".tr,
                                             style: TextStyle(
-                                              color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
+                                              color: Get.isDarkMode
+                                                  ? white.withOpacity(0.45)
+                                                  : maincolor,
                                               fontFamily: "Poppins",
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -384,11 +388,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             type: TextInputType.number,
                                             validator: (value) {
                                               if (value!.isEmpty) {
-                                                print('object');
                                                 return '';
                                               }
-                                              print('object******');
-
                                               return null;
                                             },
                                           )),
@@ -403,7 +404,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                   children: [
                                     Text("Location".tr,
                                         style: TextStyle(
-                                          color:  Get.isDarkMode? white.withOpacity(0.45): maincolor ,
+                                          color: Get.isDarkMode
+                                              ? white.withOpacity(0.45)
+                                              : maincolor,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                         )),
@@ -495,7 +498,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
                                             textAlign: TextAlign.center,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
-                                              color:  Get.isDarkMode? white: maincolor ,
+                                              color: Get.isDarkMode
+                                                  ? white
+                                                  : maincolor,
                                               fontSize: 14,
                                               fontFamily: "Poppins",
                                               fontWeight: FontWeight.w500,

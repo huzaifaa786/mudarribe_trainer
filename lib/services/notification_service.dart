@@ -60,7 +60,6 @@ class NotificationService extends GetxController {
   }
 
   void showFlutterNotification(RemoteMessage message) {
-    print('hehehe');
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
     const AndroidNotificationDetails androidPlatformChannelSpecifics =

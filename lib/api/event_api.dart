@@ -1,10 +1,8 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:mudarribe_trainer/exceptions/database_api_exception.dart';
-import 'package:mudarribe_trainer/models/app_user.dart';
 import 'package:mudarribe_trainer/models/event_data_combined.dart';
 import 'package:mudarribe_trainer/models/event_order.dart';
 import 'package:mudarribe_trainer/models/trainee_profile.dart';
@@ -132,9 +130,11 @@ class EventApi {
         .orderBy('id', descending: true)
         .get();
 
+    if (attendee_docs.docs.isEmpty) {
+      return combinedData;
+    }
     List<String> userIds =
         attendee_docs.docs.map((doc) => doc['userId'] as String).toList();
-
     Map<String, TraineeProfile> usersMap = {};
 
     await FirebaseFirestore.instance
@@ -142,17 +142,13 @@ class EventApi {
         .where(FieldPath.documentId, whereIn: userIds)
         .get()
         .then((querySnapshot) {
-          print(querySnapshot);
       querySnapshot.docs.forEach((doc) {
-        usersMap[doc.id] =
-            TraineeProfile.fromJson(doc.data() as Map<String, dynamic>);
+        usersMap[doc.id] = TraineeProfile.fromJson(doc.data());
       });
     });
-    
+
     List<String> eventIds =
         attendee_docs.docs.map((doc) => doc['eventId'] as String).toList();
-
-        
     Map<String, TrainerEvent> eventsMap = {};
 
     await FirebaseFirestore.instance
@@ -161,8 +157,7 @@ class EventApi {
         .get()
         .then((querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        eventsMap[doc.id] =
-            TrainerEvent.fromJson(doc.data() as Map<String, dynamic>);
+        eventsMap[doc.id] = TrainerEvent.fromJson(doc.data());
       });
     });
 
@@ -177,12 +172,9 @@ class EventApi {
       final event = eventsMap[eventId]!;
 
       return CombinedEventData(
-        trainee: trainee,
-        event: event,
-        event_order: event_order
-      );
+          trainee: trainee, event: event, event_order: event_order);
     }).toList();
-
+    combinedData.sort((a, b) => b.event_order.id.compareTo(a.event_order.id));
     return combinedData;
   }
 }

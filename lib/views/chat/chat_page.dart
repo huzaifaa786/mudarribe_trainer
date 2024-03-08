@@ -87,8 +87,6 @@ class ChatPageState extends State<ChatPage> {
       if (snapshot.exists) {
         setState(() {
           userToken = snapshot['firebaseToken'];
-          print('userToken*******************');
-          print(userToken);
         });
       } else {
         print('User not found');
@@ -145,14 +143,12 @@ class ChatPageState extends State<ChatPage> {
     // Listen for changes in the document
     chatSubscription = docRef.snapshots().listen((docSnapshot) {
       if (docSnapshot.exists) {
-        // Document exists, proceed with the update
         docRef.update({'trainerSeen': true}).then((_) {
           print('Update successful');
         }).catchError((error) {
           print('Error updating document: $error');
         });
       } else {
-        // Document does not exist, handle accordingly
         print('Document does not exist');
       }
     });

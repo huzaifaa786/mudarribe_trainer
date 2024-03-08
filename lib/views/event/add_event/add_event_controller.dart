@@ -103,7 +103,7 @@ class AddEventContoller extends GetxController {
   }
 
   Future selectEventImage() async {
-    final tempImage = await _imageSelectorApi.selectImage();
+    final tempImage = await _imageSelectorApi.selectImageForCropper();
     cropImage(tempImage);
     update();
   }
@@ -114,7 +114,16 @@ class AddEventContoller extends GetxController {
       aspectRatioPresets: aspectRatios,
       uiSettings: uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
     );
-    eventImage = File(croppedImage!.path);
+    if (croppedImage != null) {
+      // bool userConfirmed = await showConfirmationDialog(Get.context!);
+
+      // if (userConfirmed) {
+        eventImage = File(croppedImage.path);
+      // }
+    } else {
+      UiUtilites.errorSnackbar('Image selection failed'.tr,
+          'Failed to select image, please try again.'.tr);
+    }
     checkFields();
     update();
   }

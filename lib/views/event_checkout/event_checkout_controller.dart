@@ -78,7 +78,6 @@ class EventcheckoutController extends GetxController {
 
   Future getBannerCharges() async {
     bannerCharges = await _bannerApi.getBannerCharges();
-    print(bannerCharges!.amount);
     price = bannerCharges!.amount!;
     update();
   }

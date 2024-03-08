@@ -280,13 +280,25 @@ class LocaleString extends Translations {
           'What’s the suggestion?': 'What’s the suggestion?',
           'Suggestion Text': 'Suggestion Text',
           'Suggestion': 'Suggestion',
-                 'Expiry date': 'Expiry date',
+          'Expiry date': 'Expiry date',
+          'No Order Found !': 'No Order Found !',
+          "Are you sure you want to upload this media.":
+              "Are you sure you want to upload this media?",
+          "Confirmation": "Confirmation",
+          "Send": "Send",
+          'Ended': 'Ended'
         },
         'ar_AE': {
+          'Ended': " تم الإنهاء",
+          "Send": 'إرسال',
+          "Confirmation": 'تأكيد',
+          "Are you sure you want to upload this media.":
+              'هل أنت متأكد أنك تريد إرسال هذه الملفات؟',
+          'No Order Found !': 'ا يوجد طلبات !',
           'Expiry date': 'تاريخ الإنتهاء',
           'Suggestion': 'إقتراح',
           'Suggestion Text': 'نص الإقتراح',
-          'What’s the suggestion?': 'ما هو الإقتراح',
+          'What’s the suggestion?': ' ما هو الإقتراح ؟',
           'Dark': 'غامق',
           'Light': 'فاتح',
           'Theme': 'نمط',

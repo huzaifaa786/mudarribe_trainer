@@ -52,7 +52,7 @@ class AddPostController extends GetxController {
   }
 
   Future selectPostImage() async {
-    final tempImage = await _imageSelectorApi.selectImage();
+    final tempImage = await _imageSelectorApi.selectImageForCropper();
     // postImage = tempImage;
     // checkFields();
     cropImage(tempImage);
@@ -65,7 +65,14 @@ class AddPostController extends GetxController {
       aspectRatioPresets: aspectRatios,
       uiSettings: uiSetting(androidTitle: 'Crop Image', iosTitle: 'Crop Image'),
     );
-    postImage = File(croppedImage!.path);
+    bool userConfirmed = await showConfirmationDialog(Get.context!);
+
+    if (userConfirmed) {
+      postImage = File(croppedImage!.path);
+    } else {
+      UiUtilites.errorSnackbar('Image selection failed'.tr,
+          'Failed to select image, please try again.'.tr);
+    }
     checkFields();
     update();
   }

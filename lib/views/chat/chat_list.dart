@@ -92,7 +92,6 @@ class _ChatListScreenState extends State<ChatListScreen> {
     if (userSnapshot.exists) {
       final userMap = userSnapshot.data() as Map<String, dynamic>;
       userMap['seen'] = userData['trainerSeen'];
-      print(userMap['seen']);
       userMap['time'] = userData['timestamp'];
       return [userMap];
     } else {
