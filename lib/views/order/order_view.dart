@@ -468,6 +468,8 @@ class _OrderScreenState extends State<OrderScreen> {
                                               profileImage:
                                                   combineEvent.trainee.imageUrl,
                                               onTapMessage: () {
+                                                         controller.markEventAsSeen(
+                                                    combineEvent.event_order.id);
                                                 Get.to(
                                                   () => ChatPage(
                                                     arguments:
@@ -492,9 +494,11 @@ class _OrderScreenState extends State<OrderScreen> {
                                               eventName:
                                                   combineEvent.event.title,
                                               duration: combineEvent.event.date,
+                                              expdate: combineEvent.event.todate,
                                               price: combineEvent
                                                   .event_order.amount
                                                   .toString(),
+                                              seen: combineEvent.event_order.seen,
                                             );
                                           },
                                         );

@@ -13,7 +13,9 @@ class EventCard extends StatelessWidget {
       this.profileImage,
       this.onTapMessage,
       this.eventName,
+      this.seen,
       this.duration,
+      this.expdate,
       this.price});
 
   final userName;
@@ -21,6 +23,8 @@ class EventCard extends StatelessWidget {
   final onTapMessage;
   final eventName;
   final price;
+  final seen;
+  final expdate;
   final duration;
 
   @override
@@ -74,7 +78,18 @@ class EventCard extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w700),
                         ),
-                      )
+                      ),
+                      seen == false
+                          ? Container(
+                              padding: EdgeInsets.only(left: 6, right: 6),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(color: Colors.red)),
+                              child: Text('New',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12)))
+                          : SizedBox()
                     ],
                   ),
                   InkWell(
@@ -124,20 +139,45 @@ class EventCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  GradientText2(
-                    text: 'Date'.tr + ':',
-                  ),
+                  Row(
+                    children: [
+                      GradientText2(
+                        text: 'Date'.tr + ':',
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Text(
+                            '$duration'.tr,
+                            style: const TextStyle(
+                              fontFamily: "Montserrat",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.left,
+                          ))
+                    ],
+                  ),  
                   Padding(
-                      padding: const EdgeInsets.all(6.0),
-                      child: Text(
-                        '$duration'.tr,
-                        style: const TextStyle(
-                          fontFamily: "Montserrat",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Row(
+                      children: [
+                        GradientText2(
+                          text: 'Expiry date'.tr + ':',
                         ),
-                        textAlign: TextAlign.left,
-                      ))
+                        Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: Text(
+                              '$expdate'.tr,
+                              style: const TextStyle(
+                                fontFamily: "Montserrat",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.left,
+                            ))
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ],
