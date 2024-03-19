@@ -82,6 +82,14 @@ class OrderController extends GetxController {
       print('Error marking orders as seen: $e');
     }
   }
+  
+  void markEventAsSeen(id) async {
+    try {
+      await _firestore.collection('event_attendees').doc(id).update({'seen': true});
+    } catch (e) {
+      print('Error marking event as seen: $e');
+    }
+  }
 
   bool busyIndicator = false;
   bool isMoreItemFetching = false;

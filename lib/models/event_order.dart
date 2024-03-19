@@ -5,6 +5,7 @@ class EventOrder {
   String? userId;
   String? type;
   int? amount;
+  bool? seen;
 
   EventOrder({
     required this.id,
@@ -13,6 +14,7 @@ class EventOrder {
     this.type,
     this.userId,
     this.amount,
+    this.seen,
   });
 
   EventOrder.fromJson(Map<String, dynamic> json) {
@@ -21,6 +23,7 @@ class EventOrder {
     eventId = json['eventId'];
     userId = json['userId'];
     amount = json['amount'] ?? '';
+    seen = json['seen'] ?? false;
   }
 
   // Map<String, dynamic> toJson() {

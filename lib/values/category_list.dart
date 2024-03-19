@@ -7,15 +7,21 @@ CategoryList() {
     "Indoor Cycling",
     "Fitness",
     "Boxing",
-    "Medical Fitness",
     "Tennis",
     "Padel",
     "Calisthenics",
     "Animal flow",
     "Rehabilitation",
     "Aerobics",
-    "Plates",
     "Kettle bell",
     "Volleyball"
+    "Stick mobility",
+    "Hiking",
+    "Women fitness",
+    "Football",
+    "Cycling",
+    "Dancing",
+    "TRX",
+    "Running"
   ];
 }
