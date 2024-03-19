@@ -16,5 +16,6 @@ CategoryList() {
     "Aerobics",
     "Plates",
     "Kettle bell",
+    "Volleyball"
   ];
 }

@@ -104,7 +104,7 @@ dependency_overrides:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/appLogo.png"
+  image_path: "assets/images/trainerLogo.png"
   # background_color: "#AC7BFF"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -286,9 +286,11 @@ class LocaleString extends Translations {
               "Are you sure you want to upload this media?",
           "Confirmation": "Confirmation",
           "Send": "Send",
-          'Ended': 'Ended'
+          'Ended': 'Ended',
+          'Volleyball': 'Volleyball',
         },
         'ar_AE': {
+          'Volleyball': 'كرة الطائرة',
           'Ended': " تم الإنهاء",
           "Send": 'إرسال',
           "Confirmation": 'تأكيد',
