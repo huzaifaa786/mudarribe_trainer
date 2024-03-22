@@ -74,7 +74,7 @@ class CustomChatListItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0),
                   child: badges.Badge(
-                    badgeStyle: badges.BadgeStyle(badgeColor: borderbottom),
+                    badgeStyle: badges.BadgeStyle(badgeColor: Colors.red),
                     showBadge: userData['seen'] == true ? false : true,
                   ),
                 )
