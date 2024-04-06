@@ -294,8 +294,14 @@ class LocaleString extends Translations {
           'Cycling': 'Cycling',
           'Dancing': 'Dancing',
           'Running': 'Running',
+          'Error selecting file': 'Error selecting file',
+          'Certificate file only contain .pdf files':
+              'Certificate file only contain .pdf files'
         },
         'ar_AE': {
+          'Certificate file only contain .pdf files':
+              'ملف الشهادة يحتوي فقط على ملفات .pdf',
+          'Error selecting file': 'خطأ في اختيار الملف',
           'Volleyball': 'كرة الطائرة',
           'Ended': " تم الإنهاء",
           "Send": 'إرسال',

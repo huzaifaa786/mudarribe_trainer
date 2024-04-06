@@ -18,6 +18,7 @@ import 'package:mudarribe_trainer/routes/app_routes.dart';
 import 'package:mudarribe_trainer/services/user_service.dart';
 import 'package:mudarribe_trainer/values/ui_utils.dart';
 import 'package:mudarribe_trainer/enums/enums.dart';
+import 'package:path/path.dart';
 
 class SignUpController extends GetxController {
   static SignUpController instance = Get.find();
@@ -139,8 +140,14 @@ class SignUpController extends GetxController {
 
   Future selectCertificate() async {
     final tempFile = await _fileSelectorApi.selectFile();
-    certificate = tempFile;
-    checkFields();
+    final fileExtension = extension(tempFile.path);
+    if (fileExtension == '.pdf') {
+      certificate = tempFile;
+      checkFields();
+    } else {
+      UiUtilites.errorSnackbar('Error selecting file'.tr,
+          "Certificate file only contain .pdf files".tr);
+    }
     update();
   }
 
